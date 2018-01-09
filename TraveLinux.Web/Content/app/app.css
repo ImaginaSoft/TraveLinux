@@ -1,0 +1,54 @@
+﻿span.logo-lg img {
+    margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+  span.logo-lg img {
+        margin-top: 0px;
+    }
+}
+
+.paginate_button {
+    padding: 0px !important;
+}
+
+.paginate_button:hover {
+    border-color: #fafafa !important;
+}
+
+.paginate_button.previous > a {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.paginate_button.next > a {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.no-pad-right {
+    padding-right: 0px;
+}
+
+.no-pad-left {
+    padding-left: 0px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #881F34;
+    border-color: #881F34;
+}
+
+.noty_buttons .btn-primary {
+    background-color: rgb(136,31,52);
+    border-color: rgb(136,31,52);
+}
+
+.TamEx
+{
+    display:inline-block;
+    margin-left:100px
+}

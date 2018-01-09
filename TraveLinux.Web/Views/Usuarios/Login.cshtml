@@ -1,0 +1,130 @@
+﻿
+@{
+    Layout = null;
+}
+
+@section Scripts {
+
+    <script src="~/Scripts/app/ValidacionUsuario.js"></script>
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Iniciar sesión - TraveLinux</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/Content/adminlte/AdminLTE.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .login-page {
+            background: rgb(47, 57, 86);
+        }
+
+        .login-box .btn-primary {
+            background-color: rgb(52, 102, 247);
+            border-color: rgb(52, 102, 247);
+
+              -webkit-transition: background-color 2s ease-out;
+              -moz-transition: background-color 0.5s ease-out;
+        }
+
+            .login-box .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+                background-color: rgb(52, 102, 247);                
+                border-color: rgb(52, 102, 247);
+            }
+
+        .login-box .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+            outline: 0;
+            outline: 0;
+            outline-offset: 0;
+        }
+
+        .btn-m {
+            background-color: rgb(255, 89, 89) !important;
+        }
+
+        .btn_trans:hover {
+            background-color:rgb(11, 39, 119);
+            border-color:rgb(11, 39, 119);
+        }
+
+        .login-logo, .register-logo {
+            text-align: -webkit-center;
+            text-align: -moz-center;
+        }
+
+        .alert {
+            padding: 7px;
+            text-align:center;
+        }
+    </style>
+
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="~/Content/img/Logo_TraveLinux.png" class="img-responsive" />
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <h3 class="login-box-msg">Iniciar Session</h3>
+
+            @if (TempData.ContainsKey("Error"))
+            {
+                <h2 class="login-box-msg">@TempData["Error"]</h2>
+            }
+
+            @using (Html.BeginForm("Login", "Usuarios", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group has-feedback">
+                    <input type="text" name="username" class="form-control" id="usuario" placeholder="Usuario">
+                    <span class="fa fa-user fa-lg form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña">
+                    <span class="fa fa-lock fa-lg form-control-feedback"></span>
+                </div>
+
+                if (@ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Message</div>
+                }
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-offset-7 col-md-5">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat btn_trans" id="btnGet">Iniciar sesión</button>
+                    
+                    </div><!-- /.col -->
+                </div>
+
+            }
+        </div><!-- /.login-box-body -->
+        <div class="alert alert-success btn-m" role="alert" style="font-size: 13px;
+    text-align: center;margin-top: 20px; border-radius: 0 !important;">Diseñado Por <a href="#">Imagina Software</a></div>
+    </div><!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery/jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/app/ValidacionUsuario.js"></script>
+</body>
+</html>

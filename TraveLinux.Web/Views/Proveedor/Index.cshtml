@@ -1,0 +1,198 @@
+﻿
+@{
+    ViewBag.Title = "Proveedor";
+}
+
+<h2>Proveedor</h2>
+
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoProveedor.js"></script>
+}
+
+<style>
+            .header {
+            background: rgb(248, 247, 217);
+            padding-left: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+            .header p {
+                font-size: 23px;
+                color: rgb(155, 54, 72);
+                font-weight: bold;
+                margin-bottom: 0px;
+            }
+    .radio {
+        padding-left: 10px;
+    }
+
+    textarea {
+        height: 100px;
+        max-height: 100px;
+    }
+
+    #label_izq {
+        text-align: left;
+    }
+
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    .well {
+        padding: 1px 0px 10px 10px !important;
+        margin-bottom: 20px;
+        background-color: #eeeeee !important;
+        border: 1px solid #e3e3e3;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 30px;
+    }
+
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #f39c12;
+        border-color: #e08e0b;
+    }
+</style>
+
+<script id="responsive-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-12 header">
+            <p id="descripcion"></p>
+            <span>
+                <strong>PROVEEDOR</strong>
+                <span id="proveedor"></span>
+                @*<strong>NOMBRE:</strong>
+                <span id="nombre"></span>
+                <strong>RUC:</strong>
+                <span id="ruc"></span>*@
+            </span>
+
+        </div>
+        <div class="col-xs-12 details">
+            <table class="table table-borderless full-width">
+                <tbody>
+                    @*<tr>
+                        <th>PROVEEDOR</th>
+                        <td id="proveedor"></td>
+                    </tr>*@
+                    <tr>
+                        <th>NOMBRE</th>
+                        <td id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <th>ALIAS</th>
+                        <td id="alias"></td>
+                    </tr>
+                    @*<tr>
+                        <th>TIPO PROVEEDOR</th>
+                        <td id="tproveedor"></td>
+                    </tr>
+                    <tr>
+                        <th>TIPO</th>
+                        <td id="tipo"></td>
+                    </tr>
+                    <tr>
+                        <th>PAIS</th>
+                        <td id="pais"></td>
+                    </tr>
+                    <tr>
+                        <th>Ciudad</th>
+                        <td id="ciudad"></td>
+                    </tr>
+                    <tr>
+                        <th>DIRECCION</th>
+                        <td id="direccion"></td>
+                    </tr>
+                    <tr>
+                        <th>PAGINA WEB</th>
+                        <td id="paginaweb"></td>
+                    </tr>*@
+                    <tr>
+                        <th>RUC</th>
+                        <td id="ruc"></td>
+                    </tr>
+                    <tr>
+                        <th>IDIOMA</th>
+                        <td id="idioma"></td>
+                    </tr>
+                    <tr>
+                        <th>ESTADO</th>
+                        <td id="estado"></td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-6 button">
+            <button class="btn btn-success" onclick="onClickListarTarifa(event);"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> Editar</button>
+        </div>
+        <div class="col-xs-6 button">
+            <button class="btn btn-danger" onclick="onClickListarTarifa(event);"><i class="fa fa-file-text-o" aria-hidden="true"></i>Crear Tarifa</button>
+        </div>
+    </div>
+</script>
+
+
+<section class="content-header">
+    @*<h1>Moneda</h1>*@
+</section>
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                @*<div class="box-header with-border">
+                        @*<h3 class="box-title">Datos Generales</h3>
+                    </div>*@
+                <div class="box-body">
+                    <div class="form-group">
+                        @*<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4">*@
+                        <div class="col-md-4">
+                            <a class="btn btn-warning btn-block" href="@Url.Action("NuevoProveedor", "Proveedor")"><span class="glyphicon glyphicon-list-alt"></span> New Supplier</a>
+
+                        </div>
+                        @*<div class="col-xs-12 col-sm-3 col-md-4">
+                                <button href="#" class="btn btn-warning btn-block">
+                                    <span class="glyphicon glyphicon-floppy-remove"></span> Cancel
+                                </button>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <form>
+                <div class="box-body">
+                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

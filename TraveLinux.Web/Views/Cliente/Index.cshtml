@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewBag.Title = "ListadoCliente";
+}
+
+<h2>ListadoCliente</h2>
+
+
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoCliente.js"></script>
+}
+
+<style>
+    .radio {
+        padding-left: 10px;
+    }
+
+    textarea {
+        height: 100px;
+        max-height: 100px;
+    }
+
+    #label_izq {
+        text-align: left;
+    }
+
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    .well {
+        padding: 1px 0px 10px 10px !important;
+        margin-bottom: 20px;
+        background-color: #eeeeee !important;
+        border: 1px solid #e3e3e3;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 30px;
+    }
+
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #f39c12;
+        border-color: #e08e0b;
+    }
+</style>
+
+<script id="responsive-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-12 header">
+            <p id="descripcion"></p>
+            <span>
+                <strong>Moneda</strong>
+                <span id="moneda"></span>
+                <strong>VALOR:</strong>
+                <span id="valor"></span>
+                <strong>ESTADO:</strong>
+                <span id="estado"></span>
+            </span>
+
+        </div>
+        <div class="col-xs-12 details">
+            <table class="table table-borderless full-width">
+                <tbody>
+                    <tr>
+                        <th>CLIENTE</th>
+                        <td id="cliente"></td>
+                    </tr>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <td id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <th>PATERNO</th>
+                        <td id="paterno"></td>
+                    </tr>
+                    <tr>
+                        <th>MATERNO</th>
+                        <td id="materno"></td>
+                    </tr>
+                    <tr>
+                        <th>DOCUMENTO</th>
+                        <td id="documento"></td>
+                    </tr>
+                    <tr>
+                        <th>NUMERO</th>
+                        <td id="numero"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA NACIMIENTO</th>
+                        <td id="fec_nacimiento"></td>
+                    </tr>
+                    <tr>
+                        <th>ESTADO CIVIL</th>
+                        <td id="estado_civil"></td>
+                    </tr>
+                    <tr>
+                        <th>GENERO</th>
+                        <td id="genero"></td>
+                    </tr>
+                    <tr>
+                        <th>PAÍS</th>
+                        <td id="pais"></td>
+                    </tr>
+                    <tr>
+                        <th>`DEPARTAMENTO</th>
+                        <td id="departamento"></td>
+                    </tr>
+                    <tr>
+                        <th>DISTRITO</th>
+                        <td id="distrito"></td>
+                    </tr>
+                    <tr>
+                        <th>DIRECCION</th>
+                        <td id="direccion"></td>
+                    </tr>
+                    <tr>
+                        <th>IDIOMA</th>
+                        <td id="IDIOMA"></td>
+                    </tr>
+                    <tr>
+                        <th>EMAIL</th>
+                        <td id="email"></td>
+                    </tr>
+                    <tr>
+                        <th>EMAIL 2</th>
+                        <td id="email_2"></td>
+                    </tr>
+                    <tr>
+                        <th>EMAIL 3</th>
+                        <td id="email_3"></td>
+                    </tr>
+                    <tr>
+                        <th>TELEFONO</th>
+                        <td id="telefono"></td>
+                    </tr>
+                    <tr>
+                        <th>TELEFONO 2</th>
+                        <td id="telefono_2"></td>
+                    </tr>
+                    <tr>
+                        <th>TELEFONO 3</th>
+                        <td id="telefono_3"></td>
+                    </tr>
+                    <tr>
+                        <th>ESTADO</th>
+                        <td id="estado"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA REGISTRO</th>
+                        <td id="fec_registro"></td>
+                    </tr>
+                    <tr>
+                        <th>USUARIO REGISTRO</th>
+                        <td id="usuario_registro"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA ULT MODIFICACION</th>
+                        <td id="fec_ult_modif"></td>
+                    </tr>
+                    <tr>
+                        <th>USUARIO ULT MODIFICACION</th>
+                        <td id="usuario_ult_modif"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+
+
+
+
+<section class="content-header">
+    @*<h1>Moneda</h1>*@
+</section>
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                @*<div class="box-header with-border">
+                        @*<h3 class="box-title">Datos Generales</h3>
+                    </div>*@
+                <div class="box-body">
+                    <div class="form-group">
+                        @*<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4">*@
+                        <div class="col-md-4">
+                            <a class="btn btn-warning btn-block" href="@Url.Action("NuevoCliente", "Cliente")"><span class="glyphicon glyphicon-list-alt"></span> New Customer</a>                            
+                        </div>
+                        @*<div class="col-xs-12 col-sm-3 col-md-4">
+                                <button href="#" class="btn btn-warning btn-block">
+                                    <span class="glyphicon glyphicon-floppy-remove"></span> Cancel
+                                </button>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <form>
+                <div class="box-body">
+                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

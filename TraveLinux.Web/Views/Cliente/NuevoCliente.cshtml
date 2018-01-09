@@ -1,0 +1,271 @@
+﻿@model TraveLinux.Web.Models.MantenimientoUsuariosViewModel
+@{
+    ViewBag.Title = "NuevoCliente";
+}
+
+
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoCliente.js"></script>
+}
+
+@section Styles {
+    <style>
+        textarea {
+            height: 100px;
+            max-height: 100px;
+        }
+
+        #label_izq {
+            text-align: left;
+        }
+
+        .the-legend {
+            border-style: none;
+            border-width: 0;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 0;
+        }
+
+        .the-fieldset {
+            border: 2px groove threedface #444;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        .well {
+            padding: 1px 0px 10px 10px !important;
+            margin-bottom: 20px;
+            background-color: #eeeeee !important;
+            border: 1px solid #e3e3e3;
+        }
+
+        p {
+            text-align: left;
+        }
+
+        .form-horizontal .form-group {
+            margin-bottom: 30px;
+        }
+    </style>
+}
+<section class="content-header">
+
+    <h1>Datos Generales</h1>
+
+</section>
+
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+
+                <div class="box-body">              
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-6 col-md-4">                            
+                            <p>Document:</p>
+                            <select id="documento" class="selectpicker" data-size="5">
+                                <option>--- Seleccione ---</option>
+                                @foreach (var tipoDocumento in Model.TipoDocumentos)
+                                {
+                                    <option value="@tipoDocumento.DOCUMENTO">@tipoDocumento.DESCRIPCION</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <p>&nbsp;</p>
+                            <input class="form-control" id="numero" placeholder="Enter Number">
+                        </div>
+                    </div>
+                    <div class="form-group">                        
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <p>Name:</p>
+                            <input class="form-control" id="nombre" placeholder="Enter Name">
+                        </div>                        
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <p>Patern:</p>
+                            <input class="form-control" id="paterno" placeholder="Enter Patern">
+                        </div>                        
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <p>Matern:</p>
+                            <input class="form-control" id="materno" placeholder="Enter Matern">
+                        </div>
+                    </div>
+                    <div class="form-group">                        
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Status:</p>
+                            <select id="estadocivil" class="selectpicker" data-size="5">
+                                <option>--- Seleccione ---</option>
+                                <option value="Soltero">Soltero</option>
+                                <option value="Casado">Casado</option>
+                                <option value="Viudo">Viudo</option>
+                                <option value="Divorciado">Divorciado</option>
+                            </select>
+                        </div>                        
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Gender:</p>
+                            <select id="genero" class="selectpicker" data-size="5">
+                                <option>--- Seleccione ---</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>                        
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Birth date:</p>
+                            <div class="input-group date" id="fechanacimiento">
+                                <input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD" />
+                                <span class="input-group-addon input-sm">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header">
+                    @*<h3 class="box-title">Datos Secundarios</h3>*@
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        @*<label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Country:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Country:</p>
+                            <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
+                                <option>--- Seleccione ---</option>
+                                @foreach (var paises in Model.Paises)
+                                {
+                                    <option value="@paises.PAIS">@paises.NOMBRE</option>
+                                }
+                            </select>
+                        </div>
+                        @*<label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">State:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">                            
+                            <p>State:</p>
+                            <select id="departamentos" class="selectpicker">
+
+                            </select>                                
+                        </div>
+                        @*<label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">City:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>City:</p>
+                            <select id="distrito" class="selectpicker" data-size="5">
+                                <option>--- Seleccione ---</option>
+                                <option value="Cercado de Lima">Cercado de Lima</option>
+                                <option value="Lince">Lince</option>
+                                <option value="Rimac">Rimac</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @* <label for="name" class="col-xs-12 col-sm-2 col-md-2 control-label no-pad-right">Address:</label>*@
+                        <div class="col-sm-7">
+                            <p>Address:</p>
+                            <textarea class="form-control" id="direccion" rows="5" placeholder="Enter ..."></textarea>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <p>Language:</p>
+                            <select id="idioma" class="selectpicker" data-size="5">
+                                <option>--- Seleccione ---</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="English">English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header">
+                    @*<h3 class="box-title"></h3>*@
+                </div>
+                <div class="box-body">
+                    @*<div class="form-group">
+                           <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Language:</label>
+                            <div class="col-xs-12 col-sm-3">
+                                <p>Language:</p>
+                                <select id="idioma" class="selectpicker" data-size="5">
+                                    <option>--- Seleccione ---</option>
+                                    <option value="Spanish">Spanish</option>
+                                    <option value="English">English</option>
+                                </select>
+                            </div>
+                        </div>*@
+                    <div class="form-group">
+                        @*<label for="alias" class="col-sm-1 control-label no-pad-right">Email:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Email:</p>
+                            <input class="form-control" id="email" placeholder="Enter Email">
+                        </div>
+                        @*<label for="alias" class="col-sm-1 control-label no-pad-right">Email 2:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Email 2:</p>
+                            <input class="form-control" id="email2" placeholder="Enter Email">
+                        </div>
+                        @*<label for="alias" class="col-sm-1 control-label no-pad-right">Email 3:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-sm-4">
+                            <p>Email 3:</p>
+                            <input class="form-control" id="email3" placeholder="Enter Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @*<label for="alias" class="col-sm-1 control-label no-pad-right">Phone:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Phone:</p>
+                            <input class="form-control" id="phone1" placeholder="Enter Phone">
+                        </div>
+                        @*<label for="alias" class="col-sm-1 control-label no-pad-right">Phone 2:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Phone 2:</p>
+                            <input class="form-control" id="phone2" placeholder="Enter Phone">
+                        </div>
+                        @*<label for="alias" class="col-sm-1 control-label no-pad-right">Phone 3:</label>*@
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <p>Phone 3:</p>
+                            <input class="form-control" id="phone3" placeholder="Enter Phone">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    @*<h3 class="box-title">Notas</h3>*@
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        @*<label for="inlineCheckbox1" class="col-xs-4 col-sm-4 control-label no-pad-right">State:</label>*@
+                        <div class="col-xs-4 col-sm-4">
+                            <p>State:</p>
+                            <div class="checkbox checkbox-success checkbox-inline">
+                                <input type="checkbox" class="styled" id="inlineCheckbox1">
+                                <label for="inlineCheckbox1">&nbsp;</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-warning" id="btn-guardar">Guardar</button>
+                        <button type="button" class="btn btn-warning" id="btn-cancelar">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</form>

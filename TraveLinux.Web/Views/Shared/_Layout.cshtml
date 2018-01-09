@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title - TraveLinux</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Ionicons -->
+    @*<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">*@
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <link href="~/Content/jquery.dataTables/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Content/adminlte/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/adminlte/skins/skin-blue.min.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+
+    <link href="~/Content/summernote/summernote.css" rel="stylesheet" />
+    <link href="~/Content/summernote/summernote.css" rel="stylesheet" />
+
+    @*<link rel="stylesheet" href="bootstrap.css" />*@
+    <link rel="stylesheet" href="~/Content/bower_components/Font-Awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/css/build.css" />
+
+
+
+    <link href="~/Content/app/app.css" rel="stylesheet" />
+
+    @RenderSection("styles", false)
+
+    <style>
+        .navbar-static-top {
+            background-color: rgb(47, 57, 86) !important;
+        }
+
+        .skin-blue .main-header .logo {
+            background-color: rgb(47, 57, 86) !important;
+            /*   color: #fff;
+        border-bottom: 0 solid transparent;*/
+        }
+
+        .skin-blue .main-header .navbar .sidebar-toggle:hover {
+            background-color: rgb(47, 57, 86) !important;
+        }
+
+        .box.box-info {
+            border-top-color: rgb(246,139,31);
+        }
+
+        .wrapper .btn-primary {
+            background-color: rgb(136,31,52);
+            border-color: rgb(136,31,52);
+        }
+
+            .wrapper .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+                background-color: rgb(136,31,52);
+                border-color: rgb(136,31,52);
+            }
+
+        .wrapper .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+            outline: 0;
+            outline: 0;
+            outline-offset: 0;
+        }
+        .user-header {
+            background-color: rgb(47, 57, 86) !important;
+        }
+
+         .skin-blue .sidebar-menu>li.header {
+            color: #ffffff !important;
+            background: #1a2226;
+            font-weight: bolder !important;
+            text-align: center !important;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>I</b>T</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <img src="~/Content/img/Logo_TraveLinux.png" class="img-responsive" />
+                </span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="/Content/img/e1.png" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">@ViewBag.Nombre</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="/Content/img/e1.png" class="img-circle" alt="User Image">
+                                    <p>
+                                        @ViewBag.Nombre
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="/Usuarios/Logout" class="btn btn-default btn-flat">Cerrar sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="/Content/img/e1.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info"><br>
+                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                    </div>
+                </div>
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu">
+                    <li class="header">MENÚ</li>
+                    <!-- Optionally, you can add icons to the links -->
+                    <li><a href="@Url.Action("Index", "Inicio")"><i class="fa fa-home fa-lg"></i> <span>Inicio</span></a></li>
+
+
+                    @if(Html.Autorizar(Perfil.Ejecutivo))
+                    {
+                        <li>
+                            <a href="@Url.Action("Index", "Servicios")">
+                                <i class="fa fa-users"></i> <span>Tareas</span>
+                            </a>
+                        </li>
+                    }
+
+
+                    @if(Html.Autorizar(Perfil.Administrador))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-wrench"></i>
+                                <span>Mantenimiento</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index", "Proveedor")"><i class="fa fa-user-circle"></i><span> Proveedores</span></a></li>
+                                <li><a href="@Url.Action("NuevoServicio", "Servicios")"><i class="fa fa-gg"></i> <span>Servicios</span></a></li>
+                                <li><a href="@Url.Action("Index", "Cliente")"><i class="fa fa-user-o"></i> <span>Cliente</span></a></li>
+                                <li><a href="@Url.Action("Index", "Moneda")"><i class="fa fa-bitcoin fa-lg"></i><span> Moneda</span></a></li>                                
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dollar fa-lg"></i>
+                                <span>Cotización</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+
+                            <ul class="treeview-menu">                                
+                                <li><a href="@Url.Action("Index", "Cotizacion")"><i class="fa fa-circle-o"></i> <span>Crear Cotización</span></a></li>
+                                <li><a href="@Url.Action("Buscar", "Cotizacion")"><i class="fa fa-circle-o"></i> <span>Buscar Cotización</span></a></li>
+                                <li><a href="@Url.Action("CrearPlantilla", "Cotizacion")"><i class="fa fa-search"></i> <span>Crear a Partir de una Plantilla</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file"></i>
+                                <span>Ficha Cliente</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="@Url.Action("Plantilla", "Crear")">
+                                        <i class="fa fa-file-o"></i> <span>Buscar Ficha Cliente</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Plantilla", "Crear")">
+                                        <i class="fa fa-file-o"></i> <span>Generar Itinerario</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+</ul><!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @if (IsSectionDefined("header"))
+            {
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    @RenderSection("header")
+                </section>
+            }
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Versión 1.0 | @DateTime.Now.ToString("yyyy-MM-dd")
+            </div>
+            <!-- Default to the left -->
+            <strong>&copy; @DateTime.Now.Year - TraveLinux</strong>
+        </footer>
+    </div><!-- ./wrapper -->
+
+    <script src="~/Scripts/modernizr/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/moment/moment-with-locales.min.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/respond/respond.min.js"></script>
+    <script src="~/Scripts/noty/jquery.noty.packaged.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/adminlte/app.min.js"></script>
+    <script src="~/Scripts/jquery.blockUI/jquery.blockUI.js"></script>
+    <script src="~/Scripts/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="~/Scripts/summernote/summernote.min.js"></script>
+    <script src="~/Scripts/summernote/summernote-es-ES.js"></script>
+    <script src="https://use.fontawesome.com/b18d034fde.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

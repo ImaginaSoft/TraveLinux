@@ -1,0 +1,20 @@
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Business.dll
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Business.pdb
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll.config
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll.config
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb

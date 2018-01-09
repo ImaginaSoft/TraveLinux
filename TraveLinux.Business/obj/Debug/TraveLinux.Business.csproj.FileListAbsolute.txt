@@ -1,0 +1,23 @@
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.dll
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.pdb
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.dll
+D:\Repasando C#\PROYECTO\TraveLinux\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.pdb
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.pdb
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Data.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Data.pdb
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.csprojResolveAssemblyReference.cache
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.dll
+D:\PROYECTO_TRAVELINUX\Hackers\TraveLinux 13122017\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.pdb
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.pdb
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\EPPlus.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\OfficeOpenXml.Extends.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Data.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\TraveLinux.Data.pdb
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\bin\Debug\EPPlus.xml
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.csprojResolveAssemblyReference.cache
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.dll
+D:\PROYECTO_TRAVELINUX\TraveLinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.pdb

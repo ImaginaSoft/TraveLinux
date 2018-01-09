@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraveLinux.Data", "TraveLinux.Data\TraveLinux.Data.csproj", "{B5B3EEA3-30A5-41DE-871C-03016D72590B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraveLinux.Business", "TraveLinux.Business\TraveLinux.Business.csproj", "{1F76ABD9-45CB-4D3F-A285-E5222C1E5310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraveLinux.Web", "TraveLinux.Web\TraveLinux.Web.csproj", "{14A61D4D-2FC3-499C-8B8E-054C2D04BC75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5B3EEA3-30A5-41DE-871C-03016D72590B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B3EEA3-30A5-41DE-871C-03016D72590B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B3EEA3-30A5-41DE-871C-03016D72590B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B3EEA3-30A5-41DE-871C-03016D72590B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F76ABD9-45CB-4D3F-A285-E5222C1E5310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F76ABD9-45CB-4D3F-A285-E5222C1E5310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F76ABD9-45CB-4D3F-A285-E5222C1E5310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F76ABD9-45CB-4D3F-A285-E5222C1E5310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A61D4D-2FC3-499C-8B8E-054C2D04BC75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A61D4D-2FC3-499C-8B8E-054C2D04BC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A61D4D-2FC3-499C-8B8E-054C2D04BC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A61D4D-2FC3-499C-8B8E-054C2D04BC75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
