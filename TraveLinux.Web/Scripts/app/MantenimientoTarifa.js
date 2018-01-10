@@ -9,6 +9,22 @@
     $('#dtp_ending').datetimepicker();
 
 
+        function renderTextColor(data, type, row, meta) {
+        var text = data.toLowerCase();
+        var template = $('<span>');
+        if (text.indexOf('no aplicable') >= 0) {
+            template.css('color', 'green').html(data);
+        } else if (text.indexOf('conforme') >= 0) {
+            template.css('color', 'green').html(data);
+        } else if (text.indexOf('pendiente') >= 0) {
+            template.css('color', 'red').html(data);
+        } else {
+            template.css('color', 'red').html(data);
+        }
+        return $('<div>').append(template).html();
+    }
+
+
     //*Guardar Tarifa*//
 
     function onClickGuardarTarifa() {
@@ -78,6 +94,21 @@
         //var Proveedor = item.PROVEEDOR;
 
         window.location = '/TarifaDetalle/NuevaTarifaDetalle?Proveedor=' + item.PROVEEDOR + '&Tarifa=' + item.TARIFA;
+
+    }
+
+    function onClickListarServiciotarifa(e) {
+        e.preventDefault();
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+        debugger;
+
+        var Tarifa = item.TARIFA;
+        var Proveedor = item.PROVEEDOR;
+
+        window.location = '/TarifaDetalleServicio/Index?Proveedor=' + item.PROVEEDOR + '&Tarifa=' + item.TARIFA;
 
     }
 
@@ -191,6 +222,13 @@
         visible: false,
     },
     {
+        title: 'DINAMICO',
+        data: 'DINAMICO',
+        width: 125,
+        className: 'not-mobile',
+        visible: false,
+    },
+    {
         title: 'FECHA_REGISTRO',
         data: 'FECHA_REGISTRO',
         width: 125,
@@ -225,18 +263,29 @@
 
     {
         data: null,
-        width: 80,
+        width: 10,
         className: 'dt-body-center not-mobile',
         render: function (data, type, row, meta) {
             var content = [];
-
-            var editar = '<button class="btn btn-success RegistrarTarifDetalle" title="Detalle Servicio"><i class="glyphicon glyphicon-pencil"></i></button>';
-
-            content.push(editar);
-
+            var CargaServicio = '<button class="btn btn-success RegistrarTarifDetalle" title="Carga Servicio"><i class="glyphicon glyphicon-pencil"></i></button>';
+            content.push(CargaServicio);
             return content.join('&nbsp;&nbsp;');
         }
     },
+
+        {
+            data: null,
+            width: 10,
+            className: 'dt-body-center not-mobile',
+            render: function (data, type, row, meta) {
+                var content = [];
+                var VerServicio = '<button class="btn btn-danger ListarServiciotarifa" title="Ver Servicio"><i class="glyphicon glyphicon-eye-open"></i></button>';
+                if (data.DINAMICO >= 1) {
+                    content.push(VerServicio);
+                }
+                return content.join('&nbsp;&nbsp;');
+            }
+        },
 
         ]
     });
@@ -245,6 +294,9 @@
     $('#resultados tbody').on('click', 'button.RegistrarTarifDetalle', onClickRegistrarTarifaDetalle);
     window.onClickRegistrarTarifaDetalle = onClickRegistrarTarifaDetalle;
 
+
+    $('#resultados tbody').on('click', 'button.ListarServiciotarifa', onClickListarServiciotarifa);
+    window.onClickListarServiciotarifa = onClickListarServiciotarifa;
 
     $('.form-horizontal').on('click', 'button.RegistrarTarifa', onClickRegistrarTarifa);
     window.onClickRegistrarTarifa = onClickRegistrarTarifa;

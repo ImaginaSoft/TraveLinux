@@ -20,6 +20,7 @@ namespace TraveLinux.Business
         IEnumerable<Pais> ObtenerPaises();
         IEnumerable<Proveedor> ObtenerListaProveedor();
         IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(string Proveedor, string Tarifa);
+        IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string Proveedor, string Tarifa);
         IEnumerable<Proveedor> ObtenerProveedor(string sProveedor);
         List<Departamentos> ListadoDepartamento(string sPais);
         void GuardarMonedas(Moneda eMoneda);

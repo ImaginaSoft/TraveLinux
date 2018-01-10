@@ -269,10 +269,11 @@ namespace TraveLinux.Data
                         tarifa.FECHA_FINAL = reader.GetDateTimeOrDefault(6);
                         tarifa.NOTAS = reader.GetStringOrDefault(7);
                         tarifa.ESTADO = reader.GetStringOrDefault(8);
-                        tarifa.FECHA_REGISTRO = reader.GetDateTimeOrDefault(9);
-                        tarifa.USUARIO_REGISTRO = reader.GetStringOrDefault(10);
-                        tarifa.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(11);
-                        tarifa.USUARIO_ULT_MODIF = reader.GetStringOrDefault(12);
+                        tarifa.DINAMICO = reader.GetInt32 (9);
+                        tarifa.FECHA_REGISTRO = reader.GetDateTimeOrDefault(10);
+                        tarifa.USUARIO_REGISTRO = reader.GetStringOrDefault(11);
+                        tarifa.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(12);
+                        tarifa.USUARIO_ULT_MODIF = reader.GetStringOrDefault(13);
                         lstTarifa.Add(tarifa);
                     }
                 }
@@ -426,8 +427,8 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_TARIFA");
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR;
-                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eTarifa.NOMBRE;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 9).Value = eTarifa.PROVEEDOR;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 60).Value = eTarifa.NOMBRE;
                 command.Parameters.Add("P_FECHA_COMENZAR", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_COMENZAR);
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_INICIO);
                 command.Parameters.Add("P_FECHA_FINAL", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_FINAL);
@@ -478,6 +479,42 @@ namespace TraveLinux.Data
             }
 
             return lstProveedor;
+        }
+
+
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string sProveedor,string sTarifa)
+        {
+            var lstTarifaDetalle = new List<Tarifa_Detalle>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIF_PROV_DET");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 100, sProveedor, ParameterDirection.Input);
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 100, sTarifa, ParameterDirection.Input);
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tarifadetalle = new Tarifa_Detalle();
+                        tarifadetalle.PROVEEDOR = reader.GetStringOrDefault(0);
+                        tarifadetalle.TARIFA = reader.GetStringOrDefault(1);
+                        tarifadetalle.SERVICIO = reader.GetStringOrDefault(2);
+                        tarifadetalle.DESCRIPCION  = reader.GetStringOrDefault(3);
+                        tarifadetalle.RANGO_DEL = reader.GetStringOrDefault(4);
+                        tarifadetalle.RANGO_AL = reader.GetStringOrDefault(5);
+                        tarifadetalle.PRECIO = reader.GetStringOrDefault(6);
+                        lstTarifaDetalle.Add(tarifadetalle);
+                    }
+                }
+            }
+
+            return lstTarifaDetalle;
         }
 
         public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa)

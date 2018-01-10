@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TarifaController.cs" />
     <Compile Include="Controllers\TarifaDetalleController.cs" />
+    <Compile Include="Controllers\TarifaDetalleServicioController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Filters\FiltroValidadorSesion.cs" />
     <Compile Include="Global.asax.cs">
@@ -324,6 +325,8 @@
     <Content Include="Views\Tarifa\NuevaTarifa.cshtml" />
     <Content Include="Views\TarifaDetalle\NuevaTarifaDetalle.cshtml" />
     <Content Include="Views\TarifaDetalle\TarifaDetalle.cshtml" />
+    <Content Include="Views\TarifaDetalle\Obtener_tarifa_Detalle_Prov.cshtml" />
+    <Content Include="Views\TarifaDetalleServicio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

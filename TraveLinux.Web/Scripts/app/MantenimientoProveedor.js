@@ -34,7 +34,7 @@
 
     function setTextColor(template, id, data) {
         var text = data.toLowerCase();
-        if (text.indexOf(1) == 1) {
+        if (text.indexOf('ESTADO') == 'ESTADO') {
             template.find(id).css('color', 'red').html(data);
         } else {
             template.find(id).css('color', 'green').html(data);
@@ -46,7 +46,7 @@
         var text = data.toLowerCase();
         var template = $('<span>');
 
-        if (text.indexOf(1) == 1) {
+        if (text.indexOf('ESTADO') == 'ESTADO') {
             template.css('color', 'red').html(data);
         } else {
             template.css('color', 'green').html(data);
@@ -98,10 +98,10 @@
             }
         };
 
-        if (data.Nombre == null) {
-            showErrorMessage('Debe ingresar un nombre');
-            return;
-        }
+        //if (data.Nombre == null) {
+        //    showErrorMessage('Debe ingresar un nombre');
+        //    return;
+        //}
 
 
         $.ajax({
@@ -267,7 +267,7 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            var editar = '<button class="btn btn-success Editar btn-editar" title="Editar Cliente"><i class="glyphicon glyphicon-pencil"></i></button>';
+            var editar = '<button class="btn btn-success Editar btn-editar" title="Editar Proveedor"><i class="glyphicon glyphicon-pencil"></i></button>';
             var CrearTarifa = '<button class="btn btn-danger ListarTarifa btn-CrearTarifa" title="Crear Tarifa"><i class="fa fa-file-text-o"></i></button>';
             //var eliminar = '<button class="btn btn-danger Eliminar" title="Eliminar Cliente"><i class="glyphicon glyphicon-remove"></i></button>';
 

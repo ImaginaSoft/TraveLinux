@@ -118,7 +118,7 @@
         width: 150,
         className: 'not-mobile',
         //render: renderTextColor
-        //visible: false,
+        visible: false,
     },
 
     {

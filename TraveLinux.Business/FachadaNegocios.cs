@@ -95,6 +95,21 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo obtener el detalle tarifa", e);
             }
         }
+
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string Proveedor, string Tarifa)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var TarifDetalle = datos.ObtenerTarifProvDetalle(Proveedor, Tarifa);
+                return TarifDetalle;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener el detalle tarifa", e);
+            }
+        }
+
         public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor)
         {
             try

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Obtener_tarifa_Detalle_Prov";
+}
+
+<h2>Obtener_tarifa_Detalle_Prov</h2>
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoTarifaDetalle.js"></script>
+}
+
+<style>
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+</style>
+<script id="responsive-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-12 header">
+            <p id="tarifa"></p>
+            <span>
+                <strong>TARIFA</strong>
+                <span id="tarifa"></span>
+            </span>
+
+        </div>
+        <div class="col-xs-12 details">
+            <table class="table table-borderless full-width">
+                <tbody>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <td id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA VALIDEZ</th>
+                        <td id="fechavalidez"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA INICIO</th>
+                        <td id="fechainivigencia"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <form>
+                <div class="box-body">
+                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

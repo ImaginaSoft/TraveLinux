@@ -17,6 +17,7 @@ namespace TraveLinux.Data.Entidades
         public DateTime? FECHA_FINAL { get; set; }
         public string NOTAS { get; set; }
         public string ESTADO { get; set; }
+        public int DINAMICO { get; set; }
         public DateTime? FECHA_REGISTRO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
         public DateTime? FECHA_ULT_MODIF { get; set; }
