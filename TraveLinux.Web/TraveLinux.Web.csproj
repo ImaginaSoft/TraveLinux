@@ -327,6 +327,7 @@
     <Content Include="Views\TarifaDetalle\TarifaDetalle.cshtml" />
     <Content Include="Views\TarifaDetalle\Obtener_tarifa_Detalle_Prov.cshtml" />
     <Content Include="Views\TarifaDetalleServicio\Index.cshtml" />
+    <Content Include="Views\Proveedor\EditarProveedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -379,8 +379,49 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Value = eProveedor.IDIOMA;
                 command.Parameters.Add("P_PAGINAWEB", OracleDbType.Varchar2, 50).Value = eProveedor.PAGINAWEB;
                 command.Parameters.Add("P_RUC", OracleDbType.Varchar2, 50).Value = eProveedor.RUC;
+                command.Parameters.Add("P_EMAIL_1", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_1;
+                command.Parameters.Add("P_EMAIL_2", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_2;
+                command.Parameters.Add("P_EMAIL_3", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_3;
+                command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_1;
+                command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_2;
+                command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_3;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eProveedor.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eProveedor.USUARIO_REGISTRO;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+        public void ActualizarProveedor(Proveedor eProveedor)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ACTUALIZAR_PROVEEDOR");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eProveedor.PROVEEDOR;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE;
+                command.Parameters.Add("P_ALIAS", OracleDbType.Varchar2, 50).Value = eProveedor.ALIAS;
+                command.Parameters.Add("P_TPROVEEDOR", OracleDbType.Varchar2, 50).Value = eProveedor.TPROVEEDOR;
+                command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Value = eProveedor.TIPO;
+                command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 50).Value = eProveedor.PAIS;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 50).Value = eProveedor.CIUDAD;
+                command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 50).Value = eProveedor.DIRECCION;
+                command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Value = eProveedor.IDIOMA;
+                command.Parameters.Add("P_PAGINAWEB", OracleDbType.Varchar2, 50).Value = eProveedor.PAGINAWEB;
+                command.Parameters.Add("P_RUC", OracleDbType.Varchar2, 50).Value = eProveedor.RUC;
+                command.Parameters.Add("P_EMAIL_1", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_1;
+                command.Parameters.Add("P_EMAIL_2", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_2;
+                command.Parameters.Add("P_EMAIL_3", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_3;
+                command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_1;
+                command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_2;
+                command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_3;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eProveedor.ESTADO;
+                command.Parameters.Add("P_USUARIO_ULT_MODIF", OracleDbType.Varchar2, 50).Value = eProveedor.USUARIO_REGISTRO;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -450,7 +491,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTA_PROV_TARIFA");
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PROV_TARIFA");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 100, sProveedor, ParameterDirection.Input);
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
@@ -481,6 +522,69 @@ namespace TraveLinux.Data
             return lstProveedor;
         }
 
+
+        public Proveedor ObtenerEditarProveedor(string sProveedor)
+        {
+            var ObjProveedor = new Proveedor();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_PROV");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 9, sProveedor, ParameterDirection.Input);                
+                command.Parameters.Add("P_PROVCODIGO", OracleDbType.Varchar2, 9).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_ALIAS", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TPROVEEDOR", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 5).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAISNOM", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAGINA_WEB", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_RUC", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_EMAIL_1", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_EMAIL_2", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_EMAIL_3", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output; 
+                connection.Open();
+                command.ExecuteNonQuery();
+
+               //if (ok == 1)
+               // {
+                    ObjProveedor.PROVEEDOR = command.Parameters.GetStringOrDefault("P_PROVCODIGO");
+                    ObjProveedor.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");
+                    ObjProveedor.ALIAS = command.Parameters.GetStringOrDefault("P_ALIAS");
+                    ObjProveedor.TPROVEEDOR = command.Parameters.GetStringOrDefault("P_TPROVEEDOR");
+                    ObjProveedor.TIPO = command.Parameters.GetStringOrDefault("P_TIPO");
+                    ObjProveedor.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
+                    ObjProveedor.NOMBRE_PAIS = command.Parameters.GetStringOrDefault("P_PAISNOM");
+                    ObjProveedor.CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD");
+                    ObjProveedor.DIRECCION = command.Parameters.GetStringOrDefault("P_DIRECCION");
+                    ObjProveedor.IDIOMA = command.Parameters.GetStringOrDefault("P_IDIOMA");
+                    ObjProveedor.PAGINAWEB = command.Parameters.GetStringOrDefault("P_PAGINA_WEB");
+                    ObjProveedor.RUC = command.Parameters.GetStringOrDefault("P_RUC");
+                    ObjProveedor.EMAIL_1 = command.Parameters.GetStringOrDefault("P_EMAIL_1");
+                    ObjProveedor.EMAIL_2 = command.Parameters.GetStringOrDefault("P_EMAIL_2");
+                    ObjProveedor.EMAIL_3 = command.Parameters.GetStringOrDefault("P_EMAIL_3");
+                    ObjProveedor.TELEFONO_1 = command.Parameters.GetStringOrDefault("P_TELEFONO_1");
+                    ObjProveedor.TELEFONO_2 = command.Parameters.GetStringOrDefault("P_TELEFONO_2");
+                    ObjProveedor.TELEFONO_3 = command.Parameters.GetStringOrDefault("P_TELEFONO_3");
+                    ObjProveedor.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
+
+                //}
+
+            }
+
+            return ObjProveedor;
+        }
 
         public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string sProveedor,string sTarifa)
         {
