@@ -150,6 +150,19 @@ namespace TraveLinux.Business
             }
         }
 
+        public void ActualizarProveedor(Proveedor eProveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.ActualizarProveedor(eProveedor);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo actualizar el proveedor", e);
+            }
+        }
+
         public void GuardarServicio(Servicio eServicio)
         {
             try
@@ -210,6 +223,20 @@ namespace TraveLinux.Business
             {
                 var datos = new AccesoDatos(ConnectionString);
                 var proveedor = datos.ObtenerProveedor(sProveedor);
+                return proveedor;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener el proveedor", e);
+            }
+        }
+
+        public Proveedor ObtenerEditarProveedor(string sProveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var proveedor = datos.ObtenerEditarProveedor(sProveedor);
                 return proveedor;
             }
             catch (Exception e)
