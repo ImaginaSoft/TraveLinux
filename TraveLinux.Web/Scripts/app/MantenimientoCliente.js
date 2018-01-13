@@ -1,6 +1,61 @@
 ﻿$(function () {
 
     $('#fechanacimiento').datetimepicker();
+
+    $("#eliminar_email").hide();
+    $("#eliminar_fono").hide();
+    var max_fields = 3;
+    var x = 1;
+    var y = 1;
+
+    $("#mostrar_email").click(function (e) {
+        e.preventDefault();
+        if ('clicked') {
+            if (x < max_fields) {
+                x++;
+                $("#caja_dinamico").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Email ' + x + ':</p><input class="form-control" id="email' + x + '"placeholder="Enter Email"></div>');
+
+                if (x == 2) {
+                    $("#eliminar_email").show();
+                }
+            }
+        }
+
+    });
+
+    $('#eliminar_email').click(function () {
+        debugger;
+        if (x != 0) {
+            $('#eliminarcajas' + x).remove();
+            x = x - 1;
+        }
+    });
+
+
+    $("#mostrar_fono").click(function (e) {
+        e.preventDefault();
+        if ('clicked') {
+            if (y < max_fields) {
+                y++;
+                $("#caja_dinamico_2").append('<div class="col-xs-12 col-sm-12 col-md-3" id ="eliminarcajas_2' + y + '"><p>Phone ' + y + ':</p><input class="form-control" id="telefono' + y + '"placeholder="Enter Fono"></div>');
+
+                if (y == 2) {
+                    $("#eliminar_fono").show();
+                }
+            }
+        }
+
+    });
+
+    $('#eliminar_fono').click(function () {
+        debugger;
+        if (y != 0) {
+            $('#eliminarcajas_2' + y).remove();
+            y = y - 1;
+        }
+    });
+
+
     
     $('#pais').on('change', function () {        
        
