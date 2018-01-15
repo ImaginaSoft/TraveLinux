@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*@model TraveLinux.Web.Models.ProveedorViewModels*@
+
+@using TraveLinux.Web.Models
+@model IEnumerable<ProveedorViewModels>
+@{
+    ViewBag.Title = "TarifaProveedor";
+}
+
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoTarifaDetalle.js"></script>
+}
+
+<style>
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+</style>
+@*<script id="responsive-template" type="text/x-handlebars-template">
+        <div class="row">
+            <div class="col-xs-12 header">
+                <p id="tarifa"></p>
+                <span>
+                    <strong>TARIFA</strong>
+                    <span id="tarifa"></span>
+                </span>
+
+            </div>
+            <div class="col-xs-12 details">
+                <table class="table table-borderless full-width">
+                    <tbody>
+                        <tr>
+                            <th>NOMBRE</th>
+                            <td id="nombre"></td>
+                        </tr>
+                        <tr>
+                            <th>FECHA VALIDEZ</th>
+                            <td id="fechavalidez"></td>
+                        </tr>
+                        <tr>
+                            <th>FECHA INICIO</th>
+                            <td id="fechainivigencia"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </script>*@
+
+<section class="content-header">
+
+    @*<h1>Datos Generales</h1>*@
+
+</section>
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-7 col-md-7">
+                            <fieldset class="well the-fieldset">
+                                <legend class="the-legend">@*<b>Beginning</b>*@</legend>
+                                <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="proveedor_nombre" value="" disabled>
+                                    <br />
+                                </div>
+                                <label for="alias" class="col-sm-3 control-label no-pad-right">Rate:</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date" id="dtp_until">
+                                        <input class="form-control" id="tarifa_nobre" value="" disabled>
+                                        <div class="hidden">
+                                            <input input="text" class="form-control" id="tarifa_codigo" value="">
+                                            <input input="text" class="form-control" id="proveedor_codigo" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                        <input type="file" name="UploadedFile" />
+                                    <input type="submit" name="Submit" value="Submit" />
+                 
+                    <button class="btn btn-warning" id="btn-guardar">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
