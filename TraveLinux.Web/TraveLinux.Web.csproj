@@ -211,6 +211,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CotizacionController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\MensajeController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RangosController.cs" />
@@ -328,6 +329,7 @@
     <Content Include="Views\TarifaDetalle\Obtener_tarifa_Detalle_Prov.cshtml" />
     <Content Include="Views\TarifaDetalleServicio\Index.cshtml" />
     <Content Include="Views\Proveedor\EditarProveedor.cshtml" />
+    <Content Include="Views\Mensaje\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
