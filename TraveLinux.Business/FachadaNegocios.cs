@@ -245,6 +245,34 @@ namespace TraveLinux.Business
             }
         }
 
+        public Cliente ObtenerEditarCliente(string sCliente)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var cliente = datos.ObtenerEditarCliente(sCliente);
+                return cliente;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener el cliente", e);
+            }
+        }
+
+        public void ActualizarCliente(Cliente eCliente)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.ActualizarCliente(eCliente);
+                
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo actualizar el cliente", e);
+            }
+        }        
+
         public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa)
         {
             try

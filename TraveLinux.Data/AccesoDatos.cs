@@ -34,11 +34,11 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DOCUMENTO", OracleDbType.Char, 5).Value = eCliente.DOCUMENTO;
                 command.Parameters.Add("P_NUMERO", OracleDbType.Varchar2, 50).Value = eCliente.NUMERO;
                 command.Parameters.Add("P_FEC_NACIMIENTO", OracleDbType.Date).Value = Convert.ToDateTime(eCliente.FEC_NACIMIENTO);
+                command.Parameters.Add("P_RANGO_EDAD", OracleDbType.Varchar2, 50).Value = eCliente.RANGO_EDAD;
                 command.Parameters.Add("P_ESTADO_CIVIL", OracleDbType.Varchar2, 50).Value = eCliente.ESTADO_CIVIL;
                 command.Parameters.Add("P_GENERO", OracleDbType.Varchar2, 50).Value = eCliente.GENERO;
                 command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 50).Value = eCliente.PAIS;
-                command.Parameters.Add("P_DEPARTAMENTO", OracleDbType.Varchar2, 50).Value = eCliente.DEPARTAMENTO;
-                command.Parameters.Add("P_DISTRITO", OracleDbType.Varchar2, 50).Value = eCliente.DISTRITO;
+                command.Parameters.Add("P_DEPARTAMENTO", OracleDbType.Varchar2, 50).Value = eCliente.DEPARTAMENTO;                
                 command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 50).Value = eCliente.DIRECCION;
                 command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Value = eCliente.IDIOMA;
                 command.Parameters.Add("P_EMAIL", OracleDbType.Varchar2, 50).Value = eCliente.EMAIL;
@@ -47,8 +47,48 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO;
                 command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO_2;
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO_3;
+                command.Parameters.Add("P_NOTAS", OracleDbType.Varchar2, 50).Value = eCliente.NOTAS;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eCliente.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = "Jorge";
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+        public void ActualizarCliente(Cliente eCliente)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ACTUALIZAR_CLIENTE");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_CLIENTE", OracleDbType.Varchar2, 50).Value = eCliente.CLIENTE;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eCliente.NOMBRE;
+                command.Parameters.Add("P_PATERNO", OracleDbType.Varchar2, 50).Value = eCliente.PATERNO;
+                command.Parameters.Add("P_MATERNO", OracleDbType.Varchar2, 50).Value = eCliente.MATERNO;
+                command.Parameters.Add("P_DOCUMENTO", OracleDbType.Char, 5).Value = eCliente.DOCUMENTO;
+                command.Parameters.Add("P_NUMERO", OracleDbType.Varchar2, 50).Value = eCliente.NUMERO;
+                command.Parameters.Add("P_FEC_NACIMIENTO", OracleDbType.Date).Value = Convert.ToDateTime(eCliente.FEC_NACIMIENTO);
+                command.Parameters.Add("P_RANGO_EDAD", OracleDbType.Varchar2, 50).Value = eCliente.RANGO_EDAD;
+                command.Parameters.Add("P_ESTADO_CIVIL", OracleDbType.Varchar2, 50).Value = eCliente.ESTADO_CIVIL;
+                command.Parameters.Add("P_GENERO", OracleDbType.Varchar2, 50).Value = eCliente.GENERO;
+                command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 50).Value = eCliente.PAIS;
+                command.Parameters.Add("P_DEPARTAMENTO", OracleDbType.Varchar2, 50).Value = eCliente.DEPARTAMENTO;
+                command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 50).Value = eCliente.DIRECCION;
+                command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Value = eCliente.IDIOMA;
+                command.Parameters.Add("P_EMAIL_1", OracleDbType.Varchar2, 50).Value = eCliente.EMAIL;
+                command.Parameters.Add("P_EMAIL_2", OracleDbType.Varchar2, 50).Value = eCliente.EMAIL_2;
+                command.Parameters.Add("P_EMAIL_3", OracleDbType.Varchar2, 50).Value = eCliente.EMAIL_3;
+                command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO;
+                command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO_2;
+                command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO_3;
+                command.Parameters.Add("P_NOTAS", OracleDbType.Varchar2, 50).Value = eCliente.NOTAS;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eCliente.ESTADO;
+                command.Parameters.Add("P_USUARIO_ULT_MODIF", OracleDbType.Varchar2, 50).Value = "Jorge";
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -137,11 +177,11 @@ namespace TraveLinux.Data
                         cliente.DOCUMENTO = reader.GetStringOrDefault(4);
                         cliente.NUMERO = reader.GetStringOrDefault(5);
                         cliente.FEC_NACIMIENTO = reader.GetDateTimeOrDefault(6);
-                        cliente.ESTADO_CIVIL = reader.GetStringOrDefault(7);
-                        cliente.GENERO = reader.GetStringOrDefault(8);
-                        cliente.PAIS = reader.GetStringOrDefault(9);
-                        cliente.DEPARTAMENTO = reader.GetStringOrDefault(10);
-                        cliente.DISTRITO = reader.GetStringOrDefault(11);
+                        cliente.RANGO_EDAD = reader.GetStringOrDefault(7);
+                        cliente.ESTADO_CIVIL = reader.GetStringOrDefault(8);
+                        cliente.GENERO = reader.GetStringOrDefault(9);
+                        cliente.PAIS = reader.GetStringOrDefault(10);
+                        cliente.DEPARTAMENTO = reader.GetStringOrDefault(11);                        
                         cliente.DIRECCION = reader.GetStringOrDefault(12);
                         cliente.IDIOMA = reader.GetStringOrDefault(13);
                         cliente.EMAIL = reader.GetStringOrDefault(14);
@@ -150,11 +190,12 @@ namespace TraveLinux.Data
                         cliente.TELEFONO = reader.GetStringOrDefault(17);
                         cliente.TELEFONO_2 = reader.GetStringOrDefault(18);
                         cliente.TELEFONO_3 = reader.GetStringOrDefault(19);
-                        cliente.ESTADO = reader.GetStringOrDefault(20);
-                        cliente.FECHA_REGISTRO = reader.GetDateTimeOrDefault(21);
-                        cliente.USUARIO_REGISTRO = reader.GetStringOrDefault(22);
-                        cliente.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(23);
-                        cliente.USUARIO_ULT_MODIF = reader.GetStringOrDefault(24);
+                        cliente.NOTAS= reader.GetStringOrDefault(20);
+                        cliente.ESTADO = reader.GetStringOrDefault(21);
+                        cliente.FECHA_REGISTRO = reader.GetDateTimeOrDefault(22);
+                        cliente.USUARIO_REGISTRO = reader.GetStringOrDefault(23);
+                        cliente.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(24);
+                        cliente.USUARIO_ULT_MODIF = reader.GetStringOrDefault(25);
                         lclientes.Add(cliente);
                     }
                 }
@@ -584,6 +625,71 @@ namespace TraveLinux.Data
             }
 
             return ObjProveedor;
+        }
+
+        public Cliente ObtenerEditarCliente(string sCliente)
+        {
+            var ObjCliente = new Cliente();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_CLI");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_CLIENTE", OracleDbType.Char, 9, sCliente, ParameterDirection.Input);
+                command.Parameters.Add("P_CLICODIGO", OracleDbType.Char, 9).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PATERNO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_MATERNO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_DOCUMENTO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NUMERO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_FEC_NACIMIENTO", OracleDbType.Date).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_RANGO_EDAD", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_ESTADO_CIVIL", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_GENERO", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAISNOM", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_DEPARTAMENTO", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_EMAIL_1", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_EMAIL_2", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_EMAIL_3", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOTAS", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                ObjCliente.CLIENTE = command.Parameters.GetStringOrDefault("P_CLICODIGO");
+                ObjCliente.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");
+                ObjCliente.PATERNO = command.Parameters.GetStringOrDefault("P_PATERNO");
+                ObjCliente.MATERNO = command.Parameters.GetStringOrDefault("P_MATERNO");
+                ObjCliente.DOCUMENTO = command.Parameters.GetStringOrDefault("P_DOCUMENTO");
+                ObjCliente.NUMERO = command.Parameters.GetStringOrDefault("P_NUMERO");
+                ObjCliente.FEC_NACIMIENTO = command.Parameters.GetDateTimeOrDefault("P_FEC_NACIMIENTO");
+                ObjCliente.RANGO_EDAD = command.Parameters.GetStringOrDefault("P_RANGO_EDAD");
+                ObjCliente.ESTADO_CIVIL = command.Parameters.GetStringOrDefault("P_ESTADO_CIVIL");
+                ObjCliente.GENERO = command.Parameters.GetStringOrDefault("P_GENERO");
+                ObjCliente.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
+                ObjCliente.NOMBRE_PAIS = command.Parameters.GetStringOrDefault("P_PAISNOM");
+                ObjCliente.DEPARTAMENTO = command.Parameters.GetStringOrDefault("P_DEPARTAMENTO");
+                ObjCliente.DIRECCION = command.Parameters.GetStringOrDefault("P_DIRECCION");
+                ObjCliente.IDIOMA = command.Parameters.GetStringOrDefault("P_IDIOMA");
+                ObjCliente.EMAIL = command.Parameters.GetStringOrDefault("P_EMAIL_1");
+                ObjCliente.EMAIL_2 = command.Parameters.GetStringOrDefault("P_EMAIL_2");
+                ObjCliente.EMAIL_3 = command.Parameters.GetStringOrDefault("P_EMAIL_3");
+                ObjCliente.TELEFONO = command.Parameters.GetStringOrDefault("P_TELEFONO_1");
+                ObjCliente.TELEFONO_2 = command.Parameters.GetStringOrDefault("P_TELEFONO_2");
+                ObjCliente.TELEFONO_3 = command.Parameters.GetStringOrDefault("P_TELEFONO_3");
+                ObjCliente.NOTAS = command.Parameters.GetStringOrDefault("P_NOTAS");
+                ObjCliente.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
+            }
+            return ObjCliente;
         }
 
         public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string sProveedor,string sTarifa)

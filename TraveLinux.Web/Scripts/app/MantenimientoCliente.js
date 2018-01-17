@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    //document.getElementById("btn-editar").disabled = true;
+    var editor;
     $('#fechanacimiento').datetimepicker();
 
     $("#eliminar_email").hide();
@@ -90,7 +92,7 @@
 
     function onClickEditarCliente(e) {
         e.preventDefault();
-
+        debugger;
         var item = grid.row($(this).parents('tr')).data();
 
         if (!item) {
@@ -114,7 +116,7 @@ function onClickRegistrarCliente() {
     else {
         valor = 0
     }
-
+    debugger;
     var data = {
         eCliente: {
              Nombre : $('#nombre').val(),
@@ -122,21 +124,23 @@ function onClickRegistrarCliente() {
              Materno: $('#materno').val(),
              Documento: $('#documento').val(),
              Numero: $('#numero').val(),
+             Estado: valor,
              Fec_Nacimiento: $('#fechanacimiento').data('DateTimePicker').date(),
+             Rango_Edad: $('#rangoedad').val(),
              Estado_Civil: $('#estadocivil').val(),
              Genero: $('#genero').val(),
              Pais: $('#pais').val(),             
-             Departamento: $('#departamento').val(),
-             Distrito: $('#distrito').val(),
+             Departamento: $('#departamentos').val(),
              Direccion: $('#direccion').val(),
              Idioma: $('#idioma').val(),
-             Email: $('#email').val(),
+             Email: $('#email1').val(),
              Email_2: $('#email2').val(),
              Email_3: $('#email3').val(),
-             Telefono: $('#phone1').val(),
-             Telefono_2: $('#phone2').val(),
-             Telefono_3: $('#phone3').val(),
-             Estado: valor
+             Telefono: $('#telefono1').val(),
+             Telefono_2: $('#telefono2').val(),
+             Telefono_3: $('#telefono3').val(),
+             Notas: $('#notas').val(),
+             
         }
     }
 
@@ -160,6 +164,70 @@ function onClickRegistrarCliente() {
 }
 
 
+    // Actualizar Cliente
+function onClickActualizarCliente() {
+
+    debugger;
+
+    var valor = 0;
+
+    if ($('input#inlineCheckbox1').is(':checked')) {
+        valor = 1
+    }
+    else {
+        valor = 0
+    }
+
+    var data = {
+        eCliente: {
+            Cliente: $('#cliente').val(),
+            Nombre: $('#nombre').val(),
+            Paterno: $('#paterno').val(),
+            Materno: $('#materno').val(),
+            Documento: $('#documento').val(),
+            Numero: $('#numero').val(),
+            Estado: valor,
+            Fec_Nacimiento: $('#fechanacimiento').data('DateTimePicker').date(),
+            Rango_Edad: $('#rangoedad').val(),
+            Estado_Civil: $('#estadocivil').val(),
+            Genero: $('#genero').val(),
+            Pais: $('#pais').val(),
+            Departamento: $('#departamentos').val(),
+            Direccion: $('#direccion').val(),
+            Idioma: $('#idioma').val(),
+            Email: $('#email1').val(),
+            Email_2: $('#email2').val(),
+            Email_3: $('#email3').val(),
+            Telefono: $('#telefono1').val(),
+            Telefono_2: $('#telefono2').val(),
+            Telefono_3: $('#telefono3').val(),
+            Notas: $('#notas').val(),
+        }
+    };
+
+    //if (data.Nombre == null) {
+    //    showErrorMessage('Debe ingresar un nombre');
+    //    return;
+    //}
+
+
+    $.ajax({
+        type: 'POST',
+        url: '/cliente/ActualizarCliente',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data)
+    })
+    .done(function (data) {
+        showSuccessMessage('Se ha actualizado el cliente');
+        setTimeout(function () {
+            window.location = '/Cliente/Index';
+        }, 2000);
+    })
+    .fail(function () {
+        showErrorMessage('No se pudo actualizar el cliente. Inténtelo de nuevo.');
+        enableAllComponents(true);
+    });
+}
 
 
 //*LISTA CLIENTE*//
@@ -199,13 +267,20 @@ var grid = $('#resultados').DataTable({
     ajax: {
         method: 'GET',
         url: '/Cliente/ListadoCliente',
-        dataType: 'json',
+        dataType: 'json',        
         dataSrc: '',
         data: function (items) {
         }
     },
 
     columns: [
+{
+    data: null,
+    width: 30,
+    defaultContent: '',
+    className: 'select-checkbox',
+    orderable: false
+},
 {
     title: 'CLIENTE',
     data: 'CLIENTE',
@@ -244,7 +319,7 @@ var grid = $('#resultados').DataTable({
 {
     title: 'NUMERO',
     data: 'NUMERO',
-    width: 125,
+    width: 70,
     className: 'not-mobile'
 },
 
@@ -252,7 +327,16 @@ var grid = $('#resultados').DataTable({
     title: 'FEC_NACIMIENTO',
     data: 'FEC_NACIMIENTO',
     width: 150,
-    className: 'not-mobile'
+    className: 'not-mobile',
+    visible : false
+},
+
+{
+    title: 'RANGOS_EDAD',
+    data: 'RANGO_EDAD',
+    width: 150,
+    className: 'not-mobile',
+    visible: false,
 },
 
 {
@@ -287,13 +371,6 @@ var grid = $('#resultados').DataTable({
 },
 
 {
-    title: 'DISTRITO',
-    data: 'DISTRITO',
-    width: 150,
-    className: 'not-mobile'
-},
-
-{
     title: 'DIRECCION',
     data: 'DIRECCION',
     width: 125,
@@ -303,9 +380,9 @@ var grid = $('#resultados').DataTable({
 {
     title: 'IDIOMA',
     data: 'IDIOMA',
-    width: 125,
+    width: 70,
     className: 'not-mobile',
-    visible: false,
+    visible: true,
 
 },
 
@@ -314,7 +391,7 @@ var grid = $('#resultados').DataTable({
     data: 'EMAIL',
     width: 150,
     className: 'not-mobile',
-    visible: false,
+    visible: true,
 },
 
 {
@@ -351,6 +428,14 @@ var grid = $('#resultados').DataTable({
 {
     title: 'TELEFONO_3',
     data: 'TELEFONO_3',
+    width: 150,
+    className: 'not-mobile',
+    visible: false,
+},
+
+{
+    title: 'NOTAS',
+    data: 'NOTAS',
     width: 150,
     className: 'not-mobile',
     visible: false,
@@ -396,29 +481,40 @@ var grid = $('#resultados').DataTable({
 },
 
 
-{
-    data: null,
-    width: 80,
-    className: 'dt-body-center not-mobile',
-    render: function (data, type, row, meta) {
-        var content = [];
+//{
+//    data: null,
+//    width: 80,
+//    className: 'dt-body-center not-mobile',
+//    render: function (data, type, row, meta) {
+//        var content = [];
 
-        var editar = '<button class="btn btn-success Editar btn-editar" title="Editar Cliente"><i class="glyphicon glyphicon-pencil"></i></button>';
-        //var eliminar = '<button class="btn btn-danger Eliminar" title="Eliminar Cliente"><i class="glyphicon glyphicon-remove"></i></button>';
+//        //var eliminar = '<button class="btn btn-danger Eliminar" title="Eliminar Cliente"><i class="glyphicon glyphicon-remove"></i></button>';
 
-        content.push(editar);
-        //content.push(eliminar);
+//        content.push(editar);
+//        //content.push(eliminar);
 
-        return content.join('&nbsp;&nbsp;');
-    }
-},
+//        return content.join('&nbsp;&nbsp;');
+//    }
+//},
 
-    ]
+    ],
+    columnDefs: [{
+        orderable: false,
+        className: 'select-checkbox',
+        targets: 0
+    }],
 
-
-
+    select: {
+    style:    'os',
+    selector: 'td:first-child'
+    },
 });
-$('#resultados tbody').on('click', 'button.btn-editar', onClickEditarCliente);
+
+grid.on('select', function (e, dt, type, indexes) {    
+    var items = dt.rows({ selected: true }).data().toArray();
+    window.location = '/Cliente/EditarCliente?Cliente=' + items[0]["CLIENTE"];
+    });
 $('#btn-guardar').on('click', onClickRegistrarCliente);
+$('#btn-actualizar').on('click', onClickActualizarCliente);
 
 });

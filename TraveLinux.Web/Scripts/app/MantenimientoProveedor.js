@@ -124,7 +124,7 @@
             item = grid.row($(e.target).parents('tr').prev()).data();
         }
         //alert(item.PROVEEDOR);
-
+        
         debugger;
         window.location = '/Proveedor/EditarProveedor?Proveedor=' + item.PROVEEDOR;
     }
@@ -297,6 +297,13 @@
 
         columns: [
     {
+        data: null,
+        width: 30,
+        defaultContent: '',
+        className: 'select-checkbox',
+        orderable: false
+    },
+    {
         title: 'PROVEEDOR',
         data: 'PROVEEDOR',
         width: 70,
@@ -394,11 +401,11 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            var editarProveedor = '<button class="btn btn-success EditarProveedor btn-editar" title="Editar Proveedor"><i class="glyphicon glyphicon-pencil"></i></button>';
+            //var editarProveedor = '<button class="btn btn-success EditarProveedor btn-editar" title="Editar Proveedor"><i class="glyphicon glyphicon-pencil"></i></button>';
             var CrearTarifa = '<button class="btn btn-danger ListarTarifa btn-CrearTarifa" title="Crear Tarifa"><i class="fa fa-file-text-o"></i></button>';
-            //var eliminar = '<button class="btn btn-danger Eliminar" title="Eliminar Cliente"><i class="glyphicon glyphicon-remove"></i></button>';
+            
 
-            content.push(editarProveedor);
+            //content.push(editarProveedor);
             content.push(CrearTarifa);
             //content.push(eliminar);
 
@@ -406,10 +413,25 @@
         }
     },
 
-        ]
+        ],
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }],
+
+        select: {
+            style: 'os',
+            selector: 'td:first-child'
+        },
 
     });
 
+    grid.on('select', function (e, dt, type, indexes) {
+        var items = dt.rows({ selected: true }).data().toArray();
+        window.location = '/Proveedor/EditarProveedor?Proveedor=' + items[0]["PROVEEDOR"];
+
+    });
 
     $('#btn-guardar').on('click', onClickRegistrarProveedor);
     $('#btn-actualizar').on('click', onClickActualizarProveedor);

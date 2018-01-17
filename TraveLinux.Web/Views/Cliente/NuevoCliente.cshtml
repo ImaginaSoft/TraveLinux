@@ -72,7 +72,7 @@
                                 <option>--- Seleccione ---</option>
                                 @foreach (var tipoDocumento in Model.TipoDocumentos)
                                 {
-                                    <option value="@tipoDocumento.DOCUMENTO">@tipoDocumento.DESCRIPCION</option>
+                                    <option value="@tipoDocumento.DESCRIPCION">@tipoDocumento.DESCRIPCION</option>
                                 }
                             </select>
 
@@ -148,14 +148,14 @@
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <p>Age range:</p>
-                            <select id="estadocivil" class="selectpicker" data-size="5">
+                            <select id="rangoedad" class="selectpicker" data-size="5">
                                 <option>--- Seleccione ---</option>
-                                <option value="">De 18 a 25 </option>
-                                <option value="">26 a 30</option>
-                                <option value="">31 a 35</option>
-                                <option value="">36 a 40</option>
-                                <option value="">41 a 55</option>
-                                <option value="">56 a más</option>
+                                <option value="18-25">De 18 a 25 </option>
+                                <option value="26-30">26 a 30</option>
+                                <option value="31-35">31 a 35</option>
+                                <option value="36-40">36 a 40</option>
+                                <option value="41-55">41 a 55</option>
+                                <option value="56 a más">56 a más</option>
                             </select>
                         </div>
                     </div>
@@ -214,17 +214,8 @@
         <div class="col-md-12">
             <div class="box box-success">
                 <div class="box-header">
-                    @*<h3 class="box-title"></h3>*@
                 </div>
-<<<<<<< HEAD
-                <div class="box-body">                   
-=======
                 <div class="box-body">
-                    @*<div class="col-xs-12 col-sm-12 col-sm-12 text-right">
-                            <button type="button" class="btn btn-success btn-sm" id="mostrar_email"> <span class="glyphicon glyphicon-plus"></span></button>
-                            <button type="button" class="btn btn-danger btn-sm" id="eliminar_email"> <span class="glyphicon glyphicon-minus"></span></button>
-                        </div>*@
->>>>>>> bellota
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <p>Email:</p>
@@ -233,14 +224,7 @@
                         <div id="caja_dinamico">
 
                         </div>
-                        @*<div class="col-xs-12 col-sm-12 col-md-3" id="Email2_dinamico">
-                                <p>Email 2:</p>
-                                <input class="form-control" id="email2" placeholder="Enter Email">
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-sm-3" id="Email3_dinamico">
-                                <p>Email 3:</p>
-                                <input class="form-control" id="email3" placeholder="Enter Email">
-                            </div>*@
+
                         <div class="col-xs-12 col-sm-12 col-sm-3">
                             <p>&nbsp;</p>
                             <button type="button" class="btn btn-success btn-sm" id="mostrar_email"> <span class="glyphicon glyphicon-plus"></span></button>
@@ -249,13 +233,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="box box-success">
                 <div class="box-header">
-                    @*<h3 class="box-title"></h3>*@
+                    
                 </div>
                 <div class="box-body">
                     <div class="form-group">
@@ -279,15 +263,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-danger">
-                <div class="box-header">
-                    @*<h3 class="box-title">Datos Secundarios</h3>*@
+                <div class="box-header">                    
                 </div>
                 <div class="box-body">
-                    <div class="form-group">
-                        @* <label for="name" class="col-xs-12 col-sm-2 col-md-2 control-label no-pad-right">Address:</label>*@
+                    <div class="form-group">                        
                         <div class="col-sm-8">
                             <p>Notas:</p>
-                            <textarea class="form-control" id="direccion" rows="5" placeholder="Enter ..."></textarea>
+                            <textarea class="form-control" id="notas" rows="5" placeholder="Enter ..."></textarea>
                         </div>
                     </div>
                 </div>

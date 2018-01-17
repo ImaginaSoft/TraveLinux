@@ -23,10 +23,12 @@ namespace TraveLinux.Business
         IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string Proveedor, string Tarifa);
         IEnumerable<Proveedor> ObtenerProveedor(string sProveedor);
         Proveedor ObtenerEditarProveedor(string sProveedor);
+        Cliente ObtenerEditarCliente(string sCliente);
         List<Departamentos> ListadoDepartamento(string sPais);
         void GuardarMonedas(Moneda eMoneda);
         void GuardarProveedor(Proveedor eProveedor);
         void ActualizarProveedor(Proveedor eProveedor);
+        void ActualizarCliente(Cliente eCliente);
         void GuardarCliente(Cliente eCliente);
         void GuardarServicio(Servicio eServicio);
         void GuardarTarifa(Tarifa eTarifa);

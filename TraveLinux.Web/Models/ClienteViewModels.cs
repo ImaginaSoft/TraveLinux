@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using TraveLinux.Data.Entidades;
 
-namespace TraveLinux.Data.Entidades
+namespace TraveLinux.Web.Models
 {
-    public class Cliente
+    public class ClienteViewModels
     {
         public string CLIENTE { get; set; }
         public string NOMBRE { get; set; }
@@ -31,9 +31,7 @@ namespace TraveLinux.Data.Entidades
         public string TELEFONO_3 { get; set; }
         public string ESTADO { get; set; }
         public string NOTAS { get; set; }
-        public DateTime? FECHA_REGISTRO { get; set; }
-        public string USUARIO_REGISTRO { get; set; }
-        public DateTime? FECHA_ULT_MODIF { get; set; }
-        public string USUARIO_ULT_MODIF { get; set; }
+        public IEnumerable<Pais> Paises { get; set; }
+        public IEnumerable<TipoDocumento> TipoDocumentos { get; set; }
     }
 }
