@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TraveLinux.Web.Models.ServicioViewModels
+@{
     ViewBag.Title = "NuevoServicio";
 }
 
@@ -44,24 +45,29 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="alias" class="col-sm-2 control-label no-pad-right">Nombre:</label>
-                            <div class="col-xs-8 col-sm-5">
-                                <input class="form-control" id="nombre" placeholder="Enter name">
+                            <label for="alias" class="col-sm-2 control-label no-pad-right">Proveedor:</label>
+                            <div class="col-xs-8 col-sm-3">
+                                <input class="form-control" type="text" value="@Model.PROVEEDOR_NOMBRE">
+                                <input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR">
                             </div>
                             <div class="col-xs-4">
                                 <div class="col-xs-4 col-sm-4">
                                     <div class="checkbox checkbox-success checkbox-inline">
                                         <input type="checkbox" class="styled" id="inlineCheckbox1" checked>
-                                        <label for="inlineCheckbox1" class="">State</label>
+                                        <label for="inlineCheckbox1" class="">Active</label>
                                     </div>
                                 </div>
                             </div> 
                         </div>
                         <div class="form-group">
-                            <label for="type" class="col-xs-12 col-sm-2 control-label no-pad-right">Type:</label>
+                            <label for="alias" class="col-sm-2 control-label no-pad-right">Nombre:</label>
+                            <div class="col-xs-8 col-sm-3">
+                                <input class="form-control" id="nombre" placeholder="Enter name">
+                            </div>
+                            <label for="type" class="col-xs-12 col-sm-1 control-label no-pad-right">Type:</label>
                             <div class="col-xs-12 col-sm-7 col-md-5">
                                 <select id="tproveedor" class="selectpicker" data-size="5">
-                                    <option>--- Seleccione ---</option>
+                                    <option value="">--- Seleccione ---</option>
                                     <option value="TERRESTRE">TERRESTRE</option>
                                     <option value="HOTEL">HOTEL</option>
                                     <option value="AEREO">AEREO</option>
@@ -85,7 +91,7 @@
                             <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Valoracion Por Servicio:</label>
                             <div class="col-xs-12 col-sm-5 col-md-3">
                                 <select id="valorxservicio" class="selectpicker">
-                                    <option>--- Seleccione ---</option>
+                                    <option value="">--- Seleccione ---</option>
                                     <option value="monto_fijo">MONTO FIJO</option>
                                     <option value="cant_pasaj">CANTIDAD PASAJEROS O HAB</option>
                                     <option value="cant_pasaj_tipo">CANTIDAD PASAJEROS POR TIPO DE</option>
@@ -105,7 +111,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-4">
                                 <select id="turno" class="selectpicker">
-                                    <option>--- Seleccione ---</option>
+                                    <option value="">--- Seleccione ---</option>
                                     <option value="DIA">DIA</option>
                                     <option value="TARDE">TARDE</option>
                                     <option value="NOCHE">NOCHE</option>                           
@@ -153,12 +159,12 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-                                <p>Aerolinea:</p>
-                                <input class="form-control" id="nombre" placeholder="Enter Aerolinea">
+                                <p>Aeroline:</p>
+                                <input class="form-control" id="aerolinea" placeholder="Enter Aerolinea">
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                 <p>Box Lunch:</p>
-                                <input class="form-control" id="paterno" placeholder="Enter Lunch">
+                                <input class="form-control" id="boxlunch" placeholder="Enter Lunch">
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                 <p>Ruta:</p>
@@ -179,20 +185,20 @@
                         <div class="form-group">
                             <div class="col-xs-12 col-sm-12 col-md-3">
                                 <p>Description:</p>
-                                <input class="form-control" id="nombre" placeholder="Enter Description">
+                                <input class="form-control" id="descripcion" placeholder="Enter Description">
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <p>Type of service:</p>
-                                <select id="estadocivil" class="selectpicker" data-size="5">
-                                    <option>--- Seleccione ---</option>
+                                <select id="tiposervicio" class="selectpicker" data-size="5">
+                                    <option value="">--- Seleccione ---</option>
                                     <option value="Privado">Privado</option>
                                     <option value="Compartido">Compartido</option>                                    
                                 </select>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <p>Type:</p>
-                                <select id="genero" class="selectpicker" data-size="5">
-                                    <option>--- Seleccione ---</option>
+                                <select id="tipopersona" class="selectpicker" data-size="5">
+                                    <option value="">--- Seleccione ---</option>
                                     <option value="Adulto">Adulto</option>
                                     <option value="Niño">Niño</option>
                                 </select>
@@ -235,7 +241,7 @@
                             <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Aleman:</label>
                             <div class="col-xs-12 col-md-11">
                                 @*<p>Address:</p>*@
-                                <textarea class="form-control" id="des_port" rows="5" placeholder="Enter ..."></textarea>
+                                <textarea class="form-control" id="des_ale" rows="5" placeholder="Enter ..."></textarea>
                                 <br />
                             </div>
 

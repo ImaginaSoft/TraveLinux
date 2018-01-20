@@ -124,6 +124,20 @@ namespace TraveLinux.Business
             }
         }
 
+        public IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ListadoServicioxProveedor(Proveedor);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los servicios", e);
+            }
+        }
+
         public void GuardarMonedas(Moneda eMoneda)
         {
             try
