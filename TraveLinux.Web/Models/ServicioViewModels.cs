@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace TraveLinux.Data.Entidades
+namespace TraveLinux.Web.Models
 {
-    public class Servicio
+    public class ServicioViewModels
     {
         public string SERVICIO { get; set; }
         public string PROVEEDOR { get; set; }
@@ -15,23 +14,15 @@ namespace TraveLinux.Data.Entidades
         public string TIPO { get; set; }
         public string VALORXSERVICIO { get; set; }
         public string VALOR { get; set; }
-        public string DURACION { get; set; }        
+        public string DURACION { get; set; }
         public string TURNO { get; set; }
         public string DESAYUNO { get; set; }
         public string ALMUERZO { get; set; }
-        public string CENA { get; set; }        
-        public string AEROLINEA { get; set; }
-        public string BOX_LUNCH { get; set; }
-        public string RUTA { get; set; }
-        public string DESCRIPCION { get; set; }
-        public string TIPO_SERVICIO { get; set; }
-        public string TIPO_PERSONA { get; set; }
+        public string CENA { get; set; }
         public string DESC_ESP { get; set; }
         public string DESC_INGL { get; set; }
         public string DESC_PORT { get; set; }
-        public string DESC_ALE { get; set; }
         public string ESTADO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
-
     }
 }

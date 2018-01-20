@@ -73,10 +73,6 @@
     function onClickRegistrarTarifa(e) {
         e.preventDefault();
 
-        alert("Hola");
-
-        //alert(item.PROVEEDOR);
-
         var Proveedor = $("#proveedor").val();
 
         window.location = '/Tarifa/NuevaTarifa?Proveedor=' + Proveedor;

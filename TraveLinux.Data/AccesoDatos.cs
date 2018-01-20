@@ -322,6 +322,57 @@ namespace TraveLinux.Data
 
             return lstTarifa;
         }
+
+        public IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor)
+        {
+            var lstservicio = new List<Servicio>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_SERVXPROV");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 9).Value = Proveedor;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var servicio = new Servicio();
+                        servicio.PROVEEDOR = reader.GetStringOrDefault(0);
+                        servicio.PROVEEDOR_NOMBRE = reader.GetStringOrDefault(1);                        
+                        servicio.SERVICIO = reader.GetStringOrDefault(2);
+                        servicio.NOMBRE = reader.GetStringOrDefault(3);
+                        servicio.TIPO = reader.GetStringOrDefault(4);
+                        servicio.VALORXSERVICIO = reader.GetStringOrDefault(5);
+                        servicio.VALOR = reader.GetStringOrDefault(6);
+                        servicio.DURACION = reader.GetStringOrDefault(7);
+                        servicio.TURNO = reader.GetStringOrDefault(8);
+                        servicio.DESAYUNO = reader.GetStringOrDefault(9);
+                        servicio.ALMUERZO = reader.GetStringOrDefault(10);
+                        servicio.CENA = reader.GetStringOrDefault(11);
+                        servicio.AEROLINEA = reader.GetStringOrDefault(12);
+                        servicio.BOX_LUNCH = reader.GetStringOrDefault(13);
+                        servicio.RUTA = reader.GetStringOrDefault(14);
+                        servicio.DESCRIPCION = reader.GetStringOrDefault(15);
+                        servicio.TIPO_SERVICIO = reader.GetStringOrDefault(16);
+                        servicio.TIPO_PERSONA = reader.GetStringOrDefault(17);
+                        servicio.DESC_ESP = reader.GetStringOrDefault(18);
+                        servicio.DESC_INGL = reader.GetStringOrDefault(19);
+                        servicio.DESC_PORT = reader.GetStringOrDefault(20);
+                        servicio.DESC_ALE = reader.GetStringOrDefault(21);
+                        servicio.ESTADO = reader.GetStringOrDefault(22);
+                        lstservicio.Add(servicio);
+                    }
+                }
+            }
+
+            return lstservicio;
+        }
+
         public void GuardarMoneda(Moneda eMoneda)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -479,6 +530,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_SERVICIO");
                 command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 9).Value = eServicio.PROVEEDOR;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eServicio.NOMBRE;
                 command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Value = eServicio.TIPO;
                 command.Parameters.Add("P_VALORXSERVICIO", OracleDbType.Varchar2, 50).Value = eServicio.VALORXSERVICIO;
@@ -488,9 +540,16 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESAYUNO", OracleDbType.Varchar2, 50).Value = eServicio.DESAYUNO;
                 command.Parameters.Add("P_ALMUERZO", OracleDbType.Varchar2, 50).Value = eServicio.ALMUERZO;
                 command.Parameters.Add("P_CENA", OracleDbType.Varchar2, 50).Value = eServicio.CENA;
+                command.Parameters.Add("P_AEROLINEA", OracleDbType.Varchar2, 50).Value = eServicio.AEROLINEA;
+                command.Parameters.Add("P_BOX_LUNCH", OracleDbType.Varchar2, 50).Value = eServicio.BOX_LUNCH;
+                command.Parameters.Add("P_RUTA", OracleDbType.Varchar2, 50).Value = eServicio.RUTA;
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eServicio.DESCRIPCION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eServicio.TIPO_SERVICIO;
+                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = eServicio.TIPO_PERSONA;
                 command.Parameters.Add("P_DESC_ESP", OracleDbType.Varchar2, 50).Value = eServicio.DESC_ESP;
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 50).Value = eServicio.DESC_INGL;
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 50).Value = eServicio.DESC_PORT;
+                command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 50).Value = eServicio.DESC_ALE;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eServicio.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eServicio.USUARIO_REGISTRO;
 

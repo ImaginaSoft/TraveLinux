@@ -99,7 +99,7 @@
     // Guardar Proveedor
 
     
-    function onClickListarTarifa(e) {
+    function onClickVerTarifa(e) {
         e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
         if (!item) {
@@ -117,7 +117,7 @@
         window.location = '/Proveedor/Index';
     }
     
-    function onClickEditarProveedor(e) {
+    function onClickVerServicio(e) {
         e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
         if (!item) {
@@ -126,7 +126,7 @@
         //alert(item.PROVEEDOR);
         
         debugger;
-        window.location = '/Proveedor/EditarProveedor?Proveedor=' + item.PROVEEDOR;
+        window.location = '/Servicios/ServicioProveedor?Proveedor=' + item.PROVEEDOR;
     }
 
 
@@ -401,11 +401,11 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            //var editarProveedor = '<button class="btn btn-success EditarProveedor btn-editar" title="Editar Proveedor"><i class="glyphicon glyphicon-pencil"></i></button>';
-            var CrearTarifa = '<button class="btn btn-danger ListarTarifa btn-CrearTarifa" title="Crear Tarifa"><i class="fa fa-file-text-o"></i></button>';
+            var CrearServicio = '<button class="btn btn-success btn-VerServicio" title="Ver Servicio"><i class="fa fa-file-excel-o"></i></button>';
+            var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
             
 
-            //content.push(editarProveedor);
+            content.push(CrearServicio);
             content.push(CrearTarifa);
             //content.push(eliminar);
 
@@ -436,9 +436,9 @@
     $('#btn-guardar').on('click', onClickRegistrarProveedor);
     $('#btn-actualizar').on('click', onClickActualizarProveedor);
     $('#btn-cancelar').on('click', onClickCancelarProveedor);
-    $('#resultados tbody').on('click', 'button.ListarTarifa', onClickListarTarifa);
-    $('#resultados tbody').on('click', 'button.EditarProveedor', onClickEditarProveedor);
+    $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
+    $('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerServicio);
 
-    window.onClickListarTarifa = onClickListarTarifa;
-    window.onClickEditarProveedor = onClickEditarProveedor;
+    window.onClickVerTarifa = onClickVerTarifa;
+    window.onClickVerServicio = onClickVerServicio;
 });
