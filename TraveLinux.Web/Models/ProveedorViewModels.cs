@@ -41,6 +41,21 @@ namespace TraveLinux.Web.Models
         public string TELEFONO_2 { get; set; }
         public string TELEFONO_3 { get; set; }
 
+        public string NOMBRE_SERV { get; set; }
+        public string DESCRIPCION_NOM { get; set; }       
+        public string DESC_ESP { get; set; }
+        public string DESC_INGL { get; set; }
+        public string DESC_PORT { get; set; }
+        public string DESC_ALE { get; set; }
+        public string TIPO_SERVICIO { get; set; }
+        public string TIPO_PERSONA { get; set; }
+        public string BOX_LUNCH { get; set; }
+        public string AEROLINEA { get; set; }
+        public string RUTA { get; set; }
+        public string RESUMEN { get; set; }
+       
+
+
         public IEnumerable<Pais> Paises { get; set; }
 
     }

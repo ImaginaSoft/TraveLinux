@@ -253,6 +253,7 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\CargaServicio.js" />
     <Content Include="Scripts\app\MantenimientoCliente.js" />
     <Content Include="Scripts\app\MantenimientoMoneda.js" />
     <Content Include="Scripts\app\MantenimientoPais.js" />
@@ -376,7 +377,7 @@
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>7</VersionMinor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

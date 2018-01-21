@@ -1,112 +1,157 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-@*@model TraveLinux.Web.Models.ProveedorViewModels*@
+﻿@*@model TraveLinux.Web.Models.ProveedorViewModels*@
 
 @using TraveLinux.Web.Models
 @model IEnumerable<ProveedorViewModels>
-@{
-    ViewBag.Title = "TarifaProveedor";
-}
-
-@section Scripts {
-    <script src="~/Scripts/app/MantenimientoTarifaDetalle.js"></script>
-}
-
-<style>
-    .the-legend {
-        border-style: none;
-        border-width: 0;
-        font-size: 14px;
-        line-height: 20px;
-        margin-bottom: 0;
+    @{
+        ViewBag.Title = "Index";
     }
 
-    .the-fieldset {
-        border: 2px groove threedface #444;
-        -webkit-box-shadow: 0px 0px 0px 0px #000;
-        box-shadow: 0px 0px 0px 0px #000;
+    @section Scripts {
+        <script src="~/Scripts/app/CargaServicio.js"></script>
     }
-</style>
-@*<script id="responsive-template" type="text/x-handlebars-template">
-        <div class="row">
-            <div class="col-xs-12 header">
-                <p id="tarifa"></p>
-                <span>
-                    <strong>TARIFA</strong>
-                    <span id="tarifa"></span>
-                </span>
 
-            </div>
-            <div class="col-xs-12 details">
-                <table class="table table-borderless full-width">
-                    <tbody>
-                        <tr>
-                            <th>NOMBRE</th>
-                            <td id="nombre"></td>
-                        </tr>
-                        <tr>
-                            <th>FECHA VALIDEZ</th>
-                            <td id="fechavalidez"></td>
-                        </tr>
-                        <tr>
-                            <th>FECHA INICIO</th>
-                            <td id="fechainivigencia"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </script>*@
+    <style>
+        .the-legend {
+            border-style: none;
+            border-width: 0;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 0;
+        }
 
-<section class="content-header">
+        .the-fieldset {
+            border: 2px groove threedface #444;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+    </style>
+    @*<script id="responsive-template" type="text/x-handlebars-template">
+            <div class="row">
+                <div class="col-xs-12 header">
+                    <p id="tarifa"></p>
+                    <span>
+                        <strong>TARIFA</strong>
+                        <span id="tarifa"></span>
+                    </span>
 
-    @*<h1>Datos Generales</h1>*@
-
-</section>
-<div class="form-horizontal">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    @*<h3 class="box-title">Datos Generales</h3>*@
                 </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-7 col-md-7">
-                            <fieldset class="well the-fieldset">
-                                <legend class="the-legend">@*<b>Beginning</b>*@</legend>
-                                <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" id="proveedor_nombre" value="" disabled>
-                                    <br />
-                                </div>
-                                <label for="alias" class="col-sm-3 control-label no-pad-right">Rate:</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date" id="dtp_until">
-                                        <input class="form-control" id="tarifa_nobre" value="" disabled>
-                                        <div class="hidden">
-                                            <input input="text" class="form-control" id="tarifa_codigo" value="">
-                                            <input input="text" class="form-control" id="proveedor_codigo" value="">
+                <div class="col-xs-12 details">
+                    <table class="table table-borderless full-width">
+                        <tbody>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <td id="nombre"></td>
+                            </tr>
+                            <tr>
+                                <th>FECHA VALIDEZ</th>
+                                <td id="fechavalidez"></td>
+                            </tr>
+                            <tr>
+                                <th>FECHA INICIO</th>
+                                <td id="fechainivigencia"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>*@
+
+    <section class="content-header">
+
+        @*<h1>Datos Generales</h1>*@
+
+    </section>
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        @*<h3 class="box-title">Datos Generales</h3>*@
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="col-xs-12 col-sm-7 col-md-7">
+                                <fieldset class="well the-fieldset">
+                                    <legend class="the-legend">@*<b>Beginning</b>*@</legend>
+                                    <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="proveedor_nombre" value="000000001" disabled>
+                                        <br />
+                                    </div>
+                                    <label for="alias" class="col-sm-3 control-label no-pad-right">Rate:</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group date" id="dtp_until">
+                                            <input class="form-control" id="servicio_nombre" value="00000002" disabled>
+                                            <div class="hidden">
+                                                <input input="text" class="form-control" id="servicio_codigo" value="00000002">
+                                                <input input="text" class="form-control" id="proveedor_codigo" value="000000001">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </fieldset>
+                                </fieldset>
+                            </div>
                         </div>
+                        @using (Html.BeginForm("Index", "Mensaje", new
+                  {
+                      Proveedor = @ViewBag.Proveedor,
+                      Servicio = @ViewBag.Servicio
+                  }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <input type="file" name="UploadedFile" />
+                            <input type="submit" name="Submit" value="Submit" />
+
+                        }
+                        @if (Model != null)
+                        {
+
+                            <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>SERVICIO</th>
+                                        <th>NOMBRE</th>
+                                        <th>DESC_ESP</th>
+                                        <th>DESC_INGL</th>
+                                        <th>DESC_PORT</th>
+                                        <th>DESC_ALE</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>TIPO_SERVICIO</th>
+                                        <th>TIPO_PERSONA</th>
+                                        <th>BOX_LUNCH</th>
+                                        <th>AEROLINEA</th>
+                                        <th>RUTA</th>
+                                        <th>RESUMEN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ProveedorViewModels customer in Model)
+                                    {
+                                        <tr>
+                                            <td id="cliente">@customer.SERVICIO</td>
+                                            <td id="nombre">@customer.NOMBRE</td> 
+                                            <td id="pais">@customer.DESC_ESP</td>
+                                            <td id="cliente">@customer.DESC_INGL</td>
+                                            <td id="cliente">@customer.DESC_PORT</td>
+                                            <td id="cliente">@customer.DESC_ALE</td>
+                                            <td id="descripcion">@customer.DESCRIPCION</td>
+                                            <td id="descripcion">@customer.TIPO_SERVICIO</td>
+                                            <td id="descripcion">@customer.TIPO_PERSONA</td>
+                                            <td id="descripcion">@customer.BOX_LUNCH</td>
+                                            <td id="descripcion">@customer.AEROLINEA</td>
+                                            <td id="descripcion">@customer.RUTA</td>
+                                            <td id="nombre">@customer.RESUMEN</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+
+                        <button class="btn btn-warning" id="btn-guardar">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
                     </div>
-                        <input type="file" name="UploadedFile" />
-                                    <input type="submit" name="Submit" value="Submit" />
-                 
-                    <button class="btn btn-warning" id="btn-guardar">
-                        <span class="glyphicon glyphicon-save"></span> Save
-                    </button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>

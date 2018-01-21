@@ -34,5 +34,10 @@ namespace TraveLinux.Business
         void GuardarServicio(Servicio eServicio);
         void GuardarTarifa(Tarifa eTarifa);
         void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa);
+
+        IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio);
+        void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
+
+
     }
 }

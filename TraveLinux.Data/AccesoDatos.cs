@@ -813,6 +813,52 @@ namespace TraveLinux.Data
                 command.ExecuteNonQuery();
             }
         }
+
+        public void GuardarServicio_Lista_Detalle(List<Servicio> lstCargaServ)
+        {
+            foreach (var eEntidad in lstCargaServ)
+                GuardarServicioCarga_Detalle(eEntidad);
+        }
+
+        private void GuardarServicioCarga_Detalle(Servicio eEntidad)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_SERVICIO");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eEntidad.PROVEEDOR;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eEntidad.NOMBRE;
+                command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_VALORXSERVICIO", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_VALOR", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_DURACION", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_TURNO", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_DESAYUNO", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_ALMUERZO", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_CENA", OracleDbType.Varchar2, 50).Value = null;
+                command.Parameters.Add("P_AEROLINEA", OracleDbType.Varchar2, 50).Value = eEntidad.AEROLINEA;
+                command.Parameters.Add("P_BOX_LUNCH", OracleDbType.Varchar2, 50).Value = eEntidad.BOX_LUNCH;
+                command.Parameters.Add("P_RUTA", OracleDbType.Varchar2, 50).Value = eEntidad.RUTA;
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_PERSONA;
+                command.Parameters.Add("P_DESC_ESP", OracleDbType.Varchar2, 50).Value = eEntidad.DESC_ESP;
+                command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 50).Value = eEntidad.DESC_INGL;
+                command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 50).Value = eEntidad.DESC_PORT;
+                command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 50).Value = eEntidad.DESC_ALE;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = 1;
+                command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eEntidad.USUARIO_REGISTRO;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
     }
 
 

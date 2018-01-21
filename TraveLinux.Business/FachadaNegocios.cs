@@ -299,5 +299,36 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
             }
         }
+
+
+        public IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ListadoServicioxProveedor(Proveedor);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los servicios", e);
+            }
+        }
+
+        public void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarServicio_Lista_Detalle(lstServCarg);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
+            }
+        }
+
+
+
     }
 }
