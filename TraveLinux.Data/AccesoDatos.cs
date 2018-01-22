@@ -421,6 +421,35 @@ namespace TraveLinux.Data
             return lpaises;
         }
 
+        public IEnumerable<Temporada> ObtenerTemporadas()
+        {
+            var lsttemporada = new List<Temporada>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TEMPORADA");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var temporada = new Temporada();
+                        temporada.Temporadas = reader.GetStringOrDefault(0);
+                        temporada.Descripcion = reader.GetStringOrDefault(1);
+
+                        lsttemporada.Add(temporada);
+                    }
+                }
+            }
+
+            return lsttemporada;
+        }
+
 
         public List<Departamentos> ListadoDepartamento(string sPais)
         {
@@ -570,7 +599,8 @@ namespace TraveLinux.Data
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 9).Value = eTarifa.PROVEEDOR;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 60).Value = eTarifa.NOMBRE;
-                command.Parameters.Add("P_FECHA_COMENZAR", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_COMENZAR);
+                command.Parameters.Add("P_FECHA_VALIDEZ", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_COMENZAR);
+                command.Parameters.Add("P_TEMPORADA", OracleDbType.Varchar2, 60).Value = eTarifa.TEMPORADA;
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_INICIO);
                 command.Parameters.Add("P_FECHA_FINAL", OracleDbType.Date).Value = Convert.ToDateTime(eTarifa.FECHA_FINAL);
                 command.Parameters.Add("P_NOTAS", OracleDbType.Varchar2, 50).Value = eTarifa.NOTAS;
@@ -684,6 +714,32 @@ namespace TraveLinux.Data
             }
 
             return ObjProveedor;
+        }
+
+        public Temporada ListadoFechasXTemporada(string Temporada)
+        {
+            var ObjTemporada = new Temporada();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_FECHAS_TEMPORADA");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_TEMPORADA", OracleDbType.Char, 9, Temporada, ParameterDirection.Input);
+                command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Direction = ParameterDirection.Output;
+               
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                
+                ObjTemporada.FECHA_INICIO = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_FECHA_INICIO"));
+                ObjTemporada.FECHA_FIN = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_FECHA_FIN"));              
+                
+            }
+
+            return ObjTemporada;
         }
 
         public Cliente ObtenerEditarCliente(string sCliente)

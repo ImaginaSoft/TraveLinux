@@ -46,10 +46,12 @@ namespace TraveLinux.Web.Controllers
                 return HttpNotFound("No se encontró el proveedor solicitado");
             }
 
-            var modelo = new ProveedorViewModels()
+            var modelo = new ProveedorViewModels();
+            modelo.Temporada = Fachada.ObtenerTemporadas();
+
             {
-                PROVEEDOR = proveedor.PROVEEDOR,
-                NOMBRE = proveedor.NOMBRE
+                modelo.PROVEEDOR = proveedor.PROVEEDOR;
+                modelo.NOMBRE = proveedor.NOMBRE;
             };
             return View(modelo);
         }
@@ -67,6 +69,14 @@ namespace TraveLinux.Web.Controllers
             var vTarifa = Fachada.ObtenerListaTarifa(Proveedor);
 
             return Json(vTarifa);
+        }
+
+        public ActionResult ListadoFechasXTemporada(string Temporada)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var vTemporada = Fachada.ListadoFechasXTemporada(Temporada);
+
+            return Json(vTemporada);
         }
     }
 }

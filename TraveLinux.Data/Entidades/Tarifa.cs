@@ -13,6 +13,7 @@ namespace TraveLinux.Data.Entidades
         public string PROVEEDOR_NOMBRE { get; set; }
         public string NOMBRE { get; set; }
         public DateTime? FECHA_COMENZAR { get; set; }
+        public string TEMPORADA { get; set; }
         public DateTime? FECHA_INICIO { get; set; }
         public DateTime? FECHA_FINAL { get; set; }
         public string NOTAS { get; set; }

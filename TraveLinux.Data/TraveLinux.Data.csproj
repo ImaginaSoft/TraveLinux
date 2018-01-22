@@ -55,6 +55,7 @@
     <Compile Include="Entidades\Servicio.cs" />
     <Compile Include="Entidades\Tarifa.cs" />
     <Compile Include="Entidades\TarifaDetalle.cs" />
+    <Compile Include="Entidades\Temporada.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Globales_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
