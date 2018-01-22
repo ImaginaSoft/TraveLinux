@@ -301,6 +301,20 @@ namespace TraveLinux.Business
             }
         }
 
+        public Servicio ObtenerEditarServicio(string sServicio, string sProveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ObtenerEditarServicio(sServicio, sProveedor);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener el cliente", e);
+            }
+        }
+
         public void ActualizarCliente(Cliente eCliente)
         {
             try
@@ -313,7 +327,21 @@ namespace TraveLinux.Business
             {
                 throw new FachadaNegociosException("No se pudo actualizar el cliente", e);
             }
-        }        
+        }
+
+        public void ActualizarServicio(Servicio eServicio)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.ActualizarServicio(eServicio);
+
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo actualizar el servicio", e);
+            }
+        }
 
         public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa)
         {

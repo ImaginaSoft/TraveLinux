@@ -1,0 +1,172 @@
+﻿
+@using TraveLinux.Web.Models
+@model IEnumerable<ProveedorViewModels>
+@{
+    ViewBag.Title = "CargaServicio";
+}
+
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoServicio.js"></script>
+}
+
+<style>
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+thead th {
+  background-color: #00a65a;
+  color: white;
+}
+
+tbody td {
+  background-color: #EEEEEE;
+}
+
+tr td:first-child,
+tr th:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+tr td:last-child,
+tr th:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+</style>
+@*<script id="responsive-template" type="text/x-handlebars-template">
+        <div class="row">
+            <div class="col-xs-12 header">
+                <p id="tarifa"></p>
+                <span>
+                    <strong>TARIFA</strong>
+                    <span id="tarifa"></span>
+                </span>
+
+            </div>
+            <div class="col-xs-12 details">
+                <table class="table table-borderless full-width">
+                    <tbody>
+                        <tr>
+                            <th>NOMBRE</th>
+                            <td id="nombre"></td>
+                        </tr>
+                        <tr>
+                            <th>FECHA VALIDEZ</th>
+                            <td id="fechavalidez"></td>
+                        </tr>
+                        <tr>
+                            <th>FECHA INICIO</th>
+                            <td id="fechainivigencia"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </script>*@
+
+<section class="content-header">
+
+    @*<h1>Datos Generales</h1>*@
+
+</section>
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-7 col-md-7">
+                            <fieldset class="well the-fieldset">
+                                <legend class="the-legend">@*<b>Beginning</b>*@</legend>
+                                <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="nombre" value="@ViewBag.NOMBRE_PROVEEDOR" disabled>                                    
+                                    <input input="text" class="form-control hidden" id="proveedor"  value="@ViewBag.PROVEEDOR">
+                                    <br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("CargaServicio", "Servicios", new
+                    {
+                        Proveedor = @ViewBag.Proveedor
+                        
+                    }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        <input type="file" name="UploadedFile" />
+                            <input type="submit" name="Submit" value="Submit" />
+
+                    }
+                    @if (Model != null)
+                    {
+
+                        <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>                                    
+                                    <th>NOMBRE</th>
+                                    <th class="hidden">DESC_ESP</th>
+                                    <th class="hidden">DESC_INGL</th>
+                                    <th class="hidden">DESC_PORT</th>
+                                    <th class="hidden">DESC_ALE</th>
+                                    <th class="hidden">DESCRIPCION</th>
+                                    <th>TIPO_SERVICIO</th>
+                                    <th>TIPO_PERSONA</th>
+                                    <th>BOX_LUNCH</th>
+                                    <th>AEROLINEA</th>
+                                    <th>RUTA</th>
+                                    <th>RESUMEN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ProveedorViewModels customer in Model)
+                                {
+                                    <tr>                                        
+                                        <td id="nombre">@customer.NOMBRE</td>
+                                        <td class="hidden" id="pais">@customer.DESC_ESP</td>
+                                        <td class="hidden" id="cliente">@customer.DESC_INGL</td>
+                                        <td class="hidden" id="cliente">@customer.DESC_PORT</td>
+                                        <td class="hidden" id="cliente">@customer.DESC_ALE</td>
+                                        <td class="hidden" id="descripcion">@customer.DESCRIPCION</td>
+                                        <td id="descripcion">@customer.TIPO_SERVICIO</td>
+                                        <td id="descripcion">@customer.TIPO_PERSONA</td>
+                                        <td id="descripcion">@customer.BOX_LUNCH</td>
+                                        <td id="descripcion">@customer.AEROLINEA</td>
+                                        <td id="descripcion">@customer.RUTA</td>
+                                        <td id="nombre">@customer.RESUMEN</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                    <button class="btn btn-warning" id="btn-guardarCarga">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>

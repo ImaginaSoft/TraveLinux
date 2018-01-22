@@ -9,14 +9,10 @@ namespace TraveLinux.Business
 {
     public interface IFachadaNegocios
     {
-
         IEnumerable<TipoDocumento> ObtenerTipoDocumento();
-
         IEnumerable<Moneda> ObtenerMonedas();
         IEnumerable<Cliente> ObtenerListaCliente();
-
         IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor);
-
         IEnumerable<Pais> ObtenerPaises();
         IEnumerable<Temporada> ObtenerTemporadas();
         IEnumerable<Proveedor> ObtenerListaProveedor();
@@ -26,17 +22,18 @@ namespace TraveLinux.Business
         IEnumerable<Proveedor> ObtenerProveedor(string sProveedor);
         Proveedor ObtenerEditarProveedor(string sProveedor);
         Cliente ObtenerEditarCliente(string sCliente);
+        Servicio ObtenerEditarServicio(string sServicio, string sProveedor);
         List<Departamentos> ListadoDepartamento(string sPais);
         Temporada ListadoFechasXTemporada(string Temporada);
         void GuardarMonedas(Moneda eMoneda);
         void GuardarProveedor(Proveedor eProveedor);
         void ActualizarProveedor(Proveedor eProveedor);
         void ActualizarCliente(Cliente eCliente);
+        void ActualizarServicio(Servicio eServicio);
         void GuardarCliente(Cliente eCliente);
         void GuardarServicio(Servicio eServicio);
         void GuardarTarifa(Tarifa eTarifa);
         void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa);
-
         IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio);
         void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
 

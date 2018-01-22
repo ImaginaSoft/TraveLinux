@@ -334,6 +334,8 @@
     <Content Include="Views\Proveedor\EditarProveedor.cshtml" />
     <Content Include="Views\Mensaje\Index.cshtml" />
     <Content Include="Views\Servicios\ServicioProveedor.cshtml" />
+    <Content Include="Views\Servicios\CargaServicio.cshtml" />
+    <Content Include="Views\Servicios\EditarServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@ namespace TraveLinux.Web.Models
 {
     public class ProveedorViewModels
     {
-        public string PROVEEDOR { get; set; }
+        public int PROVEEDOR { get; set; }
         public string PROVEEDOR_NOMBRE { get; set; }        
         public string TARIFA { get; set; }
         public string TARIFA_NOMBRE { get; set; }
