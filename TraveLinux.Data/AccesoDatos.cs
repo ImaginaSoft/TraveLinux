@@ -734,8 +734,8 @@ namespace TraveLinux.Data
                 command.ExecuteNonQuery();
 
                 
-                ObjTemporada.FECHA_INICIO = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_FECHA_INICIO"));
-                ObjTemporada.FECHA_FIN = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_FECHA_FIN"));              
+                ObjTemporada.FECHA_INICIO = command.Parameters.GetDateTimeOrDefault("P_FECHA_INICIO");
+                ObjTemporada.FECHA_FIN = command.Parameters.GetDateTimeOrDefault("P_FECHA_FIN");              
                 
             }
 
@@ -995,6 +995,7 @@ namespace TraveLinux.Data
         public static DateTime? GetDateTimeOrDefault(this OracleParameterCollection parameters, string name)
         {
             var value = parameters[name].Value;
+                 
 
             if (DBNull.Value == value || value == null)
             {

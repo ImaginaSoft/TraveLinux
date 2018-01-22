@@ -4,7 +4,8 @@
     $('#dtp_start').datetimepicker({
         defaultDate: new Date(),
     });
-
+    $('#dtp_beginning').datetimepicker();
+    $('#dtp_ending').datetimepicker();
 
 
 
@@ -23,7 +24,7 @@
         return $('<div>').append(template).html();
     }
 
-        debugger;
+        
 
     // Listar Fechas POr Temporada
 
@@ -31,6 +32,7 @@
             var Temporada = $(this).val();
             var Fecha_Inicio = "";
             var Fecha_Final = "";
+            var fecha = '1001-01-01 00:00';
             var max_fields = 1;
             var x = 0;
             debugger;
@@ -39,22 +41,37 @@
                 url: '/Tarifa/ListadoFechasXTemporada',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify({ Temporada: Temporada }),
-                success: function (data) {
-                    debugger;
+                success: function (data) {                    
                     Fecha_Inicio = data.FECHA_INICIO;
                     Fecha_Final = data.FECHA_FIN;
-                    if (data.length != 0) {                        
-                        if (x < max_fields) {
-                            $("#dtp_beginning").remove();
-                            $("#dtp_ending").remove();
-                            $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" value ="' + Fecha_Inicio + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
-                            $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" value ="' + Fecha_Final + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                    debugger;
 
-                            $('#dtp_beginning').datetimepicker();
-                            $('#dtp_ending').datetimepicker();
-                        }
-                                       
+                    if (fecha == Fecha_Inicio && fecha == Fecha_Final) {
+                        $("#dtp_beginning").remove();
+                        $("#dtp_ending").remove();
+                        $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                        $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                        $('#dtp_beginning').datetimepicker();
+                        $('#dtp_ending').datetimepicker();
+
                     }
+
+                    
+
+                    if (data.length != 0) {
+                        if (fecha != Fecha_Inicio) {
+                            if (x < max_fields) {
+                                $("#dtp_beginning").remove();
+                                $("#dtp_ending").remove();
+                                $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" value ="' + Fecha_Inicio + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                                $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" value ="' + Fecha_Final + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                                $('#dtp_beginning').datetimepicker();
+                                $('#dtp_ending').datetimepicker();
+                            }
+                        }
+            
+                   }
+                   
                 },
             })
 
