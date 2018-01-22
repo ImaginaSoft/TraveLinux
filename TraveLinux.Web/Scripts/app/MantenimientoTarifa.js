@@ -1,12 +1,11 @@
 ﻿$(function () {
-    //$('#dtp_start').datetimepicker();
+
     var vProveedor = $('#proveedor').val();
     $('#dtp_start').datetimepicker({
         defaultDate: new Date(),
     });
 
-    $('#dtp_beginning').datetimepicker();
-    $('#dtp_ending').datetimepicker();
+
 
 
         function renderTextColor(data, type, row, meta) {
@@ -23,6 +22,43 @@
         }
         return $('<div>').append(template).html();
     }
+
+        debugger;
+
+    // Listar Fechas POr Temporada
+
+        $('#temporada').on('change', function () {
+            var Temporada = $(this).val();
+            var Fecha_Inicio = "";
+            var Fecha_Final = "";
+            var max_fields = 1;
+            var x = 0;
+            debugger;
+            $.ajax({
+                type: 'POST',
+                url: '/Tarifa/ListadoFechasXTemporada',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Temporada: Temporada }),
+                success: function (data) {
+                    debugger;
+                    Fecha_Inicio = data.FECHA_INICIO;
+                    Fecha_Final = data.FECHA_FIN;
+                    if (data.length != 0) {                        
+                        if (x < max_fields) {
+                            $("#dtp_beginning").remove();
+                            $("#dtp_ending").remove();
+                            $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" value ="' + Fecha_Inicio + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                            $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" value ="' + Fecha_Final + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+
+                            $('#dtp_beginning').datetimepicker();
+                            $('#dtp_ending').datetimepicker();
+                        }
+                                       
+                    }
+                },
+            })
+
+        });
 
 
     //*Guardar Tarifa*//
@@ -44,8 +80,7 @@
                 Estado: valor,
                 Nombre: $('#tarifa').val(),
                 Fecha_Comenzar: $('#dtp_start').data('DateTimePicker').date(),
-                Fecha_Inicio: $('#dtp_beginning').data('DateTimePicker').date(),
-                Fecha_Final: $('#dtp_ending').data('DateTimePicker').date(),
+                Temporada: $('#temporada').val(),                
                 Notas: $('#notas').val(),
             }
         }
@@ -286,7 +321,6 @@
         ]
     });
 
-    debugger;
     $('#resultados tbody').on('click', 'button.RegistrarTarifDetalle', onClickRegistrarTarifaDetalle);
     window.onClickRegistrarTarifaDetalle = onClickRegistrarTarifaDetalle;
 

@@ -217,6 +217,20 @@ namespace TraveLinux.Business
             }
         }
 
+        public IEnumerable<Temporada> ObtenerTemporadas()
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var temporada = datos.ObtenerTemporadas();
+                return temporada;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener las temporadas", e);
+            }
+        }
+
         public List<Departamentos> ListadoDepartamento(string Pais)
         {
             try
@@ -228,6 +242,20 @@ namespace TraveLinux.Business
             catch (Exception e)
             {
                 throw new FachadaNegociosException("No se pudo obtener los departamento", e);
+            }
+        }
+
+        public Temporada ListadoFechasXTemporada(string Temporada)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var temporada = datos.ListadoFechasXTemporada(Temporada);
+                return temporada;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener lAS fechas", e);
             }
         }
 

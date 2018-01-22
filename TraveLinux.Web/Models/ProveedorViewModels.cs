@@ -43,5 +43,9 @@ namespace TraveLinux.Web.Models
 
         public IEnumerable<Pais> Paises { get; set; }
 
+        public IEnumerable<Temporada> Temporada { get; set; }
+
+
+
     }
 }

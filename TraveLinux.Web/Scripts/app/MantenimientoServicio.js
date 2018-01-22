@@ -55,14 +55,14 @@
     {
         title: 'PROVEEDOR',
         data: 'PROVEEDOR',
-        width: 125,
+        width: 20,
         className: 'not-mobile',
         visible: false,
     },
     {
         title: 'PROVEEDOR_NOMBRE',
         data: 'PROVEEDOR_NOMBRE',
-        width: 50,
+        width: 20,
         className: 'not-mobile',
         visible: false,
     },
@@ -70,7 +70,7 @@
     {
         title: 'SERVICIO',
         data: 'SERVICIO',
-        width: 70,
+        width: 20,
         className: 'not-mobile',
         visible: false,
     },
@@ -85,32 +85,33 @@
     {
         title: 'TIPO',
         data: 'TIPO',
-        width: 125,
+        width: 25,
         className: 'not-mobile',
-        visible: false,
+        visible: true,
     },
-    //{
-    //    title: 'NUMERO',
-    //    data: 'NUMERO',
-    //    width: 70,
-    //    className: 'not-mobile'
-    //},
+    {
+        title: 'VALORXSERVICIO',
+        data: 'VALORXSERVICIO',
+        width: 25,
+        className: 'not-mobile',
+        visible: true,
+    },
 
-    //{
-    //    title: 'FEC_NACIMIENTO',
-    //    data: 'FEC_NACIMIENTO',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false
-    //},
+    {
+        title: 'DURACION',
+        data: 'DURACION',
+        width: 25,
+        className: 'not-mobile',
+        visible: true,
+    },
 
-    //{
-    //    title: 'RANGOS_EDAD',
-    //    data: 'RANGO_EDAD',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
+    {
+        title: 'TURNO',
+        data: 'TURNO',
+        width: 25,
+        className: 'not-mobile',
+        visible: true,
+    },
 
     //{
     //    title: 'ESTADO_CIVIL',
