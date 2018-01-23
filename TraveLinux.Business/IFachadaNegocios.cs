@@ -16,9 +16,9 @@ namespace TraveLinux.Business
         IEnumerable<Pais> ObtenerPaises();
         IEnumerable<Temporada> ObtenerTemporadas();
         IEnumerable<Proveedor> ObtenerListaProveedor();
-        IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(string Proveedor, string Tarifa);
+        IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(int Proveedor, string Tarifa);
         IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor);
-        IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string Proveedor, string Tarifa);
+        IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int Proveedor, string Tarifa);
         IEnumerable<Proveedor> ObtenerProveedor(string sProveedor);
         Proveedor ObtenerEditarProveedor(string sProveedor);
         Cliente ObtenerEditarCliente(string sCliente);

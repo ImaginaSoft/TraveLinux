@@ -12,16 +12,16 @@ namespace TraveLinux.Web.Controllers
     {
         [Autorizar(Perfil.Administrador)]
         // GET: TarifaDetalleServicio
-        public ActionResult Index(string Proveedor, string Tarifa)
+        public ActionResult Index(int Proveedor, string Tarifa)
         {
             ViewBag.Proveedor = Proveedor;
             ViewBag.Tarifa = Tarifa;
             return View();
         }
 
-        public ActionResult Obtener_tarifa_Detalle_servicio(string Proveedor, string Tarifa)
+        public ActionResult Obtener_tarifa_Detalle_servicio(int Proveedor, string Tarifa)
         {
-            var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor.Trim(), Tarifa);
+            var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa);
             return Json(vCliente);
         }
     }
