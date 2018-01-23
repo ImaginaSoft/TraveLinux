@@ -56,14 +56,14 @@
         data: 'PROVEEDOR',
         width: 125,
         className: 'not-mobile',
-        visible: true
+        visible: false
     },
     {
         title: 'TARIFA',
         data: 'TARIFA',
         width: 125,
         className: 'not-mobile',
-        visible: true
+        visible: false
     },
     {
         title: 'SERVICIO',
