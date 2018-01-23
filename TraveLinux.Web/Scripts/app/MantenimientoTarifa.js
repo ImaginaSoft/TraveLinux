@@ -209,7 +209,9 @@
         title: 'TARIFA',
         data: 'TARIFA',
         width: 70,
-        className: 'not-mobile'
+        className: 'not-mobile',
+        visible: false,
+
     },
     {
         title: 'PROVEEDOR',
@@ -229,21 +231,29 @@
     {
         title: 'NOMBRE',
         data: 'NOMBRE',
-        width: 70,
+        width: 100,
         className: 'not-mobile'
     },
 
     {
         title: 'FECHA_COMENZAR',
         data: 'FECHA_COMENZAR',
-        width: 70,
+        width: 40,
         className: 'not-mobile'
+    },
+
+    {
+        title: 'DESCRIPCION',
+        data: 'DESCRIPCION',
+        width: 40,
+        className: 'not-mobile',
+        visible: true,
     },
 
     {
         title: 'FECHA_INICIO',
         data: 'FECHA_INICIO',
-        width: 70,
+        width: 40,
         className: 'not-mobile'
     },
 

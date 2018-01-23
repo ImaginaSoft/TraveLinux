@@ -82,7 +82,7 @@ namespace TraveLinux.Business
         }
 
 
-        public IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(string Proveedor, string Tarifa)
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(int Proveedor, string Tarifa)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace TraveLinux.Business
             }
         }
 
-        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string Proveedor, string Tarifa)
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int Proveedor, string Tarifa)
         {
             try
             {

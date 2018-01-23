@@ -288,7 +288,7 @@ namespace TraveLinux.Data
             return lproveedor;
         }
 
-        public IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(string Proveedor, string Tarifa)
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(int Proveedor, string Tarifa)
         {
             var lproveedor = new List<Tarifa_Detalle>();
 
@@ -298,7 +298,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIFDET");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = Proveedor;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 50).Value = Tarifa;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
@@ -308,7 +308,7 @@ namespace TraveLinux.Data
                     while (reader.Read())
                     {
                         var detalle = new Tarifa_Detalle();
-                        detalle.PROVEEDOR = reader.GetStringOrDefault(0);
+                        detalle.PROVEEDOR = reader.GetInt32(0);
                         detalle.PROVEEDOR_NOMBRE = reader.GetStringOrDefault(1);
                         detalle.TARIFA = reader.GetStringOrDefault(2);
                         detalle.TARIFA_NOMBRE = reader.GetStringOrDefault(3);
@@ -331,7 +331,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIFA");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = Proveedor;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -341,19 +341,20 @@ namespace TraveLinux.Data
                     {
                         var tarifa = new Tarifa();
                         tarifa.TARIFA = reader.GetStringOrDefault(0);
-                        tarifa.PROVEEDOR = reader.GetStringOrDefault(1);
+                        tarifa.PROVEEDOR = reader.GetInt32(1);
                         tarifa.PROVEEDOR_NOMBRE = reader.GetStringOrDefault(2);
                         tarifa.NOMBRE = reader.GetStringOrDefault(3);
                         tarifa.FECHA_COMENZAR = reader.GetDateTimeOrDefault(4);
                         tarifa.FECHA_INICIO = reader.GetDateTimeOrDefault(5);
                         tarifa.FECHA_FINAL = reader.GetDateTimeOrDefault(6);
-                        tarifa.NOTAS = reader.GetStringOrDefault(7);
-                        tarifa.ESTADO = reader.GetStringOrDefault(8);
-                        tarifa.DINAMICO = reader.GetInt32 (9);
-                        tarifa.FECHA_REGISTRO = reader.GetDateTimeOrDefault(10);
-                        tarifa.USUARIO_REGISTRO = reader.GetStringOrDefault(11);
-                        tarifa.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(12);
-                        tarifa.USUARIO_ULT_MODIF = reader.GetStringOrDefault(13);
+                        tarifa.DESCRIPCION = reader.GetStringOrDefault(7);
+                        tarifa.NOTAS = reader.GetStringOrDefault(8);
+                        tarifa.ESTADO = reader.GetStringOrDefault(9);
+                        tarifa.DINAMICO = reader.GetInt32 (10);
+                        tarifa.FECHA_REGISTRO = reader.GetDateTimeOrDefault(11);
+                        tarifa.USUARIO_REGISTRO = reader.GetStringOrDefault(12);
+                        tarifa.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(13);
+                        tarifa.USUARIO_ULT_MODIF = reader.GetStringOrDefault(14);
                         lstTarifa.Add(tarifa);
                     }
                 }
@@ -702,7 +703,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_PROV");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 9, sProveedor, ParameterDirection.Input);                
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);                
                 command.Parameters.Add("P_PROVCODIGO", OracleDbType.Varchar2, 9).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_ALIAS", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
@@ -721,14 +722,13 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
-
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output; 
                 connection.Open();
                 command.ExecuteNonQuery();
 
                //if (ok == 1)
                // {
-                    //ObjProveedor.PROVEEDOR = command.Parameters.Get ("P_PROVCODIGO");
+                    ObjProveedor.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVCODIGO"));
                     ObjProveedor.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");
                     ObjProveedor.ALIAS = command.Parameters.GetStringOrDefault("P_ALIAS");
                     ObjProveedor.TPROVEEDOR = command.Parameters.GetStringOrDefault("P_TPROVEEDOR");
@@ -914,7 +914,7 @@ namespace TraveLinux.Data
             return ObjServicio;
         }
 
-        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(string sProveedor,string sTarifa)
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int sProveedor,string sTarifa)
         {
             var lstTarifaDetalle = new List<Tarifa_Detalle>();
 
@@ -924,7 +924,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIF_PROV_DET");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 100, sProveedor, ParameterDirection.Input);
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 100, sTarifa, ParameterDirection.Input);
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
@@ -934,7 +934,7 @@ namespace TraveLinux.Data
                     while (reader.Read())
                     {
                         var tarifadetalle = new Tarifa_Detalle();
-                        tarifadetalle.PROVEEDOR = reader.GetStringOrDefault(0);
+                        tarifadetalle.PROVEEDOR = reader.GetInt32(0);
                         tarifadetalle.TARIFA = reader.GetStringOrDefault(1);
                         tarifadetalle.SERVICIO = reader.GetStringOrDefault(2);
                         tarifadetalle.DESCRIPCION  = reader.GetStringOrDefault(3);

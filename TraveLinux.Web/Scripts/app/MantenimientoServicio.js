@@ -315,7 +315,7 @@
             eServicio: {
                 Proveedor: $('#proveedor').val(),
                 Nombre: $('#nombre').val(),
-                Tipo: $('#tproveedor').val(),
+                Tipo: $('#tipo').val(),
                 Valorxservicio: $('#valorxservicio').val(),
                 Valor: $('#valor').val(),
                 Duracion: $('#duracion').val(),
@@ -327,7 +327,7 @@
                 Box_Lunch: $('#boxlunch').val(),
                 Ruta: $('#ruta').val(),
                 Descripcion: $('#descripcion').val(),
-                Tipo_Servicio: $('#tiposervicio').val(),
+                Tipo_Servicio: $('#tproveedor').val(),
                 Tipo_Persona: $('#tipopersona').val(),
                 Desc_Esp: $('#des_esp').val(),
                 Desc_Ingl: $('#des_ingles').val(),
@@ -347,7 +347,7 @@
         .done(function (data) {
             showSuccessMessage('Se ha guardado el servicio');
             setTimeout(function () {
-                window.location = '/Proveedor/Index';
+                window.location = '/Servicios/ServicioProveedor?proveedor=' + Proveedor;
             }, 2000);
         })
         .fail(function () {

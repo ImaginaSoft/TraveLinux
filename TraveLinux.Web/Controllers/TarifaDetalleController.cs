@@ -21,7 +21,7 @@ namespace TraveLinux.Web.Controllers
         }
       
         [HttpPost]
-        public ActionResult NuevaTarifaDetalle(string Proveedor,string Tarifa, HttpPostedFileBase postedFile)
+        public ActionResult NuevaTarifaDetalle(int Proveedor,string Tarifa, HttpPostedFileBase postedFile)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
@@ -75,7 +75,7 @@ namespace TraveLinux.Web.Controllers
             return View(usersList);
         }
 
-        public ActionResult NuevaTarifaDetalle(string Proveedor, string Tarifa)
+        public ActionResult NuevaTarifaDetalle(int Proveedor, string Tarifa)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
@@ -140,9 +140,9 @@ namespace TraveLinux.Web.Controllers
         }      
 
 
-        public ActionResult Obtener_tarifa_Detalle_Prov(string Proveedor, string Tarifa)
+        public ActionResult Obtener_tarifa_Detalle_Prov(int Proveedor, string Tarifa)
         {
-            var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor.Trim(), Tarifa);
+            var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa);
             return View(vCliente);
         }
     }
