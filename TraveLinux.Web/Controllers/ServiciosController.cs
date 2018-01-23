@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,6 +29,41 @@ namespace TraveLinux.Web.Controllers
                 modelo.PROVEEDOR = ObtenerProveedor.PROVEEDOR;
                 modelo.PROVEEDOR_NOMBRE = ObtenerProveedor.NOMBRE;
             }
+
+            return View(modelo);
+        }
+
+        public ActionResult EditarServicio(string Servicio, string Proveedor)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var ObtenerServicio = Fachada.ObtenerEditarServicio(Servicio, Proveedor);
+            var modelo = new ServicioViewModels();            
+            {
+                modelo.PROVEEDOR = ObtenerServicio.PROVEEDOR;
+                modelo.PROVEEDOR_NOMBRE = ObtenerServicio.PROVEEDOR_NOMBRE;
+                modelo.SERVICIO = ObtenerServicio.SERVICIO;
+                modelo.NOMBRE = ObtenerServicio.NOMBRE;
+                modelo.TIPO = ObtenerServicio.TIPO;
+                modelo.VALORXSERVICIO = ObtenerServicio.VALORXSERVICIO;
+                modelo.VALOR = ObtenerServicio.VALOR;
+                modelo.DURACION = ObtenerServicio.DURACION;
+                modelo.TURNO = ObtenerServicio.TURNO;
+                modelo.DESAYUNO = ObtenerServicio.DESAYUNO;
+                modelo.ALMUERZO = ObtenerServicio.ALMUERZO;
+                modelo.CENA = ObtenerServicio.CENA;
+                modelo.AEROLINEA = ObtenerServicio.AEROLINEA;
+                modelo.BOX_LUNCH = ObtenerServicio.BOX_LUNCH;
+                modelo.RUTA = ObtenerServicio.RUTA;
+                modelo.DESCRIPCION = ObtenerServicio.DESCRIPCION;
+                modelo.TIPO_SERVICIO = ObtenerServicio.TIPO_SERVICIO;
+                modelo.TIPO_PERSONA = ObtenerServicio.TIPO_PERSONA;
+                modelo.DESC_ESP = ObtenerServicio.DESC_ESP;
+                modelo.DESC_INGL = ObtenerServicio.DESC_INGL;
+                modelo.DESC_PORT = ObtenerServicio.DESC_PORT;
+                modelo.DESC_ALE = ObtenerServicio.DESC_ALE;
+                modelo.ESTADO = ObtenerServicio.ESTADO;
+            }
+
 
             return View(modelo);
         }
@@ -70,5 +106,97 @@ namespace TraveLinux.Web.Controllers
             return Json(vServicio);
         }
 
+        [Autorizar(Perfil.Administrador)]
+        public ActionResult CargaServicio(string Proveedor)
+        {
+
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            var modelo = Fachada.ObtenerProveedor(Proveedor).FirstOrDefault();
+
+            if (modelo == null)
+            {
+                return HttpNotFound("No se encontró el proveedor solicitado");
+            }
+
+            ViewBag.PROVEEDOR = modelo.PROVEEDOR;
+            ViewBag.NOMBRE_PROVEEDOR = modelo.NOMBRE;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CargaServicio(string Proveedor, HttpPostedFileBase postedFile)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            var modelo = Fachada.ObtenerProveedor(Proveedor).FirstOrDefault();
+
+            if (modelo == null)
+            {
+                return HttpNotFound("No se encontró el proveedor solicitado");
+            }
+
+            ViewBag.PROVEEDOR = modelo.PROVEEDOR;
+            ViewBag.NOMBRE_PROVEEDOR = modelo.NOMBRE;
+
+
+
+            List<ProveedorViewModels> usersList = new List<ProveedorViewModels>();
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            var user = new ProveedorViewModels();
+                            //user.SERVICIO = workSheet.Cells[rowIterator, 1].Value.ToString();
+                            user.NOMBRE = workSheet.Cells[rowIterator, 1].Value.ToString();
+                            user.DESC_ESP = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            user.DESC_INGL = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            user.DESC_PORT = workSheet.Cells[rowIterator, 4].Value.ToString();
+                            user.DESC_ALE = workSheet.Cells[rowIterator, 5].Value.ToString();
+                            user.DESCRIPCION = workSheet.Cells[rowIterator, 6].Value.ToString();
+                            user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 7].Value.ToString();
+                            user.TIPO_PERSONA = workSheet.Cells[rowIterator, 8].Value.ToString();
+                            user.BOX_LUNCH = workSheet.Cells[rowIterator, 9].Value.ToString();
+                            user.AEROLINEA = workSheet.Cells[rowIterator, 10].Value.ToString();
+                            user.RUTA = workSheet.Cells[rowIterator, 11].Value.ToString();
+                            user.RESUMEN = workSheet.Cells[rowIterator, 12].Value.ToString();
+                            usersList.Add(user);
+                        }
+                    }
+                }
+            }
+            return View(usersList);
+        }
+
+        [HttpPost]
+        public void GuardarServicioCarga(List<Servicio> lstServCarg)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            Fachada.GuardarServicio_Lista_Detalle(lstServCarg);
+        }
+
+        public void ActualizarServicio(Servicio eServicio)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.ActualizarServicio(eServicio);
+        }
     }
 }
