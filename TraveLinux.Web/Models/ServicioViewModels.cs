@@ -8,7 +8,7 @@ namespace TraveLinux.Web.Models
     public class ServicioViewModels
     {
         public string SERVICIO { get; set; }
-        public string PROVEEDOR { get; set; }
+        public int PROVEEDOR { get; set; }
         public string PROVEEDOR_NOMBRE { get; set; }
         public string NOMBRE { get; set; }
         public string TIPO { get; set; }
@@ -19,9 +19,16 @@ namespace TraveLinux.Web.Models
         public string DESAYUNO { get; set; }
         public string ALMUERZO { get; set; }
         public string CENA { get; set; }
+        public string AEROLINEA { get; set; }
+        public string BOX_LUNCH { get; set; }
+        public string RUTA { get; set; }
+        public string DESCRIPCION { get; set; }
+        public string TIPO_SERVICIO { get; set; }
+        public string TIPO_PERSONA { get; set; }
         public string DESC_ESP { get; set; }
         public string DESC_INGL { get; set; }
         public string DESC_PORT { get; set; }
+        public string DESC_ALE { get; set; }
         public string ESTADO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
     }

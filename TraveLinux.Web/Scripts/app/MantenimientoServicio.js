@@ -72,7 +72,7 @@
         data: 'SERVICIO',
         width: 20,
         className: 'not-mobile',
-        visible: false,
+        visible: true,
     },
 
     {
@@ -83,193 +83,35 @@
     },
 
     {
-        title: 'TIPO',
-        data: 'TIPO',
+        title: 'BOX_LUNCH',
+        data: 'BOX_LUNCH',
         width: 25,
         className: 'not-mobile',
         visible: true,
     },
     {
-        title: 'VALORXSERVICIO',
-        data: 'VALORXSERVICIO',
-        width: 25,
-        className: 'not-mobile',
-        visible: true,
-    },
-
-    {
-        title: 'DURACION',
-        data: 'DURACION',
+        title: 'AEROLINEA',
+        data: 'AEROLINEA',
         width: 25,
         className: 'not-mobile',
         visible: true,
     },
 
     {
-        title: 'TURNO',
-        data: 'TURNO',
+        title: 'RUTA',
+        data: 'RUTA',
         width: 25,
         className: 'not-mobile',
         visible: true,
     },
 
-    //{
-    //    title: 'ESTADO_CIVIL',
-    //    data: 'ESTADO_CIVIL',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'GENERO',
-    //    data: 'GENERO',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-    //{
-    //    title: 'PAIS',
-    //    data: 'PAIS',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'DEPARTAMENTO',
-    //    data: 'DEPARTAMENTO',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'DIRECCION',
-    //    data: 'DIRECCION',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-    //{
-    //    title: 'IDIOMA',
-    //    data: 'IDIOMA',
-    //    width: 70,
-    //    className: 'not-mobile',
-    //    visible: true,
-
-    //},
-
-    //{
-    //    title: 'EMAIL',
-    //    data: 'EMAIL',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: true,
-    //},
-
-    //{
-    //    title: 'EMAIL_2',
-    //    data: 'EMAIL_2',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'EMAIL_3',
-    //    data: 'EMAIL_3',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-    //{
-    //    title: 'TELEFONO',
-    //    data: 'TELEFONO',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'TELEFONO_2',
-    //    data: 'TELEFONO_2',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'TELEFONO_3',
-    //    data: 'TELEFONO_3',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'NOTAS',
-    //    data: 'NOTAS',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'ESTADO',
-    //    data: 'ESTADO',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-    //{
-    //    title: 'FECHA_REGISTRO',
-    //    data: 'FECHA_REGISTRO',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'USUARIO_REGISTRO',
-    //    data: 'USUARIO_REGISTRO',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'FECHA_ULT_MODIF',
-    //    data: 'FECHA_ULT_MODIF',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-    //{
-    //    title: 'USUARIO_ULT_MODIF',
-    //    data: 'USUARIO_ULT_MODIF',
-    //    width: 125,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-
-
-    //{
-    //    data: null,
-    //    width: 80,
-    //    className: 'dt-body-center not-mobile',
-    //    render: function (data, type, row, meta) {
-    //        var content = [];
-
-    //        //var eliminar = '<button class="btn btn-danger Eliminar" title="Eliminar Cliente"><i class="glyphicon glyphicon-remove"></i></button>';
-
-    //        content.push(editar);
-    //        //content.push(eliminar);
-
-    //        return content.join('&nbsp;&nbsp;');
-    //    }
-    //},
+    {
+        title: 'TIPO_PERSONA',
+        data: 'TIPO_PERSONA',
+        width: 25,
+        className: 'not-mobile',
+        visible: true,
+    },
 
         ],
         columnDefs: [{
@@ -284,10 +126,146 @@
         },
     });
 
+    debugger
     grid.on('select', function (e, dt, type, indexes) {
+        debugger
         var items = dt.rows({ selected: true }).data().toArray();
-        window.location = '/Servicios/EditarServicio?Servicio=' + items[0]["Servicio"];
+        window.location = '/Servicios/EditarServicio?Servicio=' + items[0]["SERVICIO"] + '&Proveedor=' + items[0]["PROVEEDOR"];
     });
+
+
+
+
+    // Cancelar proveedor
+    function onClickCancelarServicio(e) {
+        e.preventDefault();
+
+        window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
+    }
+
+    //Actualizar servicio
+
+    function onClickActualizarServicio() {
+
+        var valor = 0;
+        var desayuno = 'NO';
+        var almuerzo = 'NO';
+        var cena = 'NO';
+
+        if ($('input#inlineCheckbox1').is(':checked')) {
+            valor = 1
+        }
+        else {
+            valor = 0
+        }
+
+        /*DESAYUNO-ALMUERZO-CENA*/
+
+        if ($('input#Checkboxdesa').is(':checked')) {
+            desayuno = 'SI'
+        }
+        if ($('input#Checkboxalmu').is(':checked')) {
+            almuerzo = 'SI'
+        }
+        if ($('input#Checkboxcena').is(':checked')) {
+            cena = 'SI'
+        }
+
+
+        var data = {
+            eServicio: {
+                Proveedor: $('#proveedor').val(),
+                Servicio: $('#servicio').val(),
+                Nombre: $('#nombre').val(),
+                Tipo: $('#tipo').val(),
+                Valorxservicio: $('#valorxservicio').val(),
+                Valor: $('#valor').val(),
+                Duracion: $('#duracion').val(),
+                Turno: $('#turno').val(),
+                Desayuno: desayuno,
+                Almuerzo: almuerzo,
+                Cena: cena,
+                Aerolinea: $('#aerolinea').val(),
+                Box_Lunch: $('#boxlunch').val(),
+                Ruta: $('#ruta').val(),
+                Descripcion: $('#descripcion').val(),
+                Tipo_Servicio: $('#tproveedor').val(),
+                Tipo_Persona: $('#tipopersona').val(),
+                Desc_Esp: $('#des_esp').val(),
+                Desc_Ingl: $('#des_ingles').val(),
+                Desc_Port: $('#des_port').val(),
+                Desc_Ale: $('#des_ale').val(),
+                Estado: valor
+            }
+        }
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/Servicios/ActualizarServicio',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        })
+        .done(function (data) {
+            showSuccessMessage('Se ha actualizado el servicio');
+            setTimeout(function () {
+                window.location = window.location = '/Servicios/ServicioProveedor?proveedor=' + Proveedor;
+            }, 2000);
+        })
+        .fail(function () {
+            showErrorMessage('No se ha actualizado el servicio. Inténtelo de nuevo.');
+            enableAllComponents(true);
+        });
+
+    }
+
+
+    // Guardar carga servicio
+
+    function onClickGuardarCargaServicio() {
+
+        var lstServicios = new Array();
+        $("#tblCustomers TBODY TR").each(function () {
+            debugger;
+            var row = $(this);
+            var lstServicio = {};
+
+            lstServicio.PROVEEDOR = Proveedor;            
+
+            lstServicio.NOMBRE = row.find("TD").eq(0).html();
+            lstServicio.DESC_ESP = row.find("TD").eq(1).html();
+            lstServicio.DESC_INGL = row.find("TD").eq(2).html();
+            lstServicio.DESC_PORT = row.find("TD").eq(3).html();
+            lstServicio.DESC_ALE = row.find("TD").eq(4).html();
+            lstServicio.DESCRIPCION = row.find("TD").eq(5).html();
+            lstServicio.TIPO_SERVICIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
+            lstServicio.TIPO_PERSONA = row.find("TD").eq(7).html();
+            lstServicio.BOX_LUNCH = row.find("TD").eq(8).html();
+            lstServicio.AEROLINEA = row.find("TD").eq(9).html();
+            lstServicio.RUTA = row.find("TD").eq(10).html();
+            lstServicio.RESUMEN = row.find("TD").eq(11).html();
+            lstServicios.push(lstServicio);
+        });
+        
+        
+        $.ajax({
+            type: 'POST',
+            url: '/Servicios/GuardarServicioCarga',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(lstServicios)
+        })
+            .done(function (data) {
+                debugger;
+                showSuccessMessage('Se ha guardado con exito');
+                setTimeout(function () {
+                    window.location = '/Servicios/ServicioProveedor?proveedor=' + Proveedor;
+                }, 2000);
+            })
+        .fail(function () {
+            showErrorMessage('No se pudo guardar.');
+            enableAllComponents(true);
+        });
+    };
 
 
 
@@ -297,6 +275,11 @@
     function onClickRegistrarServicio(e) {
         e.preventDefault();        
         window.location = '/Servicios/NuevoServicio?Proveedor=' + Proveedor;
+    }
+
+    function onClickCargaServicio(e) {
+        e.preventDefault();
+        window.location = '/Servicios/CargaServicio?Proveedor=' + Proveedor;
     }
 
     function onClickGuardarServicio() {
@@ -332,7 +315,7 @@
             eServicio: {
                 Proveedor: $('#proveedor').val(),
                 Nombre: $('#nombre').val(),
-                Tipo: $('#tproveedor').val(),
+                Tipo: $('#tipo').val(),
                 Valorxservicio: $('#valorxservicio').val(),
                 Valor: $('#valor').val(),
                 Duracion: $('#duracion').val(),
@@ -344,7 +327,7 @@
                 Box_Lunch: $('#boxlunch').val(),
                 Ruta: $('#ruta').val(),
                 Descripcion: $('#descripcion').val(),
-                Tipo_Servicio: $('#tiposervicio').val(),
+                Tipo_Servicio: $('#tproveedor').val(),
                 Tipo_Persona: $('#tipopersona').val(),
                 Desc_Esp: $('#des_esp').val(),
                 Desc_Ingl: $('#des_ingles').val(),
@@ -364,7 +347,7 @@
         .done(function (data) {
             showSuccessMessage('Se ha guardado el servicio');
             setTimeout(function () {
-                window.location = '/Proveedor/Index';
+                window.location = '/Servicios/ServicioProveedor?proveedor=' + Proveedor;
             }, 2000);
         })
         .fail(function () {
@@ -377,5 +360,13 @@
     window.onClickRegistrarServicio = onClickRegistrarServicio;
 
 
+    $('.form-horizontal').on('click', 'button.CargaServicio', onClickCargaServicio);
+    window.onClickCargaServicio = onClickCargaServicio;
+
+
     $('#btn-guardar').on('click', onClickGuardarServicio);
+    $('#btn-guardarCarga').on('click', onClickGuardarCargaServicio);
+    $('#btn-actualizar').on('click', onClickActualizarServicio);
+    $('#btn-cancelar').on('click', onClickCancelarServicio);
+
 });

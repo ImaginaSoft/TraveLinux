@@ -9,13 +9,14 @@ namespace TraveLinux.Data.Entidades
     public class Tarifa
     {
         public string TARIFA { get; set; }
-        public string PROVEEDOR { get; set; }
+        public Int32 PROVEEDOR { get; set; }
         public string PROVEEDOR_NOMBRE { get; set; }
         public string NOMBRE { get; set; }
         public DateTime? FECHA_COMENZAR { get; set; }
         public string TEMPORADA { get; set; }
         public DateTime? FECHA_INICIO { get; set; }
         public DateTime? FECHA_FINAL { get; set; }
+        public string DESCRIPCION { get; set; }
         public string NOTAS { get; set; }
         public string ESTADO { get; set; }
         public int DINAMICO { get; set; }
