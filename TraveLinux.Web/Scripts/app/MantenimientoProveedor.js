@@ -1,4 +1,12 @@
-﻿$(function(){    
+﻿$(function () {
+
+
+
+
+
+
+
+
     
     $("#eliminar_email").hide();
     $("#eliminar_fono").hide();
@@ -11,7 +19,7 @@
         if ('clicked') {
             if (x < max_fields) {
                 x++; 
-                $("#caja_dinamico").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x +'"><p>Email ' + x + ':</p><input class="form-control" id="email' + x + '"placeholder="Enter Email"></div>');
+                $("#caja_dinamico").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x +'"><p>Email ' + x + ':</p><input class="form-control" id="email' + x + '" placeholder="Enter Email" name="email' + x + '"></div>');
 
                 if (x == 2) {                    
                     $("#eliminar_email").show();
@@ -35,7 +43,7 @@
         if ('clicked') {
             if (y < max_fields) {
                 y++;
-                $("#caja_dinamico_2").append('<div class="col-xs-12 col-sm-12 col-md-3" id ="eliminarcajas_2' + y + '"><p>Phone ' + y + ':</p><input class="form-control" id="telefono' + y + '"placeholder="Enter Fono"></div>');
+                $("#caja_dinamico_2").append('<div class="col-xs-12 col-sm-3 col-md-3" id ="eliminarcajas_2' + y + '"><p>Phone ' + y + ':</p><input class="form-control" id="telefono' + y + '" placeholder="Enter Fono" name="telefono' + x + '"></div>');
 
                 if (y == 2) {
                     $("#eliminar_fono").show();
@@ -440,5 +448,154 @@
     $('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerServicio);
 
     window.onClickVerTarifa = onClickVerTarifa;
-    window.onClickVerServicio = onClickVerServicio;
+    window.onClickVerServicio = onClickVerServicio;      
+
+
+
+
+
+
+
+    /*VALIDAR CAMPOS FORMULARIOS*/
+    $("#signupForm1").validate({
+        rules: {
+            nombre: "required",
+            alias: "required",
+            //direccion: "required",
+            //paginaweb: "required",
+            ruc: "required",
+            //tproveedor: "required",
+            username1: {
+                required: true,
+                minlength: 2
+            },
+            tproveedor: {
+                required: true
+            },
+            ruc: {
+                required: true,
+                digits: true,
+                maxlength: 13,
+                minlength: 13
+            },
+
+            telefono1: {
+                required: true,
+                digits: true,
+                minlength: 7
+            },
+            telefono2: {
+                required: true,
+                digits: true,
+                minlength: 7
+            },
+            telefono3: {
+                required: true,
+                digits: true,
+                minlength: 7
+            },
+
+            password1: {
+                required: true,
+                minlength: 5
+            },
+            confirm_password1: {
+                required: true,
+                minlength: 5,
+                equalTo: "#password1"
+            },
+            email1: {
+                required: true,
+                email: true
+            },
+            email2: {
+                required: true,
+                email: true
+            },
+            email3: {
+                required: true,
+                email: true
+            },
+            agree1: "required"
+        },
+        messages: {
+            nombre: "Please enter your name",
+            alias: "Please enter your alias",
+            //direccion: "Please enter your lastname",
+            //paginaweb: "Please enter your WebSite",            
+            ruc: {
+                required: "Please enter only digits",
+                minlength: "Please enter minim 13 digits"
+            },
+
+            telefono1: {
+                required: "Please enter only digits",
+                minlength: "Please enter minim 7 digits"
+            },
+
+            telefono2: {
+                required: "Please enter only digits",
+                minlength: "Please enter minim 7 digits"
+            },
+            telefono3: {
+                required: "Please enter only digits",
+                minlength: "Please enter minim 7 digits"
+            },
+
+            email1: "Please enter a valid email address",
+            email2: "Please enter a valid email address",
+            email3: "Please enter a valid email address",
+            tproveedor: "Please selected a services type",
+            agree1: "Please accept our policy"
+        },
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            // Add `has-feedback` class to the parent div.form-group
+            // in order to add icons to inputs
+            element.parents(".col-sm-5").addClass("has-feedback");
+            element.parents(".col-sm-3").addClass("has-feedback"); //add to email
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+
+            // Add the span element, if doesn't exists, and apply the icon classes to it.
+            if (!element.next("span")[0]) {
+                $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+            }
+        },
+        success: function (label, element) {
+            // Add the span element, if doesn't exists, and apply the icon classes to it.
+            if (!$(element).next("span")[0]) {
+                $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+            $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+
+            $(element).parents(".col-sm-3").addClass("has-error").removeClass("has-success"); //add to email
+            $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+            $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+
+            $(element).parents(".col-sm-3").addClass("has-success").removeClass("has-error"); //add to email
+            $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+        }
+    }),
+
+    $('#signupForm1 input').on('keyup blur', function () {
+        if ($('#signupForm1').valid()) {
+            $('button#btn-guardar').prop('disabled', false);
+        } else {
+            $('button#btn-guardar').prop('disabled', 'disabled');
+        }
+    });
 });
