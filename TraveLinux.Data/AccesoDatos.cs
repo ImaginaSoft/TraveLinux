@@ -530,7 +530,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_PROVEEDOR");
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("P_RUC", OracleDbType.Char, 11).Value = eProveedor.RUC;
+                command.Parameters.Add("P_RUC", OracleDbType.Varchar2, 11).Value = eProveedor.RUC;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE;
                 command.Parameters.Add("P_ALIAS", OracleDbType.Varchar2, 50).Value = eProveedor.ALIAS;
                 command.Parameters.Add("P_TPROVEEDOR", OracleDbType.Varchar2, 50).Value = eProveedor.TPROVEEDOR;

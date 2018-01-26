@@ -1,12 +1,75 @@
 ﻿$(function () {        
-    debugger;
+    
     var proveedor_codigo = $("input#proveedor_codigo").val();
     var tarifa_codigo = $("input#tarifa_codigo").val();
 
     var proveedor_codigo1 = $("input#provicodi").val();
     var tarifa_codigo2 = $("input#taricodi").val();
+    var editor;
 
-    debugger;
+
+    //editor = new $.fn.dataTable.Editor({
+    //    url: '/TarifaDetalleServicio/Obtener_tarifa_Detalle_servicio?Proveedor=' + proveedor_codigo1 + '&Tarifa=' + tarifa_codigo2,
+    //    table: "#resultados",
+    //    fields: [{
+    //        label: "First name:",
+    //        name: "first_name"
+    //    }, {
+    //        label: "Last name:",
+    //        name: "last_name"
+    //    }, {
+    //        label: "Position:",
+    //        name: "position"
+    //    }, {
+    //        label: "Office:",
+    //        name: "office"
+    //    }, {
+    //        label: "Extension:",
+    //        name: "extn"
+    //    }, {
+    //        label: "Start date:",
+    //        name: "start_date",
+    //        type: "datetime"
+    //    }, {
+    //        label: "Salary:",
+    //        name: "salary"
+    //    }
+    //    ]
+    //});
+
+
+
+
+    $('#resultados').on('click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline(this);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var grid = $('#resultados').DataTable({
         scrollX: true,
         paging: true,
@@ -96,12 +159,12 @@
         className: 'not-mobile'
 
     },
-        ]
-
+        ],
+        select: {
+        style:    'os',
+        selector: 'td:first-child'
+},
     });
-
-
-
 
 
 
@@ -137,7 +200,7 @@
             debugger;
             showSuccessMessage('Se ha guardado con exito');
             setTimeout(function () {              
-                window.location = '/Tarifa/TarifaProveedor?proveedor=' + proveedor_codigo;
+                window.location = window.location = '/Tarifa/TarifaProveedor?Proveedor=' + proveedor_codigo;
             }, 2000);
         })
         .fail(function () {
@@ -145,6 +208,14 @@
             enableAllComponents(true);
         });
     };
+
+
+    $("#boton_validar").click(function () {
+        alert("guardando");
+        $("#btn-guardar").trigger("click");
+    });
+
+    
 
    
 });
