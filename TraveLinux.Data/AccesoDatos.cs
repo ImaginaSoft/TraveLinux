@@ -619,6 +619,11 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 50).Value = eServicio.DESC_INGL;
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 50).Value = eServicio.DESC_PORT;
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 50).Value = eServicio.DESC_ALE;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Value = eServicio.CIUDAD;
+                command.Parameters.Add("P_HORA", OracleDbType.Varchar2, 1000).Value = eServicio.Hora;
+                command.Parameters.Add("P_VISTA_CLIENTE", OracleDbType.Char, 1).Value = eServicio.VISTA_CLIENTE;
+                command.Parameters.Add("P_VISTA_PROVEEDOR", OracleDbType.Char, 1).Value = eServicio.VISTA_PROVEEDOR;
+                command.Parameters.Add("P_PRECIO_OBLIGATORIO", OracleDbType.Char, 1).Value = eServicio.PRECIO_OBLIGATORIO;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eServicio.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eServicio.USUARIO_REGISTRO;
 
@@ -693,7 +698,7 @@ namespace TraveLinux.Data
         }
 
 
-        public Proveedor ObtenerEditarProveedor(string sProveedor)
+        public Proveedor ObtenerEditarProveedor(int sProveedor)
         {
             var ObjProveedor = new Proveedor();
 
@@ -940,7 +945,7 @@ namespace TraveLinux.Data
                         tarifadetalle.DESCRIPCION  = reader.GetStringOrDefault(3);
                         tarifadetalle.RANGO_DEL = reader.GetStringOrDefault(4);
                         tarifadetalle.RANGO_AL = reader.GetStringOrDefault(5);
-                        tarifadetalle.PRECIO = reader.GetStringOrDefault(6);
+                        //tarifadetalle.PRECIO = reader.GetStringOrDefault(6);
                         lstTarifaDetalle.Add(tarifadetalle);
                     }
                 }
@@ -964,13 +969,15 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_TARIFA_DETALLE");
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 100).Value = eEntidad.PROVEEDOR;
-                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 100).Value = eEntidad.TARIFA;
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.SERVICIO;
-                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_RANGO_DEL", OracleDbType.Varchar2, 100).Value = eEntidad.RANGO_DEL;
-                command.Parameters.Add("P_RANGO_AL", OracleDbType.Varchar2, 100).Value = eEntidad.RANGO_AL;
-                command.Parameters.Add("P_PRECIO", OracleDbType.Varchar2, 100).Value = eEntidad.PRECIO;                
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 1000).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_SERVICIO;                
+                command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;                
+                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_PERSONA;
+                command.Parameters.Add("P_RANGO_PAX", OracleDbType.Int32).Value = eEntidad.RANGO_PAX;
+                command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
+                command.Parameters.Add("P_TIPO_SERVICIO_2", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_SERVICIO_2;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1012,6 +1019,11 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_INGL;
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_PORT;
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_ALE;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Value = null;
+                command.Parameters.Add("P_HORA", OracleDbType.Varchar2, 1000).Value = null;
+                command.Parameters.Add("P_VISTA_CLIENTE", OracleDbType.Char, 1).Value = null;
+                command.Parameters.Add("P_VISTA_PROVEEDOR", OracleDbType.Char, 1).Value = null;
+                command.Parameters.Add("P_PRECIO_OBLIGATORIO", OracleDbType.Char, 1).Value = null;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = 1;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eEntidad.USUARIO_REGISTRO;
 

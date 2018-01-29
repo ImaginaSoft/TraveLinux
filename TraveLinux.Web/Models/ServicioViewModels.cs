@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TraveLinux.Data.Entidades;
 
 namespace TraveLinux.Web.Models
 {
@@ -29,7 +30,14 @@ namespace TraveLinux.Web.Models
         public string DESC_INGL { get; set; }
         public string DESC_PORT { get; set; }
         public string DESC_ALE { get; set; }
+        public string PRECIO_OBLIGATORIO { get; set; }
+        public int PRECIO { get; set; }
+        public string RANGO_PAX { get; set; }
+        public string TIPO_SERVICIO_ABREV { get; set; }
+        public DateTime? FECHA_FIN { get; set; }
+        public DateTime? FECHA_INI { get; set; }
         public string ESTADO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
+        public IEnumerable<Pais> Paises { get; set; }
     }
 }

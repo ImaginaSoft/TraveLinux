@@ -18,14 +18,14 @@ namespace TraveLinux.Web.Controllers
             return View();
         }
 
-        public ActionResult NuevoServicio(string Proveedor)
+        public ActionResult NuevoServicio(int Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
             var ObtenerProveedor = Fachada.ObtenerEditarProveedor(Proveedor);
             var modelo = new ServicioViewModels();
+            modelo.Paises = Fachada.ObtenerPaises();
             {
-
                 modelo.PROVEEDOR = ObtenerProveedor.PROVEEDOR;
                 modelo.PROVEEDOR_NOMBRE = ObtenerProveedor.NOMBRE;
             }

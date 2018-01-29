@@ -1,7 +1,7 @@
 ﻿@*@model TraveLinux.Web.Models.ProveedorViewModels*@
 
 @using TraveLinux.Web.Models
-@model IEnumerable<ProveedorViewModels>
+@model IEnumerable<ServicioViewModels>
 @{
     ViewBag.Title = "TarifaProveedor";
 }
@@ -11,6 +11,33 @@
     }
 
     <style>
+
+        table {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+thead th {
+  background-color: #00a65a;
+  color: white;
+}
+
+tbody td {
+  background-color: #EEEEEE;
+}
+
+tr td:first-child,
+tr th:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+tr td:last-child,
+tr th:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
         .the-legend {
             border-style: none;
             border-width: 0;
@@ -76,17 +103,8 @@
                                     <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="proveedor_nombre" value="@ViewBag.Proveedor_Nombre" disabled>
+                                        <input class="form-control hidden" id="proveedor" value="@ViewBag.Proveedor" disabled>
                                         <br />
-                                    </div>
-                                    <label for="alias" class="col-sm-3 control-label no-pad-right">Rate:</label>
-                                    <div class="col-sm-9">
-                                        <div class="input-group date" id="dtp_until">
-                                            <input class="form-control" id="tarifa_nobre" value="@ViewBag.Tarifa_Nombre" disabled>
-                                            <div class="hidden">
-                                                <input input="text" class="form-control" id="tarifa_codigo" value="@ViewBag.Tarifa">
-                                                <input input="text" class="form-control" id="proveedor_codigo" value="@ViewBag.Proveedor">
-                                            </div>
-                                        </div>
                                     </div>
                                 </fieldset>
                             </div>
@@ -95,12 +113,17 @@
                             <div class="col-sm-4 col-md-3">*@
                                 @*@using (Html.BeginForm("Import", "TarifaDetalle", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                     {*@
-                                @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new { Proveedor = @ViewBag.Proveedor, Tarifa = @ViewBag.Tarifa
+                                @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new { Proveedor = @ViewBag.Proveedor
                                 }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
 
+                                    @*<input type="file" name="UploadedFile" />
+                                    <input type="submit" class="btn btn-warning" name="Submit" value="Save" id="boton_validar"/>*@
+
                                     <input type="file" name="UploadedFile" />
-                                    <input type="submit" class="btn btn-warning" name="Submit" value="Save" id="boton_validar"/>
+                                        <input type="submit" name="Submit" value="Submit" />
+
+
                                     @*<div class="form-group">
                                         <div class="col-sm-5">*@
                                     @*<input type="file" name="example" id="btnFileLoad" tabindex="-1" area-hidden="true" style="position: absolute; clip: rect(0px 0px 0px 0px);">
@@ -128,29 +151,35 @@
                                 <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>SERVICIO</th>
                                             <th>DESCRIPCION</th>
-                                            <th>RANGO_DEL</th>
-                                            <th>RANGO_AL</th>
+                                            <th>TIPO_SERVICIO</th>
+                                            <th>FECHA_INI</th>
+                                            <th>FECHA_FIN</th>
+                                            <th>TIPO_PERSONA</th>
+                                            <th>RANGO_PAX</th>
                                             <th>PRECIO</th>
+                                            <th>TIPO_SERVICIO_ABREV</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (ProveedorViewModels customer in Model)
+                                        @foreach (ServicioViewModels tarif in Model)
                                         {
                                             <tr>
-                                                <td id="cliente">@customer.SERVICIO</td>
-                                                <td id="nombre">@customer.DESCRIPCION</td>
-                                                <td id="pais">@customer.RANGO_DEL</td>
-                                                <td id="cliente">@customer.RANGO_AL</td>
-                                                <td id="nombre">@customer.PRECIO</td>
+                                                <td id="descripcion">@tarif.DESCRIPCION</td>
+                                                <td id="tiposervicio">@tarif.TIPO_SERVICIO</td>
+                                                <td id="fecha_inicio">@tarif.FECHA_INI</td>
+                                                <td id="fecha_fin">@tarif.FECHA_FIN</td>
+                                                <td id="tipopersona">@tarif.TIPO_PERSONA</td>
+                                                <td id="rangopax">@tarif.RANGO_PAX</td>
+                                                <td id="precio">@tarif.PRECIO</td>
+                                                <td id="tipo_servicio_abrev">@tarif.TIPO_SERVICIO_ABREV</td>
                                             </tr>
                                         }
                                     </tbody>
 
                                 </table>
                             }    
-                        <button class="btn btn-warning hidden" id="btn-guardar">
+                        <button class="btn btn-warning" id="btn-guardarCarga">
                             <span class="glyphicon glyphicon-save"></span> Save
                         </button>
                     </div>

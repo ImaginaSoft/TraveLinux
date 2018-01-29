@@ -28,7 +28,7 @@ namespace TraveLinux.Web.Controllers
             return View(modelo);
         }
 
-        public ActionResult EditarProveedor(string Proveedor)
+        public ActionResult EditarProveedor(int Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;            
             var ObtenerProveedor = Fachada.ObtenerEditarProveedor(Proveedor);            
