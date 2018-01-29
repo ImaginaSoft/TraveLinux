@@ -1,4 +1,4 @@
-﻿@model TraveLinux.Web.Models.ProveedorViewModels
+﻿@model TraveLinux.Web.Models.ServicioViewModels
 @{
     ViewBag.Title = "TarifaProveedor";
 }
@@ -67,9 +67,8 @@
                 </div>
 
                 <div class="box-body">
-                    <div class="form-group">
-                        @*<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4">*@
-                        <div class="col-sm-4 col-md-3">
+                    <div class="form-group">                        
+                        @*<div class="col-sm-4 col-md-3">
                             <a class="btn btn-warning btn-block RegistrarTarifDetalle"><span class="glyphicon glyphicon-list-alt"></span> Details Services</a>
                             <br />
                         </div>
@@ -78,27 +77,32 @@
                             <br />
                         </div>
                         <div class="col-sm-4 col-md-3">
-                            @* <a class="btn btn-warning btn-block" href="@Url.Action("NuevaTarifa", "Tarifa")"><span class="glyphicon glyphicon-list-alt"></span> New Tarif</a>*@
+                          
                             <button class="btn btn-warning btn-block RegistrarTarifa" title="Crear Tarifa"><span class="glyphicon glyphicon-list-alt"></span> New Tarif</button>
                             <br />
-                        </div>
+                        </div>*@
                     </div>
                     <div class="form-group">
                         <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
                         <div class="col-xs-7 col-sm-5">
-                            <input class="form-control" id="nombre" value="@Model.NOMBRE" disabled>
+                            <input class="form-control" id="nombre" value="@Model.PROVEEDOR_NOMBRE" disabled>
                             <input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR" disabled>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="col-xs-4 col-sm-4">
-                                <div class="checkbox checkbox-success checkbox-inline">
-                                    <input type="checkbox" class="styled" id="inlineCheckbox1" checked>
-                                    <label for="inlineCheckbox1" class="">Active?</label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <input class="form-control" id="nombre" value="@Model.TIPO_SERVICIO" disabled>
+                            <input type="hidden" class="form-control" id="servicio" value="@Model.SERVICIO" disabled>
+                        </div>                      
+                    </div>
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service description:</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <input class="form-control" id="nombre" value="@Model.NOMBRE" disabled>                            
+                        </div>                     
+                    </div>
+                    @*<div class="form-group">
                         <div class="col-xs-12 col-sm-7 col-md-7">
                             <fieldset class="well the-fieldset">
                                 <legend class="the-legend"><b>Beginning</b></legend>
@@ -123,23 +127,101 @@
                                 </div>
                             </fieldset>
                         </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-3">
+                                <button type="button" class="btn btn-warning RegistrarPeriodo">New Perido</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="estadocivil" class="selectpicker" data-size="5">
+                                    <option>--- Seleccione ---</option>
+                                    <option value="Soltero">Soltero</option>
+                                    <option value="Casado">Casado</option>
+                                    <option value="Viudo">Viudo</option>
+                                    <option value="Divorciado">Divorciado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="estadocivil" class="selectpicker" data-size="5">
+                                    <option>--- Seleccione ---</option>
+                                    <option value="Soltero">Soltero</option>
+                                    <option value="Casado">Casado</option>
+                                    <option value="Viudo">Viudo</option>
+                                    <option value="Divorciado">Divorciado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Passenger Type:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="estadocivil" class="selectpicker" data-size="5">
+                                    <option>--- Seleccione ---</option>
+                                    <option value="Soltero">Soltero</option>
+                                    <option value="Casado">Casado</option>
+                                    <option value="Viudo">Viudo</option>
+                                    <option value="Divorciado">Divorciado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="nombre" value="">
+                                <input type="hidden" class="form-control" id="proveedor" value="">
+                            </div>
+                            <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">Until:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="nombre" value="" >
+                                <input type="hidden" class="form-control" id="proveedor" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Neta rate x person:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <input class="form-control" id="nombre" value="">
+                                <input type="hidden" class="form-control" id="proveedor" value="">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-info">
-            <div class="box-header with-border">
-                <h3 class="box-title">Resultados</h3>
-            </div>
-            <form>
-                <div class="box-body">
-                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+
+
+
+
+    </form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Resultados</h3>
                 </div>
-            </form>
+                <form>
+                    <div class="box-body">
+                        <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>

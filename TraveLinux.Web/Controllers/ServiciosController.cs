@@ -161,6 +161,8 @@ namespace TraveLinux.Web.Controllers
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
 
+                        //int count = currentSheet.Count; -- pestañas
+
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
                             var user = new ProveedorViewModels();

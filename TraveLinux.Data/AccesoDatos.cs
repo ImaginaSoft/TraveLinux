@@ -885,9 +885,7 @@ namespace TraveLinux.Data
 
                 connection.Open();
                 command.ExecuteNonQuery();
-
-
-                ObjServicio.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVEEDOR_COD"));
+                                               
                 ObjServicio.PROVEEDOR_NOMBRE = command.Parameters.GetStringOrDefault("P_PROVEEDOR_NOMBRE");
                 ObjServicio.SERVICIO = command.Parameters.GetStringOrDefault("P_SERVICIO_COD");
                 ObjServicio.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");                
@@ -910,6 +908,8 @@ namespace TraveLinux.Data
                 ObjServicio.DESC_PORT = command.Parameters.GetStringOrDefault("P_DESC_PORT");
                 ObjServicio.DESC_ALE = command.Parameters.GetStringOrDefault("P_DESC_ALE");
                 ObjServicio.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
+                ObjServicio.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVEEDOR_COD"));
+
             }
             return ObjServicio;
         }

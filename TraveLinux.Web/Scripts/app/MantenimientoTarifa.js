@@ -130,6 +130,18 @@
         window.location = '/Tarifa/NuevaTarifa?Proveedor=' + Proveedor;
     }
 
+
+    function onClickRegistrarPeriodo(e) {
+        e.preventDefault();
+
+        var Proveedor = $("#proveedor").val();
+        var Servicio = $("#servicio").val();
+
+        window.location = '/Periodo/Index?Servicio=' + Servicio + '&Proveedor=' + Proveedor;
+        //window.location = '/Tarifa/TarifaProveedor?Servicio=' + item["SERVICIO"] + '&Proveedor=' + item["PROVEEDOR"];
+    }
+
+
     function onClickRegistrarTarifaDetalle(e) {
         e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
@@ -357,6 +369,10 @@
 
     $('.form-horizontal').on('click', 'button.RegistrarTarifa', onClickRegistrarTarifa);
     window.onClickRegistrarTarifa = onClickRegistrarTarifa;
+
+
+    $('.form-horizontal').on('click', 'button.RegistrarPeriodo', onClickRegistrarPeriodo);
+    window.onClickRegistrarPeriodo = onClickRegistrarPeriodo;
 
     $('#btn-guardar').click(onClickGuardarTarifa);
 

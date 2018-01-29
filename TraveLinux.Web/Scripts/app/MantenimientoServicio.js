@@ -1,6 +1,22 @@
 ﻿$(function () {
     var Proveedor = $("#proveedor").val();
 
+
+
+    //*VER TARIFA*//
+    function onClickVerTarifa(e) {
+        e.preventDefault();
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+        //alert(item.PROVEEDOR);
+
+        debugger;
+        window.location = '/Tarifa/TarifaProveedor?Servicio=' + item["SERVICIO"] + '&Proveedor=' + item["PROVEEDOR"];
+    }
+
+
     //*LISTA CLIENTE*//
     var grid = $('#resultados').DataTable({
         scrollX: true,
@@ -72,7 +88,7 @@
         data: 'SERVICIO',
         width: 20,
         className: 'not-mobile',
-        visible: true,
+        visible: false,
     },
 
     {
@@ -111,6 +127,25 @@
         width: 25,
         className: 'not-mobile',
         visible: true,
+    },
+
+    {
+        data: null,
+        width: 80,
+        className: 'dt-body-center not-mobile',
+        render: function (data, type, row, meta) {
+            var content = [];
+
+            var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
+            var CrearTarifa = '<button class="btn btn-success btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+
+
+            content.push(CrearServicio);
+            content.push(CrearTarifa);
+            //content.push(eliminar);
+
+            return content.join('&nbsp;&nbsp;');
+        }
     },
 
         ],
@@ -368,5 +403,8 @@
     $('#btn-guardarCarga').on('click', onClickGuardarCargaServicio);
     $('#btn-actualizar').on('click', onClickActualizarServicio);
     $('#btn-cancelar').on('click', onClickCancelarServicio);
+
+    $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
+    window.onClickVerTarifa = onClickVerTarifa;
 
 });
