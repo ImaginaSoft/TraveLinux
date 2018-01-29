@@ -20,7 +20,7 @@ namespace TraveLinux.Business
         IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor);
         IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int Proveedor, string Tarifa);
         IEnumerable<Proveedor> ObtenerProveedor(string sProveedor);
-        Proveedor ObtenerEditarProveedor(string sProveedor);
+        Proveedor ObtenerEditarProveedor(int sProveedor);
         Cliente ObtenerEditarCliente(string sCliente);
         Servicio ObtenerEditarServicio(string sServicio, string sProveedor);
         List<Departamentos> ListadoDepartamento(string sPais);

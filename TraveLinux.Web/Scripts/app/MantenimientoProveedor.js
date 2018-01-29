@@ -410,11 +410,11 @@
             var content = [];
 
             var CrearServicio = '<button class="btn btn-success btn-VerServicio" title="Ver Servicio"><i class="fa fa-file-excel-o"></i></button>';
-            var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+            //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
             
 
             content.push(CrearServicio);
-            content.push(CrearTarifa);
+            //content.push(CrearTarifa);
             //content.push(eliminar);
 
             return content.join('&nbsp;&nbsp;');

@@ -1,0 +1,162 @@
+﻿@model TraveLinux.Web.Models.ServicioViewModels
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoPeriodo.js"></script>
+}
+
+<style>
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+</style>
+<script id="responsive-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-12 header">
+            <p id="tarifa"></p>
+            <span>
+                <strong>TARIFA</strong>
+                <span id="tarifa"></span>
+            </span>
+
+        </div>
+        <div class="col-xs-12 details">
+            <table class="table table-borderless full-width">
+                <tbody>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <td id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA VALIDEZ</th>
+                        <td id="fechavalidez"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA INICIO</th>
+                        <td id="fechainivigencia"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<section class="content-header">
+
+    @*<h1>Datos Generales</h1>*@
+
+</section>
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+
+                <div class="box-body">                   
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <input class="form-control" id="nombre" value="@Model.PROVEEDOR_NOMBRE" disabled>
+                            <input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <input class="form-control" id="nombre" value="@Model.TIPO_SERVICIO" disabled>
+                            <input type="hidden" class="form-control" id="proveedor" value="@Model.SERVICIO" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service description:</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <input class="form-control" id="nombre" value="@Model.NOMBRE" disabled>
+                            <input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR" disabled>
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Start Date:</label>
+                        <div class="col-xs-6 col-sm-4">
+                            <div class="input-group date" id="dtp_start">
+                                <input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD" />
+                                <span class="input-group-addon input-sm">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">End Date:</label>
+                        <div class="col-xs-6 col-sm-4">
+                            <div class="input-group date" id="dtp_end">
+                                <input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD" />
+                                <span class="input-group-addon input-sm">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                  </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label no-pad-right">Descripcion:</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="descripcion" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-warning" id="btn-guardar">Guardar</button>
+                        <button type="button" class="btn btn-warning" id="btn-cancelar">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</form>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <form>
+                <div class="box-body">
+                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,51 @@
 ﻿$(function () {
     var Proveedor = $("#proveedor").val();
 
+
+    $('#pais').on('change', function () {
+
+        var Pais = $(this).val();
+        $select = $('#departamentos');
+        $.ajax({
+            type: 'POST',
+            url: '/Cliente/ListadoDepartamento',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Pais: Pais }),
+            success: function (data) {
+                debugger;
+                if (data.length != 0) {
+                    $select.html('');
+                    $.each(data, function (i, val) {
+                        $select.append('<option id="' + val.DEPARTAMENTO + '">' + val.NOMBRE + '</option>');
+
+                    })
+                    $select.selectpicker('refresh');
+                }
+                else {
+                    //$select.append('<option>No hay Distritos</option>');
+                    $select.html('');
+
+                }
+
+            },
+        })
+    });
+
+
+    //*VER TARIFA*//
+    function onClickVerTarifa(e) {
+        e.preventDefault();
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+        //alert(item.PROVEEDOR);
+
+        debugger;
+        window.location = '/Tarifa/TarifaProveedor?Servicio=' + item["SERVICIO"] + '&Proveedor=' + item["PROVEEDOR"];
+    }
+
+
     //*LISTA CLIENTE*//
     var grid = $('#resultados').DataTable({
         scrollX: true,
@@ -72,7 +117,7 @@
         data: 'SERVICIO',
         width: 20,
         className: 'not-mobile',
-        visible: true,
+        visible: false,
     },
 
     {
@@ -111,6 +156,25 @@
         width: 25,
         className: 'not-mobile',
         visible: true,
+    },
+
+    {
+        data: null,
+        width: 80,
+        className: 'dt-body-center not-mobile',
+        render: function (data, type, row, meta) {
+            var content = [];
+
+            var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
+            var CrearTarifa = '<button class="btn btn-success btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+
+
+            content.push(CrearServicio);
+            content.push(CrearTarifa);
+            //content.push(eliminar);
+
+            return content.join('&nbsp;&nbsp;');
+        }
     },
 
         ],
@@ -279,7 +343,14 @@
 
     function onClickCargaServicio(e) {
         e.preventDefault();
+        debugger;
         window.location = '/Servicios/CargaServicio?Proveedor=' + Proveedor;
+    }
+
+
+    function onClickCargaTarifa(e) {
+        e.preventDefault();
+        window.location = '/TarifaDetalle/NuevaTarifaDetalle?Proveedor=' + Proveedor;
     }
 
     function onClickGuardarServicio() {
@@ -288,6 +359,7 @@
         var desayuno = 'NO';
         var almuerzo = 'NO';
         var cena = 'NO';
+        var checkcli, checkprov, checkprecio = 0;
 
         if ($('input#inlineCheckbox1').is(':checked')) {
             valor = 1
@@ -295,6 +367,29 @@
         else {
             valor = 0
         }
+
+
+        if ($('input#clienteCheckbox').is(':checked')) {
+            checkcli = 1
+        }
+        else {
+            checkcli = 0
+        }
+
+        if ($('input#proveedorCheckbox').is(':checked')) {
+            checkprov = 1
+        }
+        else {
+            checkprov = 0
+        }
+
+        if ($('input#precioCheckbox').is(':checked')) {
+            checkprecio = 1
+        }
+        else {
+            checkprecio = 0
+        }
+
 
         /*DESAYUNO-ALMUERZO-CENA*/
 
@@ -326,6 +421,11 @@
                 Aerolinea: $('#aerolinea').val(),
                 Box_Lunch: $('#boxlunch').val(),
                 Ruta: $('#ruta').val(),
+                Ciudad: $('#departamentos').val(),
+                Hora: $('#time').val(),
+                Vista_Cliente: checkcli,
+                Vista_Proveedor: checkprov,
+                Precio_Obligatorio : checkprecio,
                 Descripcion: $('#descripcion').val(),
                 Tipo_Servicio: $('#tproveedor').val(),
                 Tipo_Persona: $('#tipopersona').val(),
@@ -364,9 +464,16 @@
     window.onClickCargaServicio = onClickCargaServicio;
 
 
+    $('.form-horizontal').on('click', 'button.CargaTarifa', onClickCargaTarifa);
+    window.onClickCargaTarifa = onClickCargaTarifa;
+
+
     $('#btn-guardar').on('click', onClickGuardarServicio);
     $('#btn-guardarCarga').on('click', onClickGuardarCargaServicio);
     $('#btn-actualizar').on('click', onClickActualizarServicio);
     $('#btn-cancelar').on('click', onClickCancelarServicio);
+
+    $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
+    window.onClickVerTarifa = onClickVerTarifa;
 
 });

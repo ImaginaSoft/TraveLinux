@@ -162,10 +162,10 @@
                                 <p>Aeroline:</p>
                                 <input class="form-control" id="aerolinea" placeholder="Enter Aerolinea">
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            @*<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                 <p>Box Lunch:</p>
                                 <input class="form-control" id="boxlunch" placeholder="Enter Lunch">
-                            </div>
+                            </div>*@
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                 <p>Ruta:</p>
                                 <input class="form-control" id="ruta" placeholder="Enter Ruta">
@@ -205,10 +205,71 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        @*<h3 class="box-title">Notas</h3>*@
+                    </div>
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="checkbox checkbox-success checkbox-inline">
+                                <input type="checkbox" class="styled" id="clienteCheckbox">
+                                <label for="clienteCheckbox" class="">See Client Itenerary</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <div class="checkbox checkbox-success checkbox-inline">
+                                    <input type="checkbox" class="styled" id="proveedorCheckbox">
+                                    <label for="proveedorCheckbox" class="">View Itenerary Provider</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <div class="checkbox checkbox-success checkbox-inline">
+                                    <input type="checkbox" class="styled" id="precioCheckbox">
+                                    <label for="precioCheckbox" class="">Obligatory Price</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <label for="name" class="col-sm-6 control-label no-pad-right">Start Service Time (HH:MM):</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="time" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Country:</label>*@
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <p>Country:</p>
+                                <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
+                                    <option>--- Seleccione ---</option>
+                                    @foreach (var paises in Model.Paises)
+                                    {
+                                        <option value="@paises.PAIS">@paises.NOMBRE</option>
+                                    }
+                                </select>
+                            </div>                            
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <p>State:</p>
+                                <select id="departamentos" class="selectpicker"></select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-info">
