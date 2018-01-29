@@ -14,21 +14,26 @@ namespace TraveLinux.Web.Controllers
     public class TarifaController : BaseController
     {
         [Autorizar(Perfil.Administrador)]        
-        public ActionResult TarifaProveedor(string Proveedor)
+        public ActionResult TarifaProveedor(string Servicio, string Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
-            var proveedor = Fachada.ObtenerProveedor(Proveedor).FirstOrDefault();
+            //var proveedor = Fachada.ObtenerProveedor(Proveedor).FirstOrDefault();
 
-            if (proveedor == null)
+            var servprov = Fachada.ObtenerEditarServicio(Servicio,Proveedor);
+
+            if (servprov == null )
             {
                 return HttpNotFound("No se encontró el proveedor solicitado");
             }
 
-            var modelo = new ProveedorViewModels()
+            var modelo = new ServicioViewModels()
             {
-                PROVEEDOR = proveedor.PROVEEDOR,
-                NOMBRE = proveedor.NOMBRE
+                PROVEEDOR = servprov.PROVEEDOR,
+                PROVEEDOR_NOMBRE = servprov.PROVEEDOR_NOMBRE,
+                SERVICIO = servprov.SERVICIO,
+                NOMBRE = servprov.NOMBRE,
+                TIPO_SERVICIO = servprov.TIPO_SERVICIO,                
             };
 
             return View(modelo);

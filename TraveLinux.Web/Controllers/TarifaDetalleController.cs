@@ -21,11 +21,11 @@ namespace TraveLinux.Web.Controllers
         }
       
         [HttpPost]
-        public ActionResult NuevaTarifaDetalle(int Proveedor,string Tarifa, HttpPostedFileBase postedFile)
+        public ActionResult NuevaTarifaDetalle(int Proveedor, HttpPostedFileBase postedFile)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
-            var TarifDetalle = Fachada.ObtenerTarifaDetalle(Proveedor, Tarifa).FirstOrDefault();
+            var TarifDetalle = Fachada.ObtenerEditarProveedor(Proveedor);
 
             if (TarifDetalle == null)
             {
@@ -34,14 +34,9 @@ namespace TraveLinux.Web.Controllers
 
 
             ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
-            ViewBag.Proveedor_Nombre = TarifDetalle.PROVEEDOR_NOMBRE;
-            ViewBag.Tarifa = TarifDetalle.TARIFA;
-            ViewBag.Tarifa_Nombre = TarifDetalle.TARIFA_NOMBRE;
+            ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;
 
-
-
-
-            List<ProveedorViewModels> usersList = new List<ProveedorViewModels>();
+            List<ServicioViewModels> usersList = new List<ServicioViewModels>();
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["UploadedFile"];
@@ -61,12 +56,16 @@ namespace TraveLinux.Web.Controllers
 
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
-                            var user = new ProveedorViewModels();
-                            user.SERVICIO = workSheet.Cells[rowIterator, 1].Value.ToString();
-                            user.DESCRIPCION = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            user.RANGO_DEL = workSheet.Cells[rowIterator, 3].Value.ToString();
-                            user.RANGO_AL = workSheet.Cells[rowIterator, 4].Value.ToString();
-                            user.PRECIO = workSheet.Cells[rowIterator, 5].Value.ToString();
+                            var user = new ServicioViewModels();
+                            
+                            user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value.ToString();
+                            user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value.ToString());
+                            user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value.ToString());
+                            user.TIPO_PERSONA = workSheet.Cells[rowIterator, 5].Value.ToString();
+                            user.RANGO_PAX = workSheet.Cells[rowIterator, 6].Value.ToString();
+                            user.PRECIO = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString());
+                            user.TIPO_SERVICIO_ABREV = workSheet.Cells[rowIterator, 8].Value.ToString();
                             usersList.Add(user);
                         }
                     }
@@ -75,11 +74,11 @@ namespace TraveLinux.Web.Controllers
             return View(usersList);
         }
 
-        public ActionResult NuevaTarifaDetalle(int Proveedor, string Tarifa)
+        public ActionResult NuevaTarifaDetalle(int Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-
-            var TarifDetalle = Fachada.ObtenerTarifaDetalle(Proveedor, Tarifa).FirstOrDefault();
+            
+            var TarifDetalle = Fachada.ObtenerEditarProveedor(Proveedor);
 
             if (TarifDetalle == null)
             {
@@ -95,9 +94,7 @@ namespace TraveLinux.Web.Controllers
             //};
 
             ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
-            ViewBag.Proveedor_Nombre = TarifDetalle.PROVEEDOR_NOMBRE;
-            ViewBag.Tarifa = TarifDetalle.TARIFA;
-            ViewBag.Tarifa_Nombre = TarifDetalle.TARIFA_NOMBRE;
+            ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;            
 
             return View();
         }
@@ -137,9 +134,15 @@ namespace TraveLinux.Web.Controllers
         {
             var cuenta = Session["CUENTA"] as Cuenta;
             Fachada.GuardarTarifa_Lista_Detalle(lsttarifa);
-        }      
+        }
 
+        public void GuardarTarifaCarga(List<Tarifa_Detalle> lstTarifas)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
 
+            Fachada.GuardarTarifa_Lista_Detalle(lstTarifas);
+        }
+        
         public ActionResult Obtener_tarifa_Detalle_Prov(int Proveedor, string Tarifa)
         {
             var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa);

@@ -273,7 +273,7 @@ namespace TraveLinux.Business
             }
         }
 
-        public Proveedor ObtenerEditarProveedor(string sProveedor)
+        public Proveedor ObtenerEditarProveedor(int sProveedor)
         {
             try
             {

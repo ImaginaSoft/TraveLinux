@@ -18,14 +18,14 @@ namespace TraveLinux.Web.Controllers
             return View();
         }
 
-        public ActionResult NuevoServicio(string Proveedor)
+        public ActionResult NuevoServicio(int Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
             var ObtenerProveedor = Fachada.ObtenerEditarProveedor(Proveedor);
             var modelo = new ServicioViewModels();
+            modelo.Paises = Fachada.ObtenerPaises();
             {
-
                 modelo.PROVEEDOR = ObtenerProveedor.PROVEEDOR;
                 modelo.PROVEEDOR_NOMBRE = ObtenerProveedor.NOMBRE;
             }
@@ -160,6 +160,8 @@ namespace TraveLinux.Web.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
+
+                        //int count = currentSheet.Count; -- pestañas
 
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
