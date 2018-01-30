@@ -11,7 +11,7 @@ namespace TraveLinux.Data.Entidades
         public int PROVEEDOR { get; set; }
         public string NOMBRE { get; set; }
         public string ALIAS { get; set; }
-        public string  TPROVEEDOR { get; set; }
+        public string TPROVEEDOR { get; set; }
         public string TIPO { get; set; }
         public string PAIS { get; set; }
         public string NOMBRE_PAIS { get; set; }
@@ -27,6 +27,17 @@ namespace TraveLinux.Data.Entidades
         public string TELEFONO_2 { get; set; }
         public string TELEFONO_3 { get; set; }
         public string ESTADO { get; set; }
-        public string USUARIO_REGISTRO { get; set; }
+        public string USUARIO_REGISTRO { get; set;}
+        public string NOMBRE_CONTACTO_1 { get; set; }
+        public string NOMBRE_CONTACTO_2 { get; set; }
+        public string NOMBRE_CONTACTO_3 { get; set; }
+
+        public string POSICION_CONTACTO_1 { get; set; }
+        public string POSICION_CONTACTO_2 { get; set; }
+        public string POSICION_CONTACTO_3 { get; set; }
+
+        public string TELEFONO_CONTACTO_1 { get; set; }
+        public string TELEFONO_CONTACTO_2 { get; set; }
+        public string TELEFONO_CONTACTO_3 { get; set; }
     }
 }
