@@ -521,6 +521,76 @@ namespace TraveLinux.Data
             return ldepartamentos;
         }
 
+        public IEnumerable<Periodo> ListadoPeriodo(string Proveedor,string Servicio)
+        {
+            var lstPeriodos = new List<Periodo>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PERIODO");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var periodo = new Periodo();
+                        periodo.ID_TARIFA = reader.GetStringOrDefault(0);
+                        periodo.PROVEEDOR = reader.GetInt32(1);
+                        periodo.SERVICIO = reader.GetStringOrDefault(2);
+                        periodo.DESCRIPCION = reader.GetStringOrDefault(3);
+                        periodo.FECHA_INICIO = reader.GetDateTime(4);
+                        periodo.FECHA_FIN = reader.GetDateTime(5);
+                        periodo.USUARIO_REGISTRO = "Philips";
+
+                        lstPeriodos.Add(periodo);
+                    }
+                }
+            }
+
+            return lstPeriodos;
+        }
+
+        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor)
+        {
+            var lstPeriodos = new List<Periodo>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_FECHAS_PERIODO");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
+                //command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var periodo = new Periodo();
+                        //periodo.FECHA_INICIO = reader.GetDateTime(0);
+                        //periodo.FECHA_FIN = reader.GetDateTime(1);
+                        //periodo.FECHA = String.Concat((Convert.ToString(periodo.FECHA_INICIO)), " Al " ,Convert.ToString(periodo.FECHA_FIN));
+                        periodo.FECHA = reader.GetStringOrDefault(0);
+                        lstPeriodos.Add(periodo);
+                    }
+                }
+            }
+
+            return lstPeriodos;
+        }
+
+
         public void GuardarProveedor(Proveedor eProveedor)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -657,6 +727,28 @@ namespace TraveLinux.Data
             }
 
         }
+
+        public void GuardarPeriodo(Periodo ePeriodo)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_PERIODO");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = ePeriodo.PROVEEDOR;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = ePeriodo.SERVICIO;
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 1000).Value = ePeriodo.DESCRIPCION;
+                command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = Convert.ToDateTime(ePeriodo.FECHA_INICIO);
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = Convert.ToDateTime(ePeriodo.FECHA_FIN);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
 
         public IEnumerable<Proveedor> ObtenerProveedor(string sProveedor)
         {
@@ -970,14 +1062,15 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
-                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 1000).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_SERVICIO;                
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;                
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;                
-                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_PERSONA;
+                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PERSONA;
                 command.Parameters.Add("P_RANGO_PAX", OracleDbType.Int32).Value = eEntidad.RANGO_PAX;
                 command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
-                command.Parameters.Add("P_TIPO_SERVICIO_2", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_SERVICIO_2;
+                command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO_2;
+                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
 
                 connection.Open();
                 command.ExecuteNonQuery();

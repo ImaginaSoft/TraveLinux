@@ -138,6 +138,32 @@ namespace TraveLinux.Business
             }
         }
 
+        public IEnumerable<Periodo> ListadoPeriodo(string Proveedor, string Servicio)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var periodo = datos.ListadoPeriodo(Proveedor,Servicio);
+                return periodo;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los periodos", e);
+            }
+        }
+        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var periodo = datos.ListaFechasPeriodo(Servicio, Proveedor);
+                return periodo;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo listar las fechas de periodos", e);
+            }
+        }
         public void GuardarMonedas(Moneda eMoneda)
         {
             try
@@ -200,6 +226,19 @@ namespace TraveLinux.Business
             catch (Exception e)
             {
                 throw new FachadaNegociosException("No se pudo guardar la tarifa", e);
+            }
+        }
+
+        public void GuardarPeriodo(Periodo ePeriodo)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarPeriodo(ePeriodo);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el periodo", e);
             }
         }
 

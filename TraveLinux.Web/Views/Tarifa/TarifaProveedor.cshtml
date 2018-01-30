@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
                         <div class="col-xs-7 col-sm-5">
-                            <input class="form-control" id="nombre" value="@Model.TIPO_SERVICIO" disabled>
+                            <input class="form-control" id="tiposervicio" value="@Model.TIPO_SERVICIO" disabled>
                             <input type="hidden" class="form-control" id="servicio" value="@Model.SERVICIO" disabled>
                         </div>                      
                     </div>
@@ -101,33 +101,7 @@
                         <div class="col-xs-7 col-sm-5">
                             <input class="form-control" id="nombre" value="@Model.NOMBRE" disabled>                            
                         </div>                     
-                    </div>
-                    @*<div class="form-group">
-                        <div class="col-xs-12 col-sm-7 col-md-7">
-                            <fieldset class="well the-fieldset">
-                                <legend class="the-legend"><b>Beginning</b></legend>
-                                <label for="alias" class="col-sm-3 control-label no-pad-right">Since:</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date" id="dtp_since">
-                                        <input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD" />
-                                        <span class="input-group-addon input-sm">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                    <br />
-                                </div>
-                                <label for="alias" class="col-sm-3 control-label no-pad-right">Until:</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date" id="dtp_until">
-                                        <input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD" />
-                                        <span class="input-group-addon input-sm">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>*@
+                    </div>                   
                 </div>
             </div>
         </div>
@@ -149,66 +123,61 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="estadocivil" class="selectpicker" data-size="5">
+                                <select id="periodo" class="selectpicker" data-size="5">
                                     <option>--- Seleccione ---</option>
-                                    <option value="Soltero">Soltero</option>
-                                    <option value="Casado">Casado</option>
-                                    <option value="Viudo">Viudo</option>
-                                    <option value="Divorciado">Divorciado</option>
+                                    @foreach (var fechas in Model.Fechas)
+                                    {
+                                        <option value="@fechas.FECHA">@fechas.FECHA</option>
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="estadocivil" class="selectpicker" data-size="5">
+                                <select id="tipoacomodacion" class="selectpicker" data-size="5">
                                     <option>--- Seleccione ---</option>
-                                    <option value="Soltero">Soltero</option>
-                                    <option value="Casado">Casado</option>
-                                    <option value="Viudo">Viudo</option>
-                                    <option value="Divorciado">Divorciado</option>
+                                    <option value="PRIVADO">Privado</option>
+                                    <option value="COMPARTIDO">Compartido</option>                                    
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Passenger Type:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="estadocivil" class="selectpicker" data-size="5">
+                                <select id="tipopasajero" class="selectpicker" data-size="5">
                                     <option>--- Seleccione ---</option>
-                                    <option value="Soltero">Soltero</option>
-                                    <option value="Casado">Casado</option>
-                                    <option value="Viudo">Viudo</option>
-                                    <option value="Divorciado">Divorciado</option>
+                                    <option value="ADULTO">ADULTO</option>
+                                    <option value="CHILD">NIÑO</option>                                    
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people:</label>
                             <div class="col-xs-7 col-sm-2">
-                                <input class="form-control" id="nombre" value="">
-                                <input type="hidden" class="form-control" id="proveedor" value="">
+                                <input class="form-control" id="npersona" value="">                                
                             </div>
                             <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">Until:</label>
                             <div class="col-xs-7 col-sm-2">
-                                <input class="form-control" id="nombre" value="" >
-                                <input type="hidden" class="form-control" id="proveedor" value="">
+                                <input class="form-control" id="hasta" value="" >                                
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Neta rate x person:</label>
-                            <div class="col-xs-7 col-sm-5">
-                                <input class="form-control" id="nombre" value="">
-                                <input type="hidden" class="form-control" id="proveedor" value="">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Net rate x person:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="neto" value="">                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-3">
+                                <button type="button" class="btn btn-warning RegistrarTarifa">Guardar Tarifa</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
 
     </form>
     <div class="row">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TraveLinux.Data.Entidades;
+using TraveLinux.Web.Attributes;
 using TraveLinux.Web.Models;
 
 namespace TraveLinux.Web.Controllers
@@ -35,5 +36,22 @@ namespace TraveLinux.Web.Controllers
 
             return View(modelo);
         }
-    }
+
+        [Autorizar(Perfil.Administrador)]
+        public ActionResult ListadoPeriodo(string Proveedor,string Servicio)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var vPeriodo = Fachada.ListadoPeriodo(Proveedor, Servicio);
+
+            return Json(vPeriodo);
+        }
+
+        [HttpPost]
+        public void GuardarPeriodo(Periodo ePeriodo)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.GuardarPeriodo(ePeriodo);
+        }
+    }   
 }

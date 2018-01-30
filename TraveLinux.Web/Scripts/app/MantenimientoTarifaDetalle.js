@@ -19,6 +19,7 @@
             tarifa.RANGO_PAX = row.find("TD").eq(5).html();
             tarifa.PRECIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
             tarifa.TIPO_SERVICIO_2 = row.find("TD").eq(7).html();
+            tarifa.PERIODO = row.find("TD").eq(8).html();
             lstTarifas.push(tarifa);
         });
         
