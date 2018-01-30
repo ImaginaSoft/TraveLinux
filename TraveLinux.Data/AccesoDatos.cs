@@ -548,6 +548,16 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_3;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eProveedor.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eProveedor.USUARIO_REGISTRO;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE_CONTACTO_1;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE_CONTACTO_2;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE_CONTACTO_3;
+                command.Parameters.Add("P_POSICION_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.POSICION_CONTACTO_1;
+                command.Parameters.Add("P_POSICION_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.POSICION_CONTACTO_2;
+                command.Parameters.Add("P_POSICION_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.POSICION_CONTACTO_3;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_1;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_2;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_3;
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -583,6 +593,15 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_3;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eProveedor.ESTADO;
                 command.Parameters.Add("P_USUARIO_ULT_MODIF", OracleDbType.Varchar2, 50).Value = eProveedor.USUARIO_REGISTRO;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE_CONTACTO_1;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE_CONTACTO_2;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.NOMBRE_CONTACTO_3;
+                command.Parameters.Add("P_POSICION_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.POSICION_CONTACTO_1;
+                command.Parameters.Add("P_POSICION_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.POSICION_CONTACTO_2;
+                command.Parameters.Add("P_POSICION_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.POSICION_CONTACTO_3;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_1;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_2;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_3;
 
                 connection.Open();
                 command.ExecuteNonQuery();
