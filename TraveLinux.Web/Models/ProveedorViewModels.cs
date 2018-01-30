@@ -49,7 +49,12 @@ namespace TraveLinux.Web.Models
         public string DESC_ALE { get; set; }
         public string TIPO_SERVICIO { get; set; }
         public string TIPO_PERSONA { get; set; }
-        public string BOX_LUNCH { get; set; }
+
+        public string DESAYUNO { get; set; }
+        public string ALMUERZO { get; set; }
+        public string CENA { get; set; }
+
+
         public string AEROLINEA { get; set; }
         public string RUTA { get; set; }
         public string RESUMEN { get; set; }

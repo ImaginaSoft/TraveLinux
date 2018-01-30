@@ -304,10 +304,13 @@
             lstServicio.DESCRIPCION = row.find("TD").eq(5).html();
             lstServicio.TIPO_SERVICIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
             lstServicio.TIPO_PERSONA = row.find("TD").eq(7).html();
-            lstServicio.BOX_LUNCH = row.find("TD").eq(8).html();
-            lstServicio.AEROLINEA = row.find("TD").eq(9).html();
-            lstServicio.RUTA = row.find("TD").eq(10).html();
-            lstServicio.RESUMEN = row.find("TD").eq(11).html();
+            lstServicio.DESAYUNO = row.find("TD").eq(8).html();
+            lstServicio.ALMUERZO = row.find("TD").eq(9).html();
+            lstServicio.CENA = row.find("TD").eq(10).html();
+            lstServicio.BOX_LUNCH = row.find("TD").eq(11).html();
+            lstServicio.AEROLINEA = row.find("TD").eq(12).html();
+            lstServicio.RUTA = row.find("TD").eq(13).html();
+            lstServicio.RESUMEN = row.find("TD").eq(14).html();
             lstServicios.push(lstServicio);
         });
         

@@ -73,10 +73,12 @@ namespace TraveLinux.Web.Controllers
                             user.DESCRIPCION = workSheet.Cells[rowIterator, 7].Value.ToString();
                             user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 8].Value.ToString();
                             user.TIPO_PERSONA = workSheet.Cells[rowIterator, 9].Value.ToString();
-                            user.BOX_LUNCH = workSheet.Cells[rowIterator, 10].Value.ToString();
-                            user.AEROLINEA = workSheet.Cells[rowIterator, 11].Value.ToString();
-                            user.RUTA = workSheet.Cells[rowIterator, 12].Value.ToString();
-                            user.RESUMEN = workSheet.Cells[rowIterator, 13].Value.ToString();
+                            user.DESAYUNO = workSheet.Cells[rowIterator, 10].Value.ToString();
+                            user.ALMUERZO = workSheet.Cells[rowIterator, 11].Value.ToString();
+                            user.CENA = workSheet.Cells[rowIterator, 12].Value.ToString();
+                            user.AEROLINEA = workSheet.Cells[rowIterator, 13].Value.ToString();
+                            user.RUTA = workSheet.Cells[rowIterator, 14].Value.ToString();
+                            user.RESUMEN = workSheet.Cells[rowIterator, 15].Value.ToString();
                             usersList.Add(user);
                         }
                     }

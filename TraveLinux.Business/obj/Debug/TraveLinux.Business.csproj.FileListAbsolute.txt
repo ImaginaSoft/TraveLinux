@@ -43,3 +43,14 @@ D:\TRAVELINUX\Travelinux\TraveLinux.Business\bin\Debug\EPPlus.xml
 D:\TRAVELINUX\Travelinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.csprojResolveAssemblyReference.cache
 D:\TRAVELINUX\Travelinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.dll
 D:\TRAVELINUX\Travelinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.pdb
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.dll
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\TraveLinux.Business.pdb
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\EPPlus.dll
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\OfficeOpenXml.Extends.dll
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\TraveLinux.Data.dll
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\TraveLinux.Data.pdb
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\bin\Debug\EPPlus.xml
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.csprojResolveAssemblyReference.cache
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.dll
+C:\Desarrollo\TL\Travelinux\TraveLinux.Business\obj\Debug\TraveLinux.Business.pdb
