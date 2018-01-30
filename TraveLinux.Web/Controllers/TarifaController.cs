@@ -27,13 +27,14 @@ namespace TraveLinux.Web.Controllers
                 return HttpNotFound("No se encontró el proveedor solicitado");
             }
 
-            var modelo = new ServicioViewModels()
+            var modelo = new ServicioViewModels();
+            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);
             {
-                PROVEEDOR = servprov.PROVEEDOR,
-                PROVEEDOR_NOMBRE = servprov.PROVEEDOR_NOMBRE,
-                SERVICIO = servprov.SERVICIO,
-                NOMBRE = servprov.NOMBRE,
-                TIPO_SERVICIO = servprov.TIPO_SERVICIO,                
+                modelo.PROVEEDOR = servprov.PROVEEDOR;
+                modelo.PROVEEDOR_NOMBRE = servprov.PROVEEDOR_NOMBRE;
+                modelo.SERVICIO = servprov.SERVICIO;
+                modelo.NOMBRE = servprov.NOMBRE;
+                modelo.TIPO_SERVICIO = servprov.TIPO_SERVICIO;
             };
 
             return View(modelo);

@@ -2,8 +2,6 @@
     var Proveedor = $("#proveedor").val();
 
 
-<<<<<<< HEAD
-=======
     $('#pais').on('change', function () {
 
         var Pais = $(this).val();
@@ -33,7 +31,6 @@
         })
     });
 
->>>>>>> bellota
 
     //*VER TARIFA*//
     function onClickVerTarifa(e) {
@@ -346,6 +343,7 @@
 
     function onClickCargaServicio(e) {
         e.preventDefault();
+        debugger;
         window.location = '/Servicios/CargaServicio?Proveedor=' + Proveedor;
     }
 

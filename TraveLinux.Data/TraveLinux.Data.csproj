@@ -51,6 +51,7 @@
     <Compile Include="Entidades\Moneda.cs" />
     <Compile Include="Entidades\Pais.cs" />
     <Compile Include="Entidades\Perfil.cs" />
+    <Compile Include="Entidades\Periodo.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\Servicio.cs" />
     <Compile Include="Entidades\Tarifa.cs" />
