@@ -23,7 +23,7 @@ namespace TraveLinux.Data.Entidades
         public string RANGO_PAX { get; set; }
         public Int32 PRECIO { get; set; }
         public string TIPO_SERVICIO_2 { get; set; }
-        
+        public string PERIODO { get; set; }
 
     }
 }

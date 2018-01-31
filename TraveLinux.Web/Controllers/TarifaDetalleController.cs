@@ -66,11 +66,15 @@ namespace TraveLinux.Web.Controllers
                             user.RANGO_PAX = workSheet.Cells[rowIterator, 6].Value.ToString();
                             user.PRECIO = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString());
                             user.TIPO_SERVICIO_ABREV = workSheet.Cells[rowIterator, 8].Value.ToString();
+                            user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 9].Value.ToString());
                             usersList.Add(user);
                         }
                     }
                 }
             }
+
+            //List<ServicioViewModels> copy = usersList.ToList();
+
             return View(usersList);
         }
 
