@@ -54,6 +54,17 @@ namespace TraveLinux.Web.Controllers
                 modelo.TELEFONO_2 = ObtenerProveedor.TELEFONO_2;
                 modelo.TELEFONO_3 = ObtenerProveedor.TELEFONO_3;
                 modelo.ESTADO = ObtenerProveedor.ESTADO;
+                modelo.NOMBRE_CONTACTO_1 = ObtenerProveedor.NOMBRE_CONTACTO_1;
+                modelo.NOMBRE_CONTACTO_2 = ObtenerProveedor.NOMBRE_CONTACTO_2;
+                modelo.NOMBRE_CONTACTO_3 = ObtenerProveedor.NOMBRE_CONTACTO_3;
+                modelo.POSICION_CONTACTO_1 = ObtenerProveedor.POSICION_CONTACTO_1;
+                modelo.POSICION_CONTACTO_2 = ObtenerProveedor.POSICION_CONTACTO_2;
+                modelo.POSICION_CONTACTO_3 = ObtenerProveedor.POSICION_CONTACTO_3;
+                modelo.TELEFONO_CONTACTO_1 = ObtenerProveedor.TELEFONO_CONTACTO_1;
+                modelo.TELEFONO_CONTACTO_2 = ObtenerProveedor.TELEFONO_CONTACTO_2;
+                modelo.TELEFONO_CONTACTO_3 = ObtenerProveedor.TELEFONO_CONTACTO_3;
+
+
             }
             
 

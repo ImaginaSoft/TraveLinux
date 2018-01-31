@@ -41,6 +41,18 @@ namespace TraveLinux.Web.Models
         public string TELEFONO_2 { get; set; }
         public string TELEFONO_3 { get; set; }
 
+        public string NOMBRE_CONTACTO_1 { get; set; }
+        public string NOMBRE_CONTACTO_2 { get; set; }
+        public string NOMBRE_CONTACTO_3 { get; set; }
+
+        public string POSICION_CONTACTO_1 { get; set; }
+        public string POSICION_CONTACTO_2 { get; set; }
+        public string POSICION_CONTACTO_3 { get; set; }
+
+        public string TELEFONO_CONTACTO_1 { get; set; }
+        public string TELEFONO_CONTACTO_2 { get; set; }
+        public string TELEFONO_CONTACTO_3 { get; set; }
+
         public string NOMBRE_SERV { get; set; }
         public string DESCRIPCION_NOM { get; set; }       
         public string DESC_ESP { get; set; }
