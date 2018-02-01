@@ -151,7 +151,7 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo obtener los periodos", e);
             }
         }
-        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor)
+        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, Int32 Proveedor)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace TraveLinux.Business
             }
         }
 
-        public Servicio ObtenerEditarServicio(string sServicio, string sProveedor)
+        public Servicio ObtenerEditarServicio(string sServicio, Int32 sProveedor)
         {
             try
             {

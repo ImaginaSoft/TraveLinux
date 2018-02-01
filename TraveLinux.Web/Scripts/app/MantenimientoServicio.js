@@ -131,7 +131,7 @@
         data: 'SERVICIO',
         width: 20,
         className: 'not-mobile',
-        visible: false,
+        visible: true,
     },
 
     {

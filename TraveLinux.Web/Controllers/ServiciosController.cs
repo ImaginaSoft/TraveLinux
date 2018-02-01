@@ -33,7 +33,7 @@ namespace TraveLinux.Web.Controllers
             return View(modelo);
         }
 
-        public ActionResult EditarServicio(string Servicio, string Proveedor)
+        public ActionResult EditarServicio(string Servicio, Int32 Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
             var ObtenerServicio = Fachada.ObtenerEditarServicio(Servicio, Proveedor);

@@ -14,7 +14,7 @@ namespace TraveLinux.Web.Controllers
     public class TarifaController : BaseController
     {
         [Autorizar(Perfil.Administrador)]        
-        public ActionResult TarifaProveedor(string Servicio, string Proveedor)
+        public ActionResult TarifaProveedor(string Servicio, Int32 Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;            
 

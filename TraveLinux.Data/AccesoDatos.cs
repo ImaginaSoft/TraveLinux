@@ -552,7 +552,7 @@ namespace TraveLinux.Data
             return lstPeriodos;
         }
 
-        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor)
+        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, Int32 Proveedor)
         {
             var lstPeriodos = new List<Periodo>();
 
@@ -959,7 +959,7 @@ namespace TraveLinux.Data
             return ObjCliente;
         }
 
-        public Servicio ObtenerEditarServicio(string sServicio, string sProveedor)
+        public Servicio ObtenerEditarServicio(string sServicio, Int32 sProveedor)
         {
             var ObjServicio = new Servicio();
 
@@ -970,9 +970,9 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_SERVICIO");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 6, sServicio, ParameterDirection.Input);                
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9, sServicio, ParameterDirection.Input);                
                 command.Parameters.Add("P_PROVEEDOR_COD", OracleDbType.Int32).Direction = ParameterDirection.Output;
-                command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Char, 6).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Char, 9).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PROVEEDOR_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;

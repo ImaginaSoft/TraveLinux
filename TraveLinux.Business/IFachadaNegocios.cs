@@ -19,12 +19,12 @@ namespace TraveLinux.Business
         IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(int Proveedor, string Tarifa);
         IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor);
         IEnumerable<Periodo> ListadoPeriodo(string Proveedor, string Servicio);
-        IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor);
+        IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, Int32 Proveedor);
         IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int Proveedor, string Tarifa);
         IEnumerable<Proveedor> ObtenerProveedor(string sProveedor);
         Proveedor ObtenerEditarProveedor(int sProveedor);
         Cliente ObtenerEditarCliente(string sCliente);
-        Servicio ObtenerEditarServicio(string sServicio, string sProveedor);
+        Servicio ObtenerEditarServicio(string sServicio, Int32 sProveedor);
         List<Departamentos> ListadoDepartamento(string sPais);
         Temporada ListadoFechasXTemporada(string Temporada);
         void GuardarMonedas(Moneda eMoneda);

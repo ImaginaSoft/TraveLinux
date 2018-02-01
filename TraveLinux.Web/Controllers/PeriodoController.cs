@@ -12,7 +12,7 @@ namespace TraveLinux.Web.Controllers
     public class PeriodoController : BaseController
     {
         // GET: Temporada
-        public ActionResult Index(string Servicio, string Proveedor)
+        public ActionResult Index(string Servicio, Int32 Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
