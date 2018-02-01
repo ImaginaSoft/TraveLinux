@@ -4,6 +4,11 @@
     var Proveedor = $('#proveedor').val();
     var Servicio = $('#servicio').val();
 
+    function onClickCancelarPeriodo() {        
+
+        window.location = '/Tarifa/TarifaProveedor?Servicio=' + Servicio + '&Proveedor=' + Proveedor;
+
+    };
 
 
     // Guardar Cliente
@@ -172,6 +177,8 @@
 
 
 
+
     $('#btn-guardar').on('click', onClickRegistrarPeriodo);
+    $('#btn-cancelar').on('click', onClickCancelarPeriodo);
 
 })

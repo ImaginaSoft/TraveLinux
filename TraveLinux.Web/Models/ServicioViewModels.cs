@@ -34,6 +34,7 @@ namespace TraveLinux.Web.Models
         public int PRECIO { get; set; }
         public string RANGO_PAX { get; set; }
         public string TIPO_SERVICIO_ABREV { get; set; }
+        public string TARIFA { get; set; }
         public DateTime? FECHA_FIN { get; set; }
         public DateTime? FECHA_INI { get; set; }
         public string ESTADO { get; set; }

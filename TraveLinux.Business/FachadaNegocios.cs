@@ -110,12 +110,12 @@ namespace TraveLinux.Business
             }
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var tarifa = datos.ObtenerListaTarifa(Proveedor);
+                var tarifa = datos.ObtenerListaTarifa(Proveedor, Servicio);
                 return tarifa;
             }
             catch (Exception e)
@@ -410,6 +410,18 @@ namespace TraveLinux.Business
             }
         }
 
+        public void GuardarTarifa(List<Tarifa> lsttarifa)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarTarifa(lsttarifa);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar la tarifa", e);
+            }
+        }
 
         public IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio)
         {
