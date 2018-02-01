@@ -32,6 +32,7 @@ namespace TraveLinux.Data.Entidades
         public string DESC_ALE { get; set;}
         public string CIUDAD { get; set; }
         public DateTime Hora { get; set; }
+        public DateTime INICIO_SERVICIO { get; set; }  
         public string VISTA_CLIENTE { get; set; }
         public string VISTA_PROVEEDOR { get; set; }
         public string PRECIO_OBLIGATORIO { get; set; }
