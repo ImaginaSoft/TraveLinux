@@ -41,5 +41,6 @@ namespace TraveLinux.Web.Models
         public IEnumerable<Pais> Paises { get; set; }
         public IEnumerable<Periodo> Fechas { get; set; }
         public Int32 TEMPORADA { get; set; }
+        public DateTime? HORA { get; set; }
     }
 }
