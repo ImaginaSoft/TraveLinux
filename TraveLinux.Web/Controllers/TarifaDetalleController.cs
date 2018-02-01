@@ -148,12 +148,10 @@ namespace TraveLinux.Web.Controllers
             List<Tarifa_Detalle> copyLista = lstTarifas.ToList();
 
             List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
+
             Fachada.GuardarTarifa_Lista_Detalle(myDistinctList, 1);
 
             Fachada.GuardarTarifa_Lista_Detalle(lstTarifas, 0);
-
-
-            
         }
         
         public ActionResult Obtener_tarifa_Detalle_Prov(int Proveedor, string Tarifa)
