@@ -90,8 +90,7 @@
 
 
 
-    function onClickEditarCliente(e) {
-        e.preventDefault();
+    function onClickEditarCliente(e) {       
         debugger;
         var item = grid.row($(this).parents('tr')).data();
 
