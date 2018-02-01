@@ -323,7 +323,7 @@ namespace TraveLinux.Data
             return lproveedor;
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio)
         {
             var lstTarifa = new List<Tarifa>();
 
@@ -334,6 +334,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIFA");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = Servicio;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -343,20 +344,12 @@ namespace TraveLinux.Data
                     {
                         var tarifa = new Tarifa();
                         tarifa.TARIFA = reader.GetStringOrDefault(0);
-                        tarifa.PROVEEDOR = reader.GetInt32(1);
-                        tarifa.PROVEEDOR_NOMBRE = reader.GetStringOrDefault(2);
-                        tarifa.NOMBRE = reader.GetStringOrDefault(3);
-                        tarifa.FECHA_COMENZAR = reader.GetDateTimeOrDefault(4);
-                        tarifa.FECHA_INICIO = reader.GetDateTimeOrDefault(5);
-                        tarifa.FECHA_FINAL = reader.GetDateTimeOrDefault(6);
-                        tarifa.DESCRIPCION = reader.GetStringOrDefault(7);
-                        tarifa.NOTAS = reader.GetStringOrDefault(8);
-                        tarifa.ESTADO = reader.GetStringOrDefault(9);
-                        tarifa.DINAMICO = reader.GetInt32 (10);
-                        tarifa.FECHA_REGISTRO = reader.GetDateTimeOrDefault(11);
-                        tarifa.USUARIO_REGISTRO = reader.GetStringOrDefault(12);
-                        tarifa.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(13);
-                        tarifa.USUARIO_ULT_MODIF = reader.GetStringOrDefault(14);
+                        tarifa.RANGO = reader.GetInt32(1);
+                        tarifa.PROVEEDOR = reader.GetInt32(2);
+                        tarifa.SERVICIO = reader.GetStringOrDefault(3);
+                        tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(4);
+                        tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(5);
+                        tarifa.PRECIO = reader.GetInt32(6);                        
                         lstTarifa.Add(tarifa);
                     }
                 }
@@ -583,7 +576,9 @@ namespace TraveLinux.Data
                         //periodo.FECHA_INICIO = reader.GetDateTime(0);
                         //periodo.FECHA_FIN = reader.GetDateTime(1);
                         //periodo.FECHA = String.Concat((Convert.ToString(periodo.FECHA_INICIO)), " Al " ,Convert.ToString(periodo.FECHA_FIN));
-                        periodo.FECHA = reader.GetStringOrDefault(0);
+
+                        periodo.ID_TARIFA = reader.GetStringOrDefault(0);
+                        periodo.FECHA = reader.GetStringOrDefault(1);
                         lstPeriodos.Add(periodo);
                     }
                 }
@@ -1103,6 +1098,12 @@ namespace TraveLinux.Data
                 GuardarTarifa_Detalle(eEntidad,validado);
         }
 
+        public void GuardarTarifa(List<Tarifa> lsttarifa)
+        {
+            foreach (var eEntidad in lsttarifa)
+                Guardar_Tarifa(eEntidad);
+        }
+
         private void GuardarTarifa_Detalle(Tarifa_Detalle eEntidad,int validado)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -1124,6 +1125,28 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
                 command.Parameters.Add("P_VALIDADO", OracleDbType.Int32).Value = validado;
 
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        private void Guardar_Tarifa(Tarifa eEntidad)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_NUEVO_TARIFARIO");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_TARIFA", OracleDbType.Char,6).Value = eEntidad.TARIFA;
+                command.Parameters.Add("P_RANGO", OracleDbType.Int32).Value = eEntidad.RANGO;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.SERVICIO;
+                command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_ACOMODACION;
+                command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PASAJERO;
+                command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;                
                 connection.Open();
                 command.ExecuteNonQuery();
             }
