@@ -250,7 +250,7 @@ namespace TraveLinux.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Proveedor> ObtenerListaProveedor()
+        public IEnumerable<Proveedor> ObtenerListaProveedor(string Estado)
         {
             var lproveedor = new List<Proveedor>();
 
@@ -260,6 +260,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PROVEEDOR");
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char,1).Value = Estado;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -323,7 +324,7 @@ namespace TraveLinux.Data
             return lproveedor;
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio,string Tarifa)
         {
             var lstTarifa = new List<Tarifa>();
 
@@ -335,6 +336,7 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = Servicio;
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = Tarifa;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -552,7 +554,7 @@ namespace TraveLinux.Data
             return lstPeriodos;
         }
 
-        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor)
+        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, Int32 Proveedor)
         {
             var lstPeriodos = new List<Periodo>();
 
@@ -959,7 +961,7 @@ namespace TraveLinux.Data
             return ObjCliente;
         }
 
-        public Servicio ObtenerEditarServicio(string sServicio, string sProveedor)
+        public Servicio ObtenerEditarServicio(string sServicio, Int32 sProveedor)
         {
             var ObjServicio = new Servicio();
 
@@ -970,9 +972,9 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_SERVICIO");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 6, sServicio, ParameterDirection.Input);                
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9, sServicio, ParameterDirection.Input);                
                 command.Parameters.Add("P_PROVEEDOR_COD", OracleDbType.Int32).Direction = ParameterDirection.Output;
-                command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Char, 6).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Char, 9).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PROVEEDOR_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
@@ -1082,7 +1084,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
-                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
+                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = Convert.ToInt32(eEntidad.PERIODO);
                 command.Parameters.Add("P_VALIDADO", OracleDbType.Int32).Value = validado;
 
                 connection.Open();

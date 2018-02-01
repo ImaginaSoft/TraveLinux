@@ -14,7 +14,7 @@ namespace TraveLinux.Web.Controllers
     public class TarifaController : BaseController
     {
         [Autorizar(Perfil.Administrador)]        
-        public ActionResult TarifaProveedor(string Servicio, string Proveedor)
+        public ActionResult TarifaProveedor(string Servicio, Int32 Proveedor)
         {
             var cuenta = Session["CUENTA"] as Cuenta;            
 
@@ -75,10 +75,11 @@ namespace TraveLinux.Web.Controllers
             Fachada.GuardarTarifa(lstTarifas);
         }
 
-        public ActionResult ListadoTarifa(string Proveedor , string Servicio)
+        //public ActionResult ListadoTarifa(string Proveedor , string Servicio, string Tarifa)
+        public ActionResult ListadoTarifa(TarifaDetalleViewModels filtro)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var vTarifa = Fachada.ObtenerListaTarifa(Proveedor ,Servicio);
+            var vTarifa = Fachada.ObtenerListaTarifa(filtro.PROVEEDOR, filtro.SERVICIO, filtro.TARIFA);
 
             return Json(vTarifa);
         }

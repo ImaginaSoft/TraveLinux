@@ -2,13 +2,13 @@
 
     var vProveedor = $('#proveedor').val();
     var vServicio = $('#servicio').val();
+    //var vTarifa = $('#periodo').val();
+    
     $('#dtp_start').datetimepicker({
         defaultDate: new Date(),
     });
     $('#dtp_beginning').datetimepicker();
     $('#dtp_ending').datetimepicker();
-
-
 
         function renderTextColor(data, type, row, meta) {
         var text = data.toLowerCase();
@@ -216,6 +216,10 @@
         window.location = '/TarifaDetalleServicio/Index?Proveedor=' + item.PROVEEDOR + '&Tarifa=' + item.TARIFA;
     }
 
+
+
+
+
     //*LISTA TARIFA*//
     var grid = $('#resultados').DataTable({
         scrollX: true,
@@ -252,10 +256,17 @@
 
         ajax: {
             method: 'GET',
-            url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio,
+            //url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio + '&Tarifa=' + vTarifa,
+            url: '/Tarifa/ListadoTarifa',
             dataType: 'json',
             dataSrc: '',
             data: function (items) {
+                var filtro = {                    
+                    Proveedor: vProveedor,
+                    Servicio: vServicio,
+                    Tarifa: $.trim($('#periodo').val())
+                };
+                return filtro;
             }
         },
 
@@ -265,7 +276,7 @@
         data: 'TARIFA',
         width: 70,
         className: 'not-mobile',
-        visible: false,
+        visible: true,
 
     },
 
@@ -315,7 +326,8 @@
         visible: true,
     },
         ]
-    });
+    });   
+
 
     $('#resultados tbody').on('click', 'button.RegistrarTarifDetalle', onClickRegistrarTarifaDetalle);
     window.onClickRegistrarTarifaDetalle = onClickRegistrarTarifaDetalle;
@@ -329,11 +341,10 @@
 
     $('.form-horizontal').on('click', 'button.RegistrarPeriodo', onClickRegistrarPeriodo);
     window.onClickRegistrarPeriodo = onClickRegistrarPeriodo;
+    
 
-
-    //$('#btn-guardar').click(onClickGuardarTarifa);
-
-
-
+    $('#periodo').change(function () {
+        grid.ajax.reload();
+    })
 
 });

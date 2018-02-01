@@ -4,7 +4,9 @@
     var Proveedor = $('#proveedor').val();
     var Servicio = $('#servicio').val();
 
-    function onClickCancelarPeriodo() {        
+    function onClickCancelarPeriodo() {
+
+        debugger;
 
         window.location = '/Tarifa/TarifaProveedor?Servicio=' + Servicio + '&Proveedor=' + Proveedor;
 

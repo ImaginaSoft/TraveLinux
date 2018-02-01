@@ -67,12 +67,12 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo obtener los clientes", e);
             }
         }
-        public IEnumerable<Proveedor> ObtenerListaProveedor()
+        public IEnumerable<Proveedor> ObtenerListaProveedor(string Estado)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var proveedor = datos.ObtenerListaProveedor();
+                var proveedor = datos.ObtenerListaProveedor(Estado);
                 return proveedor;
             }
             catch (Exception e)
@@ -110,12 +110,12 @@ namespace TraveLinux.Business
             }
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var tarifa = datos.ObtenerListaTarifa(Proveedor, Servicio);
+                var tarifa = datos.ObtenerListaTarifa(Proveedor, Servicio,Tarifa);
                 return tarifa;
             }
             catch (Exception e)
@@ -151,7 +151,7 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo obtener los periodos", e);
             }
         }
-        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, string Proveedor)
+        public IEnumerable<Periodo> ListaFechasPeriodo(string Servicio, Int32 Proveedor)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace TraveLinux.Business
             }
         }
 
-        public Servicio ObtenerEditarServicio(string sServicio, string sProveedor)
+        public Servicio ObtenerEditarServicio(string sServicio, Int32 sProveedor)
         {
             try
             {
