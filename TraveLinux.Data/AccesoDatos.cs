@@ -1065,13 +1065,13 @@ namespace TraveLinux.Data
             return lstTarifaDetalle;
         }
 
-        public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa)
+        public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa,int validado)
         {
             foreach (var eEntidad in lsttarifa)
-                GuardarTarifa_Detalle(eEntidad);
+                GuardarTarifa_Detalle(eEntidad,validado);
         }
 
-        private void GuardarTarifa_Detalle(Tarifa_Detalle eEntidad)
+        private void GuardarTarifa_Detalle(Tarifa_Detalle eEntidad,int validado)
         {
             using (var connection = new OracleConnection(_connectionString))
             {
@@ -1090,6 +1090,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
                 command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO_2;
                 command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
+                command.Parameters.Add("P_VALIDADO", OracleDbType.Int32).Value = validado;
 
                 connection.Open();
                 command.ExecuteNonQuery();

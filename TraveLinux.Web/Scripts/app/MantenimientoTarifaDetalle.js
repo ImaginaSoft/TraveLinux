@@ -10,7 +10,7 @@
             var row = $(this);
             var tarifa = {};
 
-            tarifa.PROVEEDOR = Proveedor;
+            tarifa.PROVEEDOR = Proveedor;            
             tarifa.DESCRIPCION = row.find("TD").eq(0).html();
             tarifa.TIPO_SERVICIO = row.find("TD").eq(1).html();
             tarifa.FECHA_INICIO = row.find("TD").eq(2).html();
