@@ -31,7 +31,7 @@
 
 <section class="content-header">
 
-    <h1>Datos Generales</h1>
+    <h1>SERVICE UPDATE</h1>
 
 </section>
 <form class="form-horizontal">
@@ -39,14 +39,14 @@
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    @*<h3 class="box-title">Datos Generales</h3>*@
+                    <h3 class="box-title">General</h3>
                 </div>
 
                 <div class="box-body">
 
                     <div class="form-group">
                         <label for="alias" class="col-sm-2 control-label no-pad-right">Proveedor:</label>
-                        <div class="col-xs-8 col-sm-3">
+                        <div class="col-sm-4">
                             <input class="form-control" type="text" value="@Model.PROVEEDOR_NOMBRE" disabled>
                             <input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR">
                         </div>
@@ -61,12 +61,26 @@
                     </div>
                     <div class="form-group">
                         <label for="alias" class="col-sm-2 control-label no-pad-right">Nombre:</label>
-                        <div class="col-xs-8 col-sm-3">
+                        <div class="col-sm-4">
                             <input class="form-control" id="nombre" placeholder="Enter name" value="@Model.NOMBRE">
                             <input type="hidden" class="form-control" id="servicio" placeholder="Enter name" value="@Model.SERVICIO">
                         </div>
-                        <label for="type" class="col-xs-12 col-sm-1 control-label no-pad-right">Type:</label>
+                        @*<label for="type" class="col-xs-12 col-sm-1 control-label no-pad-right">Type:</label>
                         <div class="col-xs-12 col-sm-7 col-md-5">
+                            <select id="tproveedor" class="selectpicker" data-size="5">
+                                <option value="@Model.TIPO_SERVICIO">@Model.TIPO_SERVICIO</option>
+                                <option value="TERRESTRE">TERRESTRE</option>
+                                <option value="HOTEL">HOTEL</option>
+                                <option value="AEREO">AEREO</option>
+                                <option value="OTROS">OTROS</option>
+                            </select>
+                        </div>*@
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="type" class="col-sm-2 control-label no-pad-right">Type:</label>
+                        <div class="col-sm-4">
                             <select id="tproveedor" class="selectpicker" data-size="5">
                                 <option value="@Model.TIPO_SERVICIO">@Model.TIPO_SERVICIO</option>
                                 <option value="TERRESTRE">TERRESTRE</option>
@@ -76,16 +90,81 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Valoracion Por Servicio:</label>
+                        <div class="col-xs-12 col-sm-5 col-md-3">
+                            <select id="valorxservicio" class="selectpicker">
+                                <option value="">@Model.VALORXSERVICIO</option>
+                                <option value="monto_fijo">MONTO FIJO</option>
+                                <option value="cant_pasaj">CANTIDAD PASAJEROS O HAB</option>
+                                <option value="cant_pasaj_tipo">CANTIDAD PASAJEROS POR TIPO DE</option>
+                                <option value="porcent_venta_total">PORCENTAJE DE VENTA TOTAL</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-2">
+                            <input class="form-control" id="valor" placeholder="Enter Value" value="@Model.VALOR">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Country:</label>
+                        <div class="col-xs-12 col-sm-5 col-md-3">
+                            <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
+                                <option>--- Seleccione ---</option>
+                              
+                                    @*<option value="">@paises.NOMBRE</option>*@
+                                    <option value=""> </option>
+
+                                
+                            </select>
+                        </div>
+                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">City:</label>
+                        <div class="col-xs-12 col-sm-5 col-md-3">
+                            <select id="departamentos" class="selectpicker"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label no-pad-right">Start Service Time (HH:MM):</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="time" placeholder="" type="time" value="@Model.HORA">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alias" class="col-sm-2 control-label no-pad-right">Description:</label>
+                        <div class="col-sm-4">
+                            @*<p>Description:</p>*@
+                            <input class="form-control" id="descripcion" placeholder="Enter Description">
+                        </div>
+                      
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="name" class="col-sm-2 control-label no-pad-right">Duration:</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="duracion" placeholder="" value="@Model.DURACION">
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-4">
+                            <select id="turno" class="selectpicker">
+                                <option value="">@Model.TURNO</option>
+                                <option value="DIA">DIA</option>
+                                <option value="TARDE">TARDE</option>
+                                <option value="NOCHE">NOCHE</option>
+                            </select>
+                        </div>
+                    </div>*@
+
                 </div>
 
             </div>
         </div>
     </div>
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-12">
             <div class="box box-danger">
                 <div class="box-header">
-                    @*<h3 class="box-title">Datos Secundarios</h3>*@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
@@ -122,7 +201,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-success">
@@ -158,7 +237,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
                             <p>Aeroline:</p>
                             <input class="form-control" id="aerolinea" placeholder="Enter Aerolinea" value="@Model.AEROLINEA">
@@ -171,16 +250,53 @@
                             <p>Ruta:</p>
                             <input class="form-control" id="ruta" placeholder="Enter Ruta" value="@Model.RUTA">
                         </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                </div>
+
+                <div class="box-body">
+                    <div class="panel panel-primary">
+                        <div class="form-group">
+                            <div class="panel-body">
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                        <input type="checkbox" class="styled" id="clienteCheckbox">
+                                        <label for="clienteCheckbox" class="">See Client Itenerary</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                        <input type="checkbox" class="styled" id="proveedorCheckbox">
+                                        <label for="proveedorCheckbox" class="">View Itenerary Provider</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                        <input type="checkbox" class="styled" id="precioCheckbox">
+                                        <label for="precioCheckbox" class="">Obligatory Price</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+
+    @*<div class="row">
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header">
-                    @*<h3 class="box-title">Notas</h3>*@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
@@ -209,12 +325,12 @@
 
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-info">
-                <div class="box-header">
-                    @*<h3 class="box-title">Notas</h3>*@
+                <div class="box-header with-border">
+                    <h3 class="box-title">Description</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">

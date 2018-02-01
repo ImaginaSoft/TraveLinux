@@ -273,7 +273,8 @@
                 Desc_Ingl: $('#des_ingles').val(),
                 Desc_Port: $('#des_port').val(),
                 Desc_Ale: $('#des_ale').val(),
-                Estado: valor
+                Estado: valor,
+                Hora: $('#time').val()
             }
         }
 
@@ -492,5 +493,144 @@
 
     $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
     window.onClickVerTarifa = onClickVerTarifa;
+
+
+    /*VALIDAR CAMPOS FORMULARIOS*/
+    $("#formulario_servicio").validate({
+        rules: {
+            nombre: "required",
+            tproveedor: {
+                required: true
+            }
+            //alias: "required",
+            //ruc: "required",
+            //username1: {
+            //    required: true,
+            //    minlength: 2
+            //},
+            //tproveedor: {
+            //    required: true
+            //},
+            //ruc: {
+            //    required: true,
+            //    digits: true,
+            //},
+
+            //telefono1: {
+            //    required: true,
+            //    digits: true,
+            //    minlength: 7
+            //},
+            //telefono2: {
+            //    required: true,
+            //    digits: true,
+            //    minlength: 7
+            //},
+            //telefono3: {
+            //    required: true,
+            //    digits: true,
+            //    minlength: 7
+            //},
+
+            //password1: {
+            //    required: true,
+            //    minlength: 5
+            //},
+            //confirm_password1: {
+            //    required: true,
+            //    minlength: 5,
+            //    equalTo: "#password1"
+            //},
+            //email1: {
+            //    required: true,
+            //    email: true
+            //},
+            //email2: {
+            //    required: true,
+            //    email: true
+            //},
+            //email3: {
+            //    required: true,
+            //    email: true
+            //},
+            //agree1: "required"
+        },
+        messages: {
+            nombre: "Please enter your name"
+            //alias: "Please enter your alias",
+            //ruc: {
+            //    required: "Please enter only digits",
+            //},
+
+            //telefono1: {
+            //    required: "Please enter only digits",
+            //    minlength: "Please enter minim 7 digits"
+            //},
+
+            //telefono2: {
+            //    required: "Please enter only digits",
+            //    minlength: "Please enter minim 7 digits"
+            //},
+            //telefono3: {
+            //    required: "Please enter only digits",
+            //    minlength: "Please enter minim 7 digits"
+            //},
+
+            //email1: "Please enter a valid email address",
+            //email2: "Please enter a valid email address",
+            //email3: "Please enter a valid email address",
+            //tproveedor: "Please selected a services type",
+            //agree1: "Please accept our policy"
+        }
+        /* errorElement: "em" *//* ,
+        errorPlacement: function (error, element) {
+            error.addClass("help-block");
+
+            element.parents(".col-sm-5").addClass("has-feedback");
+            element.parents(".col-sm-3").addClass("has-feedback"); 
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+
+            if (!element.next("span")[0]) {
+                $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+            }
+        } *//* ,
+        success: function (label, element) {
+            if (!$(element).next("span")[0]) {
+                $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+            $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+
+            $(element).parents(".col-sm-3").addClass("has-error").removeClass("has-success"); 
+            $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+            $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+
+            $(element).parents(".col-sm-3").addClass("has-success").removeClass("has-error"); 
+            $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+        } */
+    }),
+
+        $('#formulario_servicio input').on('keyup blur', function () {
+            if ($('#formulario_servicio').valid()) {
+                $('button#btn-guardar').prop('disabled', false);
+            } else {
+                $('button#btn-guardar').prop('disabled', 'disabled');
+            }
+        });
+
+
+
+
+
 
 });
