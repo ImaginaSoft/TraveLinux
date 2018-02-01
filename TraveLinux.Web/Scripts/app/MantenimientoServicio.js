@@ -32,6 +32,20 @@
     });
 
 
+    $(document).ready(function () {
+        $('#valor').attr('disabled', 'disabled');
+        $('select[name="valorxservicio"]').on('change', function () {
+            var others = $(this).val();
+            if (others == "monto_fijo") {
+                $('#valor').removeAttr('disabled');
+            } else {
+                $('#valor').attr('disabled', 'disabled');
+            }
+
+        });
+    });
+
+
     //*VER TARIFA*//
     function onClickVerTarifa(e) {
         e.preventDefault();

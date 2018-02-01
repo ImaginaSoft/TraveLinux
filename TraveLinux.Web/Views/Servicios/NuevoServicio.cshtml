@@ -7,6 +7,39 @@
     <script src="~/Scripts/app/MantenimientoServicio.js"></script>
 }
 
+<script>
+  
+    /*function ShowSelected() {
+        var cod = document.getElementById("valorxservicio").value;
+     
+
+
+        var combo = document.getElementById("valorxservicio");
+        var selected = combo.options[combo.selectedIndex].text;
+        if (cod = "monto_fijo") {
+            document.getElementById('valor').disabled = false;
+
+        }
+        else {
+            document.getElementById('valor').disabled = true;
+
+        }
+    }*/
+
+    $(document).ready(function () {
+        $('#valor').attr('disabled', 'disabled');
+        $('select[name="valorxservicio"]').on('change', function () {
+            var others = $(this).val();
+            if (others == "monto_fijo") {
+                $('#valor').removeAttr('disabled');
+            } else {
+                $('#valor').attr('disabled', 'disabled');
+            }
+
+        });
+    });
+</script>
+
 <style>
 .text-on-pannel {
   background: #fff none repeat scroll 0 0;
@@ -31,7 +64,7 @@
 
 <section class="content-header">
 
-    <h1>Datos Generales</h1>
+    <h1>SERVICE</h1>
 
 </section>
     <form class="form-horizontal">
@@ -39,33 +72,47 @@
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        @*<h3 class="box-title">Datos Generales</h3>*@
+                        <h3 class="box-title">General</h3>
                     </div>
 
                     <div class="box-body">
 
                         <div class="form-group">
                             <label for="alias" class="col-sm-2 control-label no-pad-right">Proveedor:</label>
-                            <div class="col-xs-8 col-sm-3">
-                                <input class="form-control" type="text" value="@Model.PROVEEDOR_NOMBRE">
-                                <input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR">
+                            <div class="col-sm-4">
+                                <input disabled class="form-control" type="text" value="@Model.PROVEEDOR_NOMBRE">
+                                <input disabled type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR">
                             </div>
                             <div class="col-xs-4">
                                 <div class="col-xs-4 col-sm-4">
                                     <div class="checkbox checkbox-success checkbox-inline">
                                         <input type="checkbox" class="styled" id="inlineCheckbox1" checked>
-                                        <label for="inlineCheckbox1" class="">Active</label>
+                                        <label for="inlineCheckbox1" class="">Active?</label>
                                     </div>
                                 </div>
                             </div> 
                         </div>
                         <div class="form-group">
                             <label for="alias" class="col-sm-2 control-label no-pad-right">Nombre:</label>
-                            <div class="col-xs-8 col-sm-3">
+                            <div class="col-sm-4">
                                 <input class="form-control" id="nombre" placeholder="Enter name">
                             </div>
-                            <label for="type" class="col-xs-12 col-sm-1 control-label no-pad-right">Type:</label>
+                            @*<label for="type" class="col-xs-12 col-sm-1 control-label no-pad-right">Type:</label>
                             <div class="col-xs-12 col-sm-7 col-md-5">
+                                <select id="tproveedor" class="selectpicker" data-size="5" required>
+                                    <option value="">--- Seleccione ---</option>
+                                    <option value="TERRESTRE">TERRESTRE</option>
+                                    <option value="HOTEL">HOTEL</option>
+                                    <option value="AEREO">AEREO</option>
+                                    <option value="OTROS">OTROS</option>
+                                </select>
+                            </div>*@
+                        </div>
+
+                        <div class="form-group">
+                           
+                            <label for="type" class="col-sm-2 control-label no-pad-right">Type:</label>
+                            <div class="col-sm-4">
                                 <select id="tproveedor" class="selectpicker" data-size="5" required>
                                     <option value="">--- Seleccione ---</option>
                                     <option value="TERRESTRE">TERRESTRE</option>
@@ -75,16 +122,66 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Valoracion Por Servicio:</label>
+                            <div class="col-xs-12 col-sm-5 col-md-3">
+                                <select id="valorxservicio" class="selectpicker" name="valorxservicio">
+                                    <option value="">--- Seleccione ---</option>
+                                    <option value="monto_fijo">MONTO FIJO</option>
+                                    <option value="cant_pasaj">CANTIDAD PASAJEROS O HAB</option>
+                                    <option value="cant_pasaj_tipo">CANTIDAD PASAJEROS POR TIPO DE</option>
+                                    <option value="porcent_venta_total">PORCENTAJE DE VENTA TOTAL</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-2">
+                                <input  class="form-control" id="valor" placeholder="Enter Value">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label no-pad-right">Duration:</label>
+                            <div class="col-sm-2">
+                                <input class="form-control" id="duracion" placeholder="">
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-4">
+                                <select id="turno" class="selectpicker">
+                                    <option value="">--- Seleccione ---</option>
+                                    <option value="DIA">DIA</option>
+                                    <option value="TARDE">TARDE</option>
+                                    <option value="NOCHE">NOCHE</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Country:</label>
+                            <div class="col-xs-12 col-sm-5 col-md-3">
+                                @*<p>Country:</p>*@
+                                <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
+                                    <option>--- Seleccione ---</option>
+                                    @foreach (var paises in Model.Paises)
+                                    {
+                                        <option value="@paises.PAIS">@paises.NOMBRE</option>
+                                    }
+                                </select>
+                            </div>
+                            <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">City:</label>
+                            <div class="col-xs-12 col-sm-5 col-md-3">
+                                @*<p>City:</p>*@
+                                <select id="departamentos" class="selectpicker"></select>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="row">
+        @*<div class="row">
             <div class="col-md-12">
                 <div class="box box-danger">
                     <div class="box-header">
-                        @*<h3 class="box-title">Datos Secundarios</h3>*@
                     </div>
                     <div class="box-body">
                         <div class="form-group">
@@ -99,7 +196,7 @@
                                 </select>
                             </div>                            
                             <div class="col-xs-12 col-sm-3 col-md-2">
-                                <input class="form-control" id="valor" placeholder="Enter Value">
+                                <input disabled class="form-control" id="valor" placeholder="Enter Value">
                             </div>
 
                         </div>
@@ -121,7 +218,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-success">
@@ -247,8 +344,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @*<label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Country:</label>*@
+                        @*<div class="form-group">
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <p>Country:</p>
                                 <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
@@ -263,7 +359,7 @@
                                 <p>State:</p>
                                 <select id="departamentos" class="selectpicker"></select>
                             </div>
-                        </div>
+                        </div>*@
 
                     </div>
                 </div>
@@ -273,8 +369,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-info">
-                    <div class="box-header">
-                        @*<h3 class="box-title">Notas</h3>*@
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Descriptions</h3>
                     </div>
                     <div class="box-body">
                         <div class="form-group">
