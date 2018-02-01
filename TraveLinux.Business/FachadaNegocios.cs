@@ -382,6 +382,21 @@ namespace TraveLinux.Business
             }
         }
 
+        public void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarPeriodoCap_Lista_Detalle(lsttarifa, validado);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
+            }
+        }
+
+
+
         public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa,int validado)
         {
             try

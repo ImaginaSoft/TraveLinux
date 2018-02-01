@@ -1065,6 +1065,36 @@ namespace TraveLinux.Data
             return lstTarifaDetalle;
         }
 
+        public void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
+        {
+            foreach (var eEntidad in lsttarifa)
+                GuardarCapa_Detalle(eEntidad, validado);
+        }
+
+        private void GuardarCapa_Detalle(Tarifa_Detalle eEntidad, int validado)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_GUARDAR_CAPA_PERIODO");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
+                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
+                command.Parameters.Add("P_VALIDADO", OracleDbType.Int32).Value = validado;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
         public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa,int validado)
         {
             foreach (var eEntidad in lsttarifa)
