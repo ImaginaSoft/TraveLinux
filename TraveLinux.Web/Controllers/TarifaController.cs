@@ -16,11 +16,9 @@ namespace TraveLinux.Web.Controllers
         [Autorizar(Perfil.Administrador)]        
         public ActionResult TarifaProveedor(string Servicio, string Proveedor)
         {
-            var cuenta = Session["CUENTA"] as Cuenta;
+            var cuenta = Session["CUENTA"] as Cuenta;            
 
-            //var proveedor = Fachada.ObtenerProveedor(Proveedor).FirstOrDefault();
-
-            var servprov = Fachada.ObtenerEditarServicio(Servicio,Proveedor);
+            var servprov = Fachada.ObtenerEditarServicio(Servicio, Proveedor);
 
             if (servprov == null )
             {
@@ -28,9 +26,9 @@ namespace TraveLinux.Web.Controllers
             }
 
             var modelo = new ServicioViewModels();
-            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);
+            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);            
             {
-                modelo.PROVEEDOR = servprov.PROVEEDOR;
+                modelo.PROVEEDOR = servprov.PROVEEDOR;                
                 modelo.PROVEEDOR_NOMBRE = servprov.PROVEEDOR_NOMBRE;
                 modelo.SERVICIO = servprov.SERVICIO;
                 modelo.NOMBRE = servprov.NOMBRE;
@@ -62,17 +60,25 @@ namespace TraveLinux.Web.Controllers
             return View(modelo);
         }
 
-        public void GuardarTarifa(Tarifa eTarifa)
+        //public void GuardarTarifa(Tarifa eTarifa)
+        //{
+        //    var cuenta = Session["CUENTA"] as Cuenta;
+
+        //    Fachada.GuardarTarifa(eTarifa);
+        //}
+
+        [HttpPost]
+        public void GuardarTarifa(List<Tarifa> lstTarifas)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
-            Fachada.GuardarTarifa(eTarifa);
+            Fachada.GuardarTarifa(lstTarifas);
         }
 
-        public ActionResult ListadoTarifa(string Proveedor)
+        public ActionResult ListadoTarifa(string Proveedor , string Servicio)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var vTarifa = Fachada.ObtenerListaTarifa(Proveedor);
+            var vTarifa = Fachada.ObtenerListaTarifa(Proveedor ,Servicio);
 
             return Json(vTarifa);
         }

@@ -12,7 +12,7 @@ namespace TraveLinux.Business
         IEnumerable<TipoDocumento> ObtenerTipoDocumento();
         IEnumerable<Moneda> ObtenerMonedas();
         IEnumerable<Cliente> ObtenerListaCliente();
-        IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor);
+        IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio);
         IEnumerable<Pais> ObtenerPaises();
         IEnumerable<Temporada> ObtenerTemporadas();
         IEnumerable<Proveedor> ObtenerListaProveedor();
@@ -34,7 +34,7 @@ namespace TraveLinux.Business
         void ActualizarServicio(Servicio eServicio);
         void GuardarCliente(Cliente eCliente);
         void GuardarServicio(Servicio eServicio);
-        void GuardarTarifa(Tarifa eTarifa);
+        void GuardarTarifa(List<Tarifa> eTarifa);
         void GuardarPeriodo(Periodo ePeriodo);
         void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa,int validado);
         IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio);
