@@ -7,7 +7,13 @@
 
 @section Scripts {
     <script src="~/Scripts/app/MantenimientoProveedor.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/app/datatables.min.js"></script>*@
 }
+
+@section Styles {
+
+<link rel="stylesheet" type="text/css" href="~/Scripts/app/datatables.min.css" />
+
 
 <style>
             .header {
@@ -72,7 +78,7 @@
         background-color: #f39c12;
         border-color: #e08e0b;
     }
-</style>
+</style>}
 
 <script id="responsive-template" type="text/x-handlebars-template">
     <div class="row">
@@ -187,6 +193,12 @@
         <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Resultados</h3>
+                <select>
+                    <option value=""></option>
+                    <option value="Activo">ACTIVO</option>
+                    <option value="Inactivo">INACTIVO</option>
+                    
+                </select>
             </div>
             <form>
                 <div class="box-body">

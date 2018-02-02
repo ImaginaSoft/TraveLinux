@@ -62,6 +62,8 @@
 
     //*LISTA CLIENTE*//
     var grid = $('#resultados').DataTable({
+
+     
         scrollX: true,
         paging: true,
         processing: true,
@@ -93,7 +95,7 @@
                 }
             }
         },
-
+      
         ajax: {
             method: 'GET',
             url: '/Servicios/ListadoServicioxProveedor?Proveedor=' + Proveedor,
@@ -133,7 +135,13 @@
         className: 'not-mobile',
         visible: true,
     },
-
+    {
+        title: 'ESTADO',
+        data: 'ESTADO',
+        width: 20,
+        className: 'not-mobile',
+        visible: true,
+    },
     {
         title: 'NOMBRE',
         data: 'NOMBRE',
@@ -141,36 +149,36 @@
         className: 'not-mobile'
     },
 
-    {
-        title: 'BOX_LUNCH',
-        data: 'BOX_LUNCH',
-        width: 25,
-        className: 'not-mobile',
-        visible: true,
-    },
-    {
-        title: 'AEROLINEA',
-        data: 'AEROLINEA',
-        width: 25,
-        className: 'not-mobile',
-        visible: true,
-    },
+    //{
+    //    title: 'BOX_LUNCH',
+    //    data: 'BOX_LUNCH',
+    //    width: 25,
+    //    className: 'not-mobile',
+    //    visible: true,
+    //},
+    //{
+    //    title: 'AEROLINEA',
+    //    data: 'AEROLINEA',
+    //    width: 25,
+    //    className: 'not-mobile',
+    //    visible: true,
+    //},
 
-    {
-        title: 'RUTA',
-        data: 'RUTA',
-        width: 25,
-        className: 'not-mobile',
-        visible: true,
-    },
+    //{
+    //    title: 'RUTA',
+    //    data: 'RUTA',
+    //    width: 25,
+    //    className: 'not-mobile',
+    //    visible: true,
+    //},
 
-    {
-        title: 'TIPO_PERSONA',
-        data: 'TIPO_PERSONA',
-        width: 25,
-        className: 'not-mobile',
-        visible: true,
-    },
+    //{
+    //    title: 'TIPO_PERSONA',
+    //    data: 'TIPO_PERSONA',
+    //    width: 25,
+    //    className: 'not-mobile',
+    //    visible: true,
+    //},
 
     {
         data: null,
