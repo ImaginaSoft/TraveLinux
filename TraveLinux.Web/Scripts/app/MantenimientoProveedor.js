@@ -514,14 +514,14 @@
         visible: true,
     },
 
-    {
-        title: 'ESTADO',
-        data: 'ESTADO',
-        width: 20,
-        className: 'not-mobile',
-        visible: true,
-        render: renderTextColor
-    },
+    //{
+    //    title: 'ESTADO',
+    //    data: 'ESTADO',
+    //    width: 20,
+    //    className: 'not-mobile',
+    //    visible: true,
+    //    render: renderTextColor
+    //},
 
    
     {
