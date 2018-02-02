@@ -133,6 +133,24 @@
         data: 'SERVICIO',
         width: 20,
         className: 'not-mobile',
+<<<<<<< HEAD
+=======
+        visible: true,
+    },
+
+    {
+        title: 'NOMBRE',
+        data: 'NOMBRE',
+        width: 25,
+        className: 'not-mobile'
+    },
+
+    {
+        title: 'BOX_LUNCH',
+        data: 'BOX_LUNCH',
+        width: 25,
+        className: 'not-mobile',
+>>>>>>> bellota
         visible: true,
     },
     {

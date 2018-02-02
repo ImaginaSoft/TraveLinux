@@ -12,10 +12,10 @@ namespace TraveLinux.Business
         IEnumerable<TipoDocumento> ObtenerTipoDocumento();
         IEnumerable<Moneda> ObtenerMonedas();
         IEnumerable<Cliente> ObtenerListaCliente();
-        IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio);
+        IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa);
         IEnumerable<Pais> ObtenerPaises();
         IEnumerable<Temporada> ObtenerTemporadas();
-        IEnumerable<Proveedor> ObtenerListaProveedor();
+        IEnumerable<Proveedor> ObtenerListaProveedor(string Estado);
         IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(int Proveedor, string Tarifa);
         IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor);
         IEnumerable<Periodo> ListadoPeriodo(string Proveedor, string Servicio);
