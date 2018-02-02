@@ -422,6 +422,11 @@
             dataType: 'json',
             dataSrc: '',
             data: function (items) {
+
+                var filtro = {                    
+                    Estado: $.trim($('#proveedor_estado').val())
+                };
+                return filtro;
             }
         },
 
@@ -609,6 +614,9 @@
     window.onClickVerServicio = onClickVerServicio;      
 
 
+    $('#proveedor_estado').change(function () {
+        grid.ajax.reload();
+    })
 
 
 
@@ -756,4 +764,5 @@
             $('button#btn-guardar').prop('disabled', 'disabled');
         }
     });
+
 });

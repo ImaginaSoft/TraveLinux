@@ -88,10 +88,10 @@ namespace TraveLinux.Web.Controllers
         }
 
         [Autorizar(Perfil.Administrador)]
-        public ActionResult ListadoProveedor()
+        public ActionResult ListadoProveedor(ProveedorViewModels Filtro)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var vProveedor = Fachada.ObtenerListaProveedor();
+            var vProveedor = Fachada.ObtenerListaProveedor(Filtro.ESTADO);
 
             return Json(vProveedor);
         }
