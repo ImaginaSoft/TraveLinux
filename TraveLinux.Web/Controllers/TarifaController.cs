@@ -26,12 +26,16 @@ namespace TraveLinux.Web.Controllers
             }
 
             var modelo = new ServicioViewModels();
-            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);            
+            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);
+            modelo.TipoAcomodacion = Fachada.ObtenerListAcomodacion(servprov.TIPO_SERVICIO);
             {
                 modelo.PROVEEDOR = servprov.PROVEEDOR;                
                 modelo.PROVEEDOR_NOMBRE = servprov.PROVEEDOR_NOMBRE;
                 modelo.SERVICIO = servprov.SERVICIO;
                 modelo.NOMBRE = servprov.NOMBRE;
+                //modelo.TIPO_SERVICIO = "HOTEL";
+
+                // TERRESTRES, AEREO.
                 modelo.TIPO_SERVICIO = servprov.TIPO_SERVICIO;
             };
 

@@ -214,6 +214,13 @@ namespace TraveLinux.Web.Controllers
             Fachada.GuardarServicio_Lista_Detalle(lstServCarg);
         }
 
+        [HttpPost]
+        public void EliminarServicio(string Servicio,Int32 Proveedor)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            Fachada.EliminarServicio(Servicio,Proveedor);
+        }
+
         public void ActualizarServicio(Servicio eServicio)
         {
             var cuenta = Session["CUENTA"] as Cuenta;

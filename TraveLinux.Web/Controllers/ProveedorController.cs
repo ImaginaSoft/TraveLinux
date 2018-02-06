@@ -87,6 +87,14 @@ namespace TraveLinux.Web.Controllers
             Fachada.ActualizarProveedor(eProveedor);
         }
 
+        [HttpPost]
+        public void EliminarProveedor(Int32 Proveedor)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.EliminarProveedor(Proveedor);
+        }
+
         [Autorizar(Perfil.Administrador)]
         public ActionResult ListadoProveedor(ProveedorViewModels Filtro)
         {

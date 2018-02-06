@@ -203,6 +203,32 @@ namespace TraveLinux.Business
             }
         }
 
+        public void EliminarProveedor(Int32 Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarProveedor(Proveedor);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar el proveedor", e);
+            }
+        }
+
+        public void EliminarServicio(string Servicio, Int32 Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarServicio(Servicio,Proveedor);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar el servicio", e);
+            }
+        }
+
         public void GuardarServicio(Servicio eServicio)
         {
             try
@@ -351,6 +377,20 @@ namespace TraveLinux.Business
             catch (Exception e)
             {
                 throw new FachadaNegociosException("No se pudo obtener el cliente", e);
+            }
+        }
+
+        public IEnumerable<TipoServicio> ObtenerListAcomodacion(string TipoServicio)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ObtenerListAcomodacion(TipoServicio);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener lista acomodacion", e);
             }
         }
 

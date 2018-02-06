@@ -678,6 +678,42 @@ namespace TraveLinux.Data
 
         }
 
+
+        public void EliminarProveedor(Int32 Proveedor)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_PROVEEDOR");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
+               
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+        public void EliminarServicio(string Servicio, Int32 Proveedor)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_SERVICIO");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9).Value = Servicio;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
         public void GuardarServicio(Servicio eServicio)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -1063,6 +1099,40 @@ namespace TraveLinux.Data
 
             return lstTarifaDetalle;
         }
+
+        public IEnumerable<TipoServicio> ObtenerListAcomodacion(string TipoServicio)
+        {
+            var lstTipoServicio = new List<TipoServicio>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TIPO_ACOMODACION");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Char, 3, TipoServicio, ParameterDirection.Input);                
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tiposervicio = new TipoServicio();
+                        tiposervicio.ID_TIPO_SERVICIO = reader.GetStringOrDefault(0);
+                        tiposervicio.DESCRIPCION = reader.GetStringOrDefault(1);
+                        tiposervicio.ID_TIPO_ACOM = reader.GetStringOrDefault(2);
+                        tiposervicio.DESCR_ACOM = reader.GetStringOrDefault(3);
+                        lstTipoServicio.Add(tiposervicio);                       
+                    }
+                }
+            }
+
+            return lstTipoServicio;
+        }
+
+
+
 
         public void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
         {
