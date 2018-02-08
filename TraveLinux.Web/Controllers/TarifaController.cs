@@ -26,16 +26,12 @@ namespace TraveLinux.Web.Controllers
             }
 
             var modelo = new ServicioViewModels();
-            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);
-            modelo.TipoAcomodacion = Fachada.ObtenerListAcomodacion(servprov.TIPO_SERVICIO);
+            modelo.Fechas = Fachada.ListaFechasPeriodo(Servicio, Proveedor);            
             {
                 modelo.PROVEEDOR = servprov.PROVEEDOR;                
                 modelo.PROVEEDOR_NOMBRE = servprov.PROVEEDOR_NOMBRE;
                 modelo.SERVICIO = servprov.SERVICIO;
                 modelo.NOMBRE = servprov.NOMBRE;
-                //modelo.TIPO_SERVICIO = "HOTEL";
-
-                // TERRESTRES, AEREO.
                 modelo.TIPO_SERVICIO = servprov.TIPO_SERVICIO;
             };
 
@@ -79,11 +75,10 @@ namespace TraveLinux.Web.Controllers
             Fachada.GuardarTarifa(lstTarifas);
         }
 
-        //public ActionResult ListadoTarifa(string Proveedor , string Servicio, string Tarifa)
-        public ActionResult ListadoTarifa(TarifaDetalleViewModels filtro)
+        public ActionResult ListadoTarifa(string Proveedor , string Servicio)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var vTarifa = Fachada.ObtenerListaTarifa(filtro.PROVEEDOR, filtro.SERVICIO, filtro.TARIFA);
+            var vTarifa = Fachada.ObtenerListaTarifa(Proveedor ,Servicio);
 
             return Json(vTarifa);
         }

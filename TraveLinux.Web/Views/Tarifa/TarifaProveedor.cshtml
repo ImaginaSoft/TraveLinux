@@ -126,78 +126,34 @@
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="periodo" class="selectpicker" data-size="5">
-                                    <option value="0">--- Seleccione ---</option>
+                                    <option>--- Seleccione ---</option>
                                     @foreach (var fechas in Model.Fechas)
                                     {
                                         <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
                                     }
                                 </select>
-                            </div>                            
-                                @*<div class="col-sm-4 col-md-3">
-                                    <button type="button" class="btn btn-warning" id="BuscarTarifa">Buscar</button>
-                                </div>*@                            
-                        </div>                    
-
-                                @if (Model.TIPO_SERVICIO == "TERRESTRE" || Model.TIPO_SERVICIO == "AEREO")
-                                {
-                                    <div class="form-group">
-                                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
-                                        <div class="col-xs-7 col-sm-5">
-                                            <select id="tipoacomodacion" class="selectpicker" data-size="5">
-                                                <option>--- Seleccione ---</option>
-                                                @foreach (var tipoacomodacion in Model.TipoAcomodacion)
-                                                {
-                                                    <option value="@tipoacomodacion.ID_TIPO_ACOM">@tipoacomodacion.DESCR_ACOM</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type Pax:</label>
-                                        <div class="col-xs-7 col-sm-5">
-                                            <select id="tipopasajero" class="selectpicker" data-size="5">
-                                                <option value="0">--- Seleccione ---</option>
-                                                <option value="ADULT">ADULT</option>
-                                                <option value="CHILD">CHILD</option>
-                                               
-                                            </select>
-                                        </div>
-                                    </div>
-                                }
-
-                            @if (Model.TIPO_SERVICIO == "HOTEL")
-                            {
-                                <div class="form-group">
-                                    <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
-                                    <div class="col-xs-7 col-sm-5">
-                                        <select id="tipoacomodacion" class="selectpicker" data-size="5">
-                                            <option>--- Seleccione ---</option>
-                                            <option value="adult">DELUXE</option>
-                                            <option value="child">PREMIUM</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">type of room:</label>
-                                    <div class="col-xs-7 col-sm-5">
-                                        <select id="tipopasajero" class="selectpicker" data-size="5">
-                                            <option>--- Seleccione ---</option>
-                                            <option value="ADULTO">SINGLE</option>
-                                            <option value="CHILD">DOUBLE</option>
-                                            <option value="CHILD">TRIPLE</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">nª room:</label>
-                                    <div class="col-xs-7 col-sm-5">
-                                        <input class="form-control" id="npersona" value="">                                
-                                    </div>
-                                </div>
-                            }
-
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipoacomodacion" class="selectpicker" data-size="5">
+                                    <option>--- Seleccione ---</option>
+                                    <option value="PRIVADO">Privado</option>
+                                    <option value="COMPARTIDO">Compartido</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Passenger Type:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipopasajero" class="selectpicker" data-size="5">
+                                    <option>--- Seleccione ---</option>
+                                    <option value="ADULTO">ADULTO</option>
+                                    <option value="CHILD">NIÑO</option>                                    
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people:</label>
                             <div class="col-xs-7 col-sm-2">

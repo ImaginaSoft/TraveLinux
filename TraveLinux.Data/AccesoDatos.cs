@@ -250,7 +250,7 @@ namespace TraveLinux.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Proveedor> ObtenerListaProveedor(string Estado)
+        public IEnumerable<Proveedor> ObtenerListaProveedor()
         {
             var lproveedor = new List<Proveedor>();
 
@@ -260,7 +260,6 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PROVEEDOR");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_ESTADO", OracleDbType.Char,1).Value = Estado;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -324,7 +323,7 @@ namespace TraveLinux.Data
             return lproveedor;
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio,string Tarifa)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio)
         {
             var lstTarifa = new List<Tarifa>();
 
@@ -336,7 +335,6 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = Servicio;
-                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = Tarifa;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -671,42 +669,6 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_1;
                 command.Parameters.Add("P_TELEFONO_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_2;
                 command.Parameters.Add("P_TELEFONO_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_3;
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-
-        }
-
-
-        public void EliminarProveedor(Int32 Proveedor)
-        {
-            using (var connection = new OracleConnection(_connectionString))
-            {
-                var command = new OracleCommand();
-                command.Connection = connection;
-                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_PROVEEDOR");
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
-               
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-
-        }
-
-        public void EliminarServicio(string Servicio, Int32 Proveedor)
-        {
-            using (var connection = new OracleConnection(_connectionString))
-            {
-                var command = new OracleCommand();
-                command.Connection = connection;
-                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_SERVICIO");
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9).Value = Servicio;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1100,40 +1062,6 @@ namespace TraveLinux.Data
             return lstTarifaDetalle;
         }
 
-        public IEnumerable<TipoServicio> ObtenerListAcomodacion(string TipoServicio)
-        {
-            var lstTipoServicio = new List<TipoServicio>();
-
-            using (var connection = new OracleConnection(_connectionString))
-            {
-                var command = new OracleCommand();
-                command.Connection = connection;
-                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TIPO_ACOMODACION");
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Char, 3, TipoServicio, ParameterDirection.Input);                
-                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
-                connection.Open();
-
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var tiposervicio = new TipoServicio();
-                        tiposervicio.ID_TIPO_SERVICIO = reader.GetStringOrDefault(0);
-                        tiposervicio.DESCRIPCION = reader.GetStringOrDefault(1);
-                        tiposervicio.ID_TIPO_ACOM = reader.GetStringOrDefault(2);
-                        tiposervicio.DESCR_ACOM = reader.GetStringOrDefault(3);
-                        lstTipoServicio.Add(tiposervicio);                       
-                    }
-                }
-            }
-
-            return lstTipoServicio;
-        }
-
-
-
-
         public void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
         {
             foreach (var eEntidad in lsttarifa)
@@ -1154,7 +1082,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
-                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = Convert.ToInt32(eEntidad.PERIODO);
+                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
                 command.Parameters.Add("P_VALIDADO", OracleDbType.Int32).Value = validado;
 
                 connection.Open();

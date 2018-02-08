@@ -60,40 +60,6 @@
     }
 
 
-    //*Eliminar TARIFA*//
-    function onClickEliminarServicio(e) {
-        e.preventDefault();
-        var item = grid.row($(this).parents('tr')).data();
-        if (!item) {
-            item = grid.row($(e.target).parents('tr').prev()).data();
-        }
-
-        var Servicio = item.Servicio;
-
-
-
-        $.ajax({
-            type: 'POST',
-            url: '/Servicio/EliminarServicio',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ Servicio: Servicio, Proveedor: Proveedor }),
-        })
-        .done(function (data) {
-            showSuccessMessage('Se ha eliminado el servicio');
-            setTimeout(function () {
-                window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
-            }, 2000);
-        })
-        .fail(function () {
-            showErrorMessage('No se pudo borrar el servicio. Inténtelo de nuevo.');
-            enableAllComponents(true);
-        });
-
-    }
-
-
-
-
     //*LISTA CLIENTE*//
     var grid = $('#resultados').DataTable({
 
@@ -169,27 +135,12 @@
         className: 'not-mobile',
         visible: true,
     },
-
-    {
-        title: 'NOMBRE',
-        data: 'NOMBRE',
-        width: 25,
-        className: 'not-mobile'
-    },
-
-    {
-        title: 'BOX_LUNCH',
-        data: 'BOX_LUNCH',
-        width: 25,
-        className: 'not-mobile',
-        visible: false,
-    },
     {
         title: 'ESTADO',
         data: 'ESTADO',
         width: 20,
         className: 'not-mobile',
-        visible: false,
+        visible: true,
     },
     {
         title: 'NOMBRE',
@@ -236,8 +187,7 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            //var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
-            var CrearServicio = '<button class="btn btn-danger btn-EliminarServicio" title="Eliminar Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
+            var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
             var CrearTarifa = '<button class="btn btn-success btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
 
 
@@ -552,10 +502,6 @@
 
     $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
     window.onClickVerTarifa = onClickVerTarifa;
-
-    $('#resultados tbody').on('click', 'button.btn-EliminarServicio', onClickEliminarServicio);
-    window.onClickEliminarServicio = onClickEliminarServicio;
-
 
 
     /*VALIDAR CAMPOS FORMULARIOS*/

@@ -9,15 +9,13 @@ namespace TraveLinux.Business
 {
     public interface IFachadaNegocios
     {
-
-
         IEnumerable<TipoDocumento> ObtenerTipoDocumento();
         IEnumerable<Moneda> ObtenerMonedas();
         IEnumerable<Cliente> ObtenerListaCliente();
-        IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa);
+        IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio);
         IEnumerable<Pais> ObtenerPaises();
         IEnumerable<Temporada> ObtenerTemporadas();
-        IEnumerable<Proveedor> ObtenerListaProveedor(string Estado);
+        IEnumerable<Proveedor> ObtenerListaProveedor();
         IEnumerable<Tarifa_Detalle> ObtenerTarifaDetalle(int Proveedor, string Tarifa);
         IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor);
         IEnumerable<Periodo> ListadoPeriodo(string Proveedor, string Servicio);
@@ -27,14 +25,11 @@ namespace TraveLinux.Business
         Proveedor ObtenerEditarProveedor(int sProveedor);
         Cliente ObtenerEditarCliente(string sCliente);
         Servicio ObtenerEditarServicio(string sServicio, Int32 sProveedor);
-        IEnumerable<TipoServicio> ObtenerListAcomodacion(string TipoServicio);
         List<Departamentos> ListadoDepartamento(string sPais);
         Temporada ListadoFechasXTemporada(string Temporada);
         void GuardarMonedas(Moneda eMoneda);
         void GuardarProveedor(Proveedor eProveedor);
         void ActualizarProveedor(Proveedor eProveedor);
-        void EliminarProveedor(Int32 Proveedor);
-        void EliminarServicio(string Servicio, Int32 Proveedor);
         void ActualizarCliente(Cliente eCliente);
         void ActualizarServicio(Servicio eServicio);
         void GuardarCliente(Cliente eCliente);

@@ -70,14 +70,6 @@ namespace TraveLinux.Web.Models
         public string AEROLINEA { get; set; }
         public string RUTA { get; set; }
         public string RESUMEN { get; set; }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        
-
->>>>>>> bellota
-=======
->>>>>>> bellota
 
         public string INICIO_SERVICIO { get; set; }
   

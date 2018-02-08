@@ -308,108 +308,6 @@
     }
 
 
-    function onClickRegistrarProveedor() {
-
-        debugger;
-
-        var valor = 0;
-
-        if ($('input#inlineCheckbox1').is(':checked')) {
-            valor = 1
-        }
-        else {
-            valor = 0
-        }
-
-        var data = {
-            eProveedor: {                
-                Nombre: $('#nombre').val(),
-                Alias: $('#alias').val(),
-                Tproveedor: $('#tproveedor').val(),
-                Tipo: $('#radio').val(),
-                pais: $('#pais').val(),
-                Ciudad: $('#departamentos').val(),
-                Direccion: $('#direccion').val(),
-                PaginaWeb: $('#paginaweb').val(),
-                ruc: $('#ruc').val(),
-                Idioma: $('#idioma').val(),
-                Email_1: $('#email1').val(),
-                Email_2: $('#email2').val(),
-                Email_3: $('#email3').val(),
-                Telefono_1: $('#telefono1').val(),
-                Telefono_2: $('#telefono2').val(),
-                Telefono_3: $('#telefono3').val(),
-                Estado: valor,
-                Nombre_contacto_1: $('#nombre_contacto').val(),
-                Nombre_contacto_2: $('#nombre_contacto2').val(),
-                Nombre_contacto_3: $('#nombre_contacto3').val(),
-                Posicion_contacto_1: $('#posicion_contacto').val(),
-                Posicion_contacto_2: $('#posicion_contacto2').val(),
-                Posicion_contacto_3: $('#posicion_contacto3').val(),
-                Telefono_contacto_1: $('#telefono_contacto').val(),
-                Telefono_contacto_2: $('#telefono_contacto2').val(),
-                Telefono_contacto_3: $('#telefono_contacto3').val()
-
-            }
-        };
-
-        //if (data.Nombre == null) {
-        //    showErrorMessage('Debe ingresar un nombre');
-        //    return;
-        //}
-
-
-        $.ajax({
-            type: 'POST',
-            url: '/Proveedor/GuardarProveedor',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        })
-        .done(function (data) {
-            showSuccessMessage('Se ha guardado el proveedor');
-            setTimeout(function () {
-                window.location = '/Proveedor/Index';
-            }, 2000);
-        })
-        .fail(function () {
-            showErrorMessage('No se pudo guardar el proveedor. Inténtelo de nuevo.');
-            enableAllComponents(true);
-        });
-    }
-
-
-
-    function onClickEliminarProveedor(e) {
-        e.preventDefault();
-        var item = grid.row($(this).parents('tr')).data();
-        if (!item) {
-            item = grid.row($(e.target).parents('tr').prev()).data();
-        }
-        
-        var Proveedor = item.PROVEEDOR;
-  
-
-
-        $.ajax({
-            type: 'POST',
-            url: '/Proveedor/EliminarProveedor',
-            contentType: 'application/json; charset=utf-8',            
-            data: JSON.stringify({ Proveedor: Proveedor }),
-        })
-        .done(function (data) {
-            showSuccessMessage('Se ha eliminado el proveedor');
-            setTimeout(function () {
-                window.location = '/Proveedor/Index';
-            }, 2000);
-        })
-        .fail(function () {
-            showErrorMessage('No se pudo borrar el proveedor. Inténtelo de nuevo.');
-            enableAllComponents(true);
-        });
-    }
-
-
-
     function onClickActualizarProveedor() {
 
         debugger;
@@ -524,11 +422,6 @@
             dataType: 'json',
             dataSrc: '',
             data: function (items) {
-
-                var filtro = {                    
-                    Estado: $.trim($('#proveedor_estado').val())
-                };
-                return filtro;
             }
         },
 
@@ -638,13 +531,12 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            var BorrarProveedor = '<button class="btn btn-danger btn-Eliminar" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>';
-            var CrearServicio = '<button class="btn btn-success btn-VerServicio" title="Ver Servicio"><i class="fa fa-file-excel-o"></i></button>';            
+            var CrearServicio = '<button class="btn btn-success btn-VerServicio" title="Ver Servicio"><i class="fa fa-file-excel-o"></i></button>';
             //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
             
 
             content.push(CrearServicio);
-            content.push(BorrarProveedor);
+            //content.push(CrearTarifa);
             //content.push(eliminar);
 
             return content.join('&nbsp;&nbsp;');
@@ -712,14 +604,11 @@
     $('#btn-cancelar').on('click', onClickCancelarProveedor);
     $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
     $('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerServicio);
-    $('#resultados tbody').on('click', 'button.btn-Eliminar', onClickEliminarProveedor);
+
     window.onClickVerTarifa = onClickVerTarifa;
     window.onClickVerServicio = onClickVerServicio;      
 
 
-    $('#proveedor_estado').change(function () {
-        grid.ajax.reload();
-    })
 
 
 
@@ -867,5 +756,4 @@
             $('button#btn-guardar').prop('disabled', 'disabled');
         }
     });
-
 });
