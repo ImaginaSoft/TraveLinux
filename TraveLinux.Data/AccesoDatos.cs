@@ -38,7 +38,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_ESTADO_CIVIL", OracleDbType.Varchar2, 50).Value = eCliente.ESTADO_CIVIL;
                 command.Parameters.Add("P_GENERO", OracleDbType.Varchar2, 50).Value = eCliente.GENERO;
                 command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 50).Value = eCliente.PAIS;
-                command.Parameters.Add("P_DEPARTAMENTO", OracleDbType.Varchar2, 50).Value = eCliente.DEPARTAMENTO;                
+                command.Parameters.Add("P_DEPARTAMENTO", OracleDbType.Varchar2, 50).Value = eCliente.DEPARTAMENTO;
                 command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 50).Value = eCliente.DIRECCION;
                 command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Value = eCliente.IDIOMA;
                 command.Parameters.Add("P_EMAIL", OracleDbType.Varchar2, 50).Value = eCliente.EMAIL;
@@ -222,7 +222,7 @@ namespace TraveLinux.Data
                         cliente.ESTADO_CIVIL = reader.GetStringOrDefault(8);
                         cliente.GENERO = reader.GetStringOrDefault(9);
                         cliente.PAIS = reader.GetStringOrDefault(10);
-                        cliente.DEPARTAMENTO = reader.GetStringOrDefault(11);                        
+                        cliente.DEPARTAMENTO = reader.GetStringOrDefault(11);
                         cliente.DIRECCION = reader.GetStringOrDefault(12);
                         cliente.IDIOMA = reader.GetStringOrDefault(13);
                         cliente.EMAIL = reader.GetStringOrDefault(14);
@@ -231,7 +231,7 @@ namespace TraveLinux.Data
                         cliente.TELEFONO = reader.GetStringOrDefault(17);
                         cliente.TELEFONO_2 = reader.GetStringOrDefault(18);
                         cliente.TELEFONO_3 = reader.GetStringOrDefault(19);
-                        cliente.NOTAS= reader.GetStringOrDefault(20);
+                        cliente.NOTAS = reader.GetStringOrDefault(20);
                         cliente.ESTADO = reader.GetStringOrDefault(21);
                         cliente.FECHA_REGISTRO = reader.GetDateTimeOrDefault(22);
                         cliente.USUARIO_REGISTRO = reader.GetStringOrDefault(23);
@@ -260,7 +260,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PROVEEDOR");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_ESTADO", OracleDbType.Char,1).Value = Estado;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = Estado;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -324,7 +324,7 @@ namespace TraveLinux.Data
             return lproveedor;
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio,string Tarifa)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa)
         {
             var lstTarifa = new List<Tarifa>();
 
@@ -335,7 +335,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIFA");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = Servicio;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = Tarifa;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
@@ -351,7 +351,7 @@ namespace TraveLinux.Data
                         tarifa.SERVICIO = reader.GetStringOrDefault(3);
                         tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(4);
                         tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(5);
-                        tarifa.PRECIO = reader.GetInt32(6);                        
+                        tarifa.PRECIO = reader.GetInt32(6);
                         lstTarifa.Add(tarifa);
                     }
                 }
@@ -380,7 +380,7 @@ namespace TraveLinux.Data
                     {
                         var servicio = new Servicio();
                         servicio.PROVEEDOR = reader.GetInt32(0);
-                        servicio.PROVEEDOR_NOMBRE = reader.GetStringOrDefault(1);                        
+                        servicio.PROVEEDOR_NOMBRE = reader.GetStringOrDefault(1);
                         servicio.SERVICIO = reader.GetStringOrDefault(2);
                         servicio.NOMBRE = reader.GetStringOrDefault(3);
                         servicio.TIPO = reader.GetStringOrDefault(4);
@@ -518,7 +518,7 @@ namespace TraveLinux.Data
             return ldepartamentos;
         }
 
-        public IEnumerable<Periodo> ListadoPeriodo(string Proveedor,string Servicio)
+        public IEnumerable<Periodo> ListadoPeriodo(string Proveedor, string Servicio)
         {
             var lstPeriodos = new List<Periodo>();
 
@@ -608,7 +608,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 50).Value = eProveedor.CIUDAD;
                 command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 50).Value = eProveedor.DIRECCION;
                 command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 50).Value = eProveedor.IDIOMA;
-                command.Parameters.Add("P_PAGINAWEB", OracleDbType.Varchar2, 50).Value = eProveedor.PAGINAWEB;                
+                command.Parameters.Add("P_PAGINAWEB", OracleDbType.Varchar2, 50).Value = eProveedor.PAGINAWEB;
                 command.Parameters.Add("P_EMAIL_1", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_1;
                 command.Parameters.Add("P_EMAIL_2", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_2;
                 command.Parameters.Add("P_EMAIL_3", OracleDbType.Varchar2, 50).Value = eProveedor.EMAIL_3;
@@ -671,6 +671,42 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_CONTACTO_1", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_1;
                 command.Parameters.Add("P_TELEFONO_CONTACTO_2", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_2;
                 command.Parameters.Add("P_TELEFONO_CONTACTO_3", OracleDbType.Varchar2, 50).Value = eProveedor.TELEFONO_CONTACTO_3;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+
+        public void EliminarProveedor(Int32 Proveedor)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_PROVEEDOR");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+        public void EliminarServicio(string Servicio, Int32 Proveedor)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_SERVICIO");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9).Value = Servicio;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -818,7 +854,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_PROV");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);                
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
                 command.Parameters.Add("P_PROVCODIGO", OracleDbType.Varchar2, 9).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_ALIAS", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
@@ -837,31 +873,31 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
-                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output; 
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output;
                 connection.Open();
                 command.ExecuteNonQuery();
 
-               //if (ok == 1)
-               // {
-                    ObjProveedor.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVCODIGO"));
-                    ObjProveedor.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");
-                    ObjProveedor.ALIAS = command.Parameters.GetStringOrDefault("P_ALIAS");
-                    ObjProveedor.TPROVEEDOR = command.Parameters.GetStringOrDefault("P_TPROVEEDOR");
-                    ObjProveedor.TIPO = command.Parameters.GetStringOrDefault("P_TIPO");
-                    ObjProveedor.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
-                    ObjProveedor.NOMBRE_PAIS = command.Parameters.GetStringOrDefault("P_PAISNOM");
-                    ObjProveedor.CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD");
-                    ObjProveedor.DIRECCION = command.Parameters.GetStringOrDefault("P_DIRECCION");
-                    ObjProveedor.IDIOMA = command.Parameters.GetStringOrDefault("P_IDIOMA");
-                    ObjProveedor.PAGINAWEB = command.Parameters.GetStringOrDefault("P_PAGINA_WEB");
-                    ObjProveedor.RUC = command.Parameters.GetStringOrDefault("P_RUC");
-                    ObjProveedor.EMAIL_1 = command.Parameters.GetStringOrDefault("P_EMAIL_1");
-                    ObjProveedor.EMAIL_2 = command.Parameters.GetStringOrDefault("P_EMAIL_2");
-                    ObjProveedor.EMAIL_3 = command.Parameters.GetStringOrDefault("P_EMAIL_3");
-                    ObjProveedor.TELEFONO_1 = command.Parameters.GetStringOrDefault("P_TELEFONO_1");
-                    ObjProveedor.TELEFONO_2 = command.Parameters.GetStringOrDefault("P_TELEFONO_2");
-                    ObjProveedor.TELEFONO_3 = command.Parameters.GetStringOrDefault("P_TELEFONO_3");
-                    ObjProveedor.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
+                //if (ok == 1)
+                // {
+                ObjProveedor.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVCODIGO"));
+                ObjProveedor.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");
+                ObjProveedor.ALIAS = command.Parameters.GetStringOrDefault("P_ALIAS");
+                ObjProveedor.TPROVEEDOR = command.Parameters.GetStringOrDefault("P_TPROVEEDOR");
+                ObjProveedor.TIPO = command.Parameters.GetStringOrDefault("P_TIPO");
+                ObjProveedor.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
+                ObjProveedor.NOMBRE_PAIS = command.Parameters.GetStringOrDefault("P_PAISNOM");
+                ObjProveedor.CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD");
+                ObjProveedor.DIRECCION = command.Parameters.GetStringOrDefault("P_DIRECCION");
+                ObjProveedor.IDIOMA = command.Parameters.GetStringOrDefault("P_IDIOMA");
+                ObjProveedor.PAGINAWEB = command.Parameters.GetStringOrDefault("P_PAGINA_WEB");
+                ObjProveedor.RUC = command.Parameters.GetStringOrDefault("P_RUC");
+                ObjProveedor.EMAIL_1 = command.Parameters.GetStringOrDefault("P_EMAIL_1");
+                ObjProveedor.EMAIL_2 = command.Parameters.GetStringOrDefault("P_EMAIL_2");
+                ObjProveedor.EMAIL_3 = command.Parameters.GetStringOrDefault("P_EMAIL_3");
+                ObjProveedor.TELEFONO_1 = command.Parameters.GetStringOrDefault("P_TELEFONO_1");
+                ObjProveedor.TELEFONO_2 = command.Parameters.GetStringOrDefault("P_TELEFONO_2");
+                ObjProveedor.TELEFONO_3 = command.Parameters.GetStringOrDefault("P_TELEFONO_3");
+                ObjProveedor.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
 
                 //}
 
@@ -883,14 +919,14 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TEMPORADA", OracleDbType.Char, 9, Temporada, ParameterDirection.Input);
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Direction = ParameterDirection.Output;
-               
+
                 connection.Open();
                 command.ExecuteNonQuery();
 
-                
+
                 ObjTemporada.FECHA_INICIO = command.Parameters.GetDateTimeOrDefault("P_FECHA_INICIO");
-                ObjTemporada.FECHA_FIN = command.Parameters.GetDateTimeOrDefault("P_FECHA_FIN");              
-                
+                ObjTemporada.FECHA_FIN = command.Parameters.GetDateTimeOrDefault("P_FECHA_FIN");
+
             }
 
             return ObjTemporada;
@@ -930,7 +966,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOTAS", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
-                
+
                 connection.Open();
                 command.ExecuteNonQuery();
 
@@ -972,7 +1008,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_SERVICIO");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9, sServicio, ParameterDirection.Input);                
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9, sServicio, ParameterDirection.Input);
                 command.Parameters.Add("P_PROVEEDOR_COD", OracleDbType.Int32).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Char, 9).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
@@ -1000,10 +1036,10 @@ namespace TraveLinux.Data
 
                 connection.Open();
                 command.ExecuteNonQuery();
-                                               
+
                 ObjServicio.PROVEEDOR_NOMBRE = command.Parameters.GetStringOrDefault("P_PROVEEDOR_NOMBRE");
                 ObjServicio.SERVICIO = command.Parameters.GetStringOrDefault("P_SERVICIO_COD");
-                ObjServicio.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");                
+                ObjServicio.NOMBRE = command.Parameters.GetStringOrDefault("P_NOMBRE");
                 ObjServicio.TIPO = command.Parameters.GetStringOrDefault("P_TIPO");
                 ObjServicio.VALORXSERVICIO = command.Parameters.GetStringOrDefault("P_VALORXSERVICIO");
                 ObjServicio.VALOR = command.Parameters.GetStringOrDefault("P_VALOR");
@@ -1029,7 +1065,7 @@ namespace TraveLinux.Data
             return ObjServicio;
         }
 
-        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int sProveedor,string sTarifa)
+        public IEnumerable<Tarifa_Detalle> ObtenerTarifProvDetalle(int sProveedor, string sTarifa)
         {
             var lstTarifaDetalle = new List<Tarifa_Detalle>();
 
@@ -1052,7 +1088,7 @@ namespace TraveLinux.Data
                         tarifadetalle.PROVEEDOR = reader.GetInt32(0);
                         tarifadetalle.TARIFA = reader.GetStringOrDefault(1);
                         tarifadetalle.SERVICIO = reader.GetStringOrDefault(2);
-                        tarifadetalle.DESCRIPCION  = reader.GetStringOrDefault(3);
+                        tarifadetalle.DESCRIPCION = reader.GetStringOrDefault(3);
                         tarifadetalle.RANGO_DEL = reader.GetStringOrDefault(4);
                         tarifadetalle.RANGO_AL = reader.GetStringOrDefault(5);
                         //tarifadetalle.PRECIO = reader.GetStringOrDefault(6);
@@ -1063,6 +1099,40 @@ namespace TraveLinux.Data
 
             return lstTarifaDetalle;
         }
+
+        public IEnumerable<TipoServicio> ObtenerListAcomodacion(string TipoServicio)
+        {
+            var lstTipoServicio = new List<TipoServicio>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TIPO_ACOMODACION");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Char, 3, TipoServicio, ParameterDirection.Input);
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tiposervicio = new TipoServicio();
+                        tiposervicio.ID_TIPO_SERVICIO = reader.GetStringOrDefault(0);
+                        tiposervicio.DESCRIPCION = reader.GetStringOrDefault(1);
+                        tiposervicio.ID_TIPO_ACOM = reader.GetStringOrDefault(2);
+                        tiposervicio.DESCR_ACOM = reader.GetStringOrDefault(3);
+                        lstTipoServicio.Add(tiposervicio);
+                    }
+                }
+            }
+
+            return lstTipoServicio;
+        }
+
+
+
 
         public void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
         {
@@ -1094,10 +1164,10 @@ namespace TraveLinux.Data
 
 
 
-        public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa,int validado)
+        public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
         {
             foreach (var eEntidad in lsttarifa)
-                GuardarTarifa_Detalle(eEntidad,validado);
+                GuardarTarifa_Detalle(eEntidad, validado);
         }
 
         public void GuardarTarifa(List<Tarifa> lsttarifa)
@@ -1106,7 +1176,7 @@ namespace TraveLinux.Data
                 Guardar_Tarifa(eEntidad);
         }
 
-        private void GuardarTarifa_Detalle(Tarifa_Detalle eEntidad,int validado)
+        private void GuardarTarifa_Detalle(Tarifa_Detalle eEntidad, int validado)
         {
             using (var connection = new OracleConnection(_connectionString))
             {
@@ -1117,9 +1187,9 @@ namespace TraveLinux.Data
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;                
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
-                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;                
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PERSONA;
                 command.Parameters.Add("P_RANGO_PAX", OracleDbType.Int32).Value = eEntidad.RANGO_PAX;
                 command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
@@ -1142,13 +1212,13 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_NUEVO_TARIFARIO");
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("P_TARIFA", OracleDbType.Char,6).Value = eEntidad.TARIFA;
+                command.Parameters.Add("P_TARIFA", OracleDbType.Char, 6).Value = eEntidad.TARIFA;
                 command.Parameters.Add("P_RANGO", OracleDbType.Int32).Value = eEntidad.RANGO;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.SERVICIO;
                 command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_ACOMODACION;
                 command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PASAJERO;
-                command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;                
+                command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -1285,7 +1355,7 @@ namespace TraveLinux.Data
         public static DateTime? GetDateTimeOrDefault(this OracleParameterCollection parameters, string name)
         {
             var value = parameters[name].Value;
-                 
+
 
             if (DBNull.Value == value || value == null)
             {

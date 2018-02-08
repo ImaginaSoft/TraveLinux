@@ -115,7 +115,7 @@ namespace TraveLinux.Business
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var tarifa = datos.ObtenerListaTarifa(Proveedor, Servicio,Tarifa);
+                var tarifa = datos.ObtenerListaTarifa(Proveedor, Servicio, Tarifa);
                 return tarifa;
             }
             catch (Exception e)
@@ -143,7 +143,7 @@ namespace TraveLinux.Business
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var periodo = datos.ListadoPeriodo(Proveedor,Servicio);
+                var periodo = datos.ListadoPeriodo(Proveedor, Servicio);
                 return periodo;
             }
             catch (Exception e)
@@ -200,6 +200,32 @@ namespace TraveLinux.Business
             catch (Exception e)
             {
                 throw new FachadaNegociosException("No se pudo actualizar el proveedor", e);
+            }
+        }
+
+        public void EliminarProveedor(Int32 Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarProveedor(Proveedor);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar el proveedor", e);
+            }
+        }
+
+        public void EliminarServicio(string Servicio, Int32 Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarServicio(Servicio, Proveedor);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar el servicio", e);
             }
         }
 
@@ -354,13 +380,27 @@ namespace TraveLinux.Business
             }
         }
 
+        public IEnumerable<TipoServicio> ObtenerListAcomodacion(string TipoServicio)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ObtenerListAcomodacion(TipoServicio);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener lista acomodacion", e);
+            }
+        }
+
         public void ActualizarCliente(Cliente eCliente)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
                 datos.ActualizarCliente(eCliente);
-                
+
             }
             catch (Exception e)
             {
@@ -397,12 +437,12 @@ namespace TraveLinux.Business
 
 
 
-        public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa,int validado)
+        public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                datos.GuardarTarifa_Lista_Detalle(lsttarifa,validado);
+                datos.GuardarTarifa_Lista_Detalle(lsttarifa, validado);
             }
             catch (Exception e)
             {

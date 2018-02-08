@@ -15,7 +15,8 @@ namespace TraveLinux.Web.Controllers
     {
         // GET: Proveedor
 
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
 
             return View();
         }
@@ -23,26 +24,26 @@ namespace TraveLinux.Web.Controllers
         public ActionResult NuevoProveedor()
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var modelo = new MantenimientoUsuariosViewModel();            
+            var modelo = new MantenimientoUsuariosViewModel();
             modelo.Paises = Fachada.ObtenerPaises();
             return View(modelo);
         }
 
         public ActionResult EditarProveedor(int Proveedor)
         {
-            var cuenta = Session["CUENTA"] as Cuenta;            
-            var ObtenerProveedor = Fachada.ObtenerEditarProveedor(Proveedor);            
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var ObtenerProveedor = Fachada.ObtenerEditarProveedor(Proveedor);
             var modelo = new ProveedorViewModels();
             modelo.Paises = Fachada.ObtenerPaises();
             {
                 modelo.PROVEEDOR = ObtenerProveedor.PROVEEDOR;
                 modelo.PROVEEDOR_NOMBRE = ObtenerProveedor.NOMBRE;
-                modelo.ALIAS = ObtenerProveedor.ALIAS ;
-                modelo.TPROVEEDOR  = ObtenerProveedor.TPROVEEDOR;
+                modelo.ALIAS = ObtenerProveedor.ALIAS;
+                modelo.TPROVEEDOR = ObtenerProveedor.TPROVEEDOR;
                 modelo.TIPO = ObtenerProveedor.TIPO;
-                modelo.PAIS  = ObtenerProveedor.PAIS;
+                modelo.PAIS = ObtenerProveedor.PAIS;
                 modelo.PAIS_NOMBRE = ObtenerProveedor.NOMBRE_PAIS;
-                modelo.CIUDAD = ObtenerProveedor.CIUDAD ;
+                modelo.CIUDAD = ObtenerProveedor.CIUDAD;
                 modelo.DIRECCION = ObtenerProveedor.DIRECCION;
                 modelo.IDIOMA = ObtenerProveedor.IDIOMA;
                 modelo.PAGINAWEB = ObtenerProveedor.PAGINAWEB;
@@ -66,7 +67,7 @@ namespace TraveLinux.Web.Controllers
 
 
             }
-            
+
 
             return View(modelo);
         }
@@ -85,6 +86,14 @@ namespace TraveLinux.Web.Controllers
             var cuenta = Session["CUENTA"] as Cuenta;
 
             Fachada.ActualizarProveedor(eProveedor);
+        }
+
+        [HttpPost]
+        public void EliminarProveedor(Int32 Proveedor)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.EliminarProveedor(Proveedor);
         }
 
         [Autorizar(Perfil.Administrador)]

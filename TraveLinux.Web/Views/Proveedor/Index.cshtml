@@ -12,11 +12,11 @@
 
 @section Styles {
 
-<link rel="stylesheet" type="text/css" href="~/Scripts/app/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/app/datatables.min.css" />
 
 
-<style>
-            .header {
+    <style>
+        .header {
             background: rgb(248, 247, 217);
             padding-left: 20px;
             padding-top: 10px;
@@ -29,56 +29,57 @@
                 font-weight: bold;
                 margin-bottom: 0px;
             }
-    .radio {
-        padding-left: 10px;
-    }
 
-    textarea {
-        height: 100px;
-        max-height: 100px;
-    }
+        .radio {
+            padding-left: 10px;
+        }
 
-    #label_izq {
-        text-align: left;
-    }
+        textarea {
+            height: 100px;
+            max-height: 100px;
+        }
 
-    .the-legend {
-        border-style: none;
-        border-width: 0;
-        font-size: 14px;
-        line-height: 20px;
-        margin-bottom: 0;
-    }
+        #label_izq {
+            text-align: left;
+        }
 
-    .the-fieldset {
-        border: 2px groove threedface #444;
-        -webkit-box-shadow: 0px 0px 0px 0px #000;
-        box-shadow: 0px 0px 0px 0px #000;
-    }
+        .the-legend {
+            border-style: none;
+            border-width: 0;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 0;
+        }
 
-    .well {
-        padding: 1px 0px 10px 10px !important;
-        margin-bottom: 20px;
-        background-color: #eeeeee !important;
-        border: 1px solid #e3e3e3;
-    }
+        .the-fieldset {
+            border: 2px groove threedface #444;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
 
-    p {
-        text-align: left;
-    }
+        .well {
+            padding: 1px 0px 10px 10px !important;
+            margin-bottom: 20px;
+            background-color: #eeeeee !important;
+            border: 1px solid #e3e3e3;
+        }
 
-    .form-horizontal .form-group {
-        margin-bottom: 30px;
-    }
+        p {
+            text-align: left;
+        }
 
-    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-        z-index: 3;
-        color: #fff;
-        cursor: default;
-        background-color: #f39c12;
-        border-color: #e08e0b;
-    }
-</style>}
+        .form-horizontal .form-group {
+            margin-bottom: 30px;
+        }
+
+        .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #f39c12;
+            border-color: #e08e0b;
+        }
+    </style>}
 
 <script id="responsive-template" type="text/x-handlebars-template">
     <div class="row">
@@ -88,9 +89,9 @@
                 <strong>PROVEEDOR</strong>
                 <span id="proveedor"></span>
                 @*<strong>NOMBRE:</strong>
-                <span id="nombre"></span>
-                <strong>RUC:</strong>
-                <span id="ruc"></span>*@
+                    <span id="nombre"></span>
+                    <strong>RUC:</strong>
+                    <span id="ruc"></span>*@
             </span>
 
         </div>
@@ -98,9 +99,9 @@
             <table class="table table-borderless full-width">
                 <tbody>
                     @*<tr>
-                        <th>PROVEEDOR</th>
-                        <td id="proveedor"></td>
-                    </tr>*@
+                            <th>PROVEEDOR</th>
+                            <td id="proveedor"></td>
+                        </tr>*@
                     <tr>
                         <th>NOMBRE</th>
                         <td id="nombre"></td>
@@ -110,29 +111,29 @@
                         <td id="alias"></td>
                     </tr>
                     @*<tr>
-                        <th>TIPO PROVEEDOR</th>
-                        <td id="tproveedor"></td>
-                    </tr>
-                    <tr>
-                        <th>TIPO</th>
-                        <td id="tipo"></td>
-                    </tr>
-                    <tr>
-                        <th>PAIS</th>
-                        <td id="pais"></td>
-                    </tr>
-                    <tr>
-                        <th>Ciudad</th>
-                        <td id="ciudad"></td>
-                    </tr>
-                    <tr>
-                        <th>DIRECCION</th>
-                        <td id="direccion"></td>
-                    </tr>
-                    <tr>
-                        <th>PAGINA WEB</th>
-                        <td id="paginaweb"></td>
-                    </tr>*@
+                            <th>TIPO PROVEEDOR</th>
+                            <td id="tproveedor"></td>
+                        </tr>
+                        <tr>
+                            <th>TIPO</th>
+                            <td id="tipo"></td>
+                        </tr>
+                        <tr>
+                            <th>PAIS</th>
+                            <td id="pais"></td>
+                        </tr>
+                        <tr>
+                            <th>Ciudad</th>
+                            <td id="ciudad"></td>
+                        </tr>
+                        <tr>
+                            <th>DIRECCION</th>
+                            <td id="direccion"></td>
+                        </tr>
+                        <tr>
+                            <th>PAGINA WEB</th>
+                            <td id="paginaweb"></td>
+                        </tr>*@
                     <tr>
                         <th>RUC</th>
                         <td id="ruc"></td>
@@ -144,7 +145,7 @@
                     <tr>
                         <th>ESTADO</th>
                         <td id="estado"></td>
-                    </tr>                    
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -183,11 +184,10 @@
                                 </select>
                             </div>
                             @*<div class="col-sm-2 col-md-2">
-                                <button type="button" class="btn btn-warning" id="BuscarActivo">Mostrar</button>
-                            </div>*@
+                                    <button type="button" class="btn btn-warning" id="BuscarActivo">Mostrar</button>
+                                </div>*@
                         </div>
-                    </div>                 
-
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,11 +201,11 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Results</h3>
                 @*<select>
-                    <option value=""></option>
-                    <option value="Activo">ACTIVO</option>
-                    <option value="Inactivo">INACTIVO</option>
-                    
-                </select>*@
+                        <option value=""></option>
+                        <option value="Activo">ACTIVO</option>
+                        <option value="Inactivo">INACTIVO</option>
+
+                    </select>*@
             </div>
             <form>
                 <div class="box-body">
