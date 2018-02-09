@@ -6,7 +6,7 @@ using TraveLinux.Data.Entidades;
 
 namespace TraveLinux.Web.Models
 {
-    public class ServicioViewModels
+    public class ServicioViewModels 
     {
         public string SERVICIO { get; set; }
         public int PROVEEDOR { get; set; }
@@ -44,5 +44,7 @@ namespace TraveLinux.Web.Models
         public IEnumerable<TipoServicio> TipoAcomodacion { get; set; }
         public Int32 TEMPORADA { get; set; }
         public DateTime? HORA { get; set; }
+        public DateTime? HORA_FIN { get; set; }
+
     }
 }

@@ -744,7 +744,8 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 50).Value = eServicio.DESC_PORT;
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 50).Value = eServicio.DESC_ALE;
                 command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Value = eServicio.CIUDAD;
-                command.Parameters.Add("P_HORA", OracleDbType.Date).Value = eServicio.Hora;
+                command.Parameters.Add("P_HORA_INI", OracleDbType.Date).Value = eServicio.HORA;
+                command.Parameters.Add("P_HORA_FIN", OracleDbType.Date).Value = eServicio.HORA_FIN;
                 command.Parameters.Add("P_VISTA_CLIENTE", OracleDbType.Char, 1).Value = eServicio.VISTA_CLIENTE;
                 command.Parameters.Add("P_VISTA_PROVEEDOR", OracleDbType.Char, 1).Value = eServicio.VISTA_PROVEEDOR;
                 command.Parameters.Add("P_PRECIO_OBLIGATORIO", OracleDbType.Char, 1).Value = eServicio.PRECIO_OBLIGATORIO;
