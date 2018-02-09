@@ -1151,7 +1151,7 @@ namespace TraveLinux.Data
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO.Substring(0,3);
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
                 command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = Convert.ToInt32(eEntidad.PERIODO);
@@ -1187,7 +1187,7 @@ namespace TraveLinux.Data
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO.Substring(0, 3);
                 command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PERSONA;
@@ -1253,7 +1253,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_BOX_LUNCH", OracleDbType.Varchar2, 50).Value = null;
                 command.Parameters.Add("P_RUTA", OracleDbType.Varchar2, 50).Value = null;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO.Substring(0, 3);
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = null;
                 command.Parameters.Add("P_DESC_ESP", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_ESP;
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_INGL;

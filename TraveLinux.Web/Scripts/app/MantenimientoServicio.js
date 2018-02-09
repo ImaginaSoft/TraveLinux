@@ -187,8 +187,9 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
             var CrearTarifa = '<button class="btn btn-success btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+            var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
+
 
 
             content.push(CrearServicio);

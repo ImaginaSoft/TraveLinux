@@ -2,15 +2,15 @@
 
     var vProveedor = $('#proveedor').val();
     var vServicio = $('#servicio').val();
+    //var vTarifa = $('#periodo').val();
+
     $('#dtp_start').datetimepicker({
         defaultDate: new Date(),
     });
     $('#dtp_beginning').datetimepicker();
     $('#dtp_ending').datetimepicker();
 
-
-
-        function renderTextColor(data, type, row, meta) {
+    function renderTextColor(data, type, row, meta) {
         var text = data.toLowerCase();
         var template = $('<span>');
         if (text.indexOf('no aplicable') >= 0) {
@@ -25,58 +25,58 @@
         return $('<div>').append(template).html();
     }
 
-        
+
 
     // Listar Fechas POr Temporada
 
-        $('#temporada').on('change', function () {
-            var Temporada = $(this).val();
-            var Fecha_Inicio = "";
-            var Fecha_Final = "";
-            var fecha = '1001-01-01 00:00';
-            var max_fields = 1;
-            var x = 0;
-            debugger;
-            $.ajax({
-                type: 'POST',
-                url: '/Tarifa/ListadoFechasXTemporada',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({ Temporada: Temporada }),
-                success: function (data) {                    
-                    Fecha_Inicio = data.FECHA_INICIO;
-                    Fecha_Final = data.FECHA_FIN;
-                    debugger;
+    $('#temporada').on('change', function () {
+        var Temporada = $(this).val();
+        var Fecha_Inicio = "";
+        var Fecha_Final = "";
+        var fecha = '1001-01-01 00:00';
+        var max_fields = 1;
+        var x = 0;
+        debugger;
+        $.ajax({
+            type: 'POST',
+            url: '/Tarifa/ListadoFechasXTemporada',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Temporada: Temporada }),
+            success: function (data) {
+                Fecha_Inicio = data.FECHA_INICIO;
+                Fecha_Final = data.FECHA_FIN;
+                debugger;
 
-                    if (fecha == Fecha_Inicio && fecha == Fecha_Final) {
-                        $("#dtp_beginning").remove();
-                        $("#dtp_ending").remove();
-                        $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
-                        $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
-                        $('#dtp_beginning').datetimepicker();
-                        $('#dtp_ending').datetimepicker();
+                if (fecha == Fecha_Inicio && fecha == Fecha_Final) {
+                    $("#dtp_beginning").remove();
+                    $("#dtp_ending").remove();
+                    $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                    $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                    $('#dtp_beginning').datetimepicker();
+                    $('#dtp_ending').datetimepicker();
 
+                }
+
+
+
+                if (data.length != 0) {
+                    if (fecha != Fecha_Inicio) {
+                        if (x < max_fields) {
+                            $("#dtp_beginning").remove();
+                            $("#dtp_ending").remove();
+                            $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" value ="' + Fecha_Inicio + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                            $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" value ="' + Fecha_Final + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
+                            $('#dtp_beginning').datetimepicker();
+                            $('#dtp_ending').datetimepicker();
+                        }
                     }
 
-                    
+                }
 
-                    if (data.length != 0) {
-                        if (fecha != Fecha_Inicio) {
-                            if (x < max_fields) {
-                                $("#dtp_beginning").remove();
-                                $("#dtp_ending").remove();
-                                $(".dtp_beginning").append('<div class="input-group date" id="dtp_beginning"><input type="text" class="form-control input-sm" value ="' + Fecha_Inicio + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
-                                $(".dtp_ending").append('<div class="input-group date" id="dtp_ending"><input type="text" class="form-control input-sm" value ="' + Fecha_Final + '"" data-date-format="YYYY-MM-DD"/><span class="input-group-addon input-sm"><i class="fa fa-calendar"></i></span></div>');
-                                $('#dtp_beginning').datetimepicker();
-                                $('#dtp_ending').datetimepicker();
-                            }
-                        }
-            
-                   }
-                   
-                },
-            })
+            },
+        })
 
-        });
+    });
 
 
     //*Guardar Tarifa*//
@@ -91,7 +91,7 @@
     //    }
     //    else {
     //        valor = 0        }
-      
+
     //    var data = {            
     //        eTarifa: {
     //            Proveedor: vProveedor,
@@ -128,7 +128,7 @@
 
         var lstTarifas = new Array();
 
-        
+
 
         desde = $("#npersona").val(),
         hasta = $("#hasta").val();
@@ -148,7 +148,7 @@
         while (desde <= hasta) {
             var Tarifa = {};
             Tarifa.TARIFA = $("#periodo").val();
-            Tarifa.RANGO = + desde ;
+            Tarifa.RANGO = +desde;
             Tarifa.PROVEEDOR = vProveedor;
             Tarifa.SERVICIO = vServicio;
             Tarifa.Tipo_Acomodacion = $("#tipoacomodacion").val();
@@ -156,7 +156,7 @@
             Tarifa.Precio = $("#neto").val();
             desde++
             lstTarifas.push(Tarifa);
-            };
+        };
 
         $.ajax({
             type: 'POST',
@@ -173,7 +173,7 @@
         .fail(function () {
             showErrorMessage('No se pudo guardar el tarifario. Inténtelo de nuevo.');
             enableAllComponents(true);
-        });        
+        });
     }
 
     function onClickRegistrarPeriodo(e) {
@@ -216,6 +216,10 @@
         window.location = '/TarifaDetalleServicio/Index?Proveedor=' + item.PROVEEDOR + '&Tarifa=' + item.TARIFA;
     }
 
+
+
+
+
     //*LISTA TARIFA*//
     var grid = $('#resultados').DataTable({
         scrollX: true,
@@ -252,10 +256,17 @@
 
         ajax: {
             method: 'GET',
-            url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio,
+            //url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio + '&Tarifa=' + vTarifa,
+            url: '/Tarifa/ListadoTarifa',
             dataType: 'json',
             dataSrc: '',
             data: function (items) {
+                var filtro = {
+                    Proveedor: vProveedor,
+                    Servicio: vServicio,
+                    Tarifa: $.trim($('#periodo').val())
+                };
+                return filtro;
             }
         },
 
@@ -265,7 +276,7 @@
         data: 'TARIFA',
         width: 70,
         className: 'not-mobile',
-        visible: false,
+        visible: true,
 
     },
 
@@ -317,6 +328,7 @@
         ]
     });
 
+
     $('#resultados tbody').on('click', 'button.RegistrarTarifDetalle', onClickRegistrarTarifaDetalle);
     window.onClickRegistrarTarifaDetalle = onClickRegistrarTarifaDetalle;
 
@@ -331,9 +343,8 @@
     window.onClickRegistrarPeriodo = onClickRegistrarPeriodo;
 
 
-    //$('#btn-guardar').click(onClickGuardarTarifa);
-
-
-
+    $('#periodo').change(function () {
+        grid.ajax.reload();
+    })
 
 });
