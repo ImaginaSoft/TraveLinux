@@ -36,7 +36,7 @@
         $('#valor').attr('disabled', 'disabled');
         $('select[name="valorxservicio"]').on('change', function () {
             var others = $(this).val();
-            if (others == "monto_fijo") {
+            if (others == "MTF" || others == "PVT") {
                 $('#valor').removeAttr('disabled');
             } else {
                 $('#valor').attr('disabled', 'disabled');
@@ -334,7 +334,9 @@
                 Desc_Port: $('#des_port').val(),
                 Desc_Ale: $('#des_ale').val(),
                 Estado: valor,
-                Hora: $('#time').val()
+                Hora: $('#time').val(),
+                Hora_fin: $('#time_end').val()
+
             }
         }
 
@@ -502,11 +504,12 @@
                 Ruta: $('#ruta').val(),
                 Ciudad: $('#departamentos').val(),
                 Hora: $('#time').val(),
+                Hora_fin: $('#time_end').val(),
                 Vista_Cliente: checkcli,
                 Vista_Proveedor: checkprov,
                 Precio_Obligatorio: checkprecio,
                 Descripcion: $('#descripcion').val(),
-                Tipo_Servicio: $('#tproveedor').val(),
+                Tipo_Servicio: $('#tipo_servicio').val(),
                 Tipo_Persona: $('#tipopersona').val(),
                 Desc_Esp: $('#des_esp').val(),
                 Desc_Ingl: $('#des_ingles').val(),

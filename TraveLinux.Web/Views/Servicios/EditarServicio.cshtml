@@ -82,11 +82,12 @@
                         <label for="type" class="col-sm-2 control-label no-pad-right">Type:</label>
                         <div class="col-sm-4">
                             <select id="tproveedor" class="selectpicker" data-size="5">
+                          
                                 <option value="@Model.TIPO_SERVICIO">@Model.TIPO_SERVICIO</option>
-                                <option value="TERRESTRE">TERRESTRE</option>
-                                <option value="HOTEL">HOTEL</option>
-                                <option value="AEREO">AEREO</option>
-                                <option value="OTROS">OTROS</option>
+                                <option value="TER">TERRESTRE</option>
+                                <option value="HTL">HOTEL</option>
+                                <option value="AER">AEREO</option>
+                                <option value="OTR">OTROS</option>
                             </select>
                         </div>
                     </div>
@@ -96,10 +97,11 @@
                         <div class="col-xs-12 col-sm-5 col-md-3">
                             <select id="valorxservicio" class="selectpicker">
                                 <option value="">@Model.VALORXSERVICIO</option>
-                                <option value="monto_fijo">MONTO FIJO</option>
-                                <option value="cant_pasaj">CANTIDAD PASAJEROS O HAB</option>
-                                <option value="cant_pasaj_tipo">CANTIDAD PASAJEROS POR TIPO DE</option>
-                                <option value="porcent_venta_total">PORCENTAJE DE VENTA TOTAL</option>
+                                <option value="MTF">MONTO FIJO</option>
+                                <option value="CPH">CANTIDAD PASAJEROS O HAB</option>
+                                <option value="CXT">CANTIDAD PASAJEROS POR TIPO DE</option>
+                                <option value="PVT">PORCENTAJE DE VENTA TOTAL</option>
+                                <option value="AUT">AJUSTE A LA UTILIDAD</option>
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-3 col-md-2">
