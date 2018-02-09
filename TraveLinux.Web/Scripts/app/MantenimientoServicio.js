@@ -24,14 +24,13 @@
                 else {
                     //$select.append('<option>No hay Distritos</option>');
                     $select.html('');
-
                 }
 
             },
         })
     });
 
-
+    //Funcion para deshabilitar las opciones de valoracion por servicio
     $(document).ready(function () {
         $('#valor').attr('disabled', 'disabled');
         $('select[name="valorxservicio"]').on('change', function () {
@@ -285,29 +284,62 @@
 
     function onClickActualizarServicio() {
 
-        var valor = 0;
-        var desayuno = 'NO';
-        var almuerzo = 'NO';
-        var cena = 'NO';
+        var valor = 'N';
+        var desayuno = 0;
+        var almuerzo = 0;
+        var cena = 0;
+
+        var checkcli, checkprov, checkprecio='N'
 
         if ($('input#inlineCheckbox1').is(':checked')) {
-            valor = 1
+            valor = 'S'
         }
         else {
-            valor = 0
+            valor = 'N'
         }
 
         /*DESAYUNO-ALMUERZO-CENA*/
 
         if ($('input#Checkboxdesa').is(':checked')) {
-            desayuno = 'SI'
+            desayuno = 1
+        } else {
+            desayuno = 0
         }
         if ($('input#Checkboxalmu').is(':checked')) {
-            almuerzo = 'SI'
+            almuerzo = 1
+        } else {
+            almuerzo = 0
+
         }
         if ($('input#Checkboxcena').is(':checked')) {
-            cena = 'SI'
+            cena = 1
+        } else {
+            cena = 0
         }
+
+
+        if ($('input#clienteCheckbox').is(':checked')) {
+            checkcli = 'S'
+        }
+        else {
+            checkcli = 'N'
+        }
+
+        if ($('input#proveedorCheckbox').is(':checked')) {
+            checkprov = 'S'
+        }
+        else {
+            checkprov = 'N'
+        }
+
+        if ($('input#precioCheckbox').is(':checked')) {
+            checkprecio = 'S'
+        }
+        else {
+            checkprecio = 'N'
+        }
+
+
 
 
         var data = {
@@ -323,6 +355,9 @@
                 Desayuno: desayuno,
                 Almuerzo: almuerzo,
                 Cena: cena,
+                Vista_cliente: checkcli,
+                Vista_proveedor: checkprov,
+                Precio_obligatorio: checkprecio,
                 Aerolinea: $('#aerolinea').val(),
                 Box_Lunch: $('#boxlunch').val(),
                 Ruta: $('#ruta').val(),
@@ -436,52 +471,59 @@
 
     function onClickGuardarServicio() {
 
-        var valor = 0;
-        var desayuno = 'NO';
-        var almuerzo = 'NO';
-        var cena = 'NO';
-        var checkcli, checkprov, checkprecio = 0;
+        var valor = 'N';
+        var desayuno = 0;
+        var almuerzo = 0;
+        var cena = 0;
+        var checkcli, checkprov, checkprecio = 'N';
 
         if ($('input#inlineCheckbox1').is(':checked')) {
-            valor = 1
+            valor = 'S'
         }
         else {
-            valor = 0
+            valor = 'N'
         }
 
 
         if ($('input#clienteCheckbox').is(':checked')) {
-            checkcli = 1
+            checkcli = 'S'
         }
         else {
-            checkcli = 0
+            checkcli = 'N'
         }
 
         if ($('input#proveedorCheckbox').is(':checked')) {
-            checkprov = 1
+            checkprov = 'S'
         }
         else {
-            checkprov = 0
+            checkprov = 'N'
         }
 
         if ($('input#precioCheckbox').is(':checked')) {
-            checkprecio = 1
+            checkprecio = 'S'
         }
         else {
-            checkprecio = 0
+            checkprecio = 'N'
         }
 
 
         /*DESAYUNO-ALMUERZO-CENA*/
 
         if ($('input#Checkboxdesa').is(':checked')) {
-            desayuno = 'SI'
+            desayuno = 1
+        }
+        else {
+            desayuno = 0
         }
         if ($('input#Checkboxalmu').is(':checked')) {
-            almuerzo = 'SI'
+            almuerzo = 1
+        } else {
+            almuerzo = 0
         }
         if ($('input#Checkboxcena').is(':checked')) {
-            cena = 'SI'
+            cena = 1
+        } else {
+            cena = 0
         }
 
 

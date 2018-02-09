@@ -62,6 +62,8 @@ namespace TraveLinux.Web.Controllers
                 modelo.DESC_PORT = ObtenerServicio.DESC_PORT;
                 modelo.DESC_ALE = ObtenerServicio.DESC_ALE;
                 modelo.ESTADO = ObtenerServicio.ESTADO;
+                modelo.HORA = ObtenerServicio.HORA;
+                modelo.HORA_FIN = ObtenerServicio.HORA_FIN;
             }
 
 
