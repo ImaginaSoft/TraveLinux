@@ -8,7 +8,7 @@ namespace TraveLinux.Data
 {
     public class Globales_DAL
     {
-        public static string gs_PACKAGENAME = "WEB_TRAVELINUX_PKG_CONEJO.";   // Nombre de paquete a invocar              
+        public static string gs_PACKAGENAME = "WEB_TRAVELINUX_PKG";   // Nombre de paquete a invocar              
 
     }
 }
