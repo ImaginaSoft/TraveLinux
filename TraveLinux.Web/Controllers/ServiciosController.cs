@@ -37,7 +37,7 @@ namespace TraveLinux.Web.Controllers
         {
             var cuenta = Session["CUENTA"] as Cuenta;
             var ObtenerServicio = Fachada.ObtenerEditarServicio(Servicio, Proveedor);
-            var modelo = new ServicioViewModels();            
+            var modelo = new ServicioViewModels();
             {
                 modelo.PROVEEDOR = ObtenerServicio.PROVEEDOR;
                 modelo.PROVEEDOR_NOMBRE = ObtenerServicio.PROVEEDOR_NOMBRE;
@@ -77,7 +77,8 @@ namespace TraveLinux.Web.Controllers
         }
 
         [Autorizar(Perfil.Administrador)]
-        public ActionResult ServicioProveedor(string Proveedor) {
+        public ActionResult ServicioProveedor(string Proveedor)
+        {
 
             var cuenta = Session["CUENTA"] as Cuenta;
 
@@ -212,6 +213,13 @@ namespace TraveLinux.Web.Controllers
         {
             var cuenta = Session["CUENTA"] as Cuenta;
             Fachada.GuardarServicio_Lista_Detalle(lstServCarg);
+        }
+
+        [HttpPost]
+        public void EliminarServicio(string Servicio, Int32 Proveedor)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            Fachada.EliminarServicio(Servicio, Proveedor);
         }
 
         public void ActualizarServicio(Servicio eServicio)

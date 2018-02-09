@@ -25,6 +25,7 @@ namespace TraveLinux.Data.Entidades
         public string RUTA { get; set; }
         public string DESCRIPCION { get; set; }
         public string TIPO_SERVICIO { get; set; }
+        public string DESCR_TIPO_SERVICIO { get; set; }
         public string TIPO_PERSONA { get; set; }
         public string DESC_ESP { get; set; }
         public string DESC_INGL { get; set; }

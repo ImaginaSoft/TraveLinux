@@ -37,6 +37,7 @@ namespace TraveLinux.Web.Controllers
 
                 // TERRESTRES, AEREO.
                 modelo.TIPO_SERVICIO = servprov.TIPO_SERVICIO;
+                modelo.DESCR_TIPO_SERVICIO = servprov.DESCR_TIPO_SERVICIO;
             };
 
             return View(modelo);
