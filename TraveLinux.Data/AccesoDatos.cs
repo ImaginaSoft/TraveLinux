@@ -350,8 +350,9 @@ namespace TraveLinux.Data
                         tarifa.PROVEEDOR = reader.GetInt32(2);
                         tarifa.SERVICIO = reader.GetStringOrDefault(3);
                         tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(4);
-                        tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(5);
-                        tarifa.PRECIO = reader.GetInt32(6);
+                        tarifa.DESCR_TIPO_ACOMODACION = reader.GetStringOrDefault(5);
+                        tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(6);
+                        tarifa.PRECIO = reader.GetInt32(7);
                         lstTarifa.Add(tarifa);
                     }
                 }
@@ -688,7 +689,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_PROVEEDOR");
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -705,8 +706,8 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_SERVICIO");
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9).Value = Servicio;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Char, 1).Value = Proveedor;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = Servicio;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1008,9 +1009,9 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_SERVICIO");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 9, sServicio, ParameterDirection.Input);
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20, sServicio, ParameterDirection.Input);
                 command.Parameters.Add("P_PROVEEDOR_COD", OracleDbType.Int32).Direction = ParameterDirection.Output;
-                command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Char, 9).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_SERVICIO_COD", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PROVEEDOR_NOMBRE", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
@@ -1026,6 +1027,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_RUTA", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_DESCR_TIP_SERV", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_DESC_ESP", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
@@ -1053,6 +1055,7 @@ namespace TraveLinux.Data
                 ObjServicio.RUTA = command.Parameters.GetStringOrDefault("P_RUTA");
                 ObjServicio.DESCRIPCION = command.Parameters.GetStringOrDefault("P_DESCRIPCION");
                 ObjServicio.TIPO_SERVICIO = command.Parameters.GetStringOrDefault("P_TIPO_SERVICIO");
+                ObjServicio.DESCR_TIPO_SERVICIO = command.Parameters.GetStringOrDefault("P_DESCR_TIP_SERV");
                 ObjServicio.TIPO_PERSONA = command.Parameters.GetStringOrDefault("P_TIPO_PERSONA");
                 ObjServicio.DESC_ESP = command.Parameters.GetStringOrDefault("P_DESC_ESP");
                 ObjServicio.DESC_INGL = command.Parameters.GetStringOrDefault("P_DESC_INGL");

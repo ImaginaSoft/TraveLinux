@@ -39,3 +39,4 @@ D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAc
 D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
 D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
 D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache

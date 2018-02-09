@@ -299,9 +299,16 @@
         title: 'TIPO_ACOMODACION',
         data: 'TIPO_ACOMODACION',
         width: 40,
-        className: 'not-mobile'
+        className: 'not-mobile',
+        visible: false,
     },
 
+    {
+        title: 'TIPO ACOMODACION',
+        data: 'DESCR_TIPO_ACOMODACION',
+        width: 40,
+        className: 'not-mobile'
+    },
 
     {
         title: 'TIPO_PASAJERO',

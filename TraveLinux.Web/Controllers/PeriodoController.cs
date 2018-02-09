@@ -32,6 +32,7 @@ namespace TraveLinux.Web.Controllers
                 SERVICIO = servprov.SERVICIO,
                 NOMBRE = servprov.NOMBRE,
                 TIPO_SERVICIO = servprov.TIPO_SERVICIO,
+                DESCR_TIPO_SERVICIO = servprov.DESCR_TIPO_SERVICIO,
             };
 
             return View(modelo);
