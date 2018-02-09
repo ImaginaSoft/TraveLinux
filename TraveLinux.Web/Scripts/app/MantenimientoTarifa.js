@@ -1,8 +1,7 @@
 ﻿$(function () {
-
     var vProveedor = $('#proveedor').val();
     var vServicio = $('#servicio').val();
-    //var vTarifa = $('#periodo').val();
+    
 
     $('#dtp_start').datetimepicker({
         defaultDate: new Date(),
@@ -25,6 +24,23 @@
         return $('<div>').append(template).html();
     }
 
+
+    $('#npersona').on('change', function () {        
+        var Rango = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '/Tarifa/ValidarRango',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Rango: Rango }),
+            success: function (data) {
+                if (data.length != 0) {
+                    $('#myModal').modal('show');
+                    $("input#npersona").css("border-color", "rgb(47, 57, 86)");
+                    $("input#npersona").css("box-shadow", "0 0 5px rgb(47, 57, 86)");
+                }
+            },
+        })
+    })
 
 
     // Listar Fechas POr Temporada
@@ -77,7 +93,6 @@
         })
 
     });
-
 
     //*Guardar Tarifa*//
 
@@ -152,6 +167,7 @@
             Tarifa.PROVEEDOR = vProveedor;
             Tarifa.SERVICIO = vServicio;
             Tarifa.Tipo_Acomodacion = $("#tipoacomodacion").val();
+            Tarifa.Tipo_Servicio = $("#tiposervicio").val();
             Tarifa.Tipo_Pasajero = $("#tipopasajero").val();
             Tarifa.Precio = $("#neto").val();
             desde++

@@ -10,6 +10,31 @@
 }
 
 <style>
+
+    .modal-content {
+    border-radius: 10px !important;
+    
+}
+
+    .modal-header .close {
+  display:none;
+}
+
+
+
+    .modal-header-danger {
+	color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #d9534f;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
     .the-legend {
         border-style: none;
         border-width: 0;
@@ -60,7 +85,7 @@
     @*<h1>Datos Generales</h1>*@
 
 </section>
-<form class="form-horizontal">
+<form class="form-horizontal">    
     <div class="row">
         <div class="col-md-12">
             <div class="box box-info">
@@ -139,10 +164,9 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="tipoacomodacion" class="selectpicker" data-size="5">
-                                    <option value="">--- Seleccione ---</option>
-                                    <option value="PRIVADO">Privado</option>
-                                    <option value="COMPARTIDO">Compartido</option>                                    
+                                <select id="tipoacomodacion" class="selectpicker" data-size="5">                                    
+                                    <option value="PVT">Privado</option>
+                                    <option value="CMP">Compartido</option>                                    
                                 </select>
                             </div>
                         </div>
@@ -150,7 +174,7 @@
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Passenger Type:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="tipopasajero" class="selectpicker" data-size="5">
-                                    <option>--- Seleccione ---</option>
+                                    <option value="">--- Seleccione ---</option>
                                     <option value="ADULTO">ADULTO</option>
                                     <option value="CHILD">NIÑO</option>                                    
                                 </select>
@@ -198,3 +222,25 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @*<h4 class="modal-title">Modal Header</h4>*@
+                <h4><i class="glyphicon glyphicon-remove"></i> Information</h4>
+            </div>
+            <div class="modal-body">
+                <p>This range already exists</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

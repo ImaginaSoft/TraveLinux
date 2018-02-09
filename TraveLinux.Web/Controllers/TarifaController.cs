@@ -96,5 +96,13 @@ namespace TraveLinux.Web.Controllers
 
             return Json(vTemporada);
         }
+
+        public ActionResult ValidarRango(Int32 Rango)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var vRango = Fachada.ValidarRango(Rango);
+
+            return Json(vRango);
+        }
     }
 }

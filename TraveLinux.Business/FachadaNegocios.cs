@@ -477,6 +477,20 @@ namespace TraveLinux.Business
             }
         }
 
+        public Tarifa ValidarRango(Int32 Rango)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var Tarifa = datos.ValidarRango(Rango);
+                return Tarifa;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los servicios", e);
+            }
+        }
+
         public void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg)
         {
             try
