@@ -1060,6 +1060,9 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_HORA_INICIO", OracleDbType.Date, 1).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_HORA_FIN", OracleDbType.Date, 1).Direction = ParameterDirection.Output;
+
 
 
                 connection.Open();
@@ -1089,6 +1092,9 @@ namespace TraveLinux.Data
                 ObjServicio.DESC_ALE = command.Parameters.GetStringOrDefault("P_DESC_ALE");
                 ObjServicio.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
                 ObjServicio.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVEEDOR_COD"));
+                ObjServicio.HORA = Convert.ToDateTime(  command.Parameters.GetStringOrDefault("P_HORA_INICIO"));
+                ObjServicio.HORA_FIN = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_HORA_FIN"));
+
 
             }
             return ObjServicio;

@@ -44,8 +44,8 @@ namespace TraveLinux.Web.Models
         public IEnumerable<Periodo> Fechas { get; set; }
         public IEnumerable<TipoServicio> TipoAcomodacion { get; set; }
         public Int32 TEMPORADA { get; set; }
-        public DateTime? HORA { get; set; }
-        public DateTime? HORA_FIN { get; set; }
+        public DateTime HORA { get; set; }
+        public DateTime HORA_FIN { get; set; }
 
     }
 }
