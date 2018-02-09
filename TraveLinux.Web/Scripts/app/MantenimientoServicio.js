@@ -63,20 +63,20 @@
     //*Eliminar TARIFA*//
     function onClickEliminarServicio(e) {
         e.preventDefault();
+        debugger;
         var item = grid.row($(this).parents('tr')).data();
         if (!item) {
             item = grid.row($(e.target).parents('tr').prev()).data();
         }
-
-        var Servicio = item.Servicio;
-
+        debugger;
+        //var Servicio = item.SERVICIO;
 
 
         $.ajax({
             type: 'POST',
-            url: '/Servicio/EliminarServicio',
+            url: '/Servicios/EliminarServicio',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ Servicio: Servicio, Proveedor: Proveedor }),
+            data: JSON.stringify({ Servicio: item.SERVICIO, Proveedor: Proveedor }),
         })
         .done(function (data) {
             showSuccessMessage('Se ha eliminado el servicio');
