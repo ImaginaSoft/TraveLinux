@@ -106,47 +106,36 @@ tr th:last-child {
                                         <input class="form-control hidden" id="proveedor" value="@ViewBag.Proveedor" disabled>
                                         <br />
                                     </div>
+                                     
+                                <label for="name" class="col-sm-3 control-label no-pad-right">Seleccionar:</label>
+                                <div class="col-xs-12 col-sm-7 col-md-7">
+                                    <select id="Tservicio" class="selectpicker">
+                                        <option value="0">--- OPCION ---</option>
+                                        <option value="TER">TERRESTRE</option>
+                                        <option value="AER">AEREO</option>
+                                        <option value="HOT">HOTELES</option>                                   
+                                    </select>
+                                </div>
+                       
                                 </fieldset>
                             </div>
-                        </div>    
-                        @*<div class="form-group">
-                            <div class="col-sm-4 col-md-3">*@
-                                @*@using (Html.BeginForm("Import", "TarifaDetalle", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {*@
-                                @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new { Proveedor = @ViewBag.Proveedor
-                                }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
+                        </div> 
 
-                                    @*<input type="file" name="UploadedFile" />
-                                    <input type="submit" class="btn btn-warning" name="Submit" value="Save" id="boton_validar"/>*@
+                        @* PARA TERRESTRE Y AEREO *@
 
-                                    <input type="file" name="UploadedFile" />
-                                        <input type="submit" name="Submit" value="Submit" />
+                        <div id="GrillaTer_Aer" hidden>
 
 
-                                    @*<div class="form-group">
-                                        <div class="col-sm-5">*@
-                                    @*<input type="file" name="example" id="btnFileLoad" tabindex="-1" area-hidden="true" style="position: absolute; clip: rect(0px 0px 0px 0px);">
-                                        <input type="text" class="" id="txtfile" for="btnFileLoad" />
-                                        <div class="bootstrap-filestyle input-group">
-                                            <span class="group-span-filestyle input-group-btn" tabindex="0">
-                                                <label for="btnFileLoad" class="btn btn-default ">
-                                                    <span class="icon-span-filestyle glyphicon glyphicon-folder-open"> </span>
-                                                    <span class="buttonText">&nbsp;Import Excel</span>
-                                                </label>
-                                            </span>
-                                            <input type="text" class="form-control " placeholder="" disabled="" for="btnFileLoad">
-                                        </div>*@
+                            @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new
+                            {
+                                Proveedor = @ViewBag.Proveedor
+                            }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="file" name="UploadedFile" />
+                                    <input type="submit" name="Submit" value="Submit" />
+                            }
 
-                               
-                                        @*</div>
-                                            </div>*@
-                                }                               
-
-                            @*</div>
-                        </div>*@
-                        
-                            @if(Model != null)  
+                            @if (Model != null)
                             {
                                 <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
                                     <thead>
@@ -180,27 +169,71 @@ tr th:last-child {
                                     </tbody>
 
                                 </table>
-                            }    
-                        <button class="btn btn-warning" id="btn-guardarCarga">
-                            <span class="glyphicon glyphicon-save"></span> Save
-                        </button>
-                    </div>
+                            }
+                            <button class="btn btn-warning" id="btn-guardarCarga">
+                                <span class="glyphicon glyphicon-save"></span>
+                            </button>
+                        </div> 
+
+                        @* PARA HOTELES *@
+
+
+                        <div id="GrillaHot" hidden>
+
+                            @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new
+                            {
+                                Proveedor = @ViewBag.Proveedor
+                            }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="file" name="UploadedFile" />
+                                <input type="submit" name="Submit" value="Submit" />
+                            }
+
+                            @if (Model != null)
+                            {
+                                <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>DESCRIPCION</th>
+                                            <th>TIPO_SERVICIO</th>
+                                            <th>FECHA_INI</th>
+                                            <th>FECHA_FIN</th>
+                                            <th>TIPO_PERSONA</th>
+                                            <th>RANGO_PAX</th>
+                                            <th>PRECIO</th>
+                                            <th>TIPO_SERVICIO_ABREV</th>
+                                            <th class="hidden">TEMPORADA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (ServicioViewModels tarif in Model)
+                                        {
+                                            <tr>
+                                                <td id="descripcion">@tarif.DESCRIPCION</td>
+                                                <td id="tiposervicio">@tarif.TIPO_SERVICIO</td>
+                                                <td id="fecha_inicio">@tarif.FECHA_INI</td>
+                                                <td id="fecha_fin">@tarif.FECHA_FIN</td>
+                                                <td id="tipopersona">@tarif.TIPO_PERSONA</td>
+                                                <td id="rangopax">@tarif.RANGO_PAX</td>
+                                                <td id="precio">@tarif.PRECIO</td>
+                                                <td id="tipo_servicio_abrev">@tarif.TIPO_SERVICIO_ABREV</td>
+                                                <td class="hidden" id="temporada">@tarif.TEMPORADA</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            }
+
+                            <button class="btn btn-warning" id="btn-guardarCargaHot">
+                                <span class="glyphicon glyphicon-save"></span>
+                            </button>
+                        </div>
+
+
+                        </div>
                 </div>
             </div>
         </div>
-    </div>
-    @*<div class="row">
-        <div class="col-md-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Resultados</h3>
-                </div>
-                <form>
-                    <div class="box-body">
-                        <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>*@
+    </div> 
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>

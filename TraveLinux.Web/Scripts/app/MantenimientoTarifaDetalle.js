@@ -1,5 +1,45 @@
 ﻿$(function () {        
     var Proveedor = $("input#proveedor").val();
+    
+    /*CARGA DINAMICO*/
+
+    $('#Tservicio').on('change', function () {
+
+        var TServicio = $(this).val();       
+        
+        if (TServicio == "TER" || TServicio == "AER") {
+
+            $('#GrillaHot').hide();
+            $('#GrillaTer_Aer').show();
+            if (TServicio == "TER") {
+                $("#btn-guardarCarga").html('Save Terrestre');
+            }
+
+            if (TServicio == "AER") {
+                $("#btn-guardarCarga").html('Save Aereo');
+            }
+        }
+
+       else if (TServicio == "HOT") {
+
+            $('#GrillaTer_Aer').hide();
+            $('#GrillaHot').show();
+            $("#btn-guardarCargaHot").html('Save Hotel');
+        }
+
+        else {
+            $('#GrillaTer_Aer').hide();
+            $('#GrillaHot').hide();
+        }
+    });
+
+
+
+
+
+
+
+
 
 
     function onClickGuardarCargaTarifa() {
@@ -45,6 +85,9 @@
 
     $('#btn-guardarCarga').on('click', onClickGuardarCargaTarifa);  
  
+
+
+
     });
 
 
