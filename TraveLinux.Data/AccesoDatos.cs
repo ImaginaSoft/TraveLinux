@@ -753,6 +753,8 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_PRECIO_OBLIGATORIO", OracleDbType.Char, 1).Value = eServicio.PRECIO_OBLIGATORIO;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eServicio.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eServicio.USUARIO_REGISTRO;
+                command.Parameters.Add("P_ES_CARGA", OracleDbType.Varchar2, 50).Value = 'N';
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
