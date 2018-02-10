@@ -1295,14 +1295,15 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_INGL;
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_PORT;
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_ALE;
-                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Value = null;
-                command.Parameters.Add("P_HORA", OracleDbType.Varchar2, 1000).Value = null;
-                command.Parameters.Add("P_VISTA_CLIENTE", OracleDbType.Char, 1).Value = null;
-                command.Parameters.Add("P_VISTA_PROVEEDOR", OracleDbType.Char, 1).Value = null;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Value = eEntidad.CIUDAD;
+                command.Parameters.Add("P_HORA_INI", OracleDbType.Date).Value = eEntidad.INICIO_SERVICIO;
+                command.Parameters.Add("P_HORA_FIN", OracleDbType.Date).Value = eEntidad.FIN_SERVICIO;
+                command.Parameters.Add("P_VISTA_CLIENTE", OracleDbType.Char, 1).Value = eEntidad.VISTA_CLIENTE;
+                command.Parameters.Add("P_VISTA_PROVEEDOR", OracleDbType.Char, 1).Value = eEntidad.VISTA_PROVEEDOR;
                 command.Parameters.Add("P_PRECIO_OBLIGATORIO", OracleDbType.Char, 1).Value = null;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = 1;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eEntidad.USUARIO_REGISTRO;
-
+                command.Parameters.Add("P_ES_CARGA", OracleDbType.Varchar2, 50).Value = "S";
 
                 connection.Open();
                 command.ExecuteNonQuery();

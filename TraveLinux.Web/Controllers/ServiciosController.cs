@@ -187,7 +187,10 @@ namespace TraveLinux.Web.Controllers
                             //user.RUTA = workSheet.Cells[rowIterator, 11].Value == null ? string.Empty : workSheet.Cells[rowIterator, 11].Value.ToString();
                             user.RESUMEN = workSheet.Cells[rowIterator, 11].Value == null ? string.Empty : workSheet.Cells[rowIterator, 11].Value.ToString();
                             user.INICIO_SERVICIO = workSheet.Cells[rowIterator, 12].Value == null ? string.Empty : workSheet.Cells[rowIterator, 12].Value.ToString();
-
+                            user.FIN_SERVICIO = workSheet.Cells[rowIterator, 13].Value == null ? string.Empty : workSheet.Cells[rowIterator, 13].Value.ToString();
+                            user.VISTA_PROVEEDOR = workSheet.Cells[rowIterator, 14].Value == null ? string.Empty : workSheet.Cells[rowIterator, 14].Value.ToString();
+                            user.VISTA_CLIENTE = workSheet.Cells[rowIterator, 15].Value == null ? string.Empty : workSheet.Cells[rowIterator, 15].Value.ToString();
+                            user.CIUDAD = workSheet.Cells[rowIterator, 16].Value == null ? string.Empty : workSheet.Cells[rowIterator, 16].Value.ToString();                          
                             // string strValue = Worksheets.Cells[2,5].value==null ? string.Empty : Worksheets.Cells[2,5].value.ToString();
 
                             //user.NOMBRE = workSheet.Cells[rowIterator, 1].Value.ToString();

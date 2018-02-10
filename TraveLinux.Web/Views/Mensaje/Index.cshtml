@@ -108,7 +108,7 @@
                             <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>SERVICIO</th>
+                                        @*<th>SERVICIO</th>
                                         <th>NOMBRE</th>
                                         <th>DESC_ESP</th>
                                         <th>DESC_INGL</th>
@@ -118,6 +118,10 @@
                                         <th>TIPO_SERVICIO</th>
                                         <th>RESUMEN</th>
                                         <th>INICIO_SERVICIO</th>
+                                        <th>FIN_SERVICIO</th>
+                                        <th>VISTA_PROVEEDOR</th>
+                                        <th>VISTA_CLIENTE</th>
+                                        <th>CIUDAD</th>*@
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,6 +138,10 @@
                                             <td id="descripcion">@customer.TIPO_SERVICIO</td>
                                             <td id="nombre">@customer.RESUMEN</td>
                                             <td id="nombre">@customer.INICIO_SERVICIO</td>
+                                            <td id="nombre">@customer.FIN_SERVICIO</td>
+                                            <td id="nombre">@customer.VISTA_PROVEEDOR</td>
+                                            <td id="nombre">@customer.VISTA_CLIENTE</td>
+                                            <td id="nombre">@customer.CIUDAD</td>
                                         </tr>
                                     }
                                 </tbody>

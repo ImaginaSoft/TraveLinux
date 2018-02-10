@@ -424,6 +424,10 @@
             //lstServicio.RUTA = row.find("TD").eq(11).html();
             lstServicio.RESUMEN = row.find("TD").eq(10).html();
             lstServicio.INICIO_SERVICIO = row.find("TD").eq(11).html();
+            lstServicio.FIN_SERVICIO = row.find("TD").eq(12).html();
+            lstServicio.VISTA_PROVEEDOR = row.find("TD").eq(13).html();
+            lstServicio.VISTA_CLIENTE = row.find("TD").eq(14).html();
+            lstServicio.CIUDAD = row.find("TD").eq(15).html();
             lstServicios.push(lstServicio);
         });
 

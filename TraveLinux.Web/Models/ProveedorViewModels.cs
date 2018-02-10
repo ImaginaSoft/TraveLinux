@@ -18,7 +18,7 @@ namespace TraveLinux.Web.Models
         public string TIPO { get; set; }
         public string PAIS { get; set; }
         public string PAIS_NOMBRE { get; set; }
-        public string CIUDAD { get; set; }
+    
         public string DIRECCION { get; set; }
         public string PAGINAWEB { get; set; }
         public string RUC { get; set; }
@@ -72,7 +72,10 @@ namespace TraveLinux.Web.Models
         public string RESUMEN { get; set; }
 
         public string INICIO_SERVICIO { get; set; }
-  
+        public string FIN_SERVICIO { get; set; }
+        public string VISTA_PROVEEDOR { get; set; }
+        public string VISTA_CLIENTE { get; set; }
+        public string CIUDAD { get; set; }
 
         public IEnumerable<Pais> Paises { get; set; }
 
