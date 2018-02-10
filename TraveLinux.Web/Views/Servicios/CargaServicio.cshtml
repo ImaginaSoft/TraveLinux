@@ -126,17 +126,21 @@ tr th:last-child {
                             <thead>
                                 <tr>                                    
                                     <th>NOMBRE</th>
-                                    <th class="hidden">DESC_ESP</th>
-                                    <th class="hidden">DESC_INGL</th>
-                                    <th class="hidden">DESC_PORT</th>
-                                    <th class="hidden">DESC_ALE</th>
-                                    <th class="hidden">DESCRIPCION</th>
-                                    <th>TIPO_SERVICIO</th>
-                                    <th>DESAYUNO</th>
-                                    <th>ALMUERZO</th>
-                                    <th>CENA</th>
-                                    <th>RESUMEN</th>
-                                    <th>INICIO_SERVICIO</th>
+                                    @*<th>DESC_ESP</th>
+                                        <th>DESC_INGL</th>
+                                        <th>DESC_PORT</th>
+                                        <th>DESC_ALE</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>TIPO_SERVICIO</th>
+                                        <th>DESAYUNO</th>
+                                        <th>ALMUERZO</th>
+                                        <th>CENA</th>
+                                        <th>RESUMEN</th>*@
+                                     <th>INICIO_SERVICIO</th>
+                                    <th>FIN_SERVICIO</th>
+                                    <th>VISTA_PROVEEDOR</th>
+                                    <th>VISTA_CLIENTE</th>
+                                    <th>CIUDAD</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -148,13 +152,17 @@ tr th:last-child {
                                         <td class="hidden" id="cliente">@customer.DESC_INGL</td>
                                         <td class="hidden" id="cliente">@customer.DESC_PORT</td>
                                         <td class="hidden" id="cliente">@customer.DESC_ALE</td>
-                                        <td class="hidden" id="descripcion">@customer.DESCRIPCION</td>
-                                        <td id="descripcion">@customer.TIPO_SERVICIO</td>
-                                        <td id="descripcion">@customer.DESAYUNO</td>
-                                        <td id="descripcion">@customer.ALMUERZO</td>
-                                        <td id="descripcion">@customer.CENA</td>
-                                        <td id="nombre">@customer.RESUMEN</td>
+                                        <td class="hidden" id="cliente">@customer.DESCRIPCION</td>
+                                        <td class="hidden" id="cliente">@customer.TIPO_SERVICIO</td>
+                                        <td class="hidden" id="cliente">@customer.DESAYUNO</td>
+                                        <td class="hidden" id="cliente">@customer.ALMUERZO</td>
+                                        <td class="hidden" id="cliente">@customer.CENA</td>
+                                        <td class="hidden" id="cliente">@customer.RESUMEN</td>
                                         <td id="nombre">@customer.INICIO_SERVICIO</td>
+                                        <td id="nombre">@customer.FIN_SERVICIO</td>
+                                        <td id="nombre">@customer.VISTA_PROVEEDOR</td>
+                                        <td id="nombre">@customer.VISTA_CLIENTE</td>
+                                        <td id="nombre">@customer.CIUDAD</td>
                                     </tr>
                                 }
                             </tbody>

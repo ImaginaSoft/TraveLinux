@@ -80,6 +80,10 @@ namespace TraveLinux.Web.Controllers
                             //user.RUTA = workSheet.Cells[rowIterator, 12].Value.ToString();
                             user.RESUMEN = workSheet.Cells[rowIterator, 12].Value.ToString();
                             user.INICIO_SERVICIO = workSheet.Cells[rowIterator, 13].Value.ToString();
+                            user.FIN_SERVICIO = workSheet.Cells[rowIterator, 14].Value.ToString();
+                            user.VISTA_PROVEEDOR = workSheet.Cells[rowIterator, 15].Value.ToString();
+                            user.VISTA_CLIENTE = workSheet.Cells[rowIterator, 16].Value.ToString();
+                            user.CIUDAD = workSheet.Cells[rowIterator, 17].Value.ToString();
                             usersList.Add(user);
                         }
                     }

@@ -30,11 +30,11 @@ namespace TraveLinux.Data.Entidades
         public string DESC_ESP { get; set; }
         public string DESC_INGL { get; set; }
         public string DESC_PORT { get; set; }
-        public string DESC_ALE { get; set;}
-        public string CIUDAD { get; set; }
+        public string DESC_ALE { get; set;}        
         public DateTime HORA { get; set; }
         public DateTime HORA_FIN { get; set; }
-        public DateTime INICIO_SERVICIO { get; set; }  
+        public DateTime INICIO_SERVICIO { get; set; }
+        public DateTime FIN_SERVICIO { get; set; }  
         public string VISTA_CLIENTE { get; set; }
         public string VISTA_PROVEEDOR { get; set; }
         public string PRECIO_OBLIGATORIO { get; set; }
@@ -45,6 +45,7 @@ namespace TraveLinux.Data.Entidades
         public string FECHA_INI { get; set; }
         public string ESTADO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
+        public string CIUDAD { get; set; }
 
     }
 }
