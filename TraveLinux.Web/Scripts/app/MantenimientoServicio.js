@@ -16,7 +16,7 @@
                 if (data.length != 0) {
                     $select.html('');
                     $.each(data, function (i, val) {
-                        $select.append('<option id="' + val.DEPARTAMENTO + '">' + val.NOMBRE + '</option>');
+                        $select.append('<option value="' + val.DEPARTAMENTO + '">' + val.NOMBRE + '</option>');
 
                     })
                     $select.selectpicker('refresh');
@@ -369,6 +369,7 @@
                 Desc_Port: $('#des_port').val(),
                 Desc_Ale: $('#des_ale').val(),
                 Estado: valor,
+                Ciudad: $('#departamentos').val(),
                 Hora: $('#time').val(),
                 Hora_fin: $('#time_end').val()
 
