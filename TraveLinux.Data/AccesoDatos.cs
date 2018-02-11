@@ -753,8 +753,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_PRECIO_OBLIGATORIO", OracleDbType.Char, 1).Value = eServicio.PRECIO_OBLIGATORIO;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eServicio.ESTADO;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eServicio.USUARIO_REGISTRO;
-                command.Parameters.Add("P_ES_CARGA", OracleDbType.Varchar2, 50).Value = 'N';
-
+                command.Parameters.Add("P_ES_CARGA", OracleDbType.Varchar2, 50).Value = "N";
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1062,10 +1061,9 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_PORT", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output;
-                command.Parameters.Add("P_HORA_INICIO", OracleDbType.Date, 1).Direction = ParameterDirection.Output;
-                command.Parameters.Add("P_HORA_FIN", OracleDbType.Date, 1).Direction = ParameterDirection.Output;
-
-
+                command.Parameters.Add("P_HORA_INICIO", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_HORA_FIN", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+          
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1096,7 +1094,6 @@ namespace TraveLinux.Data
                 ObjServicio.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVEEDOR_COD"));
                 ObjServicio.HORA = Convert.ToDateTime(  command.Parameters.GetStringOrDefault("P_HORA_INICIO"));
                 ObjServicio.HORA_FIN = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_HORA_FIN"));
-
 
             }
             return ObjServicio;
