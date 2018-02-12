@@ -26,15 +26,32 @@
 
 
     $('#npersona').on('change', function () {        
-        var Rango = $(this).val();
+        //var Rango = $(this).val();
+        debugger;
+        //var lstTarifas = {
+        //        Proveedor: $('#proveedor').val(),
+        //        Servicio: $('#servicio').val()
+        //}
+
+        var data = {
+            eTarifa: {
+                   Tarifa: $('#periodo').val(),
+                   Desde: $('#npersona').val(),
+                  Proveedor: $('#proveedor').val(),
+                  Servicio: $('#servicio').val()
+                }
+            }
+                
+
         $.ajax({
             type: 'POST',
             url: '/Tarifa/ValidarRango',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ Rango: Rango }),
+            data: JSON.stringify(data),
+            //data: JSON.stringify({ Rango: Rango }),
             success: function (data) {
                 debugger;
-                if (data.length > 0) {
+                if (data.RANGO != 0) {
                     $('#myModal').modal('show');
                     $("input#npersona").css("border-color", "rgb(47, 57, 86)");
                     $("input#npersona").css("box-shadow", "0 0 5px rgb(47, 57, 86)");

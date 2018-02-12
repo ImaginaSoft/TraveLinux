@@ -97,12 +97,30 @@ namespace TraveLinux.Web.Controllers
             return Json(vTemporada);
         }
 
-        public ActionResult ValidarRango(Int32 Rango)
+
+        //public void ValidarRango(Tarifa eTarifa)
+        //{
+        //    var cuenta = Session["CUENTA"] as Cuenta;
+
+        //    Fachada.ValidarRango(eTarifa);
+        //}
+
+        public ActionResult ValidarRango(Tarifa eTarifa)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var vRango = Fachada.ValidarRango(Rango);
+            var vRango = Fachada.ValidarRango(eTarifa);
 
             return Json(vRango);
         }
+
+      
+
+        //public ActionResult ValidarRango(Int32 Rango)
+        //{
+        //    var cuenta = Session["CUENTA"] as Cuenta;
+        //    var vRango = Fachada.ValidarRango(Rango);
+
+        //    return Json(vRango);
+        //}
     }
 }
