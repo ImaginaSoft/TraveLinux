@@ -63,30 +63,15 @@
                         <label for="type" class="col-xs-12 col-sm-2 control-label no-pad-right">Type:</label>
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <select id="tproveedor" class="selectpicker" data-size="5">
-                                <option value="@Model.TPROVEEDOR">@Model.TPROVEEDOR</option>
-                                <option value="CHOFER">CHOFER</option>
-                                <option value="GUIA">GUIA</option>
-                                <option value="HOTEL">HOTEL</option>
-                                <option value="OFICINA">OFICINA</option>
-                                <option value="OTROS">OTROS</option>
+                                @*<option value="@Model.TPROVEEDOR">@Model.TPROVEEDOR</option>*@
+                                <option value="CHF">CHOFER</option>
+                                <option value="GUA">GUIA</option>
+                                <option value="HTL">HOTEL</option>
+                                <option value="OFI">OFICINA</option>
+                                <option value="OTR">OTROS</option>
                             </select>
                         </div>
-                        @*<div class="col-sm-2">
-                            <div class="radio radio-danger">
-                                <input type="radio" name="radio" id="local" value="local">
-                                <label for="local">
-                                    Local
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
-                            <div class="radio radio-danger">
-                                <input type="radio" name="radio" id="exterior" value="exterior">
-                                <label for="exterior">
-                                    Exterior
-                                </label>
-                            </div>
-                        </div>*@
+                 
                     </div>
 
                     <div class="form-group">
@@ -124,12 +109,7 @@
                         </div>
 
                     </div>
-                    @*<div class="form-group">
-                        <label for="name" class="col-sm-2 control-label no-pad-right">Ruc:</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" id="ruc" name="ruc" value="@Model.RUC">
-                        </div>
-                    </div>*@
+                  
                     <div class="form-group">
                         <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Language:</label>
                         <div class="col-xs-4 col-sm-1">
@@ -406,3 +386,81 @@
             document.getElementById("inlineCheckbox1").checked = false;
         </script>
     }
+
+
+@*@if (Model.TPROVEEDOR == "CHF")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 0;
+    </script>
+}
+else
+{
+   @if (Model.TPROVEEDOR == "GUA")
+            {
+                <script type="text/javascript">
+                    document.getElementById("tproveedor").selectedIndex = 1;
+                </script>
+            }
+
+   else
+   {
+          @if (Model.TPROVEEDOR == "HTL")
+            {
+                <script type="text/javascript">
+                    document.getElementById("tproveedor").selectedIndex = 2;
+                </script>
+            }
+
+          else
+          { 
+              
+                                   @if (Model.TPROVEEDOR == "OFI")
+                    {
+                        <script type="text/javascript">
+                            document.getElementById("tproveedor").selectedIndex = 3;
+                        </script>
+                    }
+              
+          }
+   }
+}*@
+
+
+@if (Model.TPROVEEDOR == "CHF")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 0;
+    </script>
+}
+
+
+
+
+@if (Model.TPROVEEDOR == "GUA")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 1;
+    </script>
+}
+
+@if (Model.TPROVEEDOR == "HTL")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 2;
+    </script>
+}
+
+@if (Model.TPROVEEDOR == "OFI")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 3;
+    </script>
+}
+
+@if (Model.TPROVEEDOR == "OTR")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 4;
+    </script>
+}

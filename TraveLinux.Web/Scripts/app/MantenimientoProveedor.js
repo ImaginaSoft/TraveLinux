@@ -176,7 +176,7 @@
                     $select.html('');
                     $select.append('<option>-- Seleccione --</option>');
                     $.each(data, function (i, val) {
-                        $select.append('<option id="' + val.DEPARTAMENTO + '">' + val.NOMBRE + '</option>');
+                        $select.append('<option value="' + val.DEPARTAMENTO + '">' + val.NOMBRE + '</option>');
 
                     })
                     $select.selectpicker('refresh');

@@ -62,8 +62,17 @@ namespace TraveLinux.Web.Controllers
                 modelo.DESC_PORT = ObtenerServicio.DESC_PORT;
                 modelo.DESC_ALE = ObtenerServicio.DESC_ALE;
                 modelo.ESTADO = ObtenerServicio.ESTADO;
-                modelo.HORA = ObtenerServicio.HORA;
-                modelo.HORA_FIN = ObtenerServicio.HORA_FIN;
+                modelo.HORA = ObtenerServicio.HORA.ToString("HH:mm");
+                modelo.HORA_FIN = ObtenerServicio.HORA_FIN.ToString("HH:mm");
+                modelo.CIUDAD = ObtenerServicio.CIUDAD;
+                modelo.PAIS = ObtenerServicio.PAIS;
+                modelo.PAIS_NOMBRE = ObtenerServicio.PAIS_NOMBRE;
+                modelo.Paises = Fachada.ObtenerPaises();
+                modelo.VISTA_CLIENTE = ObtenerServicio.VISTA_CLIENTE;
+                modelo.VISTA_PROVEEDOR = ObtenerServicio.VISTA_PROVEEDOR;
+                modelo.PRECIO_OBLIGATORIO = ObtenerServicio.PRECIO_OBLIGATORIO;
+
+
             }
 
 

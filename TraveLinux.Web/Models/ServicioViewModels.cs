@@ -31,7 +31,7 @@ namespace TraveLinux.Web.Models
         public string DESC_INGL { get; set; }
         public string DESC_PORT { get; set; }
         public string DESC_ALE { get; set; }
-        public string PRECIO_OBLIGATORIO { get; set; }
+        //public string PRECIO_OBLIGATORIO { get; set; }
         public int PRECIO { get; set; }
         public string RANGO_PAX { get; set; }
         public string TIPO_SERVICIO_ABREV { get; set; }
@@ -44,8 +44,13 @@ namespace TraveLinux.Web.Models
         public IEnumerable<Periodo> Fechas { get; set; }
         public IEnumerable<TipoServicio> TipoAcomodacion { get; set; }
         public Int32 TEMPORADA { get; set; }
-        public DateTime HORA { get; set; }
-        public DateTime HORA_FIN { get; set; }
-
+        public string HORA { get; set; }
+        public string HORA_FIN { get; set; }
+        public string CIUDAD { get; set; }
+        public string PAIS { get; set; }
+        public string PAIS_NOMBRE { get; set; }
+        public string VISTA_CLIENTE { get; set; }
+        public string VISTA_PROVEEDOR { get; set; }
+        public string PRECIO_OBLIGATORIO { get; set; }
     }
 }

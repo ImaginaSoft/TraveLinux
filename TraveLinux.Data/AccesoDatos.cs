@@ -103,10 +103,12 @@ namespace TraveLinux.Data
                 var command = new OracleCommand();
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ACTUALIZAR_SERVICIO");
+                //command.CommandText = "SP_ACTUALIZAR_SERVICIO";
+
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eServicio.PROVEEDOR;
-                command.Parameters.Add("P_SERVICIO", OracleDbType.Char, 6).Value = eServicio.SERVICIO;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = eServicio.SERVICIO;
                 command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 50).Value = eServicio.NOMBRE;
                 command.Parameters.Add("P_TIPO", OracleDbType.Varchar2, 50).Value = eServicio.TIPO;
                 command.Parameters.Add("P_VALORXSERVICIO", OracleDbType.Varchar2, 50).Value = eServicio.VALORXSERVICIO;
@@ -128,8 +130,12 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DESC_ALE", OracleDbType.Varchar2, 1000).Value = eServicio.DESC_ALE;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = eServicio.ESTADO;
                 command.Parameters.Add("P_USUARIO_ULT_MODIF", OracleDbType.Varchar2, 50).Value = "Jorge";
-                //command.Parameters.Add("P_DESC_ESP", OracleDbType.Varchar2, 1000).Value = eServicio.DESC_ESP;
-
+                command.Parameters.Add("P_HORA_INI", OracleDbType.Date).Value = eServicio.HORA;
+                command.Parameters.Add("P_HORA_FIN", OracleDbType.Date).Value = eServicio.HORA_FIN;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 50).Value = eServicio.CIUDAD;
+                command.Parameters.Add("P_VISTA_CLI", OracleDbType.Varchar2, 50).Value = eServicio.VISTA_CLIENTE;
+                command.Parameters.Add("P_VISTA_PROV", OracleDbType.Varchar2, 50).Value = eServicio.VISTA_PROVEEDOR;
+                command.Parameters.Add("P_PRECIO_OBLI", OracleDbType.Varchar2, 50).Value = eServicio.PRECIO_OBLIGATORIO;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1034,6 +1040,8 @@ namespace TraveLinux.Data
                 var command = new OracleCommand();
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_LISTA_SERVICIO");
+                //command.CommandText = "SP_OBTENER_LISTA_SERVICIO";
+
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32, sProveedor, ParameterDirection.Input);
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20, sServicio, ParameterDirection.Input);
@@ -1063,6 +1071,15 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_HORA_INICIO", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_HORA_FIN", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PAIS_NOMBRE", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_VISTA_CLI", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_VISTA_PROV", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PRECIO_OBLI", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+
+
+               // command.Parameters.Add("P_HORA_FIN", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
           
 
                 connection.Open();
@@ -1094,6 +1111,18 @@ namespace TraveLinux.Data
                 ObjServicio.PROVEEDOR = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_PROVEEDOR_COD"));
                 ObjServicio.HORA = Convert.ToDateTime(  command.Parameters.GetStringOrDefault("P_HORA_INICIO"));
                 ObjServicio.HORA_FIN = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_HORA_FIN"));
+                ObjServicio.CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD");
+                ObjServicio.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
+                ObjServicio.PAIS_NOMBRE = command.Parameters.GetStringOrDefault("P_PAIS_NOMBRE");
+
+                ObjServicio.VISTA_CLIENTE = command.Parameters.GetStringOrDefault("P_VISTA_CLI");
+                ObjServicio.VISTA_PROVEEDOR = command.Parameters.GetStringOrDefault("P_VISTA_PROV");
+                ObjServicio.PRECIO_OBLIGATORIO = command.Parameters.GetStringOrDefault("P_PRECIO_OBLI");
+
+
+
+          
+                
 
             }
             return ObjServicio;

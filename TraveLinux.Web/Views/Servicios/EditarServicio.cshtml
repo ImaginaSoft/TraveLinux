@@ -73,7 +73,7 @@
                         <div class="col-sm-4">
                             <select id="tproveedor" class="selectpicker" data-size="5">
 
-                                <option value="@Model.TIPO_SERVICIO">@Model.TIPO_SERVICIO</option>
+                                @*<option value="@Model.TIPO_SERVICIO">@Model.TIPO_SERVICIO</option>*@
                                 <option value="TER">TERRESTRE</option>
                                 <option value="HTL">HOTEL</option>
                                 <option value="AER">AEREO</option>
@@ -85,8 +85,8 @@
                     <div class="form-group">
                         <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Valoracion Por Servicio:</label>
                         <div class="col-xs-12 col-sm-5 col-md-3">
-                            <select id="valorxservicio" class="selectpicker">
-                                <option value="">@Model.VALORXSERVICIO</option>
+                            <select id="valorxservicio" class="selectpicker" name="valorxservicio">
+                                @*<option value="">@Model.VALORXSERVICIO</option>*@
                                 <option value="MTF">MONTO FIJO</option>
                                 <option value="CPH">CANTIDAD PASAJEROS O HAB</option>
                                 <option value="CXT">CANTIDAD PASAJEROS POR TIPO DE</option>
@@ -104,25 +104,28 @@
                         <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Country:</label>
                         <div class="col-xs-12 col-sm-5 col-md-3">
                             <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
-                                <option>--- Seleccione ---</option>
-
-                                @*<option value="">@paises.NOMBRE</option>*@
-                                <option value=""> </option>
-
-
+                                <option value="@Model.PAIS">@Model.PAIS_NOMBRE</option>
+                                @foreach (var paises in Model.Paises)
+                                {
+                                    <option value="@paises.PAIS">@paises.NOMBRE</option>
+                                }
                             </select>
                         </div>
                         <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">City:</label>
                         <div class="col-xs-12 col-sm-5 col-md-3">
-                            <select id="departamentos" class="selectpicker"></select>
+                            <select id="departamentos" class="selectpicker">
+
+                                <option value="@Model.CIUDAD">@Model.CIUDAD</option>
+
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label no-pad-right">Start Service Time (HH:MM):</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" value="@Model.HORA" disabled>
+                            @*<input class="form-control" type="text" value="@Model.HORA" disabled>*@
 
-                            <input class="form-control" id="time" placeholder="" type="time" value="13:00">
+                            <input class="form-control" id="time" placeholder="" type="time" value="@Model.HORA">
                         </div>
 
                         <label for="name" class="col-sm-2 control-label no-pad-right">Until:</label>
@@ -135,7 +138,7 @@
                         <label for="alias" class="col-sm-2 control-label no-pad-right">Description:</label>
                         <div class="col-sm-4">
                             @*<p>Description:</p>*@
-                            <input class="form-control" id="descripcion" placeholder="Enter Description">
+                            <input class="form-control" id="descripcion" placeholder="" value="@Model.DESCRIPCION">
                         </div>
 
                     </div>
@@ -231,28 +234,28 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Español:</label>
+                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Spanish:</label>
                         <div class="col-xs-12 col-md-11">
                             @*<p>Address:</p>*@
                             <textarea class="form-control" id="des_esp" rows="5" placeholder="Enter ...">@Model.DESC_ESP</textarea>
                             <br />
                         </div>
 
-                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Ingles:</label>
+                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">English:</label>
                         <div class="col-xs-12 col-md-11">
                             @*<p>Address:</p>*@
                             <textarea class="form-control" id="des_ingles" rows="5" placeholder="Enter ...">@Model.DESC_INGL</textarea>
                             <br />
                         </div>
 
-                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Portugues:</label>
+                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Portuguese:</label>
                         <div class="col-xs-12 col-md-11">
                             @*<p>Address:</p>*@
                             <textarea class="form-control" id="des_port" rows="5" placeholder="Enter ...">@Model.DESC_PORT</textarea>
                             <br />
                         </div>
 
-                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">Aleman:</label>
+                        <label for="name" class="col-xs-12 col-sm-1 control-label no-pad-right">German:</label>
                         <div class="col-xs-12 col-md-11">
                             @*<p>Address:</p>*@
                             <textarea class="form-control" id="des_ale" rows="5" placeholder="Enter ...">@Model.DESC_ALE</textarea>
@@ -282,5 +285,149 @@ else
 {
     <script type="text/javascript">
         document.getElementById("inlineCheckbox1").checked = false;
+    </script>
+}
+
+@if (Model.DESAYUNO == "1")
+{
+    <script type="text/javascript">
+        document.getElementById("Checkboxdesa").checked = true;
+    </script>
+} else
+ {
+     <script type="text/javascript">
+        document.getElementById("Checkboxdesa").checked = false;
+     </script>
+ }
+    
+
+@if (Model.ALMUERZO == "1")
+{
+    <script type="text/javascript">
+        document.getElementById("Checkboxalmu").checked = true;
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        document.getElementById("Checkboxalmu").checked = false;
+    </script>
+}
+
+@if (Model.CENA == "1")
+{
+    <script type="text/javascript">
+        document.getElementById("Checkboxcena").checked = true;
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        document.getElementById("Checkboxcena").checked = false;
+    </script>
+}
+
+
+@if (Model.VISTA_CLIENTE == "S")
+{
+    <script type="text/javascript">
+        document.getElementById("clienteCheckbox").checked = true;
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        document.getElementById("clienteCheckbox").checked = false;
+    </script>
+}
+
+
+@if (Model.VISTA_PROVEEDOR == "S")
+{
+    <script type="text/javascript">
+        document.getElementById("proveedorCheckbox").checked = true;
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        document.getElementById("proveedorCheckbox").checked = false;
+    </script>
+}
+
+@if (Model.PRECIO_OBLIGATORIO == "S")
+{
+    <script type="text/javascript">
+        document.getElementById("precioCheckbox").checked = true;
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        document.getElementById("precioCheckbox").checked = false;
+    </script>
+}
+
+
+@if (Model.TIPO_SERVICIO == "TER")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex= 0;
+    </script>
+}
+
+@if (Model.TIPO_SERVICIO == "HTL")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex= 1;
+    </script>
+}
+
+@if (Model.TIPO_SERVICIO == "AER")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex= 2;
+    </script>
+}
+
+@if (Model.TIPO_SERVICIO == "OTR")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex= 3;
+    </script>
+}
+
+
+
+
+@if (Model.VALORXSERVICIO == "MTF")
+{
+    <script type="text/javascript">
+        document.getElementById("valorxservicio").selectedIndex = 0;
+    </script>
+}
+
+@if (Model.VALORXSERVICIO == "CPH")
+{
+    <script type="text/javascript">
+        document.getElementById("valorxservicio").selectedIndex = 1;
+    </script>
+}
+@if (Model.VALORXSERVICIO == "CXT")
+{
+    <script type="text/javascript">
+        document.getElementById("valorxservicio").selectedIndex = 2;
+    </script>
+}
+@if (Model.VALORXSERVICIO == "PVT")
+{
+    <script type="text/javascript">
+        document.getElementById("valorxservicio").selectedIndex = 3;
+    </script>
+}
+@if (Model.VALORXSERVICIO == "AUT")
+{
+    <script type="text/javascript">
+        document.getElementById("valorxservicio").selectedIndex = 4;
     </script>
 }
