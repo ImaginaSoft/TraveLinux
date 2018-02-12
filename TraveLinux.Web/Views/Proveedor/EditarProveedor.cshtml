@@ -64,8 +64,9 @@
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <select id="tproveedor" class="selectpicker" data-size="5">
                                 @*<option value="@Model.TPROVEEDOR">@Model.TPROVEEDOR</option>*@
-                                <option value="CHF">CHOFER</option>
+                                <option>--- Seleccione ---</option>
                                 <option value="GUA">GUIA</option>
+                                <option value="OPE">OPERADOR</option>
                                 <option value="HTL">HOTEL</option>
                                 <option value="OFI">OFICINA</option>
                                 <option value="OTR">OTROS</option>
@@ -89,7 +90,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             @*<p>State:</p>*@
                             <select id="departamentos" class="selectpicker">
-                                <option value="@Model.CIUDAD">@Model.CIUDAD</option>
+                                <option value="@Model.CIUDAD">@Model.NOMBRE_CIUDAD</option>
                             </select>
                         </div>
 
@@ -427,13 +428,12 @@ else
 }*@
 
 
-@if (Model.TPROVEEDOR == "CHF")
+@*@if (Model.TPROVEEDOR == "CHF")
 {
     <script type="text/javascript">
         document.getElementById("tproveedor").selectedIndex = 0;
     </script>
-}
-
+}*@
 
 
 
@@ -443,24 +443,95 @@ else
         document.getElementById("tproveedor").selectedIndex = 1;
     </script>
 }
+else
+{
+    if (Model.TPROVEEDOR == "OPE")
+        {
+            <script type="text/javascript">
+                document.getElementById("tproveedor").selectedIndex = 2;
+            </script>
+        }
+    else
+    {
+        if (Model.TPROVEEDOR == "HTL")
+            {
+                <script type="text/javascript">
+                    document.getElementById("tproveedor").selectedIndex = 3;
+                </script>
+            }
+        else
+        {
+            
+           if (Model.TPROVEEDOR == "OFI")
+            {
+                <script type="text/javascript">
+                    document.getElementById("tproveedor").selectedIndex = 4;
+                </script>
+            }
+           else
+           {
+                if (Model.TPROVEEDOR == "OTR")
+                {
+                    <script type="text/javascript">
+                        document.getElementById("tproveedor").selectedIndex = 5;
+                    </script>
+                }
+                else
+                {
+                      <script type="text/javascript">
+                        document.getElementById("tproveedor").selectedIndex = 0;
+                    </script>
+                }
+           }
+            
+        }
+    }
+}
 
-@if (Model.TPROVEEDOR == "HTL")
+
+
+
+
+
+
+
+
+
+
+
+@*@if (Model.TPROVEEDOR == "GUA")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 1;
+    </script>
+}
+
+
+@if (Model.TPROVEEDOR == "OPE")
 {
     <script type="text/javascript">
         document.getElementById("tproveedor").selectedIndex = 2;
     </script>
 }
 
-@if (Model.TPROVEEDOR == "OFI")
+@if (Model.TPROVEEDOR == "HTL")
 {
     <script type="text/javascript">
         document.getElementById("tproveedor").selectedIndex = 3;
     </script>
 }
 
-@if (Model.TPROVEEDOR == "OTR")
+@if (Model.TPROVEEDOR == "OFI")
 {
     <script type="text/javascript">
         document.getElementById("tproveedor").selectedIndex = 4;
     </script>
 }
+
+
+@if (Model.TPROVEEDOR == "OTR")
+{
+    <script type="text/javascript">
+        document.getElementById("tproveedor").selectedIndex = 5;
+    </script>
+}*@
