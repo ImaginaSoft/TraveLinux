@@ -917,9 +917,9 @@ namespace TraveLinux.Data
         }
 
 
-
-        public Tarifa ValidarRango(int Rango)
+        public Tarifa ValidarRango(Tarifa eTarifa)
         {
+
             var ObjTarifa = new Tarifa();
 
             using (var connection = new OracleConnection(_connectionString))
@@ -928,17 +928,46 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_VALIDAR_RANGO");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_RANGO", OracleDbType.Int32, Rango, ParameterDirection.Input);
+
+                command.Parameters.Add("P_RANGO", OracleDbType.Int32).Value = eTarifa.DESDE;
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eTarifa.TARIFA;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR ;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.SERVICIO;
                 command.Parameters.Add("P_VALIDAR", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
                 connection.Open();
                 command.ExecuteNonQuery();
 
-                ObjTarifa.RANGO = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_VALIDAR"));                
-
+                ObjTarifa.RANGO = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_VALIDAR"));   
             }
 
             return ObjTarifa;
         }
+
+
+
+
+        //public Tarifa ValidarRango(int Rango)
+        //{
+        //    var ObjTarifa = new Tarifa();
+
+        //    using (var connection = new OracleConnection(_connectionString))
+        //    {
+        //        var command = new OracleCommand();
+        //        command.Connection = connection;
+        //        command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_VALIDAR_RANGO");
+        //        command.CommandType = CommandType.StoredProcedure;
+        //        command.Parameters.Add("P_RANGO", OracleDbType.Int32, Rango, ParameterDirection.Input);
+        //        command.Parameters.Add("P_VALIDAR", OracleDbType.Int32).Direction = ParameterDirection.Output;
+        //        connection.Open();
+        //        command.ExecuteNonQuery();
+
+        //        ObjTarifa.RANGO = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_VALIDAR"));                
+
+        //    }
+
+        //    return ObjTarifa;
+        //}
 
         public Temporada ListadoFechasXTemporada(string Temporada)
         {
@@ -1339,7 +1368,7 @@ namespace TraveLinux.Data
         }
 
 
-
+      
     }
 
 

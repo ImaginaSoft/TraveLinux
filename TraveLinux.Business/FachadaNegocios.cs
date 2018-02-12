@@ -477,19 +477,50 @@ namespace TraveLinux.Business
             }
         }
 
-        public Tarifa ValidarRango(Int32 Rango)
+
+        //public void ValidarRango(Tarifa eTarifa)
+        //{
+        //    try
+        //    {
+        //        var datos = new AccesoDatos(ConnectionString);
+        //        datos.ValidarRango(eTarifa);
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new FachadaNegociosException("No se pudo actualizar el servicio", e);
+        //    }
+        //}
+
+        public Tarifa ValidarRango(Tarifa eTarifa)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var Tarifa = datos.ValidarRango(Rango);
+                var Tarifa = datos.ValidarRango(eTarifa);
                 return Tarifa;
+
             }
             catch (Exception e)
             {
-                throw new FachadaNegociosException("No se pudo obtener los servicios", e);
+                throw new FachadaNegociosException("No se pudo actualizar el servicio", e);
             }
         }
+
+
+        //public Tarifa ValidarRango(Int32 Rango)
+        //{
+        //    try
+        //    {
+        //        var datos = new AccesoDatos(ConnectionString);
+        //        var Tarifa = datos.ValidarRango(Rango);
+        //        return Tarifa;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new FachadaNegociosException("No se pudo obtener los servicios", e);
+        //    }
+        //}
 
         public void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg)
         {

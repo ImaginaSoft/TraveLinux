@@ -19,12 +19,14 @@ namespace TraveLinux.Data.Entidades
         public DateTime? FECHA_FINAL { get; set; }
         public string DESCRIPCION { get; set; }
         public string NOTAS { get; set; }
+        public string DESDE { get; set; }
         public string ESTADO { get; set; }
         public Int32 RANGO { get; set; }
         public int DINAMICO { get; set; }
         public int PRECIO { get; set; }
         public string TIPO_ACOMODACION { get; set; }
         public string TIPO_SERVICIO { get; set; }
+        public Int32 PERIODO { get; set; }
         public string DESCR_TIPO_ACOMODACION { get; set; }
         public string TIPO_PASAJERO { get; set; }
         public DateTime? FECHA_REGISTRO { get; set; }
