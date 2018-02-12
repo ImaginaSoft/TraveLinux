@@ -1333,7 +1333,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_TARIFA_DETALLE");
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_TARIFA_DETALLE_HOTEL");
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;

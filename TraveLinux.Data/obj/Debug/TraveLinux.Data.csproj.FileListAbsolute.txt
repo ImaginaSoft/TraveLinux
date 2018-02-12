@@ -25,13 +25,6 @@ C:\Desarrollo\TL\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.d
 C:\Desarrollo\TL\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
 C:\Desarrollo\TL\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
 C:\Desarrollo\TL\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll.config
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
-D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
 D:\TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll.config
 D:\TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
 D:\TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
@@ -39,3 +32,9 @@ D:\TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
 D:\TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
 D:\TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
 D:\TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll.config
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
+D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
