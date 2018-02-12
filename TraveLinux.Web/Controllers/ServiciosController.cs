@@ -65,6 +65,7 @@ namespace TraveLinux.Web.Controllers
                 modelo.HORA = ObtenerServicio.HORA.ToString("HH:mm");
                 modelo.HORA_FIN = ObtenerServicio.HORA_FIN.ToString("HH:mm");
                 modelo.CIUDAD = ObtenerServicio.CIUDAD;
+                modelo.CIUDAD_NOMBRE = ObtenerServicio.CIUDAD_NOMBRE;
                 modelo.PAIS = ObtenerServicio.PAIS;
                 modelo.PAIS_NOMBRE = ObtenerServicio.PAIS_NOMBRE;
                 modelo.Paises = Fachada.ObtenerPaises();

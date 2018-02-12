@@ -1101,6 +1101,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_HORA_INICIO", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_HORA_FIN", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CIUDAD_NOMBRE", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PAIS_NOMBRE", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_VISTA_CLI", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.Output;
@@ -1141,9 +1142,9 @@ namespace TraveLinux.Data
                 ObjServicio.HORA = Convert.ToDateTime(  command.Parameters.GetStringOrDefault("P_HORA_INICIO"));
                 ObjServicio.HORA_FIN = Convert.ToDateTime(command.Parameters.GetDateTimeOrDefault("P_HORA_FIN"));
                 ObjServicio.CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD");
+                ObjServicio.CIUDAD_NOMBRE = command.Parameters.GetStringOrDefault("P_CIUDAD_NOMBRE");
                 ObjServicio.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
                 ObjServicio.PAIS_NOMBRE = command.Parameters.GetStringOrDefault("P_PAIS_NOMBRE");
-
                 ObjServicio.VISTA_CLIENTE = command.Parameters.GetStringOrDefault("P_VISTA_CLI");
                 ObjServicio.VISTA_PROVEEDOR = command.Parameters.GetStringOrDefault("P_VISTA_PROV");
                 ObjServicio.PRECIO_OBLIGATORIO = command.Parameters.GetStringOrDefault("P_PRECIO_OBLI");

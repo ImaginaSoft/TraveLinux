@@ -47,6 +47,7 @@ namespace TraveLinux.Web.Models
         public string HORA { get; set; }
         public string HORA_FIN { get; set; }
         public string CIUDAD { get; set; }
+        public string CIUDAD_NOMBRE { get; set; }
         public string PAIS { get; set; }
         public string PAIS_NOMBRE { get; set; }
         public string VISTA_CLIENTE { get; set; }
