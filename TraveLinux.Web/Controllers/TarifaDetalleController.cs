@@ -21,7 +21,7 @@ namespace TraveLinux.Web.Controllers
         }
       
         [HttpPost]
-        public ActionResult NuevaTarifaDetalle(int Proveedor, HttpPostedFileBase postedFile)
+        public ActionResult NuevaTarifaDetalle(int Proveedor, string TipoServicio,HttpPostedFileBase postedFile)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
@@ -31,7 +31,6 @@ namespace TraveLinux.Web.Controllers
             {
                 return HttpNotFound("No se encontró el detalle solicitado");
             }
-
 
             ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
             ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;
@@ -54,20 +53,58 @@ namespace TraveLinux.Web.Controllers
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
 
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+
+                        if (TipoServicio == "TerAer")
                         {
-                            var user = new ServicioViewModels();
-                            
-                            user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value.ToString();
-                            user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value.ToString());
-                            user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value.ToString());
-                            user.TIPO_PERSONA = workSheet.Cells[rowIterator, 5].Value.ToString();
-                            user.RANGO_PAX = workSheet.Cells[rowIterator, 6].Value.ToString();
-                            user.PRECIO = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString());
-                            user.TIPO_SERVICIO_ABREV = workSheet.Cells[rowIterator, 8].Value.ToString();
-                            user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 9].Value.ToString());
-                            usersList.Add(user);
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                            {
+                                var user = new ServicioViewModels();
+
+                                user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value.ToString());
+                                user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value.ToString());
+                                user.TIPO_PERSONA = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                user.RANGO_PAX = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                user.PRECIO = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString());
+                                user.TIPO_SERVICIO_ABREV = workSheet.Cells[rowIterator, 8].Value.ToString();
+                                user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 9].Value.ToString());
+                                usersList.Add(user);
+                            }
+                        }
+
+                        if (TipoServicio == "Hoteles")
+                        {
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                            {
+                                var user = new ServicioViewModels();
+
+                                //user.NOMBRE = workSheet.Cells[rowIterator, 1].Value == null ? string.Empty : workSheet.Cells[rowIterator, 1].Value.ToString();
+
+
+                                //user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value == null ? string.Empty : workSheet.Cells[rowIterator, 1].Value.ToString();
+                                //user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 2].Value == null ? string.Empty : workSheet.Cells[rowIterator, 2].Value.ToString());
+                                //user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value == null ? string.Empty : workSheet.Cells[rowIterator, 3].Value.ToString());
+                                //user.TIPO_PERSONA = workSheet.Cells[rowIterator, 4].Value == null ? string.Empty : workSheet.Cells[rowIterator, 4].Value.ToString();
+                                //user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 5].Value == null ? string.Empty : workSheet.Cells[rowIterator, 5].Value.ToString();
+                                //user.SGL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 6].Value == null ? string.Empty : workSheet.Cells[rowIterator, 6].Value.ToString());
+                                //user.DWL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 7].Value == null ? string.Empty : workSheet.Cells[rowIterator, 7].Value.ToString());
+                                //user.TPL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 8].Value == null ? string.Empty : workSheet.Cells[rowIterator, 8].Value.ToString());
+                                //user.CDL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 9].Value == null ? string.Empty : workSheet.Cells[rowIterator, 9].Value.ToString());
+                                //user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 10].Value == null ? string.Empty : workSheet.Cells[rowIterator, 10].Value.ToString());
+
+                                user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 2].Value.ToString());
+                                user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value.ToString());
+                                user.TIPO_PERSONA = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                user.SGL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 6].Value.ToString());
+                                user.DWL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 7].Value.ToString());
+                                user.TPL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 8].Value.ToString());
+                                user.CDL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 9].Value.ToString());
+                                user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 10].Value.ToString());
+                                usersList.Add(user);
+                            }
                         }
                     }
                 }
@@ -150,12 +187,22 @@ namespace TraveLinux.Web.Controllers
             List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
             Fachada.GuardarPeriodoCap_Lista_Detalle(myDistinctList, 1);
 
-            Fachada.GuardarTarifa_Lista_Detalle(lstTarifas, 0);
-
-
-            
+            Fachada.GuardarTarifa_Lista_Detalle(lstTarifas, 0);            
         }
-        
+
+        [HttpPost]
+        public void GuardarTarifaCargaHoteles(List<Tarifa_Detalle> lstTarifas)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            List<Tarifa_Detalle> copyLista = lstTarifas.ToList();
+
+            List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
+            Fachada.GuardarPeriodoCap_Lista_Detalle_Hoteles(myDistinctList, 1);
+
+            Fachada.GuardarTarifa_Lista_Detalle_Hoteles(lstTarifas, 0);
+        }
+
         public ActionResult Obtener_tarifa_Detalle_Prov(int Proveedor, string Tarifa)
         {
             var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa);

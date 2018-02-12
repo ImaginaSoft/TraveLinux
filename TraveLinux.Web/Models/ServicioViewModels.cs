@@ -31,7 +31,6 @@ namespace TraveLinux.Web.Models
         public string DESC_INGL { get; set; }
         public string DESC_PORT { get; set; }
         public string DESC_ALE { get; set; }
-        //public string PRECIO_OBLIGATORIO { get; set; }
         public int PRECIO { get; set; }
         public string RANGO_PAX { get; set; }
         public string TIPO_SERVICIO_ABREV { get; set; }
@@ -53,5 +52,10 @@ namespace TraveLinux.Web.Models
         public string VISTA_CLIENTE { get; set; }
         public string VISTA_PROVEEDOR { get; set; }
         public string PRECIO_OBLIGATORIO { get; set; }
+        public Decimal SGL_ROOM { get; set; }
+        public Decimal DWL_ROOM { get; set; }
+        public Decimal TPL_ROOM { get; set; }
+        public Decimal CDL_ROOM { get; set; }
+
     }
 }

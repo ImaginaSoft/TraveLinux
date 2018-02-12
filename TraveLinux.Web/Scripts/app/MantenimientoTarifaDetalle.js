@@ -83,9 +83,58 @@
         });
     };
 
+
+
+
+    function onClickGuardarCargaTarifaHoteles() {
+
+        var lstTarifas = new Array();
+        $("#GrillaHot #tblCustomers TBODY TR").each(function () {
+            debugger;
+            var row = $(this);
+            var tarifa = {};
+
+            debugger;
+
+            tarifa.PROVEEDOR = Proveedor;
+            tarifa.DESCRIPCION = row.find("TD").eq(0).html();
+            tarifa.FECHA_INICIO = row.find("TD").eq(1).html();
+            tarifa.FECHA_FIN = row.find("TD").eq(2).html();
+            tarifa.TIPO_PERSONA = row.find("TD").eq(3).html();
+            tarifa.TIPO_SERVICIO = row.find("TD").eq(4).html();
+            tarifa.SGL_ROOM = row.find("TD").eq(5).html();
+            tarifa.DWL_ROOM = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
+            tarifa.TPL_ROOM = row.find("TD").eq(7).html();
+            tarifa.CDL_ROOM = row.find("TD").eq(8).html();
+            tarifa.PERIODO = row.find("TD").eq(9).html();
+            lstTarifas.push(tarifa);
+        });
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/TarifaDetalle/GuardarTarifaCargaHoteles',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(lstTarifas)
+        })
+            .done(function (data) {
+                debugger;
+                showSuccessMessage('Se ha guardado con exito');
+                setTimeout(function () {
+                    window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
+                }, 2000);
+            })
+        .fail(function () {
+            showErrorMessage('No se pudo guardar.');
+            enableAllComponents(true);
+        });
+    };
+
+
     $('#btn-guardarCarga').on('click', onClickGuardarCargaTarifa);  
  
-
+    $('#btn-guardarCargaHot').on('click', onClickGuardarCargaTarifaHoteles);  
+ 
 
 
     });

@@ -42,6 +42,8 @@ namespace TraveLinux.Business
         void GuardarTarifa(List<Tarifa> eTarifa);
         void GuardarPeriodo(Periodo ePeriodo);
         void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado);
+        void GuardarPeriodoCap_Lista_Detalle_Hoteles(List<Tarifa_Detalle> lsttarifa, int validado);
+        void GuardarTarifa_Lista_Detalle_Hoteles(List<Tarifa_Detalle> lsttarifa, int validado);
         void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado);
         IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio);
         //Tarifa ValidarRango(Int32 Rango);

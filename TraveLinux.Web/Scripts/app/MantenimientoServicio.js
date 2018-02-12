@@ -742,10 +742,4 @@
                 $('button#btn-guardar').prop('disabled', 'disabled');
             }
         });
-
-
-
-
-
-
 });

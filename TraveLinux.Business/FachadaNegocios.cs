@@ -435,7 +435,33 @@ namespace TraveLinux.Business
             }
         }
 
+        public void GuardarPeriodoCap_Lista_Detalle_Hoteles(List<Tarifa_Detalle> lsttarifa, int validado)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarPeriodoCap_Lista_Detalle_Hoteles(lsttarifa, validado);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el detalle servicio Hoteles", e);
+            }
+        }
 
+
+
+        public void GuardarTarifa_Lista_Detalle_Hoteles(List<Tarifa_Detalle> lsttarifa, int validado)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarTarifa_Lista_Detalle_Hoteles(lsttarifa, validado);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
+            }
+        }
 
         public void GuardarTarifa_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado)
         {
@@ -449,7 +475,6 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
             }
         }
-
         public void GuardarTarifa(List<Tarifa> lsttarifa)
         {
             try
