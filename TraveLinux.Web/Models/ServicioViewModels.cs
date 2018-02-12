@@ -47,5 +47,10 @@ namespace TraveLinux.Web.Models
         public DateTime HORA { get; set; }
         public DateTime HORA_FIN { get; set; }
 
+        public Decimal SGL_ROOM { get; set; }
+        public Decimal DWL_ROOM { get; set; }
+        public Decimal TPL_ROOM { get; set; }
+        public Decimal CDL_ROOM { get; set; }
+
     }
 }
