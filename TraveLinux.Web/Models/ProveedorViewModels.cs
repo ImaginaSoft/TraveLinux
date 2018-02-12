@@ -77,6 +77,9 @@ namespace TraveLinux.Web.Models
         public string VISTA_CLIENTE { get; set; }
         public string CIUDAD { get; set; }
 
+        public string NOMBRE_CIUDAD { get; set; }
+
+
         public IEnumerable<Pais> Paises { get; set; }
 
         public IEnumerable<Temporada> Temporada { get; set; }

@@ -409,6 +409,7 @@ namespace TraveLinux.Data
                         servicio.DESC_PORT = reader.GetStringOrDefault(20);
                         servicio.DESC_ALE = reader.GetStringOrDefault(21);
                         servicio.ESTADO = reader.GetStringOrDefault(22);
+                        servicio.CIUDAD_NOMBRE = reader.GetStringOrDefault(23);
                         lstservicio.Add(servicio);
                     }
                 }
@@ -873,6 +874,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_PAIS", OracleDbType.Varchar2, 5).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PAISNOM", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CIUDAD_NOMBRE", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_DIRECCION", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_IDIOMA", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_PAGINA_WEB", OracleDbType.Varchar2, 100).Direction = ParameterDirection.Output;
@@ -897,6 +899,7 @@ namespace TraveLinux.Data
                 ObjProveedor.PAIS = command.Parameters.GetStringOrDefault("P_PAIS");
                 ObjProveedor.NOMBRE_PAIS = command.Parameters.GetStringOrDefault("P_PAISNOM");
                 ObjProveedor.CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD");
+                ObjProveedor.NOMBRE_CIUDAD = command.Parameters.GetStringOrDefault("P_CIUDAD_NOMBRE");
                 ObjProveedor.DIRECCION = command.Parameters.GetStringOrDefault("P_DIRECCION");
                 ObjProveedor.IDIOMA = command.Parameters.GetStringOrDefault("P_IDIOMA");
                 ObjProveedor.PAGINAWEB = command.Parameters.GetStringOrDefault("P_PAGINA_WEB");

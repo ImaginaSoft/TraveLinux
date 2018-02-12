@@ -44,6 +44,7 @@ namespace TraveLinux.Web.Controllers
                 modelo.PAIS = ObtenerProveedor.PAIS;
                 modelo.PAIS_NOMBRE = ObtenerProveedor.NOMBRE_PAIS;
                 modelo.CIUDAD = ObtenerProveedor.CIUDAD;
+                modelo.NOMBRE_CIUDAD = ObtenerProveedor.NOMBRE_CIUDAD;
                 modelo.DIRECCION = ObtenerProveedor.DIRECCION;
                 modelo.IDIOMA = ObtenerProveedor.IDIOMA;
                 modelo.PAGINAWEB = ObtenerProveedor.PAGINAWEB;

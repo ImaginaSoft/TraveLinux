@@ -173,8 +173,17 @@
         title: 'NOMBRE',
         data: 'NOMBRE',
         width: 25,
-        className: 'not-mobile'
+        className: 'not-mobile',
+        visible: true,
     },
+
+     {
+         title: 'CIUDAD',
+         data: 'CIUDAD_NOMBRE',
+         width: 25,
+         className: 'not-mobile',
+         visible: true,
+     },
 
     {
         title: 'BOX_LUNCH',
@@ -190,12 +199,12 @@
         className: 'not-mobile',
         visible: false,
     },
-    {
-        title: 'NOMBRE',
-        data: 'NOMBRE',
-        width: 25,
-        className: 'not-mobile'
-    },
+    //{
+    //    title: 'NOMBRE',
+    //    data: 'NOMBRE',
+    //    width: 25,
+    //    className: 'not-mobile'
+    //},
 
     //{
     //    title: 'BOX_LUNCH',
