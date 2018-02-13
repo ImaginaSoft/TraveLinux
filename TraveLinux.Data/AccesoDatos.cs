@@ -886,6 +886,16 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOMBRE_CONTACTO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_POSICION_CONTACTO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_POSICION_CONTACTO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_POSICION_CONTACTO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_1", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_2", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_TELEFONO_CONTACTO_3", OracleDbType.Varchar2, 20).Direction = ParameterDirection.Output;
+
                 connection.Open();
                 command.ExecuteNonQuery();
 
@@ -911,6 +921,16 @@ namespace TraveLinux.Data
                 ObjProveedor.TELEFONO_2 = command.Parameters.GetStringOrDefault("P_TELEFONO_2");
                 ObjProveedor.TELEFONO_3 = command.Parameters.GetStringOrDefault("P_TELEFONO_3");
                 ObjProveedor.ESTADO = command.Parameters.GetStringOrDefault("P_ESTADO");
+                ObjProveedor.NOMBRE_CONTACTO_1 = command.Parameters.GetStringOrDefault("P_NOMBRE_CONTACTO_1");
+                ObjProveedor.NOMBRE_CONTACTO_2 = command.Parameters.GetStringOrDefault("P_NOMBRE_CONTACTO_2");
+                ObjProveedor.NOMBRE_CONTACTO_3 = command.Parameters.GetStringOrDefault("P_NOMBRE_CONTACTO_3");
+                ObjProveedor.POSICION_CONTACTO_1 = command.Parameters.GetStringOrDefault("P_POSICION_CONTACTO_1");
+                ObjProveedor.POSICION_CONTACTO_2 = command.Parameters.GetStringOrDefault("P_POSICION_CONTACTO_2");
+                ObjProveedor.POSICION_CONTACTO_3 = command.Parameters.GetStringOrDefault("P_POSICION_CONTACTO_3");
+                ObjProveedor.TELEFONO_CONTACTO_1 = command.Parameters.GetStringOrDefault("P_TELEFONO_CONTACTO_1");
+                ObjProveedor.TELEFONO_CONTACTO_2 = command.Parameters.GetStringOrDefault("P_TELEFONO_CONTACTO_2");
+                ObjProveedor.TELEFONO_CONTACTO_3 = command.Parameters.GetStringOrDefault("P_TELEFONO_CONTACTO_3");
+
 
                 //}
 

@@ -148,9 +148,9 @@
                 </div>
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    <li class="header">MENÚ</li>
+                    <li class="header">MENU</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li><a href="@Url.Action("Index", "Inicio")"><i class="fa fa-home fa-lg"></i> <span>Inicio</span></a></li>
+                    <li><a href="@Url.Action("Index", "Inicio")"><i class="fa fa-home fa-lg"></i> <span>Home</span></a></li>
 
 
                     @if(Html.Autorizar(Perfil.Ejecutivo))
@@ -200,7 +200,7 @@
                                 @*<li><a href="@Url.Action("CrearPlantilla", "Cotizacion")"><i class="fa fa-search"></i> <span>Crear a Partir de una Plantilla</span></a></li>*@
                             </ul>
                         </li>
-                        <li class="treeview">
+                        @*<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-file"></i>
                                 <span>Ficha Cliente</span>
@@ -221,7 +221,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
                     }
 
 </ul><!-- /.sidebar-menu -->

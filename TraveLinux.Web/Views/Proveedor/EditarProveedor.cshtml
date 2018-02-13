@@ -169,123 +169,6 @@
     </div>
 
 
-    @*<div class="row">
-        <div class="col-md-12">
-            <div class="box box-danger">
-                <div class="box-header">
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Country:</label>
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
-                                <option value="@Model.PAIS">@Model.PAIS_NOMBRE</option>
-                                @foreach (var paises in Model.Paises)
-                                {
-                                    <option value="@paises.PAIS">@paises.NOMBRE</option>
-                                }
-                            </select>
-                        </div>
-                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">City:</label>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <select id="departamentos" class="selectpicker">
-                                <option value="@Model.CIUDAD">@Model.CIUDAD</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label no-pad-right">Address:</label>
-                        <div class="col-sm-7">
-                            <textarea class="form-control" rows="5" placeholder="Enter ..." id="direccion">@Model.DIRECCION</textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-
-
-
-
-    @*<div class="row">
-        <div class="col-md-12">
-            <div class="box box-success">
-                <div class="box-header">
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label no-pad-right">Web Page:</label>
-                        <div class="col-sm-7">
-                            <input class="form-control" id="paginaweb" name="paginaweb" value="@Model.PAGINAWEB">
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label no-pad-right">Ruc:</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" id="ruc" name="ruc" value="@Model.RUC">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Languaje:</label>
-                        <div class="col-xs-4 col-sm-1">
-                            <select id="idioma" class="selectpicker">
-                                <option value="@Model.IDIOMA">@Model.IDIOMA</option>
-                                <option value="ALEMAN">ALEMAN</option>
-                                <option value="ESPAÑOL">ESPAÑOL</option>
-                                <option value="INGLES">INGLES</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-    @*<div class="row">
-        <div class="col-md-12">
-            <div class="box box-success">
-                <div class="box-header">
-                </div>
-                <div class="box-body">
-                  
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <p>Email:</p>
-                            <input class="form-control" id="email1" placeholder="Enter Email" value="@Model.EMAIL_1">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                                <p>Email 2:</p>
-                                <input class="form-control" id="email2" placeholder="Enter Email" value="@Model.EMAIL_2">
-                       </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Email 3:</p>
-                            <input class="form-control" id="email3" placeholder="Enter Email" value="@Model.EMAIL_3">
-                        </div>
-                      
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <p>Phone:</p>
-                            <input class="form-control" id="telefono1" placeholder="Enter Phone" value="@Model.TELEFONO_1">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Phone 2:</p>
-                            <input class="form-control" id="telefono2" placeholder="Enter Phone" value="@Model.TELEFONO_2">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Phone 3:</p>
-                            <input class="form-control" id="telefono3" placeholder="Enter Phone" value="@Model.TELEFONO_3">
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-success">
@@ -294,62 +177,41 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <p>Name 1:</p>
-                            <input class="form-control" id="nombre_contacto" placeholder="Enter Name" value="@Model.NOMBRE_CONTACTO_1">
-                        </div>                        
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                                <p>Name 2:</p>
-                            <input class="form-control" id="nombre_contacto2" placeholder="Enter Name" value="@Model.NOMBRE_CONTACTO_2">
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-sm-3">
-                                <p>Name 3:</p>
-                                <input class="form-control" id="nombre_contacto3" placeholder="Enter Name" value="@Model.NOMBRE_CONTACTO_3">
-                            </div>
-                        @*<div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>&nbsp;</p>
-                            <button type="button" class="btn btn-success btn-sm" id="mostrar_fono"> <span class="glyphicon glyphicon-plus"></span></button>
-                            <button type="button" class="btn btn-danger btn-sm" id="eliminar_fono"> <span class="glyphicon glyphicon-minus"></span></button>
-                        </div>*@
+                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Contact 1:</label>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="nombre_contacto1" name="nombre_contacto" value="@Model.NOMBRE_CONTACTO_1" placeholder="Enter Name">
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="posicion_contacto1" name="posicion_contacto" value="@Model.POSICION_CONTACTO_1" placeholder="Enter Position">
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="telefono_contacto1" name="telefono_contacto" value="@Model.TELEFONO_CONTACTO_1" placeholder="Enter Phone">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <p>Position 1:</p>
-                            <input class="form-control" id="posicion_contacto" placeholder="Enter Position" value="@Model.POSICION_CONTACTO_1">
+                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Contact 2:</label>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="nombre_contacto2" name="nombre_contacto" value="@Model.NOMBRE_CONTACTO_2" placeholder="Enter Name">
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Position 2:</p>
-                            <input class="form-control" id="posicion_contacto2" placeholder="Enter Position" value="@Model.POSICION_CONTACTO_2">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="posicion_contacto2" name="posicion_contacto" value="@Model.POSICION_CONTACTO_2" placeholder="Enter Position">
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Position 3:</p>
-                            <input class="form-control" id="posicion_contacto3" placeholder="Enter Position" value="@Model.POSICION_CONTACTO_3">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="telefono_contacto2" name="telefono_contacto" value="@Model.TELEFONO_CONTACTO_2" placeholder="Enter Phone">
                         </div>
-                        @*<div class="col-xs-12 col-sm-12 col-sm-3">
-                <p>&nbsp;</p>
-                <button type="button" class="btn btn-success btn-sm" id="mostrar_fono"> <span class="glyphicon glyphicon-plus"></span></button>
-                <button type="button" class="btn btn-danger btn-sm" id="eliminar_fono"> <span class="glyphicon glyphicon-minus"></span></button>
-            </div>*@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <p>Phone 1:</p>
-                            <input class="form-control" id="telefono_contacto" placeholder="Enter Phone" value="@Model.TELEFONO_CONTACTO_1">
+                        <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Contact 3:</label>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="nombre_contacto3" name="nombre_contacto" value="@Model.NOMBRE_CONTACTO_3" placeholder="Enter Name">
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Phone 2:</p>
-                            <input class="form-control" id="telefono_contacto2" placeholder="Enter Phone" value="@Model.TELEFONO_CONTACTO_2">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="posicion_contacto3" name="posicion_contacto" value="@Model.POSICION_CONTACTO_3" placeholder="Enter Position">
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-sm-3">
-                            <p>Phone 3:</p>
-                            <input class="form-control" id="telefono_contacto3" placeholder="Enter Phone" value="@Model.TELEFONO_CONTACTO_3">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input class="form-control" id="telefono_contacto3" name="telefono_contacto" value="@Model.TELEFONO_CONTACTO_3" placeholder="Enter Phone">
                         </div>
-                        @*<div class="col-xs-12 col-sm-12 col-sm-3">
-                <p>&nbsp;</p>
-                <button type="button" class="btn btn-success btn-sm" id="mostrar_fono"> <span class="glyphicon glyphicon-plus"></span></button>
-                <button type="button" class="btn btn-danger btn-sm" id="eliminar_fono"> <span class="glyphicon glyphicon-minus"></span></button>
-            </div>*@
                     </div>
                 </div>
                 <div class="box-footer">

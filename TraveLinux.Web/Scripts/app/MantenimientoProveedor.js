@@ -16,6 +16,8 @@
             if (x < max_fields) {
                 x++;
                 $("#caja_dinamico_contact").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Name ' + x + ':</p><input class="form-control" id="nombre_contacto' + x + '" placeholder="Enter Name" name="nombre_contacto' + x + '"></div>');
+                //$("#caja_dinamico_contact").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Name ' + x + ':</p><input class="form-control" id="nombre_contacto' + x + '" placeholder="Enter Name" name="nombre_contacto' + x + '"></div>');
+                //$("#caja_dinamico_contact").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Name ' + x + ':</p><input class="form-control" id="nombre_contacto' + x + '" placeholder="Enter Name" name="nombre_contacto' + x + '"></div>');
 
                 if (x == 2) {
                     $("#eliminar_contacto").show();
@@ -270,13 +272,13 @@
                 Telefono_2: $('#telefono2').val(),
                 Telefono_3: $('#telefono3').val(),
                 Estado: valor,
-                Nombre_contacto_1: $('#nombre_contacto').val(),
+                Nombre_contacto_1: $('#nombre_contacto1').val(),
                 Nombre_contacto_2: $('#nombre_contacto2').val(),
                 Nombre_contacto_3: $('#nombre_contacto3').val(),
-                Posicion_contacto_1: $('#posicion_contacto').val(),
+                Posicion_contacto_1: $('#posicion_contacto1').val(),
                 Posicion_contacto_2: $('#posicion_contacto2').val(),
                 Posicion_contacto_3: $('#posicion_contacto3').val(),
-                Telefono_contacto_1: $('#telefono_contacto').val(),
+                Telefono_contacto_1: $('#telefono_contacto1').val(),
                 Telefono_contacto_2: $('#telefono_contacto2').val(),
                 Telefono_contacto_3: $('#telefono_contacto3').val()
 
@@ -340,13 +342,13 @@
                 Telefono_2: $('#telefono2').val(),
                 Telefono_3: $('#telefono3').val(),
                 Estado: valor,
-                Nombre_contacto_1: $('#nombre_contacto').val(),
+                Nombre_contacto_1: $('#nombre_contacto1').val(),
                 Nombre_contacto_2: $('#nombre_contacto2').val(),
                 Nombre_contacto_3: $('#nombre_contacto3').val(),
-                Posicion_contacto_1: $('#posicion_contacto').val(),
+                Posicion_contacto_1: $('#posicion_contacto1').val(),
                 Posicion_contacto_2: $('#posicion_contacto2').val(),
                 Posicion_contacto_3: $('#posicion_contacto3').val(),
-                Telefono_contacto_1: $('#telefono_contacto').val(),
+                Telefono_contacto_1: $('#telefono_contacto1').val(),
                 Telefono_contacto_2: $('#telefono_contacto2').val(),
                 Telefono_contacto_3: $('#telefono_contacto3').val()
 
@@ -443,13 +445,13 @@
                 Telefono_2: $('#telefono2').val(),
                 Telefono_3: $('#telefono3').val(),
                 Estado: valor,
-                Nombre_contacto_1: $('#nombre_contacto').val(),
+                Nombre_contacto_1: $('#nombre_contacto1').val(),
                 Nombre_contacto_2: $('#nombre_contacto2').val(),
                 Nombre_contacto_3: $('#nombre_contacto3').val(),
-                Posicion_contacto_1: $('#posicion_contacto').val(),
+                Posicion_contacto_1: $('#posicion_contacto1').val(),
                 Posicion_contacto_2: $('#posicion_contacto2').val(),
                 Posicion_contacto_3: $('#posicion_contacto3').val(),
-                Telefono_contacto_1: $('#telefono_contacto').val(),
+                Telefono_contacto_1: $('#telefono_contacto1').val(),
                 Telefono_contacto_2: $('#telefono_contacto2').val(),
                 Telefono_contacto_3: $('#telefono_contacto3').val()
             }
@@ -743,7 +745,7 @@
             },
             ruc: {
                 required: true,
-                digits: true,
+               // digits: true,
                 //maxlength: 13,
                 //minlength: 13
             },
@@ -793,7 +795,7 @@
             //direccion: "Please enter your lastname",
             //paginaweb: "Please enter your WebSite",            
             ruc: {
-                required: "Please enter only digits",
+                required: "Please enter the code",
                 //minlength: "Please enter minim 13 digits"
             },
 
