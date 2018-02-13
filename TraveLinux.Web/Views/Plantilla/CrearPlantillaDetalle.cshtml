@@ -3,7 +3,7 @@
     ViewBag.Title = "CrearPlantillaDetalle";
 }
 
-<h2>CrearPlantillaDetalle</h2>
+@*<h2>CrearPlantillaDetalle</h2>*@
 
 <style>
     .modal-content {
@@ -74,113 +74,157 @@
     </div>
 </script>
 
-<section class="content-header">
+@*<section class="content-header">
 
-    @*<h1>Datos Generales</h1>*@
+    <h1>Template Details</h1>
 
-</section>
-<form class="form-horizontal">
-    @*<div class="row">
-        <div class="col-md-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
+</section>*@
+
+@*<section class="content">*@
+
+    <form class="form-horizontal">
+        @*<div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                        </div>
+
+                        <div class="box-body">
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
+                                <div class="col-xs-7 col-sm-5">
+                                    <input class="form-control" id="nombre" value="" disabled>
+                                    <input type="hidden" class="form-control" id="proveedor" value="" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
+                                <div class="col-xs-7 col-sm-5">
+                                    <input class="form-control" value="" disabled>
+                                    <input type="hidden" class="form-control" id="tiposervicio" value="" disabled>
+                                    <input type="hidden" class="form-control" id="servicio" value="" disabled>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service description:</label>
+                                <div class="col-xs-7 col-sm-5">
+                                    <input class="form-control" id="nombre" value="" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="box-body">
-                    <div class="form-group">
-                
-                    </div>
-                    <div class="form-group">
-                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
-                        <div class="col-xs-7 col-sm-5">
-                            <input class="form-control" id="nombre" value="" disabled>
-                            <input type="hidden" class="form-control" id="proveedor" value="" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
-                        <div class="col-xs-7 col-sm-5">
-                            <input class="form-control" value="" disabled>
-                            <input type="hidden" class="form-control" id="tiposervicio" value="" disabled>
-                            <input type="hidden" class="form-control" id="servicio" value="" disabled>
-
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service description:</label>
-                        <div class="col-xs-7 col-sm-5">
-                            <input class="form-control" id="nombre" value="" disabled>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
+            </div>*@
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    @*<h3 class="box-title">Datos Generales</h3>*@
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <div class="col-sm-4 col-md-3">
-                            <button type="button" class="btn btn-warning RegistrarPeriodo">New Perido</button>
-                        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Template Details</h3>
                     </div>
-                    <div class="form-group">
-                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
-                        <div class="col-xs-7 col-sm-5">
-                            <select id="periodo" class="selectpicker" data-size="5">
-                                <option value="0">--- Seleccione ---</option>
-                                @*@foreach (var fechas in Model.Fechas)
-                                {
-                                    <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
-                                }*@
-                            </select>
+                    <div class="box-body">
+                        @*<div class="form-group">
+                                <div class="col-sm-4 col-md-3">
+                                    <button type="button" class="btn btn-warning RegistrarPeriodo">New Perido</button>
+                                </div>
+                            </div>*@
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="periodo" class="selectpicker" data-size="5">
+                                    <option value="0">--- Seleccione ---</option>
+                                    @*@foreach (var fechas in Model.Fechas)
+                                        {
+                                            <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
+                                        }*@
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    @*@if (Model.DESCR_TIPO_SERVICIO == "TERRESTRE" || Model.DESCR_TIPO_SERVICIO == "AEREO")
-                    {*@
+                        @*@if (Model.DESCR_TIPO_SERVICIO == "TERRESTRE" || Model.DESCR_TIPO_SERVICIO == "AEREO")
+                            {*@
 
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">City:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="tipoacomodacion" class="selectpicker" data-size="5">
-                                    <option value="PVT">Privado</option>
-                                    <option value="CMP">Compartido</option>
+                                    <option value="0">--- Seleccione ---</option>
+
+                                    @*<option value="PVT">Privado</option>
+                                    <option value="CMP">Compartido</option>*@
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Passenger Type:</label>
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="tipopasajero" class="selectpicker" data-size="5">
                                     <option value="">--- Seleccione ---</option>
-                                    <option value="ADULTO">ADULTO</option>
-                                    <option value="CHILD">NIÑO</option>
+                                    @*<option value="ADULTO">ADULTO</option>
+                                    <option value="CHILD">NIÑO</option>*@
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people:</label>
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service :</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipopasajero" class="selectpicker" data-size="5">
+                                    <option value="">--- Seleccione ---</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Accomodation Type:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipopasajero" class="selectpicker" data-size="5">
+                                    <option value="">--- Seleccione ---</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Tariff Range:</label>
                             <div class="col-xs-7 col-sm-2">
                                 <input class="form-control" id="npersona" value="">
                             </div>
-                            <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">Until:</label>
+                         
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">N° Adults:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="npersona" value="">
+                            </div>
+                            <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">N° Child:</label>
                             <div class="col-xs-7 col-sm-2">
                                 <input class="form-control" id="hasta" value="">
                             </div>
                         </div>
-                    }
 
-                    @*@if (Model.DESCR_TIPO_SERVICIO == "HOTEL")
-                    {*@
                         <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Day:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="npersona" value="">
+                            </div>
+                            <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">Order:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="hasta" value="">
+                            </div>
+                        </div>
+                       
+
+                        @*@if (Model.DESCR_TIPO_SERVICIO == "HOTEL")
+                            {*@
+                        @*<div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="tipoacomodacion" class="selectpicker" data-size="5">
@@ -192,9 +236,9 @@
                                     <option value="PMS">PREMIER SUPERIOR</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>*@
 
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type of room:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="tipopasajero" class="selectpicker" data-size="5">
@@ -204,67 +248,78 @@
                                     <option value="TPL">TRIPLE</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>*@
                         @*<div class="form-group">
                                 <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">nª room:</label>
                                 <div class="col-xs-2 col-sm-2">
                                     <input class="form-control" id="npersona" value="">
                                 </div>
                             </div>*@
-                    @*}*@
+                        @*}*@
 
-                    <div class="form-group">
-                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Net rate x person:</label>
-                        <div class="col-xs-7 col-sm-2">
-                            <input class="form-control" id="neto" value="">
+                        @*<div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Net rate x person:</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="neto" value="">
+                            </div>
+                        </div>*@
+
+
+                        @*<div class="form-group">
+                            <div class="col-sm-4 col-md-3">
+                                <button type="button" class="btn btn-warning RegistrarTarifa">Save</button>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-warning RegistrarTarifa">Save</button>
+                            @*<button type="button" class="btn btn-warning" id="btn-cancelar">Cancelar</button>*@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-4 col-md-3">
-                            <button type="button" class="btn btn-warning RegistrarTarifa">Guardar Tarifa</button>
-                        </div>
+    </form>
+
+    @*</section>*@
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Services</h3>
+                </div>
+                <form>
+                    <div class="box-body">
+                        <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="myModal" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header modal-header-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @*<h4 class="modal-title">Modal Header</h4>*@
+                    <h4><i class="glyphicon glyphicon-remove"></i> Information</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This range already exists</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-
-</form>
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-info">
-            <div class="box-header with-border">
-                <h3 class="box-title">Resultados</h3>
-            </div>
-            <form>
-                <div class="box-body">
-                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="modal fade" id="myModal" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header modal-header-danger">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                @*<h4 class="modal-title">Modal Header</h4>*@
-                <h4><i class="glyphicon glyphicon-remove"></i> Information</h4>
-            </div>
-            <div class="modal-body">
-                <p>This range already exists</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
