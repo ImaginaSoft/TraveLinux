@@ -49,6 +49,8 @@ namespace TraveLinux.Data.Entidades
         public string CIUDAD_NOMBRE { get; set; }
         public string PAIS { get; set; }
         public string PAIS_NOMBRE { get; set; }
+        public string TIPO_SERVICIO_NOMBRE { get; set; }
+
 
 
     }

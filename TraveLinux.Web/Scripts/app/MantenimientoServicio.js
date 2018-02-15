@@ -185,20 +185,28 @@
          visible: true,
      },
 
-    {
-        title: 'BOX_LUNCH',
-        data: 'BOX_LUNCH',
-        width: 25,
-        className: 'not-mobile',
-        visible: false,
-    },
-    {
-        title: 'ESTADO',
-        data: 'ESTADO',
-        width: 20,
-        className: 'not-mobile',
-        visible: false,
-    },
+        {
+            title: 'TIPO SERVICIO',
+            data: 'TIPO_SERVICIO_NOMBRE',
+            width: 25,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+    //{
+    //    title: 'BOX_LUNCH',
+    //    data: 'BOX_LUNCH',
+    //    width: 25,
+    //    className: 'not-mobile',
+    //    visible: false,
+    //},
+    //{
+    //    title: 'ESTADO',
+    //    data: 'ESTADO',
+    //    width: 20,
+    //    className: 'not-mobile',
+    //    visible: false,
+    //},
     //{
     //    title: 'NOMBRE',
     //    data: 'NOMBRE',
@@ -623,7 +631,17 @@
     $("#formulario_servicio").validate({
         rules: {
             nombre: "required",
-            tproveedor: {
+            descripcion: "required",
+            tipo_servicio: {
+                required: true
+            },
+            //tipo_servicio: {
+            // required: true
+            //},
+            pais: {
+                required: true
+            },
+            departamentos: {
                 required: true
             }
             //alias: "required",
@@ -680,7 +698,13 @@
             //agree1: "required"
         },
         messages: {
-            nombre: "Please enter your name"
+            nombre: "Please enter your name",
+
+            tipo_servicio: "Please selected a services type",
+            pais: "Please enter country",
+            departamentos: "Please enter city",
+            descripcion : "gg"
+
             //alias: "Please enter your alias",
             //ruc: {
             //    required: "Please enter only digits",
@@ -705,13 +729,16 @@
             //email3: "Please enter a valid email address",
             //tproveedor: "Please selected a services type",
             //agree1: "Please accept our policy"
-        }
-        /* errorElement: "em" *//* ,
+        },
+        errorElement: "em",
         errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
             error.addClass("help-block");
 
+            // Add `has-feedback` class to the parent div.form-group
+            // in order to add icons to inputs
             element.parents(".col-sm-5").addClass("has-feedback");
-            element.parents(".col-sm-3").addClass("has-feedback"); 
+            element.parents(".col-sm-3").addClass("has-feedback"); //add to email
 
             if (element.prop("type") === "checkbox") {
                 error.insertAfter(element.parent("label"));
@@ -719,11 +746,13 @@
                 error.insertAfter(element);
             }
 
+            // Add the span element, if doesn't exists, and apply the icon classes to it.
             if (!element.next("span")[0]) {
                 $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
             }
-        } *//* ,
+        },
         success: function (label, element) {
+            // Add the span element, if doesn't exists, and apply the icon classes to it.
             if (!$(element).next("span")[0]) {
                 $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
             }
@@ -732,23 +761,24 @@
             $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
             $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
 
-            $(element).parents(".col-sm-3").addClass("has-error").removeClass("has-success"); 
+            $(element).parents(".col-sm-3").addClass("has-error").removeClass("has-success"); //add to email
             $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
         },
         unhighlight: function (element, errorClass, validClass) {
             $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
             $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
 
-            $(element).parents(".col-sm-3").addClass("has-success").removeClass("has-error"); 
+            $(element).parents(".col-sm-3").addClass("has-success").removeClass("has-error"); //add to email
             $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
-        } */
+        }
     }),
 
-        $('#formulario_servicio input').on('keyup blur', function () {
-            if ($('#formulario_servicio').valid()) {
-                $('button#btn-guardar').prop('disabled', false);
-            } else {
-                $('button#btn-guardar').prop('disabled', 'disabled');
-            }
-        });
+    $('#formulario_servicio input').on('keyup blur', function () {
+        if ($('#formulario_servicio').valid()) {
+            $('button#btn-guardar').prop('disabled', false);
+        } else {
+            $('button#btn-guardar').prop('disabled', 'disabled');
+        }
+    });
+         
 });

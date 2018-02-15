@@ -34,7 +34,7 @@
 
 <section class="content-header">
 
-    <h1>SERVICE</h1>
+    <h1>Service</h1>
 
 </section>
 <form id="formulario_servicio" method="post" class="form-horizontal" action="" novalidate="novalidate">
@@ -63,9 +63,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="alias" class="col-sm-2 control-label no-pad-right">Nombre:</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" id="nombre" placeholder="Enter name" name="nombre">
+                        <label for="alias" class="col-sm-2 control-label no-pad-right">Service Name:</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="nombre" placeholder="Enter Service Name" name="nombre">
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@
                         <label for="type" class="col-sm-2 control-label no-pad-right">Type:</label>
                         <div class="col-sm-4">
                             <select id="tipo_servicio" class="selectpicker" data-size="5" required>
-                                <option value="">--- Seleccione ---</option>
+                                <option value="">--- Nothing Selected ---</option>
                                 <option value="TER">TERRESTRE</option>
                                 <option value="HTL">HOTEL</option>
                                 <option value="AER">AEREO</option>
@@ -87,7 +87,7 @@
                         <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Valoracion Por Servicio:</label>
                         <div class="col-xs-12 col-sm-5 col-md-3">
                             <select id="valorxservicio" class="selectpicker" name="valorxservicio">
-                                <option value="">--- Seleccione ---</option>
+                                <option value="">--- Nothing Selected ---</option>
                                 <option value="MTF">MONTO FIJO</option>
                                 <option value="CPH">CANTIDAD PASAJEROS O HAB</option>
                                 <option value="CXT">CANTIDAD PASAJEROS POR TIPO DE</option>
@@ -106,8 +106,8 @@
                     <div class="form-group">
                         <label for="name" class="col-xs-12 col-sm-2 control-label no-pad-right">Country:</label>
                         <div class="col-xs-12 col-sm-5 col-md-3">
-                            <select id="pais" class="selectpicker" data-size="5" data-live-search="true">
-                                <option>--- Seleccione ---</option>
+                            <select id="pais" class="selectpicker" data-size="5" data-live-search="true" required>
+                                <option>--- Nothing Selected ---</option>
                                 @foreach (var paises in Model.Paises)
                                 {
                                     <option value="@paises.PAIS">@paises.NOMBRE</option>
@@ -140,7 +140,7 @@
 
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label no-pad-right">Description:</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <input class="form-control" id="descripcion" placeholder="Enter Description">
                         </div>
 

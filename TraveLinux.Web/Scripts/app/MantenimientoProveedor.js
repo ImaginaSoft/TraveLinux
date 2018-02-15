@@ -744,7 +744,7 @@
                 required: true
             },
             ruc: {
-                required: true,
+               // required: true,
                // digits: true,
                 //maxlength: 13,
                 //minlength: 13

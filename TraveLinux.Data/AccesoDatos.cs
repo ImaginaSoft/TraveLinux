@@ -410,6 +410,7 @@ namespace TraveLinux.Data
                         servicio.DESC_ALE = reader.GetStringOrDefault(21);
                         servicio.ESTADO = reader.GetStringOrDefault(22);
                         servicio.CIUDAD_NOMBRE = reader.GetStringOrDefault(23);
+                        servicio.TIPO_SERVICIO_NOMBRE = reader.GetStringOrDefault(24);
                         lstservicio.Add(servicio);
                     }
                 }
