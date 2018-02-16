@@ -561,6 +561,22 @@ namespace TraveLinux.Business
         }
 
 
+        public void GuardarPlantilla(Plantilla ePlantilla)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarPlantilla(ePlantilla);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar la plantilla", e);
+            }
+        }
+
+
+
+
 
     }
 }

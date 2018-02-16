@@ -1451,9 +1451,34 @@ namespace TraveLinux.Data
         }
 
 
+        public void GuardarPlantilla(Plantilla ePlantilla)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_PLANTILLA");
+                //command.CommandText = "SP_CREAR_PLANTILLA";
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2,50).Value = ePlantilla.DESCRIPCION;
+                command.Parameters.Add("P_EJECUTIVA", OracleDbType.Varchar2, 20).Value = "Bari";
+                command.Parameters.Add("P_CANT_CHILD", OracleDbType.Int32).Value = ePlantilla.CANT_CHILD;
+                command.Parameters.Add("P_CANT_ADULT", OracleDbType.Int32).Value = ePlantilla.CANT_ADULT;
+                command.Parameters.Add("P_CANT_PAX", OracleDbType.Int32).Value = ePlantilla.CANT_ADULT + ePlantilla.CANT_CHILD;
+                command.Parameters.Add("P_FECHA_INI", OracleDbType.Date).Value = Convert.ToDateTime(ePlantilla.FECHA_INI);
+                command.Parameters.Add("P_MARKUP", OracleDbType.Int32).Value = ePlantilla.MARKUP;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = ePlantilla.ESTADO;
+      
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
       
     }
-
 
 
     public static class OracleExtensions

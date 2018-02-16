@@ -103,64 +103,53 @@
     //}
 
 
-    //// Guardar Cliente
+    // Guardar Plantilla
 
-    //function onClickRegistrarCliente() {
+    function onClickGuardarPlantilla() {
 
-    //    var valor = 0;
+        var valor = 0;
 
-    //    if ($('input#inlineCheckbox1').is(':checked')) {
-    //        valor = 1
-    //    }
-    //    else {
-    //        valor = 0
-    //    }
-    //    debugger;
-    //    var data = {
-    //        eCliente: {
-    //            Nombre: $('#nombre').val(),
-    //            Paterno: $('#paterno').val(),
-    //            Materno: $('#materno').val(),
-    //            Documento: $('#documento').val(),
-    //            Numero: $('#numero').val(),
-    //            Estado: valor,
-    //            Fec_Nacimiento: $('#fechanacimiento').data('DateTimePicker').date(),
-    //            Rango_Edad: $('#rangoedad').val(),
-    //            Estado_Civil: $('#estadocivil').val(),
-    //            Genero: $('#genero').val(),
-    //            Pais: $('#pais').val(),
-    //            Departamento: $('#departamentos').val(),
-    //            Direccion: $('#direccion').val(),
-    //            Idioma: $('#idioma').val(),
-    //            Email: $('#email1').val(),
-    //            Email_2: $('#email2').val(),
-    //            Email_3: $('#email3').val(),
-    //            Telefono: $('#telefono1').val(),
-    //            Telefono_2: $('#telefono2').val(),
-    //            Telefono_3: $('#telefono3').val(),
-    //            Notas: $('#notas').val(),
-
-    //        }
-    //    }
+        if ($('input#inlineCheckbox1').is(':checked')) {
+            valor = "S"
+        }
+        else {
+            valor = "N"
+        }
+        //debugger;
+        var data = {
+            ePlantilla: {
+                Descripcion: $('#template_name').val(),
+                //Ejecutiva: $('#paterno').val(),
+                Cant_child: $('#cant_child').val(),
+                Cant_adult: $('#cant_adult').val(),
+               // Cant_pax: $('#numero').val(),
+                Estado: valor,
+                Fecha_ini: $('#fecha_inicio').data('DateTimePicker').date(),
+                Markup: $('#markup').val()
+            }
+        }
 
 
-    //    $.ajax({
-    //        type: 'POST',
-    //        url: '/Cliente/GuardarCliente',
-    //        contentType: 'application/json; charset=utf-8',
-    //        data: JSON.stringify(data)
-    //    })
-    //    .done(function (data) {
-    //        showSuccessMessage('Se ha guardado el Cliente');
-    //        setTimeout(function () {
-    //            window.location = '/Cliente/Index';
-    //        }, 2000);
-    //    })
-    //    .fail(function () {
-    //        showErrorMessage('No se pudo guardar el cliente. Inténtelo de nuevo.');
-    //        enableAllComponents(true);
-    //    });
-    //}
+        $.ajax({
+            type: 'POST',
+            url: '/Plantilla/GuardarPlantilla',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        })
+        .done(function (data) {
+            showSuccessMessage('Se ha guardado la plantilla');
+            setTimeout(function () {
+                window.location = '/Plantilla/CrearPlantillaDetalle';
+            }, 2000);
+        })
+        .fail(function () {
+            showErrorMessage('No se pudo guardar la plantilla. Inténtelo de nuevo.');
+            enableAllComponents(true);
+        });
+    }
+
+    $('#btn-guardar').on('click', onClickGuardarPlantilla);
+
 
 
     //// Actualizar Cliente

@@ -50,6 +50,7 @@ namespace TraveLinux.Business
         //void ValidarRango(Tarifa  eTarifa);
         Tarifa ValidarRango(Tarifa eTarifa);
         void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
+        void GuardarPlantilla(Plantilla ePlantilla);
 
 
 

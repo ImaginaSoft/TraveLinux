@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TraveLinux.Data.Entidades;
+using TraveLinux.Web.Attributes;
+using TraveLinux.Web.Models;
 
 namespace TraveLinux.Web.Controllers
 {
-    public class PlantillaController : Controller
+    public class PlantillaController : BaseController
     {
         //
         // GET: /Plantilla/
@@ -28,6 +31,16 @@ namespace TraveLinux.Web.Controllers
 
         public ActionResult BuscarPlantilla(){
             return View();
+        }
+
+        [HttpPost]
+        public void GuardarPlantilla(Plantilla ePlantilla)  {
+
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.GuardarPlantilla(ePlantilla);
+
+
         }
 
 
