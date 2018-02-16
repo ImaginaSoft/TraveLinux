@@ -12,6 +12,50 @@
 
 
 <style>
+
+.modal-header-danger {    
+    background-color: #15ab72 !important; 
+}
+
+
+
+
+
+    .modal-footer { 
+    padding: 10px !important;
+    
+}
+
+        .modal-content {
+    border-radius: 10px !important;
+    
+}
+
+    .close {
+        float: right;
+        font-size: 30px;
+    }
+
+
+    /*.modal-header .close {
+  display:none;
+}*/
+
+
+
+    .modal-header-danger {
+	color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #d9534f;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
     .the-legend {
         border-style: none;
         border-width: 0;
@@ -82,7 +126,7 @@
                             <br />
                         </div>
                         <div class="col-sm-4 col-md-3">
-                            <button class="btn btn-warning btn-block CargaTarifa" title="Cargar Tarifa"><span class="glyphicon glyphicon-list-alt"></span> Rate Upload </button>
+                            <a class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal" title="Cargar Tarifa"><span class="glyphicon glyphicon-list-alt"></span> Rate Upload </a>
                             <br />
                         </div>
                     </div>
@@ -143,6 +187,34 @@
                     <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal" role="dialog" data-toggle="modal" aria-hidden="true" @*data-backdrop="static" data-keyboard="false"*@>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @*<h4 class="modal-title">Modal Header</h4>*@
+                <h4><i class="glyphicon glyphicon-info-sign"></i> Choose an option</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group text-center">                        
+                            <select id="Tservicio" class="selectpicker">
+                                <option value="0">--- OPCION ---</option>
+                                <option value="TER">TERRESTRE</option>
+                                <option value="AER">AEREO</option>
+                                <option value="HOT">HOTELES</option>
+                            </select>                                            
+</div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger CargaTarifa" data-dismiss="modal" disabled>Acept</button>
+                    @*<button class="btn btn-warning btn-block RegistrarServicio" title="Crear Servicio"><span class="glyphicon glyphicon-list-alt"></span> New Service</button>*@                            
+                </div>
+            </div>
         </div>
     </div>
 </div>

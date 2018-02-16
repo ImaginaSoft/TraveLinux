@@ -330,6 +330,8 @@ namespace TraveLinux.Data
             return lproveedor;
         }
 
+
+
         public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa)
         {
             var lstTarifa = new List<Tarifa>();
@@ -436,6 +438,23 @@ namespace TraveLinux.Data
                 command.ExecuteNonQuery();
             }
 
+        }
+
+
+        public void Eliminar_TablaTemporal()
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_TABLA_TEMPORAL");
+
+                command.Parameters.Add("P_VALIDO", OracleDbType.Varchar2, 50).Value = 1;
+                command.CommandType = CommandType.StoredProcedure;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<Pais> ObtenerPaises()
@@ -1386,20 +1405,37 @@ namespace TraveLinux.Data
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO.Substring(0, 3);
-                command.Parameters.Add("P_FECHA_INICIO", OracleDbType.Date).Value = eEntidad.FECHA_INICIO;
-                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = eEntidad.FECHA_FIN;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PERSONA;
-                command.Parameters.Add("P_RANGO_PAX", OracleDbType.Int32).Value = eEntidad.RANGO_PAX;
-                command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
-                command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO_2;
-                command.Parameters.Add("P_PERIODO", OracleDbType.Int32).Value = eEntidad.PERIODO;
+                command.Parameters.Add("P_SGL_ROOM", OracleDbType.Decimal,7).Value = eEntidad.SGL_ROOM;
+                command.Parameters.Add("P_DWL_ROOM", OracleDbType.Decimal, 7).Value = eEntidad.DWL_ROOM;
+                command.Parameters.Add("P_TPL_ROOM", OracleDbType.Decimal, 7).Value = eEntidad.TPL_ROOM;
+                command.Parameters.Add("P_CDL_ROOM", OracleDbType.Decimal, 7).Value = eEntidad.CDL_ROOM;
+                command.Parameters.Add("P_PERIODO", OracleDbType.Decimal, 7).Value = eEntidad.PERIODO;
                 command.Parameters.Add("P_VALIDADO", OracleDbType.Int32).Value = validado;
-
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+
+
+        public void Copiar_Temporal_ServicioHotel(int iProveedor)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_COPIAR_TARIFA_DETALLE_HOTEL");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = iProveedor;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
 
 
         private void Guardar_Tarifa(Tarifa eEntidad)

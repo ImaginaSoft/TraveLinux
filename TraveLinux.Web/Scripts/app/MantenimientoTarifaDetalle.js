@@ -3,35 +3,35 @@
     
     /*CARGA DINAMICO*/
 
-    $('#Tservicio').on('change', function () {
+    //$('#Tservicio').on('change', function () {
 
-        var TServicio = $(this).val();       
+    //    var TServicio = $(this).val();
         
-        if (TServicio == "TER" || TServicio == "AER") {
+    //    if (TServicio == "TER" || TServicio == "AER") {
 
-            $('#GrillaHot').hide();
-            $('#GrillaTer_Aer').show();
-            if (TServicio == "TER") {
-                $("#btn-guardarCarga").html('Save Terrestre');
-            }
+    //        $('#GrillaHot').hide();
+    //        $('#GrillaTer_Aer').show();
+    //        if (TServicio == "TER") {
+    //            $("#btn-guardarCarga").html('Save Terrestre');
+    //        }
 
-            if (TServicio == "AER") {
-                $("#btn-guardarCarga").html('Save Aereo');
-            }
-        }
+    //        if (TServicio == "AER") {
+    //            $("#btn-guardarCarga").html('Save Aereo');
+    //        }
+    //    }
 
-       else if (TServicio == "HOT") {
+    //   else if (TServicio == "HOT") {
 
-            $('#GrillaTer_Aer').hide();
-            $('#GrillaHot').show();
-            $("#btn-guardarCargaHot").html('Save Hotel');
-        }
+    //        $('#GrillaTer_Aer').hide();
+    //        $('#GrillaHot').show();
+    //        $("#btn-guardarCargaHot").html('Save Hotel');
+    //    }
 
-        else {
-            $('#GrillaTer_Aer').hide();
-            $('#GrillaHot').hide();
-        }
-    });
+    //    else {
+    //        $('#GrillaTer_Aer').hide();
+    //        $('#GrillaHot').hide();
+    //    }
+    //});
 
 
 
@@ -89,7 +89,7 @@
     function onClickGuardarCargaTarifaHoteles() {
 
         var lstTarifas = new Array();
-        $("#GrillaHot #tblCustomers TBODY TR").each(function () {
+        $("#tblCustomers TBODY TR").each(function () {
             debugger;
             var row = $(this);
             var tarifa = {};
@@ -133,7 +133,7 @@
 
     $('#btn-guardarCarga').on('click', onClickGuardarCargaTarifa);  
  
-    $('#btn-guardarCargaHot').on('click', onClickGuardarCargaTarifaHoteles);  
+    $('#btn-guardarCargaHot').on('click', onClickGuardarCargaTarifaHoteles);
  
 
 

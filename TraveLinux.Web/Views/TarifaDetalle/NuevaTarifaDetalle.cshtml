@@ -105,9 +105,8 @@ tr th:last-child {
                                         <input class="form-control" id="proveedor_nombre" value="@ViewBag.Proveedor_Nombre" disabled>
                                         <input class="form-control hidden" id="proveedor" value="@ViewBag.Proveedor" disabled>
                                         <br />
-                                    </div>
-                                     
-                                <label for="name" class="col-sm-3 control-label no-pad-right">Seleccionar:</label>
+                                    </div>                                     
+                                @*<label for="name" class="col-sm-3 control-label no-pad-right">Seleccionar:</label>
                                 <div class="col-xs-12 col-sm-7 col-md-7">
                                     <select id="Tservicio" class="selectpicker">
                                         <option value="0">--- OPCION ---</option>
@@ -115,15 +114,12 @@ tr th:last-child {
                                         <option value="AER">AEREO</option>
                                         <option value="HOT">HOTELES</option>                                   
                                     </select>
-                                </div>
-                       
+                                </div>*@                       
                                 </fieldset>
                             </div>
                         </div> 
 
                         @* PARA TERRESTRE Y AEREO *@
-
-                        <div id="GrillaTer_Aer" hidden>
 
 
                             @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new
@@ -173,67 +169,10 @@ tr th:last-child {
                                 </table>
                             }
                             <button class="btn btn-warning" id="btn-guardarCarga">
-                                <span class="glyphicon glyphicon-save"></span>
+                                <span class="glyphicon glyphicon-save">SAVE</span>
                             </button>
-                        </div> 
-
-                        @* PARA HOTELES *@
 
 
-                        <div id="GrillaHot" hidden>
-
-                            @using (Html.BeginForm("NuevaTarifaDetalle", "TarifaDetalle", new
-                            {
-                                Proveedor = @ViewBag.Proveedor,
-                                TipoServicio = "Hoteles"
-                            }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                <input type="file" name="UploadedFile" />
-                                <input type="submit" name="Submit" value="Submit" />
-                            }
-
-                            @if (Model != null)
-                            {
-                                <table class="table" id="tblCustomers" cellpadding="0" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>DESCRIPCION</th>
-                                            <th>FECHA INICIO</th>
-                                            <th>FECHA FIN</th>
-                                            <th>TIPO PERSONA</th>
-                                            <th>TIPO SERVICIO</th>
-                                            <th>SGL ROOM</th>
-                                            <th>DWL ROOM</th>
-                                            <th>TPL ROOM</th>
-                                            <th>CDL ROOM</th>                                            
-                                            <th class="hidden">TEMPORADA</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="tbhotel">
-                                        @foreach (ServicioViewModels tarif in Model)
-                                        {
-                                            <tr>
-                                                <td id="descripcion">@tarif.DESCRIPCION</td>
-                                                <td id="fecha_inicio">@tarif.FECHA_INI</td>
-                                                <td id="fecha_fin">@tarif.FECHA_FIN</td>
-                                                <td id="tipopersona">@tarif.TIPO_PERSONA</td>
-                                                <td id="tiposervicio">@tarif.TIPO_SERVICIO</td>
-                                                <td id="sglroom">@tarif.SGL_ROOM</td>
-                                                <td id="dwlroom">@tarif.DWL_ROOM</td>
-                                                <td id="tplroom">@tarif.TPL_ROOM</td>
-                                                <td id="cdlroom">@tarif.CDL_ROOM</td>                                                
-                                                <td class="hidden" id="temporada">@tarif.TEMPORADA</td>
-                                            </tr>
-                                        }
-                                    </tbody>
-
-                                </table>
-                            }
-
-                            <button class="btn btn-warning" id="btn-guardarCargaHot">
-                                <span class="glyphicon glyphicon-save"></span>
-                            </button>
-                        </div>
 
 
                         </div>
