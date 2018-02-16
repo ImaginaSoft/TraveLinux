@@ -724,6 +724,29 @@ namespace TraveLinux.Data
 
         }
 
+        public void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_TARIFA");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2).Value = Tarifa;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
+                command.Parameters.Add("P_RANGO", OracleDbType.Varchar2).Value = Rango;
+                command.Parameters.Add("P_TIPO_PAX", OracleDbType.Varchar2).Value = Tipo_Pasajero;
+
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+
+
         public void GuardarServicio(Servicio eServicio)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -957,6 +980,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eTarifa.TARIFA;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR ;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.SERVICIO;
+                command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_PASAJERO;
                 command.Parameters.Add("P_VALIDAR", OracleDbType.Int32).Direction = ParameterDirection.Output;
 
                 connection.Open();

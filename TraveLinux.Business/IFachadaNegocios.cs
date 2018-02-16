@@ -52,7 +52,7 @@ namespace TraveLinux.Business
         void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
         void GuardarPlantilla(Plantilla ePlantilla);
 
-
+        void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
 
     }
 }

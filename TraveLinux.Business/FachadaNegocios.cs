@@ -229,6 +229,19 @@ namespace TraveLinux.Business
             }
         }
 
+        public void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarTarifa(Tarifa, Proveedor, Rango, Tipo_Pasajero);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar la tarifa", e);
+            }
+        }
+
         public void GuardarServicio(Servicio eServicio)
         {
             try

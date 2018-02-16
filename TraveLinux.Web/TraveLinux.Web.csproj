@@ -213,6 +213,7 @@
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\MensajeController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
+    <Compile Include="Controllers\PlantillaController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RangosController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Scripts\app\MantenimientoMoneda.js" />
     <Content Include="Scripts\app\MantenimientoPais.js" />
     <Content Include="Scripts\app\MantenimientoPeriodo.js" />
+    <Content Include="Scripts\app\MantenimientoPlantilla.js" />
     <Content Include="Scripts\app\MantenimientoProveedor.js" />
     <Content Include="Scripts\app\MantenimientoServicio.js" />
     <Content Include="Scripts\app\MantenimientoTarifa.js" />
@@ -340,6 +342,10 @@
     <Content Include="Views\Servicios\CargaServicio.cshtml" />
     <Content Include="Views\Servicios\EditarServicio.cshtml" />
     <Content Include="Views\Periodo\Index.cshtml" />
+    <Content Include="Views\Plantilla\BuscarPlantilla.cshtml" />
+    <Content Include="Views\Plantilla\CrearPlantilla.cshtml" />
+    <Content Include="Views\Plantilla\CrearPlantillaDetalle.cshtml" />
+    <Content Include="Views\Plantilla\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

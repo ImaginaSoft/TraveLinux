@@ -105,6 +105,15 @@ namespace TraveLinux.Web.Controllers
         //    Fachada.ValidarRango(eTarifa);
         //}
 
+        [HttpPost]
+        public void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            Fachada.EliminarTarifa(Tarifa, Proveedor, Rango, Tipo_Pasajero);
+        }
+
+
+
         public ActionResult ValidarRango(Tarifa eTarifa)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
