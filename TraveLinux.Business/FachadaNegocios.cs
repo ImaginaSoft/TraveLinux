@@ -475,6 +475,22 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
             }
         }
+
+
+        public void Copiar_Temporal_ServicioHotel(int iProveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.Copiar_Temporal_ServicioHotel(iProveedor);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
+            }
+        }
+
+
         public void GuardarTarifa(List<Tarifa> lsttarifa)
         {
             try
@@ -557,6 +573,19 @@ namespace TraveLinux.Business
             catch (Exception e)
             {
                 throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
+            }
+        }
+
+        public void Eliminar_TablaTemporal()
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.Eliminar_TablaTemporal();
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("");
             }
         }
 

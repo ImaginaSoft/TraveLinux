@@ -41,6 +41,8 @@ namespace TraveLinux.Business
         void GuardarServicio(Servicio eServicio);
         void GuardarTarifa(List<Tarifa> eTarifa);
         void GuardarPeriodo(Periodo ePeriodo);
+
+        void Copiar_Temporal_ServicioHotel(int iProveedor);
         void GuardarPeriodoCap_Lista_Detalle(List<Tarifa_Detalle> lsttarifa, int validado);
         void GuardarPeriodoCap_Lista_Detalle_Hoteles(List<Tarifa_Detalle> lsttarifa, int validado);
         void GuardarTarifa_Lista_Detalle_Hoteles(List<Tarifa_Detalle> lsttarifa, int validado);
@@ -50,8 +52,6 @@ namespace TraveLinux.Business
         //void ValidarRango(Tarifa  eTarifa);
         Tarifa ValidarRango(Tarifa eTarifa);
         void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
-
-
-
+        void Eliminar_TablaTemporal();
     }
 }

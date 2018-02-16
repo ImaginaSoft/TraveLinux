@@ -1,7 +1,6 @@
 ﻿$(function () {
     var Proveedor = $("#proveedor").val();
 
-
     $('#pais').on('change', function () {
 
         var Pais = $(this).val();
@@ -478,10 +477,7 @@
     }
 
 
-    function onClickCargaTarifa(e) {
-        e.preventDefault();
-        window.location = '/TarifaDetalle/NuevaTarifaDetalle?Proveedor=' + Proveedor;
-    }
+
 
     function onClickGuardarServicio() {
 
@@ -602,8 +598,63 @@
     window.onClickCargaServicio = onClickCargaServicio;
 
 
-    $('.form-horizontal').on('click', 'button.CargaTarifa', onClickCargaTarifa);
-    window.onClickCargaTarifa = onClickCargaTarifa;
+    function onClickCargaTerAer(e) {
+            e.preventDefault();
+            window.location = '/TarifaDetalle/NuevaTarifaDetalle?Proveedor=' + Proveedor;
+        }
+
+    function onClickCargaHotel(e) {
+        e.preventDefault();
+        window.location = '/TarifaDetalle/NuevaTarifaDetalleHotel?Proveedor=' + Proveedor;
+    }
+
+
+    //$('.form-horizontal').on('click', 'button.CargaTarifa', onClickCargaTarifa);
+    //window.onClickCargaTarifa = onClickCargaTarifa;
+
+    //debugger;
+    //$('.CargaTarifa').on('click', 'button.CargaTarifa', function () {
+    //    debugger;
+    //    $('#myModal').show();
+    //});
+
+    //$("#CargaTarifa").click(function () {
+    //    alert("hola");
+    //    $("#myModal").show();
+    //});
+
+
+
+        $('#Tservicio').on('change', function () {
+
+        var Tservicio = $(this).val();
+        
+        if (Tservicio == "TER") {
+            $('button.CargaTarifa').prop("disabled", false);
+            $('.modal').on('click', 'button.CargaTarifa', onClickCargaTerAer);
+            
+            
+        }
+        if (Tservicio == "AER") {
+            $('button.CargaTarifa').prop("disabled", false);
+            $('.modal').on('click', 'button.CargaTarifa', onClickCargaTerAer);
+        }
+            //$("#btn-guardarCarga").html('Save Aereo');        }
+
+        if (Tservicio == "HOT") {
+        $('button.CargaTarifa').prop("disabled", false);
+        $('.modal').on('click', 'button.CargaTarifa', onClickCargaHotel);
+        //$("#btn-guardarCarga").html('Save Hotel');
+        }
+
+        if (Tservicio == "0") {
+            $('button.CargaTarifa').prop("disabled", true);            
+        }
+
+        
+    });
+
+
 
 
     $('#btn-guardar').on('click', onClickGuardarServicio);
