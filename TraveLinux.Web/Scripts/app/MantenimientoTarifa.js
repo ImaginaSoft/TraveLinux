@@ -25,20 +25,16 @@
     }
 
 
-    $('#npersona').on('change', function () {        
-        //var Rango = $(this).val();
-        debugger;
-        //var lstTarifas = {
-        //        Proveedor: $('#proveedor').val(),
-        //        Servicio: $('#servicio').val()
-        //}
+    $('#npersona').on('change', function () {       
 
+        debugger;
         var data = {
             eTarifa: {
                    Tarifa: $('#periodo').val(),
                    Desde: $('#npersona').val(),
                   Proveedor: $('#proveedor').val(),
-                  Servicio: $('#servicio').val()
+                  Servicio: $('#servicio').val(),
+                  Tipo_Pasajero: $('#tipopasajero').val(),
                 }
             }
                 

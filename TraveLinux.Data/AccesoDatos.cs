@@ -957,6 +957,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eTarifa.TARIFA;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR ;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.SERVICIO;
+                command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_PASAJERO;
                 command.Parameters.Add("P_VALIDAR", OracleDbType.Int32).Direction = ParameterDirection.Output;
 
                 connection.Open();
