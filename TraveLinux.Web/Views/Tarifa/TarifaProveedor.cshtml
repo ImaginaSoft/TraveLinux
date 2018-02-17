@@ -153,7 +153,7 @@
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="periodo" class="selectpicker" data-size="5">
-                                    <option value="0">--- Seleccione ---</option>
+                                    @*<option value="0">--- Seleccione ---</option>*@
                                     @foreach (var fechas in Model.Fechas)
                                     {
                                         <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
@@ -186,11 +186,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people:</label>
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people  from:</label>
                             <div class="col-xs-7 col-sm-2">
                                 <input class="form-control" id="npersona" value="">                                
                             </div>
-                            <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">Until:</label>
+                            <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">to:</label>
                             <div class="col-xs-7 col-sm-2">
                                 <input class="form-control" id="hasta" value="" >                                
                             </div>
@@ -241,8 +241,11 @@
                     
 
                         <div class="form-group">
+                            <div class="col-sm-1 col-md-1">
+                                <button type="button" class="btn btn-warning RegistrarTarifa">Save rate</button>
+                            </div>
                             <div class="col-sm-4 col-md-3">
-                                <button type="button" class="btn btn-warning RegistrarTarifa">Guardar Tarifa</button>
+                                <button type="button" class="btn btn-warning btn-Regresar"> &nbsp;&nbsp; Back &nbsp;</button>
                             </div>
                         </div>
                     </div>

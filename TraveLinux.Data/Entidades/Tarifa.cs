@@ -23,7 +23,7 @@ namespace TraveLinux.Data.Entidades
         public string ESTADO { get; set; }
         public Int32 RANGO { get; set; }
         public int DINAMICO { get; set; }
-        public int PRECIO { get; set; }
+        public decimal  PRECIO { get; set; }
         public string TIPO_ACOMODACION { get; set; }
         public string TIPO_SERVICIO { get; set; }
         public Int32 PERIODO { get; set; }

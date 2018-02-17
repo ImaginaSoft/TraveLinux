@@ -360,7 +360,7 @@ namespace TraveLinux.Data
                         tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(4);
                         tarifa.DESCR_TIPO_ACOMODACION = reader.GetStringOrDefault(5);
                         tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(6);
-                        tarifa.PRECIO = reader.GetInt32(7);
+                        tarifa.PRECIO = reader.GetDecimal(7);
                         lstTarifa.Add(tarifa);
                     }
                 }
@@ -1454,7 +1454,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_ACOMODACION;
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
                 command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_PASAJERO;
-                command.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = eEntidad.PRECIO;
+                command.Parameters.Add("P_PRECIO", OracleDbType.Decimal).Value = eEntidad.PRECIO;
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -1489,7 +1489,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_BOX_LUNCH", OracleDbType.Varchar2, 50).Value = null;
                 command.Parameters.Add("P_RUTA", OracleDbType.Varchar2, 50).Value = null;
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO.Substring(0, 3);
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO;
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = null;
                 command.Parameters.Add("P_DESC_ESP", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_ESP;
                 command.Parameters.Add("P_DESC_INGL", OracleDbType.Varchar2, 1000).Value = eEntidad.DESC_INGL;

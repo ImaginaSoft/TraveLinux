@@ -222,6 +222,13 @@
     }
 
 
+    function onClickRegresar(e) {
+        e.preventDefault();
+         var Proveedor = $("#proveedor").val();
+        window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
+        //window.location = '/Tarifa/TarifaProveedor?Servicio=' + item["SERVICIO"] + '&Proveedor=' + item["PROVEEDOR"];
+    }
+
     function onClickRegistrarTarifaDetalle(e) {
         e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
@@ -273,7 +280,7 @@
         .done(function (data) {
             showSuccessMessage('Se ha eliminado la tarifa');
             setTimeout(function () {
-                window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
+                window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
             }, 2000);
         })
         .fail(function () {
@@ -282,10 +289,7 @@
         });
 
     }
-
-
-
-
+    
 
     //*LISTA TARIFA*//
     var grid = $('#resultados').DataTable({
@@ -421,6 +425,8 @@
         ]
     });
 
+    $('.form-horizontal').on('click', 'button.btn-Regresar', onClickRegresar);
+    window.onClickRegresar = onClickRegresar;
 
     $('#resultados tbody').on('click', 'button.btn-EliminarTarifa', onClickEliminarTarifa);
     window.onClickEliminarTarifa = onClickEliminarTarifa;
