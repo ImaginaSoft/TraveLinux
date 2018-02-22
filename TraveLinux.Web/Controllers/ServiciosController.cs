@@ -107,6 +107,8 @@ namespace TraveLinux.Web.Controllers
                 NOMBRE = proveedor.NOMBRE
             };
 
+            ViewBag.Contador = 0;
+
             return View(modelo);
         }
 
