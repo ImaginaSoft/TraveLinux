@@ -7,9 +7,10 @@ namespace TraveLinux.Web.Models
 {
     public class TarifaDetalleViewModels
     {
-        public string PROVEEDOR { get; set; }
+        public Int32 PROVEEDOR { get; set; }
         public string TARIFA { get; set; }
         public string SERVICIO { get; set; }
+        public string TSERVICIO { get; set; }
         public string DESCRIPCION { get; set; }
         public string RANGO_DEL { get; set; }
         public string RANGO_AL { get; set; }

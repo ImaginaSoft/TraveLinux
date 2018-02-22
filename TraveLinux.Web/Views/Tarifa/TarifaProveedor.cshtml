@@ -11,6 +11,32 @@
 
 <style>
 
+    strong {
+    font-weight: 700;
+    color: #f39c12;
+}
+
+            .details {
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+
+                    .header {
+                background: #2f3956;
+                padding-left: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color: #fff;
+        }
+
+            .header p {
+                font-size: 23px;
+                color: rgb(155, 54, 72);
+                font-weight: bold;
+                margin-bottom: 0px;
+            }
+
+
     .modal-content {
     border-radius: 10px !important;
     
@@ -51,32 +77,44 @@
 </style>
 <script id="responsive-template" type="text/x-handlebars-template">
     <div class="row">
-        <div class="col-xs-12 header">
-            <p id="tarifa"></p>
+        <div class="col-xs-12 header">            
             <span>
-                <strong>TARIFA</strong>
-                <span id="tarifa"></span>
+                <strong>TARIFA:</strong> 
+                <span id="tarifa"></span><br />
+                <strong>SERVICIO:</strong>
+                <span id="servicio"></span>
             </span>
-
         </div>
         <div class="col-xs-12 details">
             <table class="table table-borderless full-width">
                 <tbody>
                     <tr>
-                        <th>NOMBRE</th>
-                        <td id="nombre"></td>
+                        <th>TIPO SERVICIO</th>
+                        <td id="tiposervicio"></td>
                     </tr>
                     <tr>
-                        <th>FECHA VALIDEZ</th>
-                        <td id="fechavalidez"></td>
+                        <th>HABITACION</th>
+                        <td id="habitacion"></td>
                     </tr>
                     <tr>
-                        <th>FECHA INICIO</th>
-                        <td id="fechainivigencia"></td>
+                        <th>PASAJERO</th>
+                        <td id="pasajero"></td>
+                    </tr>
+                    <tr>
+                        <th>ACOMODACION</th>
+                        <td id="acomodacion"></td>
+                    </tr>
+                    <tr>
+                        <th>PRECIO</th>
+                        <td id="precio"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="col-xs-5 col-xs-offset-0 button-movil">
+            <button class="btn btn-danger btn-EliminarTarifa" title=""><i class="glyphicon glyphicon-trash" aria-hidden="true"></i> Delete</button>
+        </div>
+
     </div>
 </script>
 
@@ -119,7 +157,7 @@
                     <div class="form-group">
                         <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
                         <div class="col-xs-7 col-sm-5">
-                            <input class="form-control"  value="@Model.DESCR_TIPO_SERVICIO" disabled>
+                            <input class="form-control"  id="desc_servicio" value="@Model.DESCR_TIPO_SERVICIO" disabled>
                             <input type="hidden" class="form-control" id="tiposervicio" value="@Model.TIPO_SERVICIO" disabled>
                             <input type="hidden" class="form-control" id="servicio" value="@Model.SERVICIO" disabled>
                             
@@ -241,10 +279,10 @@
                     
 
                         <div class="form-group">
-                            <div class="col-sm-1 col-md-1">
+                            <div class="col-xs-3 col-sm-3 col-md-2">
                                 <button type="button" class="btn btn-warning RegistrarTarifa">Save rate</button>
                             </div>
-                            <div class="col-sm-4 col-md-3">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 <button type="button" class="btn btn-warning btn-Regresar"> &nbsp;&nbsp; Back &nbsp;</button>
                             </div>
                         </div>

@@ -89,6 +89,16 @@ namespace TraveLinux.Web.Controllers
             return Json(vTarifa);
         }
 
+        public ActionResult ListadoTarifaHoteles(TarifaDetalleViewModels filtro)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var vTarifa = Fachada.ObtenerListaTarifaHoteles(filtro.PROVEEDOR, filtro.SERVICIO, filtro.TARIFA);
+
+            return Json(vTarifa);
+        }
+
+
+
         public ActionResult ListadoFechasXTemporada(string Temporada)
         {
             var cuenta = Session["CUENTA"] as Cuenta;

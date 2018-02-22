@@ -122,7 +122,7 @@ namespace TraveLinux.Web.Controllers
 
             if (icount == 0)
             {
-                ViewBag.Contador = 0;
+                ViewBag.Contador = 1;
             }
 
             return Json(vServicio);

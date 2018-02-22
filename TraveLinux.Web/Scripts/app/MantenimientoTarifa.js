@@ -1,7 +1,9 @@
 ﻿$(function () {
     var vProveedor = $('#proveedor').val();
     var vServicio = $('#servicio').val();
+    var vdesc_servicio = $('#desc_servicio').val();
     
+    //alert(vdesc_servicio.trim());
 
     $('#dtp_start').datetimepicker({
         defaultDate: new Date(),
@@ -289,141 +291,317 @@
         });
 
     }
+  
     
 
-    //*LISTA TARIFA*//
-    var grid = $('#resultados').DataTable({
-        scrollX: true,
-        paging: true,
-        processing: true,
-        ordering: false,
-        deferLoading: 0,
-        responsive: {
-            details: {
-                type: 'column',
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                renderer: function (api, index, columns) {
-                    $('div#resultados_wrapper .dataTables_scrollHead').hide();
 
-                    var row = $(api.row(index).node());
-                    row.hide();
+    if (vdesc_servicio.trim() == "TERRESTRE") {        
 
-                    var html = $('#responsive-template').html();
-                    var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
+        //*LISTA TARIFA*//
+        var grid = $('#resultados').DataTable({
+            scrollX: true,
+            paging: true,
+            processing: true,
+            ordering: false,
+            deferLoading: 0,
+            responsive: {
+                details: {
+                    type: 'column',
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    renderer: function (api, index, columns) {
+                        $('div#resultados_wrapper .dataTables_scrollHead').hide();
+
+                        var row = $(api.row(index).node());
+                        row.hide();
+
+                        var html = $('#responsive-template').html();
+                        var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
 
 
-                    var template = $(html);
-                    template.find('#tarifa').html(columns[0].data);
-                    template.find('#nombre').html(columns[1].data);
-                    template.find('#fechavalidez').html(columns[2].data);
-                    template.find('#fechainivigencia').html(columns[3].data);
+                        var template = $(html);
+                        template.find('#tarifa').html(columns[0].data);
+                        template.find('#nombre').html(columns[1].data);
+                        template.find('#fechavalidez').html(columns[2].data);
+                        template.find('#fechainivigencia').html(columns[3].data);
 
-                    //setTextColor(template, '#descripcion', columns[1].data);
+                        //setTextColor(template, '#descripcion', columns[1].data);
 
-                    return template;
+                        return template;
+                    }
                 }
-            }
+            },
+
+            ajax: {
+                method: 'GET',
+                //url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio + '&Tarifa=' + vTarifa,
+                url: '/Tarifa/ListadoTarifa',
+                dataType: 'json',
+                dataSrc: '',
+                data: function (items) {
+                    var filtro = {
+                        Proveedor: vProveedor,
+                        Servicio: vServicio,
+                        Tarifa: $.trim($('#periodo').val())                        
+                    };
+                    return filtro;
+                }
+            },
+
+            columns: [
+        {
+            title: 'TARIFA',
+            data: 'TARIFA',
+            width: 70,
+            className: 'not-mobile',
+            visible: true,
+
         },
 
-        ajax: {
-            method: 'GET',
-            //url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio + '&Tarifa=' + vTarifa,
-            url: '/Tarifa/ListadoTarifa',
-            dataType: 'json',
-            dataSrc: '',
-            data: function (items) {
-                var filtro = {
-                    Proveedor: vProveedor,
-                    Servicio: vServicio,
-                    Tarifa: $.trim($('#periodo').val())
-                };
-                return filtro;
-            }
+        {
+            title: 'PROVEEDOR',
+            data: 'PROVEEDOR',
+            width: 50,
+            className: 'not-mobile',
+            visible: false,
         },
 
-        columns: [
-    {
-        title: 'TARIFA',
-        data: 'TARIFA',
-        width: 70,
-        className: 'not-mobile',
-        visible: true,
+        {
+            title: 'SERVICIO',
+            data: 'SERVICIO',
+            width: 100,
+            className: 'not-mobile',
+            visible: false,
+        },
+        {
+            title: 'TIPO_ACOMODACION',
+            data: 'TIPO_ACOMODACION',
+            width: 40,
+            className: 'not-mobile',
+            visible: false,
+        },
 
-    },
+        {
+            title: 'TIPO ACOMODACION',
+            data: 'DESCR_TIPO_ACOMODACION',
+            width: 40,
+            className: 'not-mobile'
+        },
 
-    {
-        title: 'PROVEEDOR',
-        data: 'PROVEEDOR',
-        width: 50,
-        className: 'not-mobile',
-        visible: false,
-    },
+        {
+            title: 'TIPO_PASAJERO',
+            data: 'TIPO_PASAJERO',
+            width: 40,
+            className: 'not-mobile',
+            visible: true,
+        },
+        {
+            title: 'RANGO',
+            data: 'RANGO',
+            width: 50,
+            className: 'not-mobile',
+            visible: true,
+        },
 
-    {
-        title: 'SERVICIO',
-        data: 'SERVICIO',
-        width: 100,
-        className: 'not-mobile',
-        visible: false,
-    },
-    {
-        title: 'TIPO_ACOMODACION',
-        data: 'TIPO_ACOMODACION',
-        width: 40,
-        className: 'not-mobile',
-        visible: false,
-    },
+        {
+            title: 'PRECIO',
+            data: 'PRECIO',
+            width: 40,
+            className: 'not-mobile',
+            visible: true,
+        },
 
-    {
-        title: 'TIPO ACOMODACION',
-        data: 'DESCR_TIPO_ACOMODACION',
-        width: 40,
-        className: 'not-mobile'
-    },
+          {
+              data: null,
+              width: 80,
+              className: 'dt-body-center not-mobile',
+              render: function (data, type, row, meta) {
+                  var content = [];
 
-    {
-        title: 'TIPO_PASAJERO',
-        data: 'TIPO_PASAJERO',
-        width: 40,
-        className: 'not-mobile',
-        visible: true,
-    },
-    {
-        title: 'RANGO',
-        data: 'RANGO',
-        width: 50,
-        className: 'not-mobile',
-        visible: true,
-    },
+                  var EliminarTarifa = '<button class="btn btn-danger btn-EliminarTarifa" title="Eliminar Tarifa"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
 
-    {
-        title: 'PRECIO',
-        data: 'PRECIO',
-        width: 40,
-        className: 'not-mobile',
-        visible: true,
-    },
+                  content.push(EliminarTarifa);
+                  //content.push(eliminar);
 
-      {
-          data: null,
-          width: 80,
-          className: 'dt-body-center not-mobile',
-          render: function (data, type, row, meta) {
-              var content = [];
-
-              var EliminarTarifa = '<button class="btn btn-danger btn-EliminarTarifa" title="Eliminar Tarifa"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
-
-              content.push(EliminarTarifa);
-              //content.push(eliminar);
-
-              return content.join('&nbsp;&nbsp;');
-          }
-      },
+                  return content.join('&nbsp;&nbsp;');
+              }
+          },
 
 
 
-        ]
-    });
+            ]
+        });
+
+    };
+
+    if (vdesc_servicio.trim() == "HOTEL") {
+
+        //*LISTA TARIFA*//
+        var grid = $('#resultados').DataTable({
+            scrollX: true,
+            paging: true,
+            processing: true,
+            ordering: false,
+            deferLoading: 0,
+            responsive: {
+                details: {
+                    type: 'column',
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    renderer: function (api, index, columns) {
+                        $('div#resultados_wrapper .dataTables_scrollHead').hide();
+
+                        var row = $(api.row(index).node());
+                        row.hide();
+
+                        var html = $('#responsive-template').html();
+                        var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
+
+
+                        var template = $(html);
+                        template.find('#tarifa').html(columns[0].data);
+                        template.find('#servicio').html(columns[1].data);
+                        template.find('#tiposervicio').html(columns[4].data);
+                        template.find('#habitacion').html(columns[5].data);
+                        template.find('#pasajero').html(columns[6].data);
+
+                        template.find('#acomodacion').html(columns[8].data);                        
+                        template.find('#precio').html(columns[10].data);
+                        
+
+
+                        //setTextColor(template, '#descripcion', columns[1].data);
+
+                        return template;
+                    }
+                }
+            },
+
+            ajax: {
+                method: 'GET',
+                //url: '/Tarifa/ListadoTarifa?Proveedor=' + vProveedor + '&Servicio=' + vServicio + '&Tarifa=' + vTarifa,
+                url: '/Tarifa/ListadoTarifaHoteles',
+                dataType: 'json',
+                dataSrc: '',
+                data: function (items) {
+                    var filtro = {
+                        Proveedor: vProveedor,
+                        Servicio: vServicio,
+                        Tarifa: $.trim($('#periodo').val())                        
+                    };
+                    return filtro;
+                }
+            },
+
+            columns: [
+        {
+            title: 'TARIFA',
+            data: 'TARIFA',
+            width: 70,
+            className: 'not-mobile',
+            visible: false,
+
+        },
+
+        {
+            title: 'SERVICIO',
+            data: 'SERVICIO',
+            width: 100,
+            className: 'not-mobile',
+            visible: false,
+        },
+
+        {
+            title: 'PROVEEDOR',
+            data: 'PROVEEDOR',
+            width: 50,
+            className: 'not-mobile',
+            visible: false,
+        },
+
+        {
+            title: 'TIPO_HAB',
+            data: 'TIPO_HAB',
+            width: 40,
+            className: 'not-mobile',
+            visible: false,
+        },
+
+        {
+            title: 'TIPO_SERVICIO',
+            data: 'DESCRIPCION',
+            width: 40,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'HABITACION',
+            data: 'DESCR_TIPO_HABITACION',
+            width: 40,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'PASAJERO',
+            data: 'TIPO_PASAJERO',
+            width: 50,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'TIPO_ACOMODACION',
+            data: 'TIPO_ACOMODACION',
+            width: 40,
+            className: 'not-mobile',
+            visible: false,
+        },
+
+        {
+            title: 'ACOMODACION',
+            data: 'DESCR_TIPO_ACOMODACION',
+            width: 40,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'TIPO SERVICIO',
+            data: 'TIPO_SERVICIO',
+            width: 40,
+            className: 'not-mobile',
+            visible: false,
+        },
+
+        {
+            title: 'PRECIO',
+            data: 'PRECIO',
+            width: 40,
+            className: 'not-mobile',
+            visible: true,
+        },
+ 
+          {
+              data: null,
+              width: 80,
+              className: 'dt-body-center not-mobile',
+              render: function (data, type, row, meta) {
+                  var content = [];
+
+                  var EliminarTarifa = '<button class="btn btn-danger btn-EliminarTarifa" title="Eliminar Tarifa"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
+
+                  content.push(EliminarTarifa);
+                  //content.push(eliminar);
+
+                  return content.join('&nbsp;&nbsp;');
+              }
+          },
+
+
+            ]
+        });
+
+    };
 
     $('.form-horizontal').on('click', 'button.btn-Regresar', onClickRegresar);
     window.onClickRegresar = onClickRegresar;

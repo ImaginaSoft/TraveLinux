@@ -8,23 +8,16 @@
 @section Scripts {
     <script src="~/Scripts/app/MantenimientoServicio.js"></script>
 
-    @*@if (ViewBag.Contador == 0)
-    {*@
-        <script>
-
-            
-            @*alert('@ViewBag.Contador');
-            console.log('@ViewBag.Contador')*@
-
-        </script>
-        //}
-
-    
+     
 
 }
 
 @section Styles {
 <style>
+        b, strong {
+    font-weight: 700;
+    color: #f39c12;
+}
 
             .logo-lg {
             width: 65%;
@@ -196,7 +189,7 @@
                             <br />
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-3">
-                            <a class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal" title="Cargar Tarifa"><span class="glyphicon glyphicon-list-alt"></span> Rate Upload </a>
+                            <a class="btn btn-warning btn-block" id="btn_hoteles" data-toggle="modal" data-target="#myModal" title="Cargar Tarifa"><span class="glyphicon glyphicon-list-alt"></span> Rate Upload </a>
                             <br />
                         </div>
                     </div>
@@ -216,12 +209,24 @@
                         </div>*@
                     </div>
 
-                    @if (ViewBag.Contador == 0)
+                    @*@if (ViewBag.Contador == 1)
+                    {
+                        <script>                            
+
+                        document.getElementById("btn_hoteles").style.pointerEvents = "none";                           
+                        document.getElementById('btn_hoteles').setAttribute("disabled", "disabled");
+
+                        </script>
+                    }
+
+                    else
                     {
                         <script>
-                            alert('gg');
-                        </script>
-                    };
+
+                        document.getElementById("btn_hoteles").style.pointerEvents = "none";
+                        document.getElementById('btn_hoteles').setAttribute("disabled", "enabled");
+                        </script>  
+                    };*@
 
                     @*<div class="form-group">
                         <div class="col-xs-12 col-sm-7 col-md-7">
@@ -280,17 +285,17 @@
                 <h4><i class="glyphicon glyphicon-info-sign"></i> Choose an option</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group text-center">                        
+                <div class="form-group text-center">
                             <select id="Tservicio" class="selectpicker">
                                 <option value="0">--- OPCION ---</option>
                                 <option value="TER">TERRESTRE</option>
                                 <option value="AER">AEREO</option>
                                 <option value="HOT">HOTELES</option>
-                            </select>                                            
+                            </select>
 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger CargaTarifa" data-dismiss="modal" disabled>Acept</button>
-                    @*<button class="btn btn-warning btn-block RegistrarServicio" title="Crear Servicio"><span class="glyphicon glyphicon-list-alt"></span> New Service</button>*@                            
+                    @*<button class="btn btn-warning btn-block RegistrarServicio" title="Crear Servicio"><span class="glyphicon glyphicon-list-alt"></span> New Service</button>*@
                 </div>
             </div>
         </div>

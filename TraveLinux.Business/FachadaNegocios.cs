@@ -110,12 +110,27 @@ namespace TraveLinux.Business
             }
         }
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(Int32 Proveedor, string Servicio, string Tarifa)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
                 var tarifa = datos.ObtenerListaTarifa(Proveedor, Servicio, Tarifa);
+                return tarifa;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los proveedores", e);
+            }
+        }
+
+
+        public IEnumerable<Tarifa> ObtenerListaTarifaHoteles(Int32 Proveedor, string Servicio, string Tarifa)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var tarifa = datos.ObtenerListaTarifaHoteles(Proveedor, Servicio, Tarifa);
                 return tarifa;
             }
             catch (Exception e)

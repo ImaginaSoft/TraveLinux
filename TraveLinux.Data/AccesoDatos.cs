@@ -332,7 +332,7 @@ namespace TraveLinux.Data
 
 
 
-        public IEnumerable<Tarifa> ObtenerListaTarifa(string Proveedor, string Servicio, string Tarifa)
+        public IEnumerable<Tarifa> ObtenerListaTarifa(Int32 Proveedor, string Servicio, string Tarifa)
         {
             var lstTarifa = new List<Tarifa>();
 
@@ -368,6 +368,48 @@ namespace TraveLinux.Data
 
             return lstTarifa;
         }
+
+
+        public IEnumerable<Tarifa> ObtenerListaTarifaHoteles(Int32 Proveedor, string Servicio, string Tarifa)
+        {
+            var lstTarifa = new List<Tarifa>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TARIFA_HOTELES");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = Tarifa;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tarifa = new Tarifa();
+                        tarifa.TARIFA = reader.GetStringOrDefault(0);
+                        tarifa.SERVICIO = reader.GetStringOrDefault(1);
+                        tarifa.PROVEEDOR = reader.GetInt32(2);
+                        tarifa.TIPO_HAB = reader.GetStringOrDefault(3);
+                        tarifa.DESCR_TIPO_HABITACION = reader.GetStringOrDefault(4);
+                        tarifa.PRECIO = reader.GetInt32(5);
+                        tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(6);
+                        tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(7);
+                        tarifa.DESCR_TIPO_ACOMODACION = reader.GetStringOrDefault(8);
+                        tarifa.TIPO_SERVICIO = reader.GetStringOrDefault(9);
+                        tarifa.DESCRIPCION = reader.GetStringOrDefault(10);
+                        lstTarifa.Add(tarifa);
+                    }
+                }
+            }
+
+            return lstTarifa;
+        }
+
 
         public IEnumerable<Servicio> ListadoServicioxProveedor(string Proveedor)
         {

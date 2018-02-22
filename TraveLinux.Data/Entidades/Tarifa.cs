@@ -25,9 +25,11 @@ namespace TraveLinux.Data.Entidades
         public int DINAMICO { get; set; }
         public decimal  PRECIO { get; set; }
         public string TIPO_ACOMODACION { get; set; }
+        public string TIPO_HAB { get; set; }
         public string TIPO_SERVICIO { get; set; }
         public Int32 PERIODO { get; set; }
         public string DESCR_TIPO_ACOMODACION { get; set; }
+        public string DESCR_TIPO_HABITACION { get; set; }
         public string TIPO_PASAJERO { get; set; }
         public DateTime? FECHA_REGISTRO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
