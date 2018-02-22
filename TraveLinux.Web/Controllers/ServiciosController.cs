@@ -116,6 +116,13 @@ namespace TraveLinux.Web.Controllers
             var cuenta = Session["CUENTA"] as Cuenta;
             var vServicio = Fachada.ListadoServicioxProveedor(Proveedor);
 
+            int icount = vServicio.Count();
+
+            if (icount == 0)
+            {
+                ViewBag.Contador = 0;
+            }
+
             return Json(vServicio);
         }
 

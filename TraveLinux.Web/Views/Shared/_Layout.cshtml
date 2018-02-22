@@ -28,8 +28,10 @@
     <link href="~/Content/adminlte/skins/skin-blue.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <link href="~/Content/summernote/summernote.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Content/bower_components/Font-Awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Scripts/css/style.css" />    
     <link rel="stylesheet" href="~/Content/css/build.css" />
+    <link rel="stylesheet" href="~/Content/bower_components/Font-Awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/app/style.css" />
 
 
 
@@ -38,6 +40,15 @@
     @RenderSection("styles", false)
 
     <style>
+
+                .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #f39c12;
+            border-color: #e08e0b;
+        }
+
         .navbar-static-top {
             background-color: rgb(47, 57, 86) !important;
         }
@@ -65,10 +76,10 @@
             border-top-color: rgb(246,139,31);
         }
 
-        .wrapper .btn-primary {
+        /*.wrapper .btn-primary {
             background-color: rgb(136,31,52);
             border-color: rgb(136,31,52);
-        }
+        }*/
 
             .wrapper .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
                 background-color: rgb(136,31,52);

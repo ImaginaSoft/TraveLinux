@@ -1,0 +1,41 @@
+﻿	
+/* Para 960px */  
+@media only screen and (max-width: 980px) and (min-width: 821px) {  
+  
+}  
+  
+/* Para 800px */  
+@media only screen and (max-width: 820px) and (min-width: 621px) {  
+  
+}  
+  
+/* Para 600px */  
+@media only screen and (max-width: 620px) and (min-width: 501px) {  
+  
+}  
+  
+/* Para 480px */  
+@media only screen and (max-width: 500px) and (min-width: 341px) {  
+  
+}  
+  
+/* Para 320px */  
+@media only screen and (max-width: 460px) {
+
+
+    /*VISTA PROVEEDOR*/
+    #row_movil_proveedor {
+    margin-right: 0px;
+    margin-left: -4px;
+    }
+
+    #encab_proveedor {
+        margin-left: 0px;
+        margin-bottom: 0px;
+        margin-top: 15px;
+    }
+
+    div.dataTables_wrapper div.dataTables_info { 
+    font-size: 13px !important;
+    }
+} 

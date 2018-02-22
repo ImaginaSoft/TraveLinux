@@ -1,5 +1,39 @@
 ﻿$(function () {
+
+
     var Proveedor = $("#proveedor").val();
+
+
+
+    function renderTextColor(data, type, row, meta) {
+        var text = data.toLowerCase();
+        var template = $('<span>');
+
+        if (data == '1') {            
+            template.append('<i class="fa fa-check-circle" id="aspita" aria-hidden="true"></i>');
+        }
+        else {
+            template.append('<i class="fa fa-times-circle" id="equis" aria-hidden="true"></i>');
+            }
+            return $('<div>').append(template).html();
+        
+    }
+
+
+    function setTextColor(template, id, data) {
+        //var text = data.toLowerCase();
+        //var template = $('<span>');
+        if (data == '1') {
+            template.find(id).css('color', 'green').html(data);
+            //template.find(id).append('<i class="fa fa-check-circle" id="aspita" aria-hidden="true"></i>');
+            //template.append('<i class="fa fa-check-circle" id="aspita" aria-hidden="true"></i>');
+        }
+        else {
+            template.find(id).css('color', 'green').html(data);
+            // template.find(id).append('<i class="fa fa-times-circle" id="equis" aria-hidden="true"></i>');
+            //template.append('<i class="fa fa-times-circle" id="equis" aria-hidden="true"></i>');
+        }        
+    }
 
     $('#pais').on('change', function () {
 
@@ -10,8 +44,7 @@
             url: '/Cliente/ListadoDepartamento',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({ Pais: Pais }),
-            success: function (data) {
-                debugger;
+            success: function (data) {               
                 if (data.length != 0) {
                     $select.html('');
                     $.each(data, function (i, val) {
@@ -58,34 +91,38 @@
     }
 
 
-    //*Eliminar TARIFA*//
-    function onClickEliminarServicio(e) {
+    //*Mostrar Opcion*//
+    function onClickSeleccionarOpcion(e) {
         e.preventDefault();
-        debugger;
         var item = grid.row($(this).parents('tr')).data();
         if (!item) {
             item = grid.row($(e.target).parents('tr').prev()).data();
         }
-        debugger;
-        //var Servicio = item.SERVICIO;
+
+        var Proveedor = item.PROVEEDOR;
+        var Servicio = item.SERVICIO;
+
+        $('#CodigoProveedor').val(Proveedor);
+        $('#CodigoServicio').val(Servicio);
+        $('#myModal_serv').modal('show');
 
 
-        $.ajax({
-            type: 'POST',
-            url: '/Servicios/EliminarServicio',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ Servicio: item.SERVICIO, Proveedor: Proveedor }),
-        })
-        .done(function (data) {
-            showSuccessMessage('Se ha eliminado el servicio');
-            setTimeout(function () {
-                window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
-            }, 2000);
-        })
-        .fail(function () {
-            showErrorMessage('No se pudo borrar el servicio. Inténtelo de nuevo.');
-            enableAllComponents(true);
-        });
+        //$.ajax({
+        //    type: 'POST',
+        //    url: '/Servicios/EliminarServicio',
+        //    contentType: 'application/json; charset=utf-8',
+        //    data: JSON.stringify({ Servicio: item.SERVICIO, Proveedor: Proveedor }),
+        //})
+        //.done(function (data) {
+        //    showSuccessMessage('Se ha eliminado el servicio');
+        //    setTimeout(function () {
+        //        window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
+        //    }, 2000);
+        //})
+        //.fail(function () {
+        //    showErrorMessage('No se pudo borrar el servicio. Inténtelo de nuevo.');
+        //    enableAllComponents(true);
+        //});
 
     }
 
@@ -94,7 +131,6 @@
 
     //*LISTA CLIENTE*//
     var grid = $('#resultados').DataTable({
-
 
         scrollX: true,
         paging: true,
@@ -116,35 +152,44 @@
 
 
                     var template = $(html);
-                    template.find('#moneda').html(columns[0].data);
-                    template.find('#descripcion').html(columns[1].data);
-                    template.find('#valor').html(columns[2].data);
-                    template.find('#estado').html(columns[3].data);
+                    template.find('#nombre').html(columns[1].data);                    
+                    template.find('#ciudad').html(columns[4].data);
+                    template.find('#tiposervicio').html(columns[5].data);
 
-                    //setTextColor(template, '#descripcion', columns[1].data);
+                    setTextColor(template, '#desayuno', columns[6].data);
+                    setTextColor(template, '#almuerzo', columns[7].data);
+                    setTextColor(template, '#cena', columns[8].data);
 
                     return template;
                 }
             }
         },
 
-        ajax: {
+        ajax:{
             method: 'GET',
             url: '/Servicios/ListadoServicioxProveedor?Proveedor=' + Proveedor,
             dataType: 'json',
             dataSrc: '',
-            data: function (items) {
-            }
-        },
+            //data: items,
+            //success: function (vServicio) {
+            //    var len = vServicio;
+
+            //    alert(len);
+            //},
+
+            //data: function (data) {
+                
+            //    return alert((data));
+            //} 
+        },      
+
+     //   rowCallback: function (row, data, index) {
+
+     //alert(data)
+
+     //   },
 
         columns: [
-    {
-        data: null,
-        width: 20,
-        defaultContent: '',
-        className: 'select-checkbox',
-        orderable: false
-    },
     {
         title: 'PROVEEDOR',
         data: 'PROVEEDOR',
@@ -165,13 +210,13 @@
         data: 'SERVICIO',
         width: 20,
         className: 'not-mobile',
-        visible: true,
+        visible: false,        
     },
 
     {
         title: 'NOMBRE',
         data: 'NOMBRE',
-        width: 25,
+        width: 120,
         className: 'not-mobile',
         visible: true,
     },
@@ -181,111 +226,110 @@
          data: 'CIUDAD_NOMBRE',
          width: 25,
          className: 'not-mobile',
-         visible: true,
+         visible: false,
      },
 
-        {
-            title: 'TIPO SERVICIO',
-            data: 'TIPO_SERVICIO_NOMBRE',
-            width: 25,
-            className: 'not-mobile',
-            visible: true,
-        },
+    {
+        title: 'TIPO',
+        data: 'TIPO_SERVICIO_NOMBRE',
+        width: 50,
+        className: 'not-mobile',
+        visible: true,
+        //render: renderTextColor,
+    },
 
-    //{
-    //    title: 'BOX_LUNCH',
-    //    data: 'BOX_LUNCH',
-    //    width: 25,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-    //{
-    //    title: 'ESTADO',
-    //    data: 'ESTADO',
-    //    width: 20,
-    //    className: 'not-mobile',
-    //    visible: false,
-    //},
-    //{
-    //    title: 'NOMBRE',
-    //    data: 'NOMBRE',
-    //    width: 25,
-    //    className: 'not-mobile'
-    //},
+    {
+        title: 'DESAYUNO',
+        data: 'DESAYUNO',
+        width: 10,
+        className: 'dt-center',
+        visible: true,
+        render: renderTextColor,
+        className: 'not-mobile'
+    },
 
-    //{
-    //    title: 'BOX_LUNCH',
-    //    data: 'BOX_LUNCH',
-    //    width: 25,
-    //    className: 'not-mobile',
-    //    visible: true,
-    //},
-    //{
-    //    title: 'AEROLINEA',
-    //    data: 'AEROLINEA',
-    //    width: 25,
-    //    className: 'not-mobile',
-    //    visible: true,
-    //},
+    {
+        title: 'ALMUERZO',
+        data: 'ALMUERZO',
+        width: 10,
+        className: 'dt-center',
+        visible: true,
+        render: renderTextColor,
+        className: 'not-mobile'
+    },
 
-    //{
-    //    title: 'RUTA',
-    //    data: 'RUTA',
-    //    width: 25,
-    //    className: 'not-mobile',
-    //    visible: true,
-    //},
+    {
+        title: 'CENA',
+        data: 'CENA',
+        width: 10,
+        className: 'dt-center',
+        visible: true,
+        render: renderTextColor,
+        className: 'not-mobile'
+    },
 
-    //{
-    //    title: 'TIPO_PERSONA',
-    //    data: 'TIPO_PERSONA',
-    //    width: 25,
-    //    className: 'not-mobile',
-    //    visible: true,
-    //},
 
     {
         data: null,
-        width: 80,
+        width: 50,
         className: 'dt-body-center not-mobile',
         render: function (data, type, row, meta) {
             var content = [];
 
-            //var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="fa fa-eye" aria-hidden="true"></i></button>';
-            var EliminarServicio = '<button class="btn btn-danger btn-EliminarServicio" title="Eliminar Servicio"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
-            var CrearTarifa = '<button class="btn btn-success btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
-            var CrearServicio = '<button class="btn btn-danger btn-VerServicio" title="Ver Servicio"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
+       
+            //var EliminarServicio = '<button class="btn btn-danger btn-EliminarServicio" title="Eliminar Servicio"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
+            //var CrearTarifa = '<button class="btn btn-success btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
 
+            var SeleccionarOpcion = '<a class="btn btn-warning btn-SeleccionarOpcion data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>';
+            var CrearTarifa = '<button class="btn btn-primary btn-VerTarifa" title="view rate"><i class="fa fa-eye-slash"></i></button>';
 
-            
             content.push(CrearTarifa);
-            content.push(EliminarServicio);
-            //content.push(eliminar);
+            content.push(SeleccionarOpcion);
+            
 
             return content.join('&nbsp;&nbsp;');
         }
     },
 
         ],
-        columnDefs: [{
-            orderable: false,
-            className: 'select-checkbox',
-            targets: 0
-        }],
-
-        select: {
-            style: 'os',
-            selector: 'td:first-child'
-        },
     });
 
-    debugger
-    grid.on('select', function (e, dt, type, indexes) {
-        debugger
-        var items = dt.rows({ selected: true }).data().toArray();
-        window.location = '/Servicios/EditarServicio?Servicio=' + items[0]["SERVICIO"] + '&Proveedor=' + items[0]["PROVEEDOR"];
-    });
 
+
+    function onClickEditarServicio() {
+
+        var Proveedor = $('#CodigoProveedor').val();
+        var Servicio = $('#CodigoServicio').val();
+        
+        window.location = '/Servicios/EditarServicio?Servicio=' + Servicio + '&Proveedor=' + Proveedor;
+
+    }
+
+
+    function onClickEliminarServicio() {
+
+        var Proveedor = $('#CodigoProveedor').val();
+        var Servicio = $('#CodigoServicio').val();
+        $('#myModal_serv').modal('hide');
+
+        $.ajax({
+            type: 'POST',
+            url: '/Servicios/EliminarServicio',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Servicio: Servicio, Proveedor: Proveedor }),
+        })
+        .done(function (data) {
+
+            showSuccessMessage('Se ha eliminado el servicio');
+            setTimeout(function () {
+                window.location = '/Servicios/ServicioProveedor?Proveedor=' + Proveedor;
+            }, 2000);
+        })
+        .fail(function () {
+            showErrorMessage('No se pudo borrar el servicio. Inténtelo de nuevo.');
+            enableAllComponents(true);
+        });
+    }
 
 
 
@@ -671,9 +715,13 @@
     $('#btn-cancelar').on('click', onClickCancelarServicio);
 
     $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
-    window.onClickVerTarifa = onClickVerTarifa;
+    $('#resultados tbody').on('click', 'a.btn-SeleccionarOpcion', onClickSeleccionarOpcion);
 
-    $('#resultados tbody').on('click', 'button.btn-EliminarServicio', onClickEliminarServicio);
+    $('.modal').on('click', 'button.btn-editar', onClickEditarServicio);
+    $('.modal').on('click', 'button.btn-eliminar', onClickEliminarServicio);
+
+
+    window.onClickVerTarifa = onClickVerTarifa;
     window.onClickEliminarServicio = onClickEliminarServicio;
 
 

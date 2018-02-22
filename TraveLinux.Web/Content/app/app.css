@@ -38,8 +38,8 @@
     z-index: 3;
     color: #fff;
     cursor: default;
-    background-color: #881F34;
-    border-color: #881F34;
+    /*background-color: #881F34;
+    border-color: #881F34;*/
 }
 
 .noty_buttons .btn-primary {

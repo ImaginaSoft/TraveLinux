@@ -41,14 +41,33 @@
 
 
 
-    function setTextColor(template, id, data) {
+    //function setTextColor(template, id, data) {
+    //    var text = data.toLowerCase();
+    //    if (text.indexOf('DOLARES') && data.trim() == 'DOLARES') {
+    //        template.find(id).css('color', 'green').html(data);
+    //    } else if (text.indexOf('EUROS')) {
+    //        template.find(id).css('color', 'green').html(data);
+    //    }
+    //}
+
+
+    function renderTextColor(data, type, row, meta) {
         var text = data.toLowerCase();
-        if (text.indexOf('DOLARES') == 'DOLARES') {
-            template.find(id).css('color', 'green').html(data);
-        } else if (text.indexOf('EUROS')) {
-            template.find(id).css('color', 'green').html(data);
+        var template = $('<span>');
+        if (data.trim() == 'DOLARES') {
+            template.css('color', 'blue').html(data);
+        } else if (data.trim() == 'EUROS') {
+            template.css('color', 'green').html(data);
         }
+        else {
+            template.css('color', 'black').html(data);
+            template.css('font-weight', 'bold').html(data);
+            template.css('font-family', 'Pacifico','cursive').html(data);
+        }
+        return $('<div>').append(template).html();
+
     }
+
 
     var grid = $('#resultados').DataTable({
         scrollX: true,
@@ -103,8 +122,8 @@
         title: 'DESCRIPCION',
         data: 'DESCRIPCION',
         width: 125,
-        className: 'not-mobile'
-        //render: renderTextColor
+        className: 'not-mobile',
+        render: renderTextColor
     },
     {
         title: 'VALOR',

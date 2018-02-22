@@ -46,6 +46,7 @@ namespace TraveLinux.Data.Entidades
         public string ESTADO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
         public string CIUDAD { get; set; }
+        public Int32 CONTADOR { get; set; }
         public string CIUDAD_NOMBRE { get; set; }
         public string PAIS { get; set; }
         public string PAIS_NOMBRE { get; set; }

@@ -209,18 +209,6 @@
     // Guardar Proveedor
 
 
-    function onClickVerTarifa(e) {
-        e.preventDefault();
-        var item = grid.row($(this).parents('tr')).data();
-        if (!item) {
-            item = grid.row($(e.target).parents('tr').prev()).data();
-        }
-        //alert(item.PROVEEDOR);
-
-        debugger;
-        window.location = '/Tarifa/TarifaProveedor?Proveedor=' + item.PROVEEDOR;
-    }
-
     function onClickCancelarProveedor(e) {
         e.preventDefault();
 
@@ -232,10 +220,8 @@
         var item = grid.row($(this).parents('tr')).data();
         if (!item) {
             item = grid.row($(e.target).parents('tr').prev()).data();
-        }
-        //alert(item.PROVEEDOR);
-
-        debugger;
+        }        
+        
         window.location = '/Servicios/ServicioProveedor?Proveedor=' + item.PROVEEDOR;
     }
 
@@ -309,88 +295,43 @@
         });
     }
 
+    function onClickEditarProveedor() {        
 
-    function onClickRegistrarProveedor() {
-
-        debugger;
-
-        var valor = 0;
-
-        if ($('input#inlineCheckbox1').is(':checked')) {
-            valor = 1
-        }
-        else {
-            valor = 0
-        }
-
-        var data = {
-            eProveedor: {
-                Nombre: $('#nombre').val(),
-                Alias: $('#alias').val(),
-                Tproveedor: $('#tproveedor').val(),
-                Tipo: $('#radio').val(),
-                pais: $('#pais').val(),
-                Ciudad: $('#departamentos').val(),
-                Direccion: $('#direccion').val(),
-                PaginaWeb: $('#paginaweb').val(),
-                ruc: $('#ruc').val(),
-                Idioma: $('#idioma').val(),
-                Email_1: $('#email1').val(),
-                Email_2: $('#email2').val(),
-                Email_3: $('#email3').val(),
-                Telefono_1: $('#telefono1').val(),
-                Telefono_2: $('#telefono2').val(),
-                Telefono_3: $('#telefono3').val(),
-                Estado: valor,
-                Nombre_contacto_1: $('#nombre_contacto1').val(),
-                Nombre_contacto_2: $('#nombre_contacto2').val(),
-                Nombre_contacto_3: $('#nombre_contacto3').val(),
-                Posicion_contacto_1: $('#posicion_contacto1').val(),
-                Posicion_contacto_2: $('#posicion_contacto2').val(),
-                Posicion_contacto_3: $('#posicion_contacto3').val(),
-                Telefono_contacto_1: $('#telefono_contacto1').val(),
-                Telefono_contacto_2: $('#telefono_contacto2').val(),
-                Telefono_contacto_3: $('#telefono_contacto3').val()
-
-            }
-        };
-
-        //if (data.Nombre == null) {
-        //    showErrorMessage('Debe ingresar un nombre');
-        //    return;
-        //}
+        var Proveedor = $('#CodigoProveedor').val();    
+            
+        window.location = '/Proveedor/EditarProveedor?Proveedor=' + Proveedor;     
 
 
-        $.ajax({
-            type: 'POST',
-            url: '/Proveedor/GuardarProveedor',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        })
-        .done(function (data) {
-            showSuccessMessage('Se ha guardado el proveedor');
-            setTimeout(function () {
-                window.location = '/Proveedor/Index';
-            }, 2000);
-        })
-        .fail(function () {
-            showErrorMessage('No se pudo guardar el proveedor. Inténtelo de nuevo.');
-            enableAllComponents(true);
-        });
+        //$.ajax({
+        //    type: 'POST',
+        //    url: '/Proveedor/EditarProveedor',
+        //    contentType: 'application/json; charset=utf-8',
+        //    async: false,
+        //    data: JSON.stringify({ Proveedor: Proveedor }),
+        //    success: function (data, textStatus) {
+        //        //window.location.href = url;                
+        //        //window.location = '/Proveedor/EditarProveedor';
+        //        //alert(data.redirect);
+        //        //window.location.href = data.redirect;
+
+        //        if (data.redirect) {
+        //            /*Using debugger */
+        //            debugger;
+        //            /*Or using alert*/
+        //            alert(data.redirect);
+        //            window.location.href = data.redirect;
+        //        }                
+                
+        //    }
+        //})
+
+
     }
 
+    function onClickEliminarProveedor() {
 
-
-    function onClickEliminarProveedor(e) {
-        e.preventDefault();
-        var item = grid.row($(this).parents('tr')).data();
-        if (!item) {
-            item = grid.row($(e.target).parents('tr').prev()).data();
-        }
-
-        var Proveedor = item.PROVEEDOR;
-
-
+        var Proveedor = $('#CodigoProveedor').val();
+        $('#myModal').modal('hide');
 
         $.ajax({
             type: 'POST',
@@ -399,6 +340,7 @@
             data: JSON.stringify({ Proveedor: Proveedor }),
         })
         .done(function (data) {
+
             showSuccessMessage('Se ha eliminado el proveedor');
             setTimeout(function () {
                 window.location = '/Proveedor/Index';
@@ -408,6 +350,23 @@
             showErrorMessage('No se pudo borrar el proveedor. Inténtelo de nuevo.');
             enableAllComponents(true);
         });
+    }
+    
+
+
+    function onClickSeleccionarOpcion(e) {
+        debugger;
+
+        e.preventDefault();
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+
+        var Proveedor = item.PROVEEDOR;        
+
+        $('#CodigoProveedor').val(Proveedor);        
+        $('#myModal').modal('show');       
     }
 
 
@@ -506,14 +465,19 @@
 
 
                     var template = $(html);
-                    template.find('#proveedor').html(columns[0].data);
+                    
                     template.find('#nombre').html(columns[1].data);
                     template.find('#alias').html(columns[2].data);
-                    template.find('#ruc').html(columns[10].data);
-                    template.find('#idioma').html(columns[8].data);
-                    //template.find('#estado').html(columns[11].data);
-                    setTextColor(template, '#estado', columns[11].data);
-                    //setTextColor(template, '#descripcion', columns[1].data);
+
+                    template.find('#ruc').html(columns[9].data);
+                    template.find('#paginaweb').html(columns[8].data);
+
+                    
+                    template.find('#pais').html(columns[5].data);
+                    template.find('#ciudad').html(columns[6].data);
+                    template.find('#idioma').html(columns[10].data);                    
+                    //setTextColor(template, '#estado', columns[11].data);
+                    
 
                     return template;
                 }
@@ -535,13 +499,6 @@
         },
 
         columns: [
-    {
-        data: null,
-        width: 30,
-        defaultContent: '',
-        className: 'select-checkbox',
-        orderable: false
-    },
     {
         title: 'PROVEEDOR',
         data: 'PROVEEDOR',
@@ -640,30 +597,20 @@
         render: function (data, type, row, meta) {
             var content = [];
 
-            var BorrarProveedor = '<button class="btn btn-danger btn-Eliminar" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>';
-            var CrearServicio = '<button class="btn btn-success btn-VerServicio" title="Ver Servicio"><i class="fa fa-file-excel-o"></i></button>';
+
+            var SeleccionarOpcion = '<a class="btn btn-warning btn-SeleccionarOpcion data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>';
+            var CrearServicio = '<button class="btn btn-primary btn-VerServicio" title="view service"><i class="fa fa-eye-slash"></i></button>';
             //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
 
 
             content.push(CrearServicio);
-            content.push(BorrarProveedor);
-            //content.push(eliminar);
+            content.push(SeleccionarOpcion);            
 
             return content.join('&nbsp;&nbsp;');
         }
     },
 
         ],
-        columnDefs: [{
-            orderable: false,
-            className: 'select-checkbox',
-            targets: 0
-        }],
-
-        select: {
-            style: 'os',
-            selector: 'td:first-child'
-        },
 
     });
 
@@ -703,20 +650,23 @@
 
 
 
-    grid.on('select', function (e, dt, type, indexes) {
-        var items = dt.rows({ selected: true }).data().toArray();
-        window.location = '/Proveedor/EditarProveedor?Proveedor=' + items[0]["PROVEEDOR"];
-
-    });
-
     $('#btn-guardar').on('click', onClickRegistrarProveedor);
     $('#btn-actualizar').on('click', onClickActualizarProveedor);
     $('#btn-cancelar').on('click', onClickCancelarProveedor);
-    $('#resultados tbody').on('click', 'button.btn-VerTarifa', onClickVerTarifa);
+    
     $('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerServicio);
-    $('#resultados tbody').on('click', 'button.btn-Eliminar', onClickEliminarProveedor);
-    window.onClickVerTarifa = onClickVerTarifa;
+    $('#resultados tbody').on('click', 'a.btn-SeleccionarOpcion', onClickSeleccionarOpcion);
+
+
+    $('.modal').on('click', 'button.btn-editar', onClickEditarProveedor);
+    $('.modal').on('click', 'button.btn-eliminar', onClickEliminarProveedor);
+
+
+
+
+    
     window.onClickVerServicio = onClickVerServicio;
+    window.onClickSeleccionarOpcion = onClickSeleccionarOpcion;
 
 
     $('#proveedor_estado').change(function () {

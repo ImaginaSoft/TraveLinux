@@ -130,7 +130,12 @@ tr th:last-child {
                             }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 <input type="file" name="UploadedFile" />
-                                    <input type="submit" name="Submit" value="Submit" />
+
+                                <br />
+                                <span id="lblError" style="color: red;"></span>
+                                <br />
+
+                                    <input type="submit" name="Submit" value="Submit" onclick="return ValidateExtension()" />
                             }
 
                             @if (Model != null)

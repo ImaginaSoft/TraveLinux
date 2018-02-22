@@ -379,7 +379,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_SERVXPROV");
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 9).Value = Proveedor;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 9).Value = Proveedor;                
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -412,7 +412,7 @@ namespace TraveLinux.Data
                         servicio.DESC_ALE = reader.GetStringOrDefault(21);
                         servicio.ESTADO = reader.GetStringOrDefault(22);
                         servicio.CIUDAD_NOMBRE = reader.GetStringOrDefault(23);
-                        servicio.TIPO_SERVICIO_NOMBRE = reader.GetStringOrDefault(24);
+                        servicio.TIPO_SERVICIO_NOMBRE = reader.GetStringOrDefault(24);                        
                         lstservicio.Add(servicio);
                     }
                 }
