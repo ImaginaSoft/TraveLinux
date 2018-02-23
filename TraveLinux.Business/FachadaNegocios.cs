@@ -532,6 +532,20 @@ namespace TraveLinux.Business
             }
         }
 
+
+        public void ActualizarRangoHoteles(List<Tarifa> lsttarifa)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.ActualizarRangoHoteles(lsttarifa);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar precio", e);
+            }
+        }
+
         public IEnumerable<Servicio> ObtenerServicioProv(string Proveedor, string Servicio)
         {
             try

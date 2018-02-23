@@ -80,6 +80,15 @@ namespace TraveLinux.Web.Controllers
             Fachada.GuardarTarifa(lstTarifas);
         }
 
+
+        [HttpPost]
+        public void ActualizarRangoHoteles(List<Tarifa> lstTarifas)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.ActualizarRangoHoteles(lstTarifas);
+        }
+
         //public ActionResult ListadoTarifa(string Proveedor , string Servicio, string Tarifa)
         public ActionResult ListadoTarifa(TarifaDetalleViewModels filtro)
         {

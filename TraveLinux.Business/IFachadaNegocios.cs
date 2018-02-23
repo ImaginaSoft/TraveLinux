@@ -41,6 +41,7 @@ namespace TraveLinux.Business
         void GuardarCliente(Cliente eCliente);
         void GuardarServicio(Servicio eServicio);
         void GuardarTarifa(List<Tarifa> eTarifa);
+        void ActualizarRangoHoteles(List<Tarifa> lstTarifas);
         void GuardarPeriodo(Periodo ePeriodo);
 
         void Copiar_Temporal_ServicioHotel(int iProveedor);

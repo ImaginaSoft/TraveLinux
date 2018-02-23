@@ -492,12 +492,21 @@
             },
 
             columns: [
+
+        {
+            title: '#',
+            data: null,
+            width: 10,
+            defaultContent: '',            
+            orderable: false
+        },
+
         {
             title: 'TARIFA',
             data: 'TARIFA',
             width: 70,
             className: 'not-mobile',
-            visible: false,
+            visible: true,
 
         },
 
@@ -506,7 +515,7 @@
             data: 'SERVICIO',
             width: 100,
             className: 'not-mobile',
-            visible: false,
+            visible: true,
         },
 
         {
@@ -514,7 +523,7 @@
             data: 'PROVEEDOR',
             width: 50,
             className: 'not-mobile',
-            visible: false,
+            visible: true,
         },
 
         {
@@ -522,7 +531,7 @@
             data: 'TIPO_HAB',
             width: 40,
             className: 'not-mobile',
-            visible: false,
+            visible: true,
         },
 
         {
@@ -530,7 +539,7 @@
             data: 'DESCRIPCION',
             width: 40,
             className: 'not-mobile',
-            visible: true,
+            visible: false,
         },
 
         {
@@ -538,7 +547,7 @@
             data: 'DESCR_TIPO_HABITACION',
             width: 40,
             className: 'not-mobile',
-            visible: true,
+            visible: false,
         },
 
         {
@@ -597,11 +606,81 @@
               }
           },
 
+            ],
 
-            ]
+            columnDefs: [{
+                sortable: false,
+                class: "index",
+                targets: 0
+            }],
+
+            order: [[1, 'asc']],
+            fixedColumns: true
         });
 
+        grid.on('order.dt search.dt', function (e, dt, type, indexes) {
+            //var items = dt.rows({ selected: true }).data().toArray();
+
+            grid.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+
+        }).draw();
     };
+
+
+    //$('#rangitohasta').on('change', function () {
+
+    function onClickActualizarTarifaHoteles(e) {
+
+        var lstTarifas = new Array();
+        var desde = $('#rangitode').val();
+        var hasta = $('#rangitohasta').val();
+        var precio = $('#precio_rango').val();        
+
+        $("#resultados TBODY TR").each(function () {
+            var row = $(this);
+            var index = row.find("TD").eq(0).html();
+            //var hab = row.find("TD").eq(2).html();
+            
+
+            if (index >= desde && index <= hasta) {
+                var lstTarifa = {};
+                debugger;
+
+                lstTarifa.TARIFA = row.find("TD").eq(1).html();
+                lstTarifa.SERVICIO = row.find("TD").eq(2).html();
+                lstTarifa.PROVEEDOR = row.find("TD").eq(3).html();
+                lstTarifa.TIPO_HAB = row.find("TD").eq(4).html();
+                lstTarifa.PRECIO = precio;                
+                lstTarifas.push(lstTarifa);
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '/Tarifa/ActualizarRangoHoteles',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(lstTarifas)
+        })
+    .done(function (data) {
+        debugger;
+        showSuccessMessage('Se ha actualizado el precio con exito');
+        setTimeout(function () {
+            //window.location = '/Servicios/ServicioProveedor?proveedor=' + Proveedor;
+            window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
+        }, 2000);
+
+    })
+    .fail(function () {
+        showErrorMessage('No se pudo guardar.');
+        enableAllComponents(true);
+    });
+
+    };
+
+
+    $('.form-horizontal').on('click', 'button.btn-UpdatePrice', onClickActualizarTarifaHoteles);
 
     $('.form-horizontal').on('click', 'button.btn-Regresar', onClickRegresar);
     window.onClickRegresar = onClickRegresar;

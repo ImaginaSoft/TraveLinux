@@ -1410,6 +1410,12 @@ namespace TraveLinux.Data
                 Guardar_Tarifa(eEntidad);
         }
 
+        public void ActualizarRangoHoteles(List<Tarifa> tarifa)
+        {
+            foreach (var eEntidad in tarifa)
+                Actualizar_Rango_Hoteles(eEntidad);
+        }
+
         private void GuardarTarifa_Detalle(Tarifa_Detalle eEntidad, int validado)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -1501,6 +1507,28 @@ namespace TraveLinux.Data
                 command.ExecuteNonQuery();
             }
         }
+
+        private void Actualizar_Rango_Hoteles(Tarifa eEntidad)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "ACTUALIZAR_RANGO_HOTEL");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = eEntidad.PROVEEDOR;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = eEntidad.SERVICIO;
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eEntidad.TARIFA;
+                command.Parameters.Add("P_TIPO_HAB", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_HAB;
+                command.Parameters.Add("P_PRECIO", OracleDbType.Decimal).Value = eEntidad.PRECIO;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
 
         public void GuardarServicio_Lista_Detalle(List<Servicio> lstCargaServ)
         {
