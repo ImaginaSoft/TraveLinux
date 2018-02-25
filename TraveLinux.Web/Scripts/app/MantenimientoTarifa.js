@@ -657,6 +657,7 @@
             }
         });
 
+        $('#myModal_Precio').modal('hide');
         $.ajax({
             type: 'POST',
             url: '/Tarifa/ActualizarRangoHoteles',
@@ -680,7 +681,7 @@
     };
 
 
-    $('.form-horizontal').on('click', 'button.btn-UpdatePrice', onClickActualizarTarifaHoteles);
+    $('.modal').on('click', 'button.btn-UpdatePrice', onClickActualizarTarifaHoteles);
 
     $('.form-horizontal').on('click', 'button.btn-Regresar', onClickRegresar);
     window.onClickRegresar = onClickRegresar;
