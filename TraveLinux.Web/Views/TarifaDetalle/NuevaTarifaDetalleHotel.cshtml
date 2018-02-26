@@ -1,17 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "NuevaTarifaDetalleHotel";
 }
 
 <h2>NuevaTarifaDetalleHotel</h2>
-
-@*@*@model TraveLinux.Web.Models.ProveedorViewModels*@
-
-@using TraveLinux.Web.Models
-@model IEnumerable<ServicioViewModels>
-@{
-    ViewBag.Title = "TarifaProveedor";
-}*@
 
 @section Scripts {
     <script src="~/Scripts/app/MantenimientoTarifaDetalle.js"></script>
@@ -94,6 +85,56 @@
     @*<h1>Datos Generales</h1>*@
 
 </section>
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Datos Generales</h3>*@
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-7 col-md-7">
+                            <fieldset class="well the-fieldset">
+                                <legend class="the-legend">@*<b>Beginning</b>*@</legend>
+                                <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="proveedor_nombre" value="@ViewBag.Proveedor_Nombre" disabled>
+                                    <input class="form-control hidden" id="proveedor" value="@ViewBag.Proveedor" disabled>
+                                    <br />
+                                </div>                              
+                            </fieldset>
+                        </div>
+                    </div>
+                    @* PARA HOTELES *@
+
+                    @using (Html.BeginForm("CargaTarifaHotel", "TarifaHoteles", new
+                    {
+                        Proveedor = @ViewBag.Proveedor,
+                        TipoServicio = "Hoteles"
+                    }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="file" name="UploadedFile" />
+                            <input type="submit" name="Submit" value="Submit" />
+                    }
+                  
+
+                    <button class="btn btn-warning" id="btn-guardarCargaHot">
+                        <span class="glyphicon glyphicon-save">SAVE</span>
+                    </button>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+
+
+
 
 <div class="row">
     <div class="col-md-12">

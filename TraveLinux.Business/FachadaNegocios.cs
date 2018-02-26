@@ -660,6 +660,19 @@ namespace TraveLinux.Business
             }
         }
 
+        public void Eliminar_Tabla_Temporal_Hotel()
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.Eliminar_Tabla_Temporal_Hotel();
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("");
+            }
+        }
+
 
         public void GuardarPlantilla(Plantilla ePlantilla)
         {

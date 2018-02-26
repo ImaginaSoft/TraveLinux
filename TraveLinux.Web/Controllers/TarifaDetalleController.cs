@@ -280,22 +280,7 @@ namespace TraveLinux.Web.Controllers
 
             Fachada.Eliminar_TablaTemporal();
         }
-
-        [HttpPost]
-        public void GuardarTarifaCargaHoteles(List<Tarifa_Detalle> lstTarifas)
-        {
-            var cuenta = Session["CUENTA"] as Cuenta;            
-
-            List<Tarifa_Detalle> copyLista = lstTarifas.ToList();            
-
-            List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
-
-            Fachada.GuardarPeriodoCap_Lista_Detalle_Hoteles(myDistinctList, 1);
-
-            Fachada.GuardarTarifa_Lista_Detalle_Hoteles(lstTarifas, 0);            
-
-            Fachada.Copiar_Temporal_ServicioHotel(16);
-        }
+ 
 
         public ActionResult Obtener_tarifa_Detalle_Prov(int Proveedor, string Tarifa)
         {

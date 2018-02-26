@@ -58,6 +58,7 @@ namespace TraveLinux.Business
         void GuardarPlantilla(Plantilla ePlantilla);
         void Guardar_Carga_Hotel_Temporal(List<Tarifa> usersList);
         void Eliminar_TablaTemporal();
+        void Eliminar_Tabla_Temporal_Hotel();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
     }
 }

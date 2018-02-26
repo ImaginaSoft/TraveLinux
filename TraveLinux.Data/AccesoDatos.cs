@@ -269,8 +269,8 @@ namespace TraveLinux.Data
                     {
                         var tarifa = new Tarifa();
                         tarifa.DESCRIPCION = reader.GetStringOrDefault(0);
-                        tarifa.FECHA_INICIO = reader.GetDateTime(1);
-                        tarifa.FECHA_FINAL = reader.GetDateTime(2);
+                        tarifa.FECHA_INICIO_S = reader.GetStringOrDefault(1);
+                        tarifa.FECHA_FINAL_S = reader.GetStringOrDefault(2);
                         tarifa.TIPO_PERSONA = reader.GetStringOrDefault(3);
                         tarifa.TIPO_SERVICIO = reader.GetStringOrDefault(4);
                         tarifa.SGL_ROOM = reader.GetDecimal(5);
@@ -527,6 +527,22 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_TABLA_TEMPORAL");
 
                 command.Parameters.Add("P_VALIDO", OracleDbType.Varchar2, 50).Value = 1;
+                command.CommandType = CommandType.StoredProcedure;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Eliminar_Tabla_Temporal_Hotel()
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_HOTEL_TEMPORAL");
+
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = "";
                 command.CommandType = CommandType.StoredProcedure;
 
                 connection.Open();
@@ -1630,7 +1646,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_SERVICIO");
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_GUARDAR_CARGA_HOTEL_TMP");
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;

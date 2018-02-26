@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TraveLinux.Data.Entidades;
 using OfficeOpenXml;
+using System.Web.Routing;
 
 namespace TraveLinux.Web.Controllers
 {
@@ -19,7 +20,7 @@ namespace TraveLinux.Web.Controllers
         public ActionResult Carga_TarifaHotel_Temporal()
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-
+            
             var vTarifaHotel = Fachada.ObtenerTarifHotel();
 
             return Json(vTarifaHotel);
@@ -29,8 +30,11 @@ namespace TraveLinux.Web.Controllers
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
+            //Fachada.Eliminar_Tabla_Temporal_Hotel();
+
             var TarifDetalle = Fachada.ObtenerEditarProveedor(Proveedor);
 
+            
             if (TarifDetalle == null)
             {
                 return HttpNotFound("No se encontró el detalle solicitado");
@@ -104,7 +108,33 @@ namespace TraveLinux.Web.Controllers
                 }
             }
 
-            return View();
+            //return View();
+            //return RedirectToAction("ActionOrViewName", "ControllerName");
+            //return RedirectToAction("CargaTarifaHotel?=" + Proveedor, "TarifaHoteles");
+            return RedirectToAction("CargaTarifaHotel", new RouteValueDictionary(new { controller = "TarifaHoteles", action = "CargaTarifaHotel", Proveedor = Proveedor }));
+        }
+
+        [HttpPost]
+        public void GuardarTarifaCargaHoteles(List<Tarifa_Detalle> lstTarifas)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            //Tarifa_Detalle Existe = new Tarifa_Detalle();
+
+            //int EXISTE = lstTarifas.IndexOf(Existe);
+            //if (EXISTE >= 0)
+            //{
+                List<Tarifa_Detalle> copyLista = lstTarifas.ToList();
+
+                List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
+
+                Fachada.GuardarPeriodoCap_Lista_Detalle_Hoteles(myDistinctList, 1);
+
+                Fachada.GuardarTarifa_Lista_Detalle_Hoteles(lstTarifas, 0);
+
+                Fachada.Copiar_Temporal_ServicioHotel(16);
+
+                Fachada.Eliminar_Tabla_Temporal_Hotel();
         }
     }
 }

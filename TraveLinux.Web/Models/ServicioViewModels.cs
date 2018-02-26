@@ -37,12 +37,15 @@ namespace TraveLinux.Web.Models
         public string TARIFA { get; set; }
         public DateTime? FECHA_FIN { get; set; }
         public DateTime? FECHA_INI { get; set; }
+        public string FECHA_INI_S { get; set; }
+        public string FECHA_FIN_S { get; set; }
         public string ESTADO { get; set; }
         public string USUARIO_REGISTRO { get; set; }
         public IEnumerable<Pais> Paises { get; set; }
         public IEnumerable<Periodo> Fechas { get; set; }
         public IEnumerable<TipoServicio> TipoAcomodacion { get; set; }
         public Int32 TEMPORADA { get; set; }
+        public string TEMPORADA_S { get; set; }
         public string HORA { get; set; }
         public string HORA_FIN { get; set; }
         public string CIUDAD { get; set; }
@@ -56,6 +59,11 @@ namespace TraveLinux.Web.Models
         public Decimal DWL_ROOM { get; set; }
         public Decimal TPL_ROOM { get; set; }
         public Decimal CDL_ROOM { get; set; }
+
+        public string SGL_ROOM_S { get; set; }
+        public string DWL_ROOM_S { get; set; }
+        public string TPL_ROOM_S { get; set; }
+        public string CDL_ROOM_S { get; set; }
 
     }
 }
