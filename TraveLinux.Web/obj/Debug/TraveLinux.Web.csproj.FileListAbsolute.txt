@@ -536,7 +536,6 @@ D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.csproj
 D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.csproj.ResolveComReference.cache
 D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.dll
 D:\SOFTWARE_TRAVELINUX\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.pdb
-C:\Desarrollo\TL\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.csproj.ResolveComReference.cache
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\bin\ApplicationInsights.config
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\bin\roslyn\csc.exe
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -643,5 +642,6 @@ C:\Desarrollo\TL\Travelinux\TraveLinux.Web\bin\es\Microsoft.Owin.Security.Google
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.csprojResolveAssemblyReference.cache
+C:\Desarrollo\TL\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.csproj.ResolveComReference.cache
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.dll
 C:\Desarrollo\TL\Travelinux\TraveLinux.Web\obj\Debug\TraveLinux.Web.pdb

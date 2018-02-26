@@ -720,6 +720,21 @@ namespace TraveLinux.Business
         }
 
 
+        public Proveedor ValidarRuc(Proveedor eProveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var Proveedor = datos.ValidarRuc(eProveedor);
+                return Proveedor;
+
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo actualizar el servicio", e);
+            }
+        }
+
 
 
     }

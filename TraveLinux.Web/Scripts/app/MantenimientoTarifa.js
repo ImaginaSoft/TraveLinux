@@ -25,7 +25,7 @@
         }
         return $('<div>').append(template).html();
     }
-
+       
 
     $('#npersona').on('change', function () {        
         //var Rango = $(this).val();
@@ -640,20 +640,60 @@
 
         $("#resultados TBODY TR").each(function () {
             var row = $(this);
-            var index = row.find("TD").eq(0).html();
-            //var hab = row.find("TD").eq(2).html();
+
+            if (vdesc_servicio.trim() == "TERRESTRE") {
+
+                var index = row.find("TD").eq(3).html();
+            }
+
+            if (vdesc_servicio.trim() == "AEREO") {
+
+                var index = row.find("TD").eq(3).html();
+            }
+
+            if (vdesc_servicio.trim() == "HOTEL") {
+
+                var index = row.find("TD").eq(0).html();
+            }
+
+
+            //var index = row.find("TD").eq(0).html();
+         
             
 
             if (index >= desde && index <= hasta) {
                 var lstTarifa = {};
                 debugger;
 
-                lstTarifa.TARIFA = row.find("TD").eq(1).html();
-                lstTarifa.SERVICIO = row.find("TD").eq(2).html();
-                lstTarifa.PROVEEDOR = row.find("TD").eq(3).html();
-                lstTarifa.TIPO_HAB = row.find("TD").eq(4).html();
-                lstTarifa.PRECIO = precio;                
-                lstTarifas.push(lstTarifa);
+                if (vdesc_servicio.trim() == "TERRESTRE" || vdesc_servicio.trim() == "AEREO") {
+
+                    lstTarifa.TARIFA = row.find("TD").eq(0).html();
+                    lstTarifa.TIPO_ACOMODACION = row.find("TD").eq(1).html();
+                    lstTarifa.RANGO = row.find("TD").eq(3).html();
+                    lstTarifa.PRECIO = precio;
+                    lstTarifa.PROVEEDOR = vProveedor
+                    lstTarifa.SERVICIO = vServicio
+                    lstTarifa.TIPO_SERVICIO = vdesc_servicio
+                    lstTarifas.push(lstTarifa);
+                }
+
+                if (vdesc_servicio.trim() == "HOTEL") {
+
+                    lstTarifa.TARIFA = row.find("TD").eq(1).html();
+                    lstTarifa.SERVICIO = row.find("TD").eq(2).html();
+                    lstTarifa.PROVEEDOR = row.find("TD").eq(3).html();
+                    lstTarifa.TIPO_HAB = row.find("TD").eq(4).html();
+                    lstTarifa.PRECIO = precio;
+                    lstTarifas.push(lstTarifa);
+                }
+
+
+                //lstTarifa.TARIFA = row.find("TD").eq(1).html();
+                //lstTarifa.SERVICIO = row.find("TD").eq(2).html();
+                //lstTarifa.PROVEEDOR = row.find("TD").eq(3).html();
+                //lstTarifa.TIPO_HAB = row.find("TD").eq(4).html();
+                //lstTarifa.PRECIO = precio;                
+                //lstTarifas.push(lstTarifa);
             }
         });
 

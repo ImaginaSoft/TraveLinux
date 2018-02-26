@@ -28,6 +28,35 @@
     });
 
 
+    $('#ruc').on('change', function () {
+
+        debugger;
+
+
+        var data = {
+            eProveedor: {
+                RUC: $('#ruc').val(),
+            }
+        }
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/Proveedor/ValidarRuc',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            success: function (data) {
+                debugger;
+                if (data.RUC > 0) {
+                    $('#myModal').modal('show');
+                    $("input#ruc").css("border-color", "rgb(47, 57, 86)");
+                }
+            },
+        })
+    })
+
+
+
     /*     $(document).ready(function() {
             $('#resultados').DataTable( {
                 initComplete: function () {

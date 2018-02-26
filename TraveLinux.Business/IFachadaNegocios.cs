@@ -61,5 +61,6 @@ namespace TraveLinux.Business
         List<Servicio> ListadoServicioxProvPlantilla(string sProveedor, string sTipo_Servicio, string sCiudad);
         void Eliminar_TablaTemporal();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
+        Proveedor ValidarRuc(Proveedor eProveedor);
     }
 }

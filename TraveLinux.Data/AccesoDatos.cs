@@ -1055,6 +1055,31 @@ namespace TraveLinux.Data
 
 
 
+        public Proveedor ValidarRuc(Proveedor eProveedor)
+        {
+
+            var ObjProveedor= new Proveedor();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_VALIDAR_COD_PROV");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_RUC", OracleDbType.Varchar2).Value = eProveedor.RUC;
+                command.Parameters.Add("P_VALIDAR", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                ObjProveedor.RUC = command.Parameters.GetStringOrDefault("P_VALIDAR");
+            }
+
+            return ObjProveedor;
+        }
+
+
 
         //public Tarifa ValidarRango(int Rango)
         //{
@@ -1521,6 +1546,8 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2,20).Value = eEntidad.SERVICIO;
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eEntidad.TARIFA;
                 command.Parameters.Add("P_TIPO_HAB", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_HAB;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_RANGO", OracleDbType.Varchar2, 20).Value = eEntidad.RANGO;
                 command.Parameters.Add("P_PRECIO", OracleDbType.Decimal).Value = eEntidad.PRECIO;
                 connection.Open();
                 command.ExecuteNonQuery();

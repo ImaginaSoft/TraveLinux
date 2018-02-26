@@ -105,5 +105,16 @@ namespace TraveLinux.Web.Controllers
 
             return Json(vProveedor);
         }
+
+
+        public ActionResult ValidarRuc(Proveedor eProveedor)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var vRuc = Fachada.ValidarRuc(eProveedor);
+
+            return Json(vRuc);
+        }
+
+
     }
 }
