@@ -3,5 +3,251 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Template</h2>
 
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoPlantilla.js"></script>
+}
+
+@section Styles {
+
+    @*  <link rel="stylesheet" type="text/css" href="~/Scripts/app/datatables.min.css" />*@
+
+
+
+
+    <style>
+        b, strong {
+            font-weight: 700;
+            color: #f39c12;
+        }
+
+        .logo-lg {
+            width: 65%;
+        }
+
+        .details {
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+
+        .button-movil button, .button-movil a {
+            padding: 10px 25px 10px 25px;
+        }
+
+
+        .glyphicon {
+            color: white;
+        }
+
+        h4 {
+            color: white;
+            font-weight: bolder;
+        }
+
+        .modal-header-danger {
+            background-color: #15ab72 !important;
+        }
+
+
+        .modal-footer {
+            padding: 10px !important;
+        }
+
+        .modal-content {
+            border-radius: 10px !important;
+        }
+
+        .header {
+            background: #2f3956;
+            padding-left: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: #fff;
+        }
+
+            .header p {
+                font-size: 23px;
+                color: rgb(155, 54, 72);
+                font-weight: bold;
+                margin-bottom: 0px;
+            }
+
+        .radio {
+            padding-left: 10px;
+        }
+
+        textarea {
+            height: 100px;
+            max-height: 100px;
+        }
+
+        #label_izq {
+            text-align: left;
+        }
+
+        .the-legend {
+            border-style: none;
+            border-width: 0;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 0;
+        }
+
+        .the-fieldset {
+            border: 2px groove threedface #444;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        .well {
+            padding: 1px 0px 10px 10px !important;
+            margin-bottom: 20px;
+            background-color: #eeeeee !important;
+            border: 1px solid #e3e3e3;
+        }
+
+        p {
+            text-align: left;
+        }
+
+        .form-horizontal .form-group {
+            margin-bottom: 30px;
+        }
+    </style>}
+
+<script id="responsive-template" type="text/x-handlebars-template">
+    <div class="row" id="row_movil_proveedor">
+        <div class="col-xs-12 header">
+            <p id="descripcion"></p>
+            <span>
+                <strong>NOMBRE:</strong>
+                <span id="nombre"></span><br />
+                <strong>ALIAS:</strong>
+                <span id="alias"></span>
+            </span>
+
+        </div>
+        <div class="col-xs-12 details">
+            <table class="table table-borderless full-width">
+                <tbody>
+                    <tr>
+                        <th>Ruc</th>
+                        <td id="ruc"></td>
+                    </tr>
+
+                    <tr>
+                        <th>PAIS</th>
+                        <td id="pais"></td>
+                    </tr>
+                    <tr>
+                        <th>Ciudad</th>
+                        <td id="ciudad"></td>
+                    </tr>
+                    <tr>
+                        <th>Pagina Web</th>
+                        <td id="paginaweb"></td>
+                    </tr>
+                    <tr>
+                        <th>IDIOMA</th>
+                        <td id="idioma"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-5 col-xs-offset-2 button-movil">
+            @*<button class="btn btn-success" onclick="onClickListarTarifa(event);"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> Editar</button>*@
+            <button class="btn btn-primary btn-VerServicio" onclick="onClickVerServicio(event);"><i class="fa fa-eye-slash"></i> </button>
+        </div>
+        <div class="col-xs-3 button-movil">
+            @*<button class="btn btn-danger" onclick="onClickListarTarifa(event);"><i class="fa fa-file-text-o" aria-hidden="true"></i>Crear Tarifa</button>*@
+            @*<a class="btn btn-warning onclick="onClickSeleccionarOpcion(event);" data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>*@
+            <a class="btn btn-warning btn-SeleccionarOpcion data-toggle=" modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>
+
+        </div>
+    </div>
+</script>
+
+
+<section class="content-header">
+    @*<h1>Moneda</h1>*@
+</section>
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                @*<div class="box-header with-border">
+                        @*<h3 class="box-title">Datos Generales</h3>
+                    </div>*@
+                <div class="box-body">
+                    <div class="form-group">
+                        @*<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4">*@
+                        <div class="col-md-3">
+                            <a class="btn btn-warning btn-block" href="@Url.Action("CrearPlantilla", "Plantilla")"><span class="glyphicon glyphicon-list-alt"></span> New Template</a>
+                        </div>
+                        <div class="form-group" id="encab_proveedor">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">View:</label>
+                            <div class="col-xs-7 col-sm-4 col-md-3">
+                                <select id="proveedor_estado" class="selectpicker" data-size="5">
+                                    <option value="S">Activo</option>
+                                    <option value="N">Inactivos</option>
+                                </select>
+                            </div>
+                            @*<div class="col-sm-2 col-md-2">
+                                    <button type="button" class="btn btn-warning" id="BuscarActivo">Mostrar</button>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Results</h3>
+                @*<select>
+                        <option value=""></option>
+                        <option value="Activo">ACTIVO</option>
+                        <option value="Inactivo">INACTIVO</option>
+
+                    </select>*@
+            </div>
+            <form>
+                <div class="box-body">
+                    <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @*<h4 class="modal-title">Modal Header</h4>*@
+                <h4><i class="glyphicon glyphicon-question-sign"></i> Message</h4>
+            </div>
+            <div class="modal-body">
+                <p>What do you want to do?</p>
+                <input type="hidden" id="CodigoProveedor" value="" />
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2">
+                    <button type="button" class="btn btn-success btn-editar"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-danger btn-eliminar"><i class="glyphicon glyphicon-remove"></i> Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

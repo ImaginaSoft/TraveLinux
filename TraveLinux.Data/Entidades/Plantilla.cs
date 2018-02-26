@@ -14,7 +14,7 @@ namespace TraveLinux.Data.Entidades
         public Int32 CANT_CHILD { get; set; }
         public Int32 CANT_ADULT { get; set; }
         public Int32 CANT_PAX { get; set; }
-        public char ESTADO { get; set; }
+        public string ESTADO { get; set; }
         public DateTime? FECHA_INI { get; set; }
         public Int32 MARKUP { get; set; }
 
