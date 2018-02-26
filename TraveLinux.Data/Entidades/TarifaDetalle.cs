@@ -22,6 +22,7 @@ namespace TraveLinux.Data.Entidades
         public string TIPO_PERSONA { get; set; }
         public string RANGO_PAX { get; set; }
         public Int32 PRECIO { get; set; }
+        public Int32 Existe { get; set; }
 
 
         public decimal? SGL_ROOM { get; set; }

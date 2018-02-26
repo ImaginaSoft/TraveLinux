@@ -657,7 +657,7 @@
 
     function onClickCargaHotel(e) {
         e.preventDefault();
-        window.location = '/TarifaDetalle/NuevaTarifaDetalleHotel?Proveedor=' + Proveedor;
+        window.location = '/TarifaHoteles/CargaTarifaHotel?Proveedor=' + Proveedor;
     }
 
 

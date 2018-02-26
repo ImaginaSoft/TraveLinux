@@ -1,14 +1,45 @@
-﻿@{
-    ViewBag.Title = "NuevaTarifaDetalleHotel";
+﻿
+@{
+    ViewBag.Title = "CargaTarifaHotel";
 }
-
-<h2>NuevaTarifaDetalleHotel</h2>
 
 @section Scripts {
     <script src="~/Scripts/app/MantenimientoTarifaDetalle.js"></script>
+
 }
 
 <style>
+
+    .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+
+        #aspita{
+        color: green;
+    font-size: 15px;
+    }
+    #equis {
+        color: red;
+    font-size: 15px;
+    }
+
     table {
         border-collapse: separate;
         border-spacing: 0 5px;
@@ -85,6 +116,7 @@
     @*<h1>Datos Generales</h1>*@
 
 </section>
+
 <div class="form-horizontal">
     <div class="row">
         <div class="col-md-12">
@@ -98,27 +130,32 @@
                             <fieldset class="well the-fieldset">
                                 <legend class="the-legend">@*<b>Beginning</b>*@</legend>
                                 <label for="alias" class="col-sm-3 control-label no-pad-right">Supplier:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-8 col-sm-8">
                                     <input class="form-control" id="proveedor_nombre" value="@ViewBag.Proveedor_Nombre" disabled>
                                     <input class="form-control hidden" id="proveedor" value="@ViewBag.Proveedor" disabled>
                                     <br />
-                                </div>                              
+                                </div>
+                                <div class="col-md-9 col-md-9">
+
+                                    @using (Html.BeginForm("CargaTarifaHotel", "TarifaHoteles", new
+                                    {
+                                        Proveedor = @ViewBag.Proveedor,
+                                        TipoServicio = "Hoteles"
+                                    }, FormMethod.Post, new { enctype = "multipart/form-data", id = "form_hoteles" }))
+                                    {
+
+
+                                        <input type="file" id="triggers" class="filestyle" data-buttonName="btn-warning" name="UploadedFile" data-buttonBefore="true" data-buttonText="Import Excel" data-size="sm"/>
+                                        @*<input type="submit" btn btn-warning name="Submit" value="Submit" />*@
+                                        @*<input type="file" class="filestyle" data-buttonName="btn-primary">*@
+                                    }
+
+                                </div>
                             </fieldset>
                         </div>
                     </div>
                     @* PARA HOTELES *@
-
-                    @using (Html.BeginForm("CargaTarifaHotel", "TarifaHoteles", new
-                    {
-                        Proveedor = @ViewBag.Proveedor,
-                        TipoServicio = "Hoteles"
-                    }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="file" name="UploadedFile" />
-                            <input type="submit" name="Submit" value="Submit" />
-                    }
-                  
-
+     
                     <button class="btn btn-warning" id="btn-guardarCargaHot">
                         <span class="glyphicon glyphicon-save">SAVE</span>
                     </button>
@@ -130,11 +167,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-
-
-
-
 
 <div class="row">
     <div class="col-md-12">
@@ -142,11 +174,11 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Results</h3>
                 @*<select>
-                    <option value=""></option>
-                    <option value="Activo">ACTIVO</option>
-                    <option value="Inactivo">INACTIVO</option>
+                        <option value=""></option>
+                        <option value="Activo">ACTIVO</option>
+                        <option value="Inactivo">INACTIVO</option>
 
-                </select>*@
+                    </select>*@
             </div>
             <form>
                 <div class="box-body">

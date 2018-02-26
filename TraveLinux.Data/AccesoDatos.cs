@@ -250,7 +250,42 @@ namespace TraveLinux.Data
 
             return lclientes;
         }
+        public IEnumerable<Tarifa> ObtenerTarifHotel()
+        {
+            var lstTarifa = new List<Tarifa>();
 
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_HOTEL_TEMPORAL");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tarifa = new Tarifa();
+                        tarifa.DESCRIPCION = reader.GetStringOrDefault(0);
+                        tarifa.FECHA_INICIO_S = reader.GetStringOrDefault(1);
+                        tarifa.FECHA_FINAL_S = reader.GetStringOrDefault(2);
+                        tarifa.TIPO_PERSONA = reader.GetStringOrDefault(3);
+                        tarifa.TIPO_SERVICIO = reader.GetStringOrDefault(4);
+                        tarifa.SGL_ROOM = reader.GetDecimal(5);
+                        tarifa.DWL_ROOM= reader.GetDecimal(6);
+                        tarifa.TPL_ROOM = reader.GetDecimal(7);
+                        tarifa.CDL_ROOM = reader.GetDecimal(8);
+                        tarifa.TEMPORADA = reader.GetStringOrDefault(9);
+                        tarifa.DINAMICO = reader.GetInt32(10);
+                        lstTarifa.Add(tarifa);
+                    }
+                }
+            }
+
+            return lstTarifa;
+        }
         public void GuardarTarifaDetalle(List<Tarifa_Detalle> lsttarifa)
         {
             throw new NotImplementedException();
@@ -492,6 +527,22 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_TABLA_TEMPORAL");
 
                 command.Parameters.Add("P_VALIDO", OracleDbType.Varchar2, 50).Value = 1;
+                command.CommandType = CommandType.StoredProcedure;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Eliminar_Tabla_Temporal_Hotel()
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_HOTEL_TEMPORAL");
+
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = "";
                 command.CommandType = CommandType.StoredProcedure;
 
                 connection.Open();
@@ -1563,6 +1614,14 @@ namespace TraveLinux.Data
                 GuardarServicioCarga_Detalle(eEntidad);
         }
 
+
+        public void Guardar_Carga_Hotel_Temporal(List<Tarifa> usersList)
+        {
+            foreach (var eEntidad in usersList)
+                Guardar_Carga_Hotel_Temp(eEntidad);
+        }
+
+
         private void GuardarServicioCarga_Detalle(Servicio eEntidad)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -1601,6 +1660,32 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = 1;
                 command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = eEntidad.USUARIO_REGISTRO;
                 command.Parameters.Add("P_ES_CARGA", OracleDbType.Varchar2, 50).Value = "S";
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        private void Guardar_Carga_Hotel_Temp(Tarifa eEntidad)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_GUARDAR_CARGA_HOTEL_TMP");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_FECHA_INI", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_INICIO_S);
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_FINAL_S);
+                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_PERSONA;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_SGL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.SGL_ROOM_S);
+                command.Parameters.Add("P_DWL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.DWL_ROOM_S);
+                command.Parameters.Add("P_TPL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.TPL_ROOM_S);
+                command.Parameters.Add("P_CDL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.CDL_ROOM_S);
+                command.Parameters.Add("P_TEMPORADA", OracleDbType.Varchar2, 5).Value = eEntidad.TEMPORADA_S;               
 
                 connection.Open();
                 command.ExecuteNonQuery();

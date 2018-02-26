@@ -27,6 +27,7 @@ namespace TraveLinux.Data.Entidades
         public string TIPO_ACOMODACION { get; set; }
         public string TIPO_HAB { get; set; }
         public string TIPO_SERVICIO { get; set; }
+        public string TIPO_PERSONA { get; set; }
         public Int32 PERIODO { get; set; }
         public string DESCR_TIPO_ACOMODACION { get; set; }
         public string DESCR_TIPO_HABITACION { get; set; }
@@ -35,5 +36,19 @@ namespace TraveLinux.Data.Entidades
         public string USUARIO_REGISTRO { get; set; }
         public DateTime? FECHA_ULT_MODIF { get; set; }
         public string USUARIO_ULT_MODIF { get; set; }
+
+        public string FECHA_INICIO_S { get; set; }
+        public string FECHA_FINAL_S { get; set; }
+
+        public string TEMPORADA_S { get; set; }
+        public string SGL_ROOM_S { get; set; }
+        public string DWL_ROOM_S { get; set; }
+        public string TPL_ROOM_S { get; set; }
+        public string CDL_ROOM_S { get; set; }
+        public decimal SGL_ROOM { get; set; }
+        public decimal DWL_ROOM { get; set; }
+        public decimal TPL_ROOM { get; set; }
+        public decimal CDL_ROOM { get; set; }
+  
     }
 }

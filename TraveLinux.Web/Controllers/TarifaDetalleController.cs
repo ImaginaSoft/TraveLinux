@@ -51,11 +51,13 @@ namespace TraveLinux.Web.Controllers
                         var currentSheet = package.Workbook.Worksheets;
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
+                        var noOfRow = workSheet.Dimension.End.Row;                        
 
 
                         if (TipoServicio == "TerAer")
                         {
+
+
                             for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
                                 var user = new ServicioViewModels();
@@ -69,6 +71,9 @@ namespace TraveLinux.Web.Controllers
                                 user.PRECIO = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString());
                                 user.TIPO_SERVICIO_ABREV = workSheet.Cells[rowIterator, 8].Value.ToString();
                                 user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 9].Value.ToString());
+
+
+
                                 usersList.Add(user);
                             }
                         }
@@ -116,7 +121,7 @@ namespace TraveLinux.Web.Controllers
             ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
             ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;
 
-            List<ServicioViewModels> usersList = new List<ServicioViewModels>();
+            List<Tarifa> usersList = new List<Tarifa>();
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["UploadedFile"];
@@ -135,49 +140,35 @@ namespace TraveLinux.Web.Controllers
                         var noOfRow = workSheet.Dimension.End.Row;
 
 
-                        if (TipoServicio == "TerAer")
-                        {
-                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
-                            {
-                                var user = new ServicioViewModels();
-
-                                user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value.ToString();
-                                user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value.ToString());
-                                user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value.ToString());
-                                user.TIPO_PERSONA = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                user.RANGO_PAX = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                user.PRECIO = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString());
-                                user.TIPO_SERVICIO_ABREV = workSheet.Cells[rowIterator, 8].Value.ToString();
-                                user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 9].Value.ToString());
-                                usersList.Add(user);
-                            }
-                        }
-
                         if (TipoServicio == "Hoteles")
                         {
                             for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
-                                var user = new ServicioViewModels();
+                                var user = new Tarifa();
+                                user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value == null ? string.Empty : workSheet.Cells[rowIterator, 1].Value.ToString();
+                                user.FECHA_INICIO_S = workSheet.Cells[rowIterator, 2].Value == null ? string.Empty : workSheet.Cells[rowIterator, 2].Value.ToString();
+                                user.FECHA_FINAL_S = workSheet.Cells[rowIterator, 3].Value == null ? string.Empty : workSheet.Cells[rowIterator, 3].Value.ToString();
+                                user.TIPO_PERSONA = workSheet.Cells[rowIterator, 4].Value == null ? string.Empty : workSheet.Cells[rowIterator, 4].Value.ToString();
+                                user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 5].Value == null ? string.Empty : workSheet.Cells[rowIterator, 5].Value.ToString();
+                                user.SGL_ROOM_S = workSheet.Cells[rowIterator, 6].Value == null ? string.Empty : workSheet.Cells[rowIterator, 6].Value.ToString();
+                                user.DWL_ROOM_S = workSheet.Cells[rowIterator, 7].Value == null ? string.Empty : workSheet.Cells[rowIterator, 7].Value.ToString();
+                                user.TPL_ROOM_S = workSheet.Cells[rowIterator, 8].Value == null ? string.Empty : workSheet.Cells[rowIterator, 8].Value.ToString();
+                                user.CDL_ROOM_S = workSheet.Cells[rowIterator, 9].Value == null ? string.Empty : workSheet.Cells[rowIterator, 9].Value.ToString();
+                                user.TEMPORADA_S = workSheet.Cells[rowIterator, 10].Value == null ? string.Empty : workSheet.Cells[rowIterator, 10].Value.ToString();
+                                
+                                if (user.TEMPORADA_S != string.Empty)
+                                {                             
+                                    usersList.Add(user);
+                                }                             
+                            }                            
                             
-                                user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value.ToString();
-                                user.FECHA_INI = Convert.ToDateTime(workSheet.Cells[rowIterator, 2].Value.ToString());
-                                user.FECHA_FIN = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value.ToString());
-                                user.TIPO_PERSONA = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                user.SGL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 6].Value.ToString());
-                                user.DWL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 7].Value.ToString());
-                                user.TPL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 8].Value.ToString());
-                                user.CDL_ROOM = Convert.ToDecimal(workSheet.Cells[rowIterator, 9].Value.ToString());
-                                user.TEMPORADA = Convert.ToInt32(workSheet.Cells[rowIterator, 10].Value.ToString());
-                                usersList.Add(user);
-                            }
+                            Fachada.Guardar_Carga_Hotel_Temporal(usersList);
                         }
                     }
                 }
-            }
+            }           
 
-            return View(usersList);
+            return View();
         }
 
         public ActionResult NuevaTarifaDetalle(int Proveedor)
@@ -229,36 +220,42 @@ namespace TraveLinux.Web.Controllers
             ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;
 
             return View();
+
+            //var vTarifaHotel = Fachada.ObtenerTarifHotel();
+
+            //return Json(vTarifaHotel);
         }
 
-        //[Autorizar(Perfil.Administrador)]
-        //public ActionResult NuevaTarifaDetalle(string Proveedor, string Tarifa)
+        //[HttpPost]
+        //public ActionResult NuevaTarifaDetalleHotel(int Proveedor, string TipoServicio, HttpPostedFileBase postedFile)
         //{
-        //    var cuenta = Session["CUENTA"] as Cuenta;
+        //    {
+        //        var cuenta = Session["CUENTA"] as Cuenta;
 
-        //    //var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa, null);
+        //        var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa, null);
 
-        //    //var TarifDetalle = Fachada.ObtenerTarifaDetalle(Proveedor, Tarifa).FirstOrDefault();
+        //        var TarifDetalle = Fachada.ObtenerTarifaDetalle(Proveedor, Tarifa).FirstOrDefault();
 
-        //    //if (TarifDetalle == null)
-        //    //{
-        //    //    return HttpNotFound("No se encontró el detalle solicitado");
-        //    //}
+        //        if (TarifDetalle == null)
+        //        {
+        //            return HttpNotFound("No se encontró el detalle solicitado");
+        //        }
 
-        //    //var modelo = new ProveedorViewModels()
-        //    //{
-        //    //    PROVEEDOR = TarifDetalle.PROVEEDOR,
-        //    //    PROVEEDOR_NOMBRE = TarifDetalle.PROVEEDOR_NOMBRE,
-        //    //    TARIFA = TarifDetalle.TARIFA,
-        //    //    TARIFA_NOMBRE = TarifDetalle.TARIFA_NOMBRE
-        //    //};
+        //        var modelo = new ProveedorViewModels()
+        //        {
+        //            PROVEEDOR = TarifDetalle.PROVEEDOR,
+        //            PROVEEDOR_NOMBRE = TarifDetalle.PROVEEDOR_NOMBRE,
+        //            TARIFA = TarifDetalle.TARIFA,
+        //            TARIFA_NOMBRE = TarifDetalle.TARIFA_NOMBRE
+        //        };
 
-        //    //ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
-        //    //ViewBag.Proveedor_Nombre = TarifDetalle.PROVEEDOR_NOMBRE;
-        //    //ViewBag.Tarifa = TarifDetalle.TARIFA;
-        //    //ViewBag.Tarifa_Nombre = TarifDetalle.TARIFA_NOMBRE;
+        //        ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
+        //        ViewBag.Proveedor_Nombre = TarifDetalle.PROVEEDOR_NOMBRE;
+        //        ViewBag.Tarifa = TarifDetalle.TARIFA;
+        //        ViewBag.Tarifa_Nombre = TarifDetalle.TARIFA_NOMBRE;
 
-        //   return Json(vCliente);
+        //        return Json(vCliente);
+        //    }
         //}
 
         [HttpPost]
@@ -283,25 +280,7 @@ namespace TraveLinux.Web.Controllers
 
             Fachada.Eliminar_TablaTemporal();
         }
-
-        [HttpPost]
-        public void GuardarTarifaCargaHoteles(List<Tarifa_Detalle> lstTarifas)
-        {
-            var cuenta = Session["CUENTA"] as Cuenta;            
-
-            List<Tarifa_Detalle> copyLista = lstTarifas.ToList();            
-
-            List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
-
-            Fachada.GuardarPeriodoCap_Lista_Detalle_Hoteles(myDistinctList, 1);
-
-            Fachada.GuardarTarifa_Lista_Detalle_Hoteles(lstTarifas, 0);            
-
-            Fachada.Copiar_Temporal_ServicioHotel(16);
-
-            
-
-        }
+ 
 
         public ActionResult Obtener_tarifa_Detalle_Prov(int Proveedor, string Tarifa)
         {
