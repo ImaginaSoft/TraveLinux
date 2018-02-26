@@ -14,6 +14,7 @@ namespace TraveLinux.Business
         IEnumerable<TipoDocumento> ObtenerTipoDocumento();
         IEnumerable<Moneda> ObtenerMonedas();
         IEnumerable<Cliente> ObtenerListaCliente();
+        IEnumerable<Tarifa> ObtenerTarifHotel();
         IEnumerable<Tarifa> ObtenerListaTarifa(Int32 Proveedor, string Servicio, string Tarifa);
         IEnumerable<Tarifa> ObtenerListaTarifaHoteles(Int32 Proveedor, string Servicio, string Tarifa);
         IEnumerable<Pais> ObtenerPaises();
@@ -55,6 +56,7 @@ namespace TraveLinux.Business
         Tarifa ValidarRango(Tarifa eTarifa);
         void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
         void GuardarPlantilla(Plantilla ePlantilla);
+        void Guardar_Carga_Hotel_Temporal(List<Tarifa> usersList);
         void Eliminar_TablaTemporal();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
     }
