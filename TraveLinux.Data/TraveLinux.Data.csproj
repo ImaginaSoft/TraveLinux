@@ -53,6 +53,7 @@
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Entidades\Periodo.cs" />
     <Compile Include="Entidades\Plantilla.cs" />
+    <Compile Include="Entidades\PlantillaDetalle.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\Servicio.cs" />
     <Compile Include="Entidades\Tarifa.cs" />

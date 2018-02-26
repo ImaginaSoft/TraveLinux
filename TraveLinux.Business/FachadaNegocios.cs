@@ -700,7 +700,7 @@ namespace TraveLinux.Business
             }
             catch (Exception e)
             {
-                throw new FachadaNegociosException("No se pudo obtener los departamento", e);
+                throw new FachadaNegociosException("No se pudo obtener las ciudades", e);
             }
         }
 
@@ -720,6 +720,48 @@ namespace TraveLinux.Business
         }
 
 
+        public List<TipoServicio> ObtenerListAcomodacionPlantilla(string TipoServicio)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ObtenerListAcomodacionPlantilla(TipoServicio);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los tipo de servicios", e);
+            }
+        }
+
+
+        public void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.GuardarPlantillaDetalle(ePlantillaDetalle);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo guardar el detalle de la plantilla", e);
+            }
+        }
+
+
+        public IEnumerable<PlantillaDetalle> ListadoDetallePlantilla(string Plantilla)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var detallePlantilla = datos.ListadoDetallePlantilla(Plantilla);
+                return detallePlantilla;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener el detalel de la plantilla", e);
+            }
+        }
 
 
     }

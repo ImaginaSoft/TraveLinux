@@ -100,5 +100,38 @@ namespace TraveLinux.Web.Controllers
         }
 
 
+        public ActionResult ObtenerListAcomodacionPlantilla(string sTipo_Servicio)
+        {
+
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var servicio = Fachada.ObtenerListAcomodacionPlantilla(sTipo_Servicio);
+
+            return Json(servicio);
+
+
+        }
+
+
+        [HttpPost]
+        public void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle)
+        {
+
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.GuardarPlantillaDetalle(ePlantillaDetalle);
+
+        }
+
+
+        [Autorizar(Perfil.Administrador)]
+        public ActionResult ListadoDetallePlantilla(string Plantilla)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var vDetallePlantilla = Fachada.ListadoDetallePlantilla(Plantilla);
+
+            return Json(vDetallePlantilla);
+        }
+
+
 	}
 }

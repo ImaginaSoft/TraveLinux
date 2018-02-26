@@ -59,6 +59,9 @@ namespace TraveLinux.Business
         IEnumerable<Proveedor> ObtenerProveedorPlantilla();
         List<Departamentos> ListadoCiudadServProveedor(string sProveedor);
         List<Servicio> ListadoServicioxProvPlantilla(string sProveedor, string sTipo_Servicio, string sCiudad);
+        List<TipoServicio> ObtenerListAcomodacionPlantilla(string sTipoServicio);
+        void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle);
+        IEnumerable<PlantillaDetalle> ListadoDetallePlantilla(string Proveedor);
         void Eliminar_TablaTemporal();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
     }
