@@ -55,15 +55,15 @@ namespace TraveLinux.Business
         Tarifa ValidarRango(Tarifa eTarifa);
         void GuardarServicio_Lista_Detalle(List<Servicio> lstServCarg);
         void GuardarPlantilla(Plantilla ePlantilla);
-<<<<<<< HEAD
         IEnumerable<Plantilla> ObtenerListaPlantilla(string Estado);
         IEnumerable<Plantilla> ObtenerPlantilla(string Plantilla);
         IEnumerable<Proveedor> ObtenerProveedorPlantilla();
         List<Departamentos> ListadoCiudadServProveedor(string sProveedor);
         List<Servicio> ListadoServicioxProvPlantilla(string sProveedor, string sTipo_Servicio, string sCiudad);
-=======
+        List<TipoServicio> ObtenerListAcomodacionPlantilla(string sTipoServicio);
+        void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle);
+        IEnumerable<PlantillaDetalle> ListadoDetallePlantilla(string Proveedor);
         void Guardar_Carga_Hotel_Temporal(List<Tarifa> usersList);
->>>>>>> gg
         void Eliminar_TablaTemporal();
         void Eliminar_Tabla_Temporal_Hotel();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);

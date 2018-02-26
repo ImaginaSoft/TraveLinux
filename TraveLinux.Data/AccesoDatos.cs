@@ -1898,6 +1898,115 @@ namespace TraveLinux.Data
             return lservicio;
         }
 
+
+
+
+        public List<TipoServicio> ObtenerListAcomodacionPlantilla(string TipoServicio)
+        {
+            var lstTipoServicio = new List<TipoServicio>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TIPO_ACOMODACION");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Char, 3, TipoServicio, ParameterDirection.Input);
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tiposervicio = new TipoServicio();
+                        tiposervicio.ID_TIPO_SERVICIO = reader.GetStringOrDefault(0);
+                        tiposervicio.DESCRIPCION = reader.GetStringOrDefault(1);
+                        tiposervicio.ID_TIPO_ACOM = reader.GetStringOrDefault(2);
+                        tiposervicio.DESCR_ACOM = reader.GetStringOrDefault(3);
+                        lstTipoServicio.Add(tiposervicio);
+                    }
+                }
+            }
+
+            return lstTipoServicio;
+        }
+
+
+
+        public void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                //command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_PLANTILLA_DETALLE");
+                command.CommandText = "SP_CREAR_PLANTILLA_DETALLE";
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_ID_PLANTILLA", OracleDbType.Varchar2, 50).Value = ePlantillaDetalle.ID_PLANTILLA;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.SERVICIO;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.PROVEEDOR;
+              //  command.Parameters.Add("P_CANT_DIAS", OracleDbType.Int32).Value = ePlantillaDetalle.CANT_DIAS;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.TIPO_SERVICIO;
+                command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2,20).Value = ePlantillaDetalle.TIPO_ACOMODACION;
+                //command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2,20).Value = ePlantillaDetalle.ESTADO;
+              //  command.Parameters.Add("P_PRECIO_TOTAL", OracleDbType.Decimal).Value = ePlantillaDetalle.PRECIO_TOTAL;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+
+        public IEnumerable<PlantillaDetalle> ListadoDetallePlantilla(string Plantilla)
+        {
+            var lstPlantillaDetalle = new List<PlantillaDetalle>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                //command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PERIODO");
+                command.CommandText ="SP_LISTAR_PLANTILLA_DETALLE";
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PLANTILLA", OracleDbType.Int32).Value = Plantilla;
+             //   command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var detallePlantilla = new PlantillaDetalle();
+
+                        detallePlantilla.ID_PLANTILLA = reader.GetStringOrDefault(0);
+                        detallePlantilla.SERVICIO = reader.GetStringOrDefault(1);
+                        detallePlantilla.PROVEEDOR = reader.GetStringOrDefault(2);
+                        detallePlantilla.TIPO_SERVICIO = reader.GetStringOrDefault(3);
+                        detallePlantilla.TIPO_ACOMODACION = reader.GetStringOrDefault(4);
+
+
+                        //periodo.ID_TARIFA = reader.GetStringOrDefault(0);
+                        //periodo.PROVEEDOR = reader.GetInt32(1);
+                        //periodo.SERVICIO = reader.GetStringOrDefault(2);
+                        //periodo.DESCRIPCION = reader.GetStringOrDefault(3);
+                        //periodo.FECHA_INICIO = reader.GetDateTime(4);
+                        //periodo.FECHA_FIN = reader.GetDateTime(5);
+                        //periodo.USUARIO_REGISTRO = "Philips";
+
+                        lstPlantillaDetalle.Add(detallePlantilla);
+                    }
+                }
+            }
+
+            return lstPlantillaDetalle;
+        }
+
       
     }
 
