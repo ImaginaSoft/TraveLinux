@@ -645,6 +645,79 @@ namespace TraveLinux.Business
             }
         }
 
+        public IEnumerable<Plantilla> ObtenerListaPlantilla(string Estado)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var plantilla = datos.ObtenerListaPlantilla(Estado);
+                return plantilla;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener las plantillas", e);
+            }
+        }
+
+
+        public IEnumerable<Plantilla> ObtenerPlantilla(string sPlantilla)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var plantilla = datos.ObtenerPlantilla(sPlantilla);
+                return plantilla;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener la plantilla", e);
+            }
+        }
+
+        public IEnumerable<Proveedor> ObtenerProveedorPlantilla()
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var proveedores = datos.ObtenerProveedorPlantilla();
+                return proveedores;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los proveedores", e);
+            }
+        }
+
+
+
+        public List<Departamentos> ListadoCiudadServProveedor(string Proveedor)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var departamento = datos.ListadoCiudadServProveedor(Proveedor);
+                return departamento;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los departamento", e);
+            }
+        }
+
+
+        public List<Servicio> ListadoServicioxProvPlantilla(string sProveedor, string sTipo_Servicio, string sCiudad)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var servicio = datos.ListadoServicioxProvPlantilla(sProveedor, sTipo_Servicio, sCiudad);
+                return servicio;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener los servicios", e);
+            }
+        }
 
 
 

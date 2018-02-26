@@ -5,6 +5,13 @@
 
 @*<h2>CrearPlantillaDetalle</h2>*@
 
+@section Scripts {
+    <script src="~/Scripts/app/MantenimientoPlantilla.js"></script>
+
+
+
+}
+
 <style>
     .modal-content {
         border-radius: 10px !important;
@@ -83,43 +90,7 @@
 @*<section class="content">*@
 
     <form class="form-horizontal">
-        @*<div class="row">
-                <div class="col-md-12">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                        </div>
-
-                        <div class="box-body">
-                            <div class="form-group">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
-                                <div class="col-xs-7 col-sm-5">
-                                    <input class="form-control" id="nombre" value="" disabled>
-                                    <input type="hidden" class="form-control" id="proveedor" value="" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
-                                <div class="col-xs-7 col-sm-5">
-                                    <input class="form-control" value="" disabled>
-                                    <input type="hidden" class="form-control" id="tiposervicio" value="" disabled>
-                                    <input type="hidden" class="form-control" id="servicio" value="" disabled>
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service description:</label>
-                                <div class="col-xs-7 col-sm-5">
-                                    <input class="form-control" id="nombre" value="" disabled>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
+     
 
         <div class="row">
             <div class="col-md-12">
@@ -128,21 +99,26 @@
                         <h3 class="box-title">Template Details</h3>
                     </div>
                     <div class="box-body">
-                        @*<div class="form-group">
-                                <div class="col-sm-4 col-md-3">
-                                    <button type="button" class="btn btn-warning RegistrarPeriodo">New Perido</button>
-                                </div>
-                            </div>*@
+                  
+                        <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Template :</label>
+                            <div class="col-xs-7 col-sm-2">
+                                <input class="form-control" id="nombre" value="@Model.ID_PLANTILLA" disabled>
+                                @*<input type="hidden" class="form-control" id="proveedor" value="@Model.PROVEEDOR" hidden>*@
+                            </div>
+                    
+                        </div>
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="periodo" class="selectpicker" data-size="5">
+                                <select id="proveedor" class="selectpicker" data-size="5" data-live-search="true">
                                     <option value="0">--- Seleccione ---</option>
-                                    @*@foreach (var fechas in Model.Fechas)
-                                        {
-                                            <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
-                                        }*@
+                                    @foreach (var proveedores in Model.Proveedores)
+                                    {
+                                        <option value="@proveedores.PROVEEDOR">@proveedores.ALIAS</option>
+                                    }
                                 </select>
+
                             </div>
                         </div>
 
@@ -152,21 +128,20 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">City:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="tipoacomodacion" class="selectpicker" data-size="5">
-                                    <option value="0">--- Seleccione ---</option>
-
-                                    @*<option value="PVT">Privado</option>
-                                    <option value="CMP">Compartido</option>*@
+                                <select id="ciudad" class="selectpicker" data-size="5" data-live-search="true">
+                           
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="tipopasajero" class="selectpicker" data-size="5">
-                                    <option value="">--- Seleccione ---</option>
-                                    @*<option value="ADULTO">ADULTO</option>
-                                    <option value="CHILD">NIÑO</option>*@
+                                <select id="tiposervicio" class="selectpicker" data-size="5">
+                                    <option value="">--- Nothing Selected ---</option>
+                                    <option value="TER">TERRESTRE</option>
+                                    <option value="HTL">HOTEL</option>
+                                    <option value="AER">AEREO</option>
+                                    <option value="OTR">OTROS</option>
                                 </select>
                             </div>
                         </div>
@@ -174,7 +149,7 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service :</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="tipopasajero" class="selectpicker" data-size="5">
+                                <select id="servicio" class="selectpicker" data-size="5">
                                     <option value="">--- Seleccione ---</option>
 
                                 </select>
@@ -295,7 +270,7 @@
                 </div>
                 <form>
                     <div class="box-body">
-                        <table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>
+                        <table id="detalleplantilla" class="display compact responsive no-wrap" style="width: 100%;"></table>
                     </div>
                 </form>
             </div>

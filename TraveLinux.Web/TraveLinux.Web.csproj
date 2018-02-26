@@ -232,6 +232,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonalViewModel.cs" />
+    <Compile Include="Models\PlantillaViewModels.cs" />
     <Compile Include="Models\ProveedorViewModels.cs" />
     <Compile Include="Models\ServicioViewModels.cs" />
     <Compile Include="Models\TarifaDetalleViewModels.cs" />

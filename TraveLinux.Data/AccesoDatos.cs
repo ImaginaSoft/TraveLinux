@@ -1607,6 +1607,185 @@ namespace TraveLinux.Data
 
         }
 
+        public IEnumerable<Plantilla> ObtenerListaPlantilla(string Estado)
+        {
+             var lplantilla = new List<Plantilla>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PLANTILLA");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = Estado;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var plantilla = new Plantilla();
+
+
+                        plantilla.ID_PLANTILLA = reader.GetStringOrDefault(0);
+                        plantilla.DESCRIPCION = reader.GetStringOrDefault(1);
+                        plantilla.EJECUTIVA = reader.GetStringOrDefault(2);
+                        plantilla.CANT_CHILD = reader.GetInt32(3);
+                        plantilla.CANT_ADULT = reader.GetInt32(4);
+                        plantilla.CANT_PAX = reader.GetInt32(5);
+                        plantilla.ESTADO = reader.GetStringOrDefault(6);
+                        plantilla.FECHA_INI = reader.GetDateTimeOrDefault(7);
+                        plantilla.MARKUP = reader.GetInt32(8);
+
+                        lplantilla.Add(plantilla);
+                    }
+                }
+            }
+
+            return lplantilla;
+        }
+
+
+        public IEnumerable<Plantilla> ObtenerPlantilla(string sPlantilla)
+        {
+            var lstPlantilla = new List<Plantilla>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_PLANTILLA");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PLANTILLA", OracleDbType.Varchar2, 50, sPlantilla, ParameterDirection.Input);
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var plantilla   = new Plantilla();
+
+
+                        plantilla.ID_PLANTILLA = reader.GetStringOrDefault(0);
+                        plantilla.DESCRIPCION = reader.GetStringOrDefault(1);
+                        plantilla.EJECUTIVA = reader.GetStringOrDefault(2);
+                        plantilla.CANT_CHILD = reader.GetInt32(3);
+                        plantilla.CANT_ADULT = reader.GetInt32(4);
+                        plantilla.CANT_PAX = reader.GetInt32(5);
+                        plantilla.ESTADO = reader.GetStringOrDefault(6);
+                        plantilla.FECHA_INI = reader.GetDateTimeOrDefault(7);
+                        plantilla.MARKUP = reader.GetInt32(8);
+
+                        lstPlantilla.Add(plantilla);
+                    }
+                }
+            }
+
+            return lstPlantilla;
+        }
+
+
+        public IEnumerable<Proveedor> ObtenerProveedorPlantilla()
+        {
+            var lproveedor = new List<Proveedor>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PROVEEDOR_PLANTILLA");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var proveedor = new Proveedor();
+
+                        proveedor.PROVEEDOR = reader.GetInt32(0);
+                        proveedor.ALIAS = reader.GetStringOrDefault(1);
+
+
+                        lproveedor.Add(proveedor);
+                    }
+                }
+            }
+
+            return lproveedor;
+        }
+
+
+        public List<Departamentos> ListadoCiudadServProveedor(string sProveedor)
+        {
+            var ldepartamentos = new List<Departamentos>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_CIUDADSERVXPROVEEDOR");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = sProveedor;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var departamento = new Departamentos();
+                        departamento.DEPARTAMENTO = reader.GetStringOrDefault(0);
+                        departamento.NOMBRE = reader.GetStringOrDefault(1);
+
+                        ldepartamentos.Add(departamento);
+                    }
+                }
+            }
+
+            return ldepartamentos;
+        }
+
+        public List<Servicio> ListadoServicioxProvPlantilla(string sProveedor,string sTipo_Servicio,string sCiudad)
+        {
+            var lservicio = new List<Servicio>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                // command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_DEPTXPAIS");
+                command.CommandText = "SP_OBTENER_SERVXPROV_PLANTILLA";
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = sProveedor;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = sTipo_Servicio;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 50).Value = sCiudad;
+
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var servicio = new Servicio();
+
+
+                        servicio.SERVICIO = reader.GetStringOrDefault(0);
+                        servicio.NOMBRE = reader.GetStringOrDefault(1);
+
+                        lservicio.Add(servicio);
+                    }
+                }
+            }
+
+            return lservicio;
+        }
+
       
     }
 
