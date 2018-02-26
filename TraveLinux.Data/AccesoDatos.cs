@@ -1615,8 +1615,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-               // command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PLANTILLA");
-                command.CommandText = "SP_LISTAR_PLANTILLA";
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PLANTILLA");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = Estado;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
@@ -1656,8 +1655,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-                //command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_PLANTILLA");
-                command.CommandText = "SP_OBTENER_PLANTILLA";
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_PLANTILLA");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PLANTILLA", OracleDbType.Varchar2, 50, sPlantilla, ParameterDirection.Input);
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
@@ -1697,9 +1695,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-               // command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PAIS");
-                command.CommandText = "SP_LISTAR_PROVEEDOR_PLANTILLA";
-
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_PROVEEDOR_PLANTILLA");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
@@ -1731,9 +1727,7 @@ namespace TraveLinux.Data
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
-               // command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_DEPTXPAIS");
-                command.CommandText =  "SP_LISTAR_CIUDADSERVXPROVEEDOR";
-
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_CIUDADSERVXPROVEEDOR");
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = sProveedor;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
