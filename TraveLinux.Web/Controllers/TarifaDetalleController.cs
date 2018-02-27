@@ -208,14 +208,6 @@ namespace TraveLinux.Web.Controllers
                 return HttpNotFound("No se encontró el detalle solicitado");
             }
 
-            //var modelo = new ProveedorViewModels()
-            //{
-            //    PROVEEDOR = TarifDetalle.PROVEEDOR,
-            //    PROVEEDOR_NOMBRE = TarifDetalle.PROVEEDOR_NOMBRE,
-            //    TARIFA = TarifDetalle.TARIFA,
-            //    TARIFA_NOMBRE = TarifDetalle.TARIFA_NOMBRE
-            //};
-
             ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
             ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;
 
@@ -225,38 +217,6 @@ namespace TraveLinux.Web.Controllers
 
             //return Json(vTarifaHotel);
         }
-
-        //[HttpPost]
-        //public ActionResult NuevaTarifaDetalleHotel(int Proveedor, string TipoServicio, HttpPostedFileBase postedFile)
-        //{
-        //    {
-        //        var cuenta = Session["CUENTA"] as Cuenta;
-
-        //        var vCliente = Fachada.ObtenerTarifProvDetalle(Proveedor, Tarifa, null);
-
-        //        var TarifDetalle = Fachada.ObtenerTarifaDetalle(Proveedor, Tarifa).FirstOrDefault();
-
-        //        if (TarifDetalle == null)
-        //        {
-        //            return HttpNotFound("No se encontró el detalle solicitado");
-        //        }
-
-        //        var modelo = new ProveedorViewModels()
-        //        {
-        //            PROVEEDOR = TarifDetalle.PROVEEDOR,
-        //            PROVEEDOR_NOMBRE = TarifDetalle.PROVEEDOR_NOMBRE,
-        //            TARIFA = TarifDetalle.TARIFA,
-        //            TARIFA_NOMBRE = TarifDetalle.TARIFA_NOMBRE
-        //        };
-
-        //        ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
-        //        ViewBag.Proveedor_Nombre = TarifDetalle.PROVEEDOR_NOMBRE;
-        //        ViewBag.Tarifa = TarifDetalle.TARIFA;
-        //        ViewBag.Tarifa_Nombre = TarifDetalle.TARIFA_NOMBRE;
-
-        //        return Json(vCliente);
-        //    }
-        //}
 
         [HttpPost]
         public void GuardarTarifaDetalle(List<Tarifa_Detalle> lsttarifa)
