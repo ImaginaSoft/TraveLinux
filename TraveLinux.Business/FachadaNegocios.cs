@@ -54,12 +54,12 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo obtener las monedas", e);
             }
         }
-        public IEnumerable<Cliente> ObtenerListaCliente()
+        public IEnumerable<Cliente> ObtenerListaCliente(string Estado)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                var cliente = datos.ObtenerListaCliente();
+                var cliente = datos.ObtenerListaCliente(Estado);
                 return cliente;
             }
             catch (Exception e)
@@ -245,6 +245,21 @@ namespace TraveLinux.Business
                 throw new FachadaNegociosException("No se pudo eliminar el proveedor", e);
             }
         }
+
+        public void EliminarCliente(string Cliente)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarCliente(Cliente);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar el cliente", e);
+            }
+        }
+
+
 
         public void EliminarServicio(string Servicio, Int32 Proveedor)
         {

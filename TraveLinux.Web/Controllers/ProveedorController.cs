@@ -97,6 +97,8 @@ namespace TraveLinux.Web.Controllers
             Fachada.EliminarProveedor(Proveedor);
         }
 
+
+
         [Autorizar(Perfil.Administrador)]
         public ActionResult ListadoProveedor(ProveedorViewModels Filtro)
         {

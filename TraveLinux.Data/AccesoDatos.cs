@@ -199,7 +199,7 @@ namespace TraveLinux.Data
             return monedas;
         }
 
-        public IEnumerable<Cliente> ObtenerListaCliente()
+        public IEnumerable<Cliente> ObtenerListaCliente(string Estado)
         {
             var lclientes = new List<Cliente>();
 
@@ -209,6 +209,7 @@ namespace TraveLinux.Data
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_CLIENTE");
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_ESTADO", OracleDbType.Char, 1).Value = Estado;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -230,7 +231,7 @@ namespace TraveLinux.Data
                         cliente.PAIS = reader.GetStringOrDefault(10);
                         cliente.DEPARTAMENTO = reader.GetStringOrDefault(11);
                         cliente.DIRECCION = reader.GetStringOrDefault(12);
-                        cliente.IDIOMA = reader.GetStringOrDefault(13);
+                        cliente.IDIOMA = reader.GetStringOrDefault(13);                       
                         cliente.EMAIL = reader.GetStringOrDefault(14);
                         cliente.EMAIL_2 = reader.GetStringOrDefault(15);
                         cliente.EMAIL_3 = reader.GetStringOrDefault(16);
@@ -243,6 +244,7 @@ namespace TraveLinux.Data
                         cliente.USUARIO_REGISTRO = reader.GetStringOrDefault(23);
                         cliente.FECHA_ULT_MODIF = reader.GetDateTimeOrDefault(24);
                         cliente.USUARIO_ULT_MODIF = reader.GetStringOrDefault(25);
+                        cliente.ESTADO = reader.GetStringOrDefault(26);
                         lclientes.Add(cliente);
                     }
                 }
@@ -810,6 +812,24 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Int32).Value = Proveedor;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+
+        public void EliminarCliente(string Cliente)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_CLIENTE");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_CLIENTE", OracleDbType.Varchar2).Value = Cliente;
 
                 connection.Open();
                 command.ExecuteNonQuery();
