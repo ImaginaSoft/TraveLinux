@@ -221,6 +221,7 @@
     <Compile Include="Controllers\TarifaDetalleController.cs" />
     <Compile Include="Controllers\TarifaDetalleServicioController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
+    <Compile Include="Controllers\TarifaHotelesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Filters\FiltroValidadorSesion.cs" />
     <Compile Include="Global.asax.cs">
@@ -269,6 +270,8 @@
     <Content Include="Scripts\app\MantenimientoTarifa.js" />
     <Content Include="Scripts\app\MantenimientoTarifaDetalle.js" />
     <Content Include="Scripts\app\ValidacionUsuario.js" />
+    <Content Include="Scripts\boostrap-filestyle\bootstrap-filestyle.js" />
+    <Content Include="Scripts\boostrap-filestyle\bootstrap-filestyle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -348,6 +351,7 @@
     <Content Include="Views\Plantilla\CrearPlantilla.cshtml" />
     <Content Include="Views\Plantilla\CrearPlantillaDetalle.cshtml" />
     <Content Include="Views\Plantilla\Index.cshtml" />
+    <Content Include="Views\TarifaHoteles\CargaTarifaHotel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,100 @@
 ﻿$(function () {
 
-    
+    $('#proveedor').on('change', function () {
+
+        var Proveedor = $(this).val();
+        $select = $('#ciudad');
+        $.ajax({
+            type: 'POST',
+            url: '/Plantilla/ListadoCiudadServProveedor',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Proveedor: Proveedor }),
+            success: function (data) {
+                // debugger;
+                if (data.length != 0) {
+                    $select.html('');
+                    $select.append('<option>-- Seleccione --</option>');
+                    $.each(data, function (i, val) {
+                        $select.append('<option value="' + val.DEPARTAMENTO + '">' + val.NOMBRE + '</option>');
+
+                    })
+                    $select.selectpicker('refresh');
+                }
+                else {
+                    //$select.append('<option>No hay Distritos</option>');
+                    $select.html('');
+
+                }
+
+            },
+        })
+    });
+
+
+    $('#tiposervicio').on('change', function () {
+
+        var Tipo_Servicio = $(this).val();
+        var Proveedor = $('#proveedor option:selected').val();
+        var Ciudad = $('#ciudad option:selected').val();
+        $select = $('#servicio');
+        $select1 = $('#tipoacco');
+        $.ajax({
+            type: 'POST',
+            url: '/Plantilla/ListadoServicioxProvPlantilla',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ sProveedor: Proveedor, sTipo_Servicio: Tipo_Servicio, sCiudad: Ciudad }),
+            success: function (data) {
+                //   debugger;
+                if (data.length != 0) {
+                    $select.html('');
+                    $select.append('<option>-- Seleccione --</option>');
+                    $.each(data, function (i, val) {
+                        $select.append('<option value="' + val.SERVICIO + '">' + val.NOMBRE + '</option>');
+
+                    })
+                    $select.selectpicker('refresh');
+                }
+                else {
+                    //$select.append('<option>No hay Distritos</option>');
+                    $select.html('');
+                    $select.selectpicker('refresh');
+
+
+                }
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Plantilla/ObtenerListAcomodacionPlantilla',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ sTipo_Servicio: Tipo_Servicio }),
+                    success: function (data) {
+                        //   debugger;
+                        if (data.length != 0) {
+                            $select1.html('');
+                            $select1.append('<option>-- Seleccione --</option>');
+                            $.each(data, function (i, val) {
+                                $select1.append('<option value="' + val.ID_TIPO_ACOM + '">' + val.DESCR_ACOM + '</option>');
+
+                            })
+                            $select1.selectpicker('refresh');
+                        }
+                        else {
+                            //$select.append('<option>No hay Distritos</option>');
+                            $select1.html('');
+                            $select1.selectpicker('refresh');
+
+
+                        }
+
+                    },
+                });
+
+
+            },
+        })
+    });
+
     
 
     // Guardar Detalle Plantilla
@@ -50,11 +144,11 @@
     }
 
 
+
     $('#btn-guardar-detalle').on('click', onClickRegistrarDetallePlantilla);
 
 
-
-    var grid = $('#detalleplantilla').DataTable({
+    var grid = $('#plantilla_detalle').DataTable({
         scrollX: true,
         paging: true,
         processing: true,
@@ -102,21 +196,21 @@
         data: 'ID_PLANTILLA',
         width: 125,
         className: 'not-mobile',
-        visible: false
+        visible: true
     },
     {
         title: 'SERVICIO',
         data: 'SERVICIO',
         width: 125,
         className: 'not-mobile',
-        visible: false
+        visible: true
     },
     {
         title: 'PROVEEDOR',
         data: 'PROVEEDOR',
         width: 150,
         className: 'not-mobile',
-        visible: false
+        visible: true
     },
     {
         title: 'TIPO_SERVICIO',
@@ -135,51 +229,13 @@
         //render: renderTextColor
         visible: true,
     },
-    //{
-    //    title: 'FECHA_FIN',
-    //    data: 'FECHA_FIN',
-    //    width: 40,
-    //    className: 'not-mobile',
-    //    //render: renderTextColor
-    //    visible: true,
-    //},
-
-    //{
-    //    title: 'USUARIO_REGISTRO',
-    //    data: 'USUARIO_REGISTRO',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    //render: renderTextColor
-    //    visible: true,
-    //},
-
-    //{
-    //    data: null,
-    //    width: 80,
-    //    className: 'dt-body-center not-mobile',
-    //    render: function (data, type, row, meta) {
-    //        var content = [];
-
-    //        var editar = '<button class="btn btn-success Editar" title="Editar Moneda"><i class="glyphicon glyphicon-pencil"></i></button>';
-    //        var eliminar = '<button class="btn btn-danger Eliminar" title="Eliminar Moneda"><i class="glyphicon glyphicon-remove"></i></button>';
-
-    //        content.push(editar);
-    //        content.push(eliminar);
-
-    //        return content.join('&nbsp;&nbsp;');
-    //    }
-    //},
 
         ]
 
     });
 
 
-    //$('#detalleplantilla tbody').on('click', 'button.btn-guardar-detalle', onClickRegistrarDetallePlantilla);
 
 
 
-    //$('#btn-guardar-detalle').on('click', onClickRegistrarDetallePlantilla);
-
-
-});
+})

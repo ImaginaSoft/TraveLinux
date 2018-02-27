@@ -81,10 +81,10 @@ namespace TraveLinux.Web.Controllers
         }
 
         [Autorizar(Perfil.Administrador)]
-        public ActionResult ListadoCliente()
+        public ActionResult ListadoCliente(ClienteViewModels Filtro)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
-            var vCliente = Fachada.ObtenerListaCliente();
+            var vCliente = Fachada.ObtenerListaCliente(Filtro.ESTADO);
            
             return Json(vCliente);
            
@@ -108,6 +108,14 @@ namespace TraveLinux.Web.Controllers
             return Json(departamento);
 
 
+        }
+
+        [HttpPost]
+        public void EliminarCliente(string Cliente)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.EliminarCliente(Cliente);
         }
 
 
