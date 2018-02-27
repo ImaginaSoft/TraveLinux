@@ -30,6 +30,11 @@ namespace TraveLinux.Data.Entidades
         public decimal? TPL_ROOM { get; set; }        
         public decimal? CDL_ROOM { get; set; }
 
+        public string SGL_ROOM_S { get; set; }
+        public string DWL_ROOM_S { get; set; }
+        public string TPL_ROOM_S { get; set; }
+        public string CDL_ROOM_S { get; set; }
+
 
 
 

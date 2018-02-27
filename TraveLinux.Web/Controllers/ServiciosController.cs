@@ -96,6 +96,8 @@ namespace TraveLinux.Web.Controllers
 
             var proveedor = Fachada.ObtenerProveedor(Proveedor).FirstOrDefault();
 
+            Fachada.Eliminar_Tabla_Temporal_Hotel();
+
             if (proveedor == null)
             {
                 return HttpNotFound("No se encontró el proveedor solicitado");

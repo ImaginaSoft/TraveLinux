@@ -156,6 +156,7 @@
             var tarifa = {};            
             
 
+
             if (tarifa.EXISTE = row.find("TD").eq(11).html() == 1) {
                 tarifa.PROVEEDOR = Proveedor;
                 tarifa.DESCRIPCION = row.find("TD").eq(0).html();
@@ -163,11 +164,16 @@
                 tarifa.FECHA_FIN = row.find("TD").eq(2).html();
                 tarifa.TIPO_PERSONA = row.find("TD").eq(3).html();
                 tarifa.TIPO_SERVICIO = row.find("TD").eq(4).html();
-                tarifa.SGL_ROOM = row.find("TD").eq(5).html();
-                tarifa.DWL_ROOM = row.find("TD").eq(6).html(); 
-                tarifa.TPL_ROOM = row.find("TD").eq(7).html();
-                tarifa.CDL_ROOM = row.find("TD").eq(8).html();
-                tarifa.PERIODO = row.find("TD").eq(9).html();                
+                tarifa.SGL_ROOM = parseFloat(row.find("TD").eq(5).html());
+                tarifa.DWL_ROOM = parseFloat(row.find("TD").eq(6).html());
+                tarifa.TPL_ROOM = parseFloat(row.find("TD").eq(7).html());
+                tarifa.CDL_ROOM = parseFloat(row.find("TD").eq(8).html());
+                tarifa.PERIODO = row.find("TD").eq(9).html();
+
+                //parseFloat(yourString).toFixed(2)
+
+                alert(tarifa.SGL_ROOM + ' ' + tarifa.DWL_ROOM);
+
                 lstTarifas.push(tarifa);
             }
         });

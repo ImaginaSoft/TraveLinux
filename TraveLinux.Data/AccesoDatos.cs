@@ -1681,10 +1681,10 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_FINAL_S);
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_PERSONA;
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_SERVICIO;
-                command.Parameters.Add("P_SGL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.SGL_ROOM_S);
-                command.Parameters.Add("P_DWL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.DWL_ROOM_S);
-                command.Parameters.Add("P_TPL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.TPL_ROOM_S);
-                command.Parameters.Add("P_CDL_ROOM", OracleDbType.Decimal).Value = Convert.ToDecimal(eEntidad.CDL_ROOM_S);
+                command.Parameters.Add("P_SGL_ROOM", OracleDbType.Decimal).Value = eEntidad.SGL_ROOM;
+                command.Parameters.Add("P_DWL_ROOM", OracleDbType.Decimal).Value = eEntidad.DWL_ROOM;
+                command.Parameters.Add("P_TPL_ROOM", OracleDbType.Decimal).Value = eEntidad.TPL_ROOM;
+                command.Parameters.Add("P_CDL_ROOM", OracleDbType.Decimal).Value = eEntidad.CDL_ROOM;
                 command.Parameters.Add("P_TEMPORADA", OracleDbType.Varchar2, 5).Value = eEntidad.TEMPORADA_S;               
 
                 connection.Open();

@@ -19,8 +19,8 @@ namespace TraveLinux.Web.Controllers
 
         public ActionResult Carga_TarifaHotel_Temporal()
         {
-            var cuenta = Session["CUENTA"] as Cuenta;
-            
+            var cuenta = Session["CUENTA"] as Cuenta;            
+
             var vTarifaHotel = Fachada.ObtenerTarifHotel();
 
             return Json(vTarifaHotel);
@@ -90,10 +90,11 @@ namespace TraveLinux.Web.Controllers
                                 user.FECHA_FINAL_S = workSheet.Cells[rowIterator, 3].Value == null ? string.Empty : workSheet.Cells[rowIterator, 3].Value.ToString();
                                 user.TIPO_PERSONA = workSheet.Cells[rowIterator, 4].Value == null ? string.Empty : workSheet.Cells[rowIterator, 4].Value.ToString();
                                 user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 5].Value == null ? string.Empty : workSheet.Cells[rowIterator, 5].Value.ToString();
-                                user.SGL_ROOM_S = workSheet.Cells[rowIterator, 6].Value == null ? string.Empty : workSheet.Cells[rowIterator, 6].Value.ToString();
-                                user.DWL_ROOM_S = workSheet.Cells[rowIterator, 7].Value == null ? string.Empty : workSheet.Cells[rowIterator, 7].Value.ToString();
-                                user.TPL_ROOM_S = workSheet.Cells[rowIterator, 8].Value == null ? string.Empty : workSheet.Cells[rowIterator, 8].Value.ToString();
-                                user.CDL_ROOM_S = workSheet.Cells[rowIterator, 9].Value == null ? string.Empty : workSheet.Cells[rowIterator, 9].Value.ToString();
+
+                                user.SGL_ROOM = workSheet.Cells[rowIterator, 6].Value == null ? 0 : Convert.ToDecimal(workSheet.Cells[rowIterator, 6].Value.ToString());
+                                user.DWL_ROOM = workSheet.Cells[rowIterator, 7].Value == null ? 0 : Convert.ToDecimal(workSheet.Cells[rowIterator, 7].Value.ToString());
+                                user.TPL_ROOM = workSheet.Cells[rowIterator, 8].Value == null ? 0 : Convert.ToDecimal(workSheet.Cells[rowIterator, 8].Value.ToString());
+                                user.CDL_ROOM = workSheet.Cells[rowIterator, 9].Value == null ? 0 : Convert.ToDecimal(workSheet.Cells[rowIterator, 9].Value.ToString());
                                 user.TEMPORADA_S = workSheet.Cells[rowIterator, 10].Value == null ? string.Empty : workSheet.Cells[rowIterator, 10].Value.ToString();
 
                                 if (user.TEMPORADA_S != string.Empty)
@@ -112,29 +113,26 @@ namespace TraveLinux.Web.Controllers
             //return RedirectToAction("ActionOrViewName", "ControllerName");
             //return RedirectToAction("CargaTarifaHotel?=" + Proveedor, "TarifaHoteles");
             return RedirectToAction("CargaTarifaHotel", new RouteValueDictionary(new { controller = "TarifaHoteles", action = "CargaTarifaHotel", Proveedor = Proveedor }));
+            //return RedirectToAction("Carga_TarifaHotel_Temporal", new RouteValueDictionary(new { controller = "TarifaHoteles", action = "Carga_TarifaHotel_Temporal"}));
         }
 
         [HttpPost]
         public void GuardarTarifaCargaHoteles(List<Tarifa_Detalle> lstTarifas)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
+            
+            List<Tarifa_Detalle> copyLista = lstTarifas.ToList();
 
-            //Tarifa_Detalle Existe = new Tarifa_Detalle();
+            List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
 
-            //int EXISTE = lstTarifas.IndexOf(Existe);
-            //if (EXISTE >= 0)
-            //{
-                List<Tarifa_Detalle> copyLista = lstTarifas.ToList();
+            Fachada.GuardarPeriodoCap_Lista_Detalle_Hoteles(myDistinctList, 1);
 
-                List<Tarifa_Detalle> myDistinctList = copyLista.GroupBy(Periodo => Periodo.PERIODO).Select(g => g.First()).ToList();
+            Fachada.GuardarTarifa_Lista_Detalle_Hoteles(lstTarifas, 0);
 
-                Fachada.GuardarPeriodoCap_Lista_Detalle_Hoteles(myDistinctList, 1);
+            Fachada.Copiar_Temporal_ServicioHotel(0);
 
-                Fachada.GuardarTarifa_Lista_Detalle_Hoteles(lstTarifas, 0);
+            Fachada.Eliminar_Tabla_Temporal_Hotel();
 
-                Fachada.Copiar_Temporal_ServicioHotel(16);
-
-                Fachada.Eliminar_Tabla_Temporal_Hotel();
         }
     }
 }
