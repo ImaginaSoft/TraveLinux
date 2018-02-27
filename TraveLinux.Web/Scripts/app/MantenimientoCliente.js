@@ -89,18 +89,27 @@
     });
 
 
-
-    function onClickEditarCliente(e) {       
-        debugger;
+    function onClickVerServicio(e) {
+        e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
-
         if (!item) {
             item = grid.row($(e.target).parents('tr').prev()).data();
         }
+
+        window.location = '/Servicios/ServicioCliente?Cliente=' + item.CLIENTE;
+    }
+
+
+
+    function onClickEditarCliente(e) {       
+        debugger;
+      
+        var Cliente = $('#CodigoCliente').val();
     
         //window.location = '/Cliente/EditarCliente?Cliente=' + item.CLIENTE;    
-        window.location = '/Cliente/EditarCliente?Cliente=' + item.CLIENTE;
+        window.location = '/Cliente/EditarCliente?Cliente=' + Cliente;
     }
+
 
 
     // Guardar Cliente
@@ -160,6 +169,51 @@ function onClickRegistrarCliente() {
         showErrorMessage('No se pudo guardar el cliente. Inténtelo de nuevo.');
         enableAllComponents(true);
     });
+}
+
+
+
+function onClickEliminarCliente() {
+    debugger;
+
+    var Cliente = $('#CodigoCliente').val();
+    $('#myModal').modal('hide');
+
+    $.ajax({
+        type: 'POST',
+        url: '/Cliente/EliminarCliente',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({ Cliente: Cliente }),
+    })
+    .done(function (data) {
+
+        showSuccessMessage('Se ha eliminado el cliente');
+        setTimeout(function () {
+            window.location = '/Cliente/Index';
+        }, 2000);
+    })
+    .fail(function () {
+        showErrorMessage('No se pudo borrar el cliente. Inténtelo de nuevo.');
+        enableAllComponents(true);
+    });
+}
+
+
+
+
+function onClickSeleccionarOpcion(e) {
+    debugger;
+
+    e.preventDefault();
+    var item = grid.row($(this).parents('tr')).data();
+    if (!item) {
+        item = grid.row($(e.target).parents('tr').prev()).data();
+    }
+
+    var Cliente = item.CLIENTE;
+
+    $('#CodigoCliente').val(Cliente);
+    $('#myModal').modal('show');
 }
 
 
@@ -269,17 +323,23 @@ var grid = $('#resultados').DataTable({
         dataType: 'json',        
         dataSrc: '',
         data: function (items) {
+
+            var filtro = {
+                Estado: $.trim($('#cliente_estado').val())
+            };
+            return filtro;
+
         }
     },
 
     columns: [
-{
-    data: null,
-    width: 30,
-    defaultContent: '',
-    className: 'select-checkbox',
-    orderable: false
-},
+//{
+//    data: null,
+//    width: 30,
+//    defaultContent: '',
+//    className: 'select-checkbox',
+//    orderable: false
+//},
 {
     title: 'CLIENTE',
     data: 'CLIENTE',
@@ -480,6 +540,30 @@ var grid = $('#resultados').DataTable({
 },
 
 
+   {
+       data: null,
+       width: 80,
+       className: 'dt-body-center not-mobile',
+       render: function (data, type, row, meta) {
+           var content = [];
+
+
+           var SeleccionarOpcion = '<a class="btn btn-warning btn-SeleccionarOpcion data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>';
+           var CrearServicio = '<button class="btn btn-primary btn-VerServicio" title="view service"><i class="fa fa-eye-slash"></i></button>';
+           //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+
+
+           content.push(CrearServicio);
+           content.push(SeleccionarOpcion);
+
+           return content.join('&nbsp;&nbsp;');
+       }
+   },
+
+
+
+
+
 //{
 //    data: null,
 //    width: 80,
@@ -509,11 +593,33 @@ var grid = $('#resultados').DataTable({
     },
 });
 
-grid.on('select', function (e, dt, type, indexes) {    
-    var items = dt.rows({ selected: true }).data().toArray();
-    window.location = '/Cliente/EditarCliente?Cliente=' + items[0]["CLIENTE"];
-    });
+//grid.on('select', function (e, dt, type, indexes) {    
+//    var items = dt.rows({ selected: true }).data().toArray();
+//    window.location = '/Cliente/EditarCliente?Cliente=' + items[0]["CLIENTE"];
+    //    });
+
+
+
+
 $('#btn-guardar').on('click', onClickRegistrarCliente);
 $('#btn-actualizar').on('click', onClickActualizarCliente);
+debugger;
+$('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerServicio);
+debugger;
+$('#resultados tbody').on('click', 'a.btn-SeleccionarOpcion', onClickSeleccionarOpcion);
+
+$('.modal').on('click', 'button.btn-editar', onClickEditarCliente);
+$('.modal').on('click', 'button.btn-eliminar', onClickEliminarCliente);
+
+window.onClickVerServicio = onClickVerServicio;
+window.onClickSeleccionarOpcion = onClickSeleccionarOpcion;
+
+$('#cliente_estado').change(function () {
+    grid.ajax.reload();
+})
+
+
+
+
 
 });
