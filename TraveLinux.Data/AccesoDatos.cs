@@ -1993,7 +1993,7 @@ namespace TraveLinux.Data
                 command.CommandText ="SP_LISTAR_PLANTILLA_DETALLE";
 
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("P_PLANTILLA", OracleDbType.Int32).Value = Plantilla;
+                command.Parameters.Add("P_PLANTILLA", OracleDbType.Varchar2, 50).Value = Plantilla;
              //   command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();

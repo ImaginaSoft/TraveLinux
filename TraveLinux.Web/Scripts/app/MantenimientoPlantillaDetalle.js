@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    var Id_Plantilla = $('#id_plantilla').val();
+
     $('#proveedor').on('change', function () {
 
         var Proveedor = $(this).val();
@@ -148,7 +150,7 @@
     $('#btn-guardar-detalle').on('click', onClickRegistrarDetallePlantilla);
 
 
-    var grid = $('#plantilla_detalle').DataTable({
+    var grid = $('#resultados').DataTable({
         scrollX: true,
         paging: true,
         processing: true,

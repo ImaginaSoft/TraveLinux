@@ -149,6 +149,8 @@
                 x++;
                 $("#caja_dinamico").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Email ' + x + ':</p><input class="form-control" id="email' + x + '" placeholder="Enter Email" name="email' + x + '"></div>');
 
+
+
                 if (x == 2) {
                     $("#eliminar_email").show();
                 }
