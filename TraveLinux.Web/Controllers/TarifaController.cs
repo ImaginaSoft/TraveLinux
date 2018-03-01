@@ -141,7 +141,13 @@ namespace TraveLinux.Web.Controllers
             return Json(vRango);
         }
 
-      
+        [HttpPost]
+        public void GuardarTarifaHTL(Tarifa eTarifa)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+
+            Fachada.GuardarTarifaHTL(eTarifa);
+        }
 
         //public ActionResult ValidarRango(Int32 Rango)
         //{

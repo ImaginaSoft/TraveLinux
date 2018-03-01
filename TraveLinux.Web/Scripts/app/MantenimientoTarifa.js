@@ -164,53 +164,93 @@
 
         var lstTarifas = new Array();
 
+        if (vdesc_servicio.trim() == "TERRESTRE" || vdesc_servicio.trim() == "AEREO")
+        {
+            desde = $("#npersona").val(),
+            hasta = $("#hasta").val();
+
+            //var data = {
+            //    eTarifa: {
+            //        Periodo_Fechas: $("#periodo").val(),
+            //        Tipo_Acomodacion: $("#tipoacomodacion").val(),
+            //        Tipo_Acomodacion: $("#tipoacomodacion").val(),
+            //        Tipo_Pasajero: $("#tipopasajero").val(),
+            //        N_Persona: $("#npersona").val(),
+            //        N_hasta: $("#hasta").val(),
+            //        Precio: $("#neto").val(),
+            //    }
+            //}
+            debugger;
+            while (desde <= hasta) {
+                var Tarifa = {};
+                Tarifa.TARIFA = $("#periodo").val();
+                Tarifa.RANGO = +desde;
+                Tarifa.PROVEEDOR = vProveedor;
+                Tarifa.SERVICIO = vServicio;
+                Tarifa.Tipo_Acomodacion = $("#tipoacomodacion").val();
+                Tarifa.Tipo_Servicio = $("#tiposervicio").val();
+                Tarifa.Tipo_Pasajero = $("#tipopasajero").val();
+                Tarifa.Precio = $("#neto").val();
+                desde++
+                lstTarifas.push(Tarifa);
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/Tarifa/GuardarTarifa',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(lstTarifas)
+            })
+            .done(function (data) {
+                showSuccessMessage('Se ha guardado el tarifario');
+                setTimeout(function () {
+                    window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
+                }, 2000);
+            })
+            .fail(function () {
+                showErrorMessage('No se pudo guardar el tarifario. Inténtelo de nuevo.');
+                enableAllComponents(true);
+            });
+        }
+       
+
+        if (vdesc_servicio.trim() == "HOTEL")
+        {        
+            debugger;
+           
+            var data = {
+                eTarifa: {
+            TARIFA : $("#periodo").val(),
+            PROVEEDOR : vProveedor,
+            SERVICIO : vServicio,
+            Tipo_Acomodacion : $("#tipoacomodacion").val(),
+            Tipo_Servicio : $("#tiposervicio").val(),
+            Tipo_Pasajero : $("#tipopasajero").val(),
+            Precio : $("#neto").val()
+   
+             }
+             };
+
+            $.ajax({
+                type: 'POST',
+                url: '/Tarifa/GuardarTarifaHTL',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            })
+            .done(function (data) {
+                showSuccessMessage('Se ha guardado el tarifario');
+                setTimeout(function () {
+                    window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
+                }, 2000);
+            })
+            .fail(function () {
+                showErrorMessage('No se pudo guardar el tarifario. Inténtelo de nuevo.');
+                enableAllComponents(true);
+            });
 
 
-        desde = $("#npersona").val(),
-        hasta = $("#hasta").val();
+        }
 
-        //var data = {
-        //    eTarifa: {
-        //        Periodo_Fechas: $("#periodo").val(),
-        //        Tipo_Acomodacion: $("#tipoacomodacion").val(),
-        //        Tipo_Acomodacion: $("#tipoacomodacion").val(),
-        //        Tipo_Pasajero: $("#tipopasajero").val(),
-        //        N_Persona: $("#npersona").val(),
-        //        N_hasta: $("#hasta").val(),
-        //        Precio: $("#neto").val(),
-        //    }
-        //}
-        debugger;
-        while (desde <= hasta) {
-            var Tarifa = {};
-            Tarifa.TARIFA = $("#periodo").val();
-            Tarifa.RANGO = +desde;
-            Tarifa.PROVEEDOR = vProveedor;
-            Tarifa.SERVICIO = vServicio;
-            Tarifa.Tipo_Acomodacion = $("#tipoacomodacion").val();
-            Tarifa.Tipo_Servicio = $("#tiposervicio").val();
-            Tarifa.Tipo_Pasajero = $("#tipopasajero").val();
-            Tarifa.Precio = $("#neto").val();
-            desde++
-            lstTarifas.push(Tarifa);
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/Tarifa/GuardarTarifa',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(lstTarifas)
-        })
-        .done(function (data) {
-            showSuccessMessage('Se ha guardado el tarifario');
-            setTimeout(function () {
-                window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
-            }, 2000);
-        })
-        .fail(function () {
-            showErrorMessage('No se pudo guardar el tarifario. Inténtelo de nuevo.');
-            enableAllComponents(true);
-        });
     }
 
     function onClickRegistrarPeriodo(e) {
@@ -746,5 +786,85 @@
     $('#periodo').change(function () {
         grid.ajax.reload();
     })
+
+    debugger;
+    /*VALIDAR CAMPOS FORMULARIOS*/
+    $("#formulario_tarifa").validate({
+        rules:
+            {
+            descripcion: "required",
+            tipo_servicio: {
+                required: true
+            },
+           
+            Tipo_Pasajero: "required",
+            Tipo_Pasajero: {
+                required: true
+            },
+          
+        },
+        messages: {
+            nombre: "Please enter your name",
+
+            descripcion: "Please selected a descripcion type",
+            tipo_servicio: "Please selected a service type",
+            pasajero: "Please selected type",
+            Tipo_Pasajero: "Please selected type",
+
+
+           
+        },
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            // Add `has-feedback` class to the parent div.form-group
+            // in order to add icons to inputs
+            element.parents(".col-sm-5").addClass("has-feedback");
+            element.parents(".col-sm-3").addClass("has-feedback"); //add to email
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+
+            // Add the span element, if doesn't exists, and apply the icon classes to it.
+            if (!element.next("span")[0]) {
+                $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+            }
+        },
+        success: function (label, element) {
+            // Add the span element, if doesn't exists, and apply the icon classes to it.
+            if (!$(element).next("span")[0]) {
+                $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+            $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+
+            $(element).parents(".col-sm-3").addClass("has-error").removeClass("has-success"); //add to email
+            $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+            $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+
+            $(element).parents(".col-sm-3").addClass("has-success").removeClass("has-error"); //add to email
+            $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+        }
+    }),
+
+
+    $('#formulario_tarifa input').on('keyup blur', function () {
+        if ($('#formulario_tarifa').valid()) {
+            $('button#btn-guardar').prop('disabled', false);
+        } else {
+            $('button#btn-guardar').prop('disabled', 'disabled');
+        }
+    });
+
 
 });
