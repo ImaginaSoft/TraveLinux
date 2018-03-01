@@ -1952,8 +1952,6 @@ namespace TraveLinux.Data
             return lstTipoServicio;
         }
 
-
-
         public void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle)
         {
             using (var connection = new OracleConnection(_connectionString))
@@ -1973,10 +1971,9 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_DIA", OracleDbType.Int32).Value = ePlantillaDetalle.DIA;
                 command.Parameters.Add("P_CANT_ADT", OracleDbType.Int32).Value = ePlantillaDetalle.CANT_ADT;
                 command.Parameters.Add("P_CANT_CHD", OracleDbType.Int32).Value = ePlantillaDetalle.CANT_CHD;
-
-
-                //command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2,20).Value = ePlantillaDetalle.ESTADO;
-              //  command.Parameters.Add("P_PRECIO_TOTAL", OracleDbType.Decimal).Value = ePlantillaDetalle.PRECIO_TOTAL;
+                command.Parameters.Add("P_TIPO_PAX", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.TIPO_PAX;
+                command.Parameters.Add("P_RANGO_TARIFA", OracleDbType.Int32).Value = ePlantillaDetalle.RANGO_TARIFA;
+                command.Parameters.Add("P_CIUDAD", OracleDbType.Varchar2, 4).Value = ePlantillaDetalle.CIUDAD;
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1998,7 +1995,6 @@ namespace TraveLinux.Data
 
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("P_PLANTILLA", OracleDbType.Varchar2, 50).Value = Plantilla;
-             //   command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = Servicio;
                 command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
                 connection.Open();
 
@@ -2018,17 +2014,11 @@ namespace TraveLinux.Data
                         detallePlantilla.NOMBRE_TIPO_ACOMODACION = reader.GetStringOrDefault(7);
                         detallePlantilla.DIA = reader.GetInt32(8);
                         detallePlantilla.PRECIO_TOTAL = reader.GetDecimal(9);
-
-
-
-
-                        //periodo.ID_TARIFA = reader.GetStringOrDefault(0);
-                        //periodo.PROVEEDOR = reader.GetInt32(1);
-                        //periodo.SERVICIO = reader.GetStringOrDefault(2);
-                        //periodo.DESCRIPCION = reader.GetStringOrDefault(3);
-                        //periodo.FECHA_INICIO = reader.GetDateTime(4);
-                        //periodo.FECHA_FIN = reader.GetDateTime(5);
-                        //periodo.USUARIO_REGISTRO = "Philips";
+                        detallePlantilla.CANT_ADT = reader.GetInt32(10);
+                        detallePlantilla.CANT_CHD = reader.GetInt32(11);
+                        detallePlantilla.CIUDAD = reader.GetStringOrDefault(12);
+                        detallePlantilla.NOMBRE_CIUDAD = reader.GetStringOrDefault(13);
+                        detallePlantilla.CANT_PAX = (reader.GetInt32(10).ToString()) == "0" ? (reader.GetInt32(11).ToString())+ " CHD" : (reader.GetInt32(10).ToString() + " ADT"); 
 
                         lstPlantillaDetalle.Add(detallePlantilla);
                     }

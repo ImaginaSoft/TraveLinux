@@ -37,3 +37,10 @@ C:\Desarrollo\TL\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
 C:\Desarrollo\TL\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
 C:\Desarrollo\TL\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
 C:\Desarrollo\TL\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll.config
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.dll
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\bin\Debug\TraveLinux.Data.pdb
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.csprojResolveAssemblyReference.cache
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.dll
+C:\Users\bgloria\Documents\ImaginaSoft\Travelinux\TraveLinux.Data\obj\Debug\TraveLinux.Data.pdb

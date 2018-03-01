@@ -48,43 +48,8 @@
     }
 </style>
 <script id="responsive-template" type="text/x-handlebars-template">
-    @*<div class="row">
-        <div class="col-xs-12 header">
-            <p id="tarifa"></p>
-            <span>
-                <strong>TARIFA</strong>
-                <span id="tarifa"></span>
-            </span>
 
-        </div>
-        <div class="col-xs-12 details">
-            <table class="table table-borderless full-width">
-                <tbody>
-                    <tr>
-                        <th>NOMBRE</th>
-                        <td id="nombre"></td>
-                    </tr>
-                    <tr>
-                        <th>FECHA VALIDEZ</th>
-                        <td id="fechavalidez"></td>
-                    </tr>
-                    <tr>
-                        <th>FECHA INICIO</th>
-                        <td id="fechainivigencia"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>*@
 </script>
-
-@*<section class="content-header">
-
-    <h1>Template Details</h1>
-
-</section>*@
-
-@*<section class="content">*@
 
     <form class="form-horizontal">
      
@@ -166,7 +131,7 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Tariff Range:</label>
                             <div class="col-xs-7 col-sm-2">
-                                <input class="form-control" id="npersona" value="">
+                                <input class="form-control" id="rango_tarifa" value="">
                             </div>
                          
                         </div>
@@ -199,9 +164,8 @@
                     <div class="box-footer">
                         <div class="pull-right">
                             <button type="button" class="btn btn-warning" id="btn-guardar-detalle">Save</button>
-                            <button type="button" class="btn btn-warning" id="btn-cancelar">Regresar</button>
+                            <button type="button" class="btn btn-warning" id="btn-regresar">Go Back</button>
 
-                            @*<button type="button" class="btn btn-warning" id="btn-cancelar">Cancelar</button>*@
                         </div>
                     </div>
 
@@ -233,7 +197,7 @@
     <div class="col-md-12">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Results</h3>
+                <h3 class="box-title">Services</h3>
                 @*<select>
                         <option value=""></option>
                         <option value="Activo">ACTIVO</option>

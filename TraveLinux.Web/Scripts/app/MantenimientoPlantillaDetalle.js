@@ -1,5 +1,14 @@
 ﻿$(function () {
 
+    function onClickRegresarListadoPlantilla() {
+
+
+        window.location = '/Plantilla/Index';
+
+    };
+
+
+
     var Id_Plantilla = $('#id_plantilla').val();
 
     $('#proveedor').on('change', function () {
@@ -97,21 +106,23 @@
         })
     });
 
-    
 
     // Guardar Detalle Plantilla
 
     function onClickRegistrarDetallePlantilla() {
 
-        //var valor = 0;
 
-        //if ($('input#inlineCheckbox1').is(':checked')) {
-        //    valor = 1
-        //}
-        //else {
-        //    valor = 0
-        //}
-        //debugger;
+        if ($('#num_adt').val() != "") {
+
+            var tipo_pax = "ADT";
+
+        }
+        if ($('#num_chd').val() != "") {
+
+            var tipo_pax = "CHD";
+
+            }
+
         var data = {
             ePlantillaDetalle: {
                 Id_Plantilla: $('#id_plantilla').val(),
@@ -121,13 +132,11 @@
                 Tipo_Acomodacion: $('#tipoacco').val(),
                 Dia: $('#dia').val(),
                 Cant_Adt: $('#num_adt').val(),
-                Cant_Chd: $('#num_chd').val()
-
-
-
-                //Estado: $('#tiposervicio').val(),
-                // Precio_Total: $('#tiposervicio').val(),
-
+                Cant_Chd: $('#num_chd').val(),
+                Rango_Tarifa: $('#rango_tarifa').val(),
+                Tipo_Pax: tipo_pax,
+                Ciudad: $('#ciudad').val()
+ 
             }
         }
 
@@ -145,17 +154,20 @@
             }, 2000);
         })
         .fail(function () {
-            showErrorMessage('No se pudo guardar el detalle de la plantillas. Inténtelo de nuevo.');
+            showErrorMessage('No se pudo guardar el detalle de la plantilla. Inténtelo de nuevo.');
             enableAllComponents(true);
         });
     }
 
 
-
     $('#btn-guardar-detalle').on('click', onClickRegistrarDetallePlantilla);
+
+    $('#btn-regresar').on('click', onClickRegresarListadoPlantilla);
+
 
 
     var grid = $('#resultados').DataTable({
+
         scrollX: true,
         paging: true,
         processing: true,
@@ -174,6 +186,15 @@
                     var html = $('#responsive-template').html();
                     var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
 
+                    if ($('#num_adt').val() != null) {
+
+                        var tipo_pax =$('#num_adt').val()+ "ADT";
+
+                    } else if ($('#num_chd').val() != null) {
+
+                        var tipo_pax = $('#num_chd').val()+"CHD";
+
+                    }
 
                     var template = $(html);
                     template.find('#moneda').html(columns[0].data);
@@ -199,7 +220,7 @@
 
         columns: [
     {
-        title: 'ID_PLANTILLA',
+        title: 'ID PLANTILLA',
         data: 'ID_PLANTILLA',
         width: 125,
         className: 'not-mobile',
@@ -213,23 +234,23 @@
         visible: true
     },
     {
+          title: 'CIUDAD',
+          data: 'NOMBRE_CIUDAD',
+          width: 125,
+          className: 'not-mobile',
+          visible: true
+    },
+    {
         title: 'PROVEEDOR',
         data: 'NOMBRE_PROVEEDOR',
         width: 150,
         className: 'not-mobile',
         visible: true
     },
-    //{
-    //    title: 'TIPO_SERVICIO',
-    //    data: 'TIPO_SERVICIO',
-    //    width: 150,
-    //    className: 'not-mobile',
-    //    //render: renderTextColor
-    //    visible: true,
-    //},
+
 
     {
-        title: 'TIPO_ACOMODACION',
+        title: 'TIPO',
         data: 'NOMBRE_TIPO_ACOMODACION',
         width: 40,
         className: 'not-mobile',
@@ -246,23 +267,23 @@
           visible: true,
       },
 
-        {
+      {
             title: 'CANTIDAD',
-            data: 'DIA',
+            data: 'CANT_PAX',
             width: 40,
             className: 'not-mobile',
             //render: renderTextColor
             visible: true,
-        },
+      },
 
-          {
-              title: 'PRECIO',
+      {
+              title: 'PRECIO TOTAL',
               data: 'PRECIO_TOTAL',
               width: 40,
               className: 'not-mobile',
               //render: renderTextColor
               visible: true,
-          },
+       },
 
 
 

@@ -37,6 +37,19 @@ namespace TraveLinux.Data.Entidades
 
         public decimal PRECIO_TOTAL { get; set; }
 
+        public int RANGO_TARIFA { get; set; }
+
+        public string TIPO_PAX { get; set; }
+
+        public string CANT_PAX { get; set; }
+
+        public string CIUDAD { get; set; }
+
+        public string NOMBRE_CIUDAD { get; set; }
+
+
+
+
 
 
 
