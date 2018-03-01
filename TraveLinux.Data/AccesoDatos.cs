@@ -1968,9 +1968,13 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_ID_PLANTILLA", OracleDbType.Varchar2, 50).Value = ePlantillaDetalle.ID_PLANTILLA;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.SERVICIO;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.PROVEEDOR;
-              //  command.Parameters.Add("P_CANT_DIAS", OracleDbType.Int32).Value = ePlantillaDetalle.CANT_DIAS;
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 20).Value = ePlantillaDetalle.TIPO_SERVICIO;
                 command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2,20).Value = ePlantillaDetalle.TIPO_ACOMODACION;
+                command.Parameters.Add("P_DIA", OracleDbType.Int32).Value = ePlantillaDetalle.DIA;
+                command.Parameters.Add("P_CANT_ADT", OracleDbType.Int32).Value = ePlantillaDetalle.CANT_ADT;
+                command.Parameters.Add("P_CANT_CHD", OracleDbType.Int32).Value = ePlantillaDetalle.CANT_CHD;
+
+
                 //command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2,20).Value = ePlantillaDetalle.ESTADO;
               //  command.Parameters.Add("P_PRECIO_TOTAL", OracleDbType.Decimal).Value = ePlantillaDetalle.PRECIO_TOTAL;
 
@@ -2006,9 +2010,16 @@ namespace TraveLinux.Data
 
                         detallePlantilla.ID_PLANTILLA = reader.GetStringOrDefault(0);
                         detallePlantilla.SERVICIO = reader.GetStringOrDefault(1);
-                        detallePlantilla.PROVEEDOR = reader.GetStringOrDefault(2);
-                        detallePlantilla.TIPO_SERVICIO = reader.GetStringOrDefault(3);
-                        detallePlantilla.TIPO_ACOMODACION = reader.GetStringOrDefault(4);
+                        detallePlantilla.NOMBRE_SERVICIO = reader.GetStringOrDefault(2);
+                        detallePlantilla.PROVEEDOR = reader.GetStringOrDefault(3);
+                        detallePlantilla.NOMBRE_PROVEEDOR = reader.GetStringOrDefault(4);
+                        detallePlantilla.TIPO_SERVICIO = reader.GetStringOrDefault(5);
+                        detallePlantilla.TIPO_ACOMODACION = reader.GetStringOrDefault(6);
+                        detallePlantilla.NOMBRE_TIPO_ACOMODACION = reader.GetStringOrDefault(7);
+                        detallePlantilla.DIA = reader.GetInt32(8);
+                        detallePlantilla.PRECIO_TOTAL = reader.GetDecimal(9);
+
+
 
 
                         //periodo.ID_TARIFA = reader.GetStringOrDefault(0);

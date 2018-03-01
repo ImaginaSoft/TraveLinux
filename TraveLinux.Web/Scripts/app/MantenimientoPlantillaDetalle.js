@@ -117,9 +117,14 @@
                 Id_Plantilla: $('#id_plantilla').val(),
                 Servicio: $('#servicio').val(),
                 Proveedor: $('#proveedor').val(),
-                // Cant_Dias: $('#dtp_start').val(),
                 Tipo_Servicio: $('#tiposervicio').val(),
-                Tipo_Acomodacion: $('#tipoacco').val()
+                Tipo_Acomodacion: $('#tipoacco').val(),
+                Dia: $('#dia').val(),
+                Cant_Adt: $('#num_adt').val(),
+                Cant_Chd: $('#num_chd').val()
+
+
+
                 //Estado: $('#tiposervicio').val(),
                 // Precio_Total: $('#tiposervicio').val(),
 
@@ -202,35 +207,64 @@
     },
     {
         title: 'SERVICIO',
-        data: 'SERVICIO',
+        data: 'NOMBRE_SERVICIO',
         width: 125,
         className: 'not-mobile',
         visible: true
     },
     {
         title: 'PROVEEDOR',
-        data: 'PROVEEDOR',
+        data: 'NOMBRE_PROVEEDOR',
         width: 150,
         className: 'not-mobile',
         visible: true
     },
-    {
-        title: 'TIPO_SERVICIO',
-        data: 'TIPO_SERVICIO',
-        width: 150,
-        className: 'not-mobile',
-        //render: renderTextColor
-        visible: true,
-    },
+    //{
+    //    title: 'TIPO_SERVICIO',
+    //    data: 'TIPO_SERVICIO',
+    //    width: 150,
+    //    className: 'not-mobile',
+    //    //render: renderTextColor
+    //    visible: true,
+    //},
 
     {
         title: 'TIPO_ACOMODACION',
-        data: 'TIPO_ACOMODACION',
+        data: 'NOMBRE_TIPO_ACOMODACION',
         width: 40,
         className: 'not-mobile',
         //render: renderTextColor
         visible: true,
     },
+
+      {
+          title: 'DIA',
+          data: 'DIA',
+          width: 40,
+          className: 'not-mobile',
+          //render: renderTextColor
+          visible: true,
+      },
+
+        {
+            title: 'CANTIDAD',
+            data: 'DIA',
+            width: 40,
+            className: 'not-mobile',
+            //render: renderTextColor
+            visible: true,
+        },
+
+          {
+              title: 'PRECIO',
+              data: 'PRECIO_TOTAL',
+              width: 40,
+              className: 'not-mobile',
+              //render: renderTextColor
+              visible: true,
+          },
+
+
 
         ]
 
