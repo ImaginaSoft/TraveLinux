@@ -40,6 +40,10 @@ namespace TraveLinux.Data.Entidades
         public string FECHA_INICIO_S { get; set; }
         public string FECHA_FINAL_S { get; set; }
 
+
+        public Int32 RANGO_PAX { get; set; }
+        public string TIPO_SERVICIO_ABREV { get; set; }
+
         public string TEMPORADA_S { get; set; }
         public string SGL_ROOM_S { get; set; }
         public string DWL_ROOM_S { get; set; }

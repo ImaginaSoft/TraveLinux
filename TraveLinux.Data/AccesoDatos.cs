@@ -288,6 +288,42 @@ namespace TraveLinux.Data
 
             return lstTarifa;
         }
+        public IEnumerable<Tarifa> ObtenerTariTerAer()
+        {
+            var lstTarifa = new List<Tarifa>();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_LISTAR_TERAER_TEMPORAL");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_RECORDSET", OracleDbType.RefCursor, ParameterDirection.Output);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var tarifa = new Tarifa();
+                        tarifa.DESCRIPCION = reader.GetStringOrDefault(0);
+                        tarifa.TIPO_SERVICIO = reader.GetStringOrDefault(1);
+                        tarifa.FECHA_INICIO_S = reader.GetStringOrDefault(2);
+                        tarifa.FECHA_FINAL_S = reader.GetStringOrDefault(3);
+                        tarifa.TIPO_PERSONA = reader.GetStringOrDefault(4);
+                        tarifa.RANGO = reader.GetInt32(5);
+                        tarifa.PRECIO = reader.GetDecimal(6);
+                        tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(7);
+                        tarifa.TEMPORADA = reader.GetStringOrDefault(8);
+                        tarifa.DINAMICO = reader.GetInt32(9);
+                        lstTarifa.Add(tarifa);
+                    }
+                }
+            }
+
+            return lstTarifa;
+        }
+
         public void GuardarTarifaDetalle(List<Tarifa_Detalle> lsttarifa)
         {
             throw new NotImplementedException();
@@ -433,7 +469,7 @@ namespace TraveLinux.Data
                         tarifa.PROVEEDOR = reader.GetInt32(2);
                         tarifa.TIPO_HAB = reader.GetStringOrDefault(3);
                         tarifa.DESCR_TIPO_HABITACION = reader.GetStringOrDefault(4);
-                        tarifa.PRECIO = reader.GetInt32(5);
+                        tarifa.PRECIO = reader.GetDecimal(5);
                         tarifa.TIPO_PASAJERO = reader.GetStringOrDefault(6);
                         tarifa.TIPO_ACOMODACION = reader.GetStringOrDefault(7);
                         tarifa.DESCR_TIPO_ACOMODACION = reader.GetStringOrDefault(8);
@@ -1641,6 +1677,12 @@ namespace TraveLinux.Data
                 Guardar_Carga_Hotel_Temp(eEntidad);
         }
 
+        public void Guardar_Carga_TerAer_Temporal(List<Tarifa> usersList)
+        {
+            foreach (var eEntidad in usersList)
+                Guardar_Carga_TerAer_Temp(eEntidad);
+        }
+
 
         private void GuardarServicioCarga_Detalle(Servicio eEntidad)
         {
@@ -1711,7 +1753,29 @@ namespace TraveLinux.Data
                 command.ExecuteNonQuery();
             }
         }
+        private void Guardar_Carga_TerAer_Temp(Tarifa eEntidad)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_GUARDAR_CARGA_TERAER_TMP");
+                command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 100).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 100).Value = eEntidad.TIPO_SERVICIO;
+                command.Parameters.Add("P_FECHA_INI", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_INICIO_S);
+                command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_FINAL_S);
+                command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_PERSONA;                
+                command.Parameters.Add("P_RANGO_PAX", OracleDbType.Int32).Value = eEntidad.RANGO_PAX;
+                command.Parameters.Add("P_PRECIO", OracleDbType.Decimal).Value = eEntidad.PRECIO;
+                command.Parameters.Add("P_TIPO_SERVICIO_ACO", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_ACOMODACION;                
+                command.Parameters.Add("P_TEMPORADA", OracleDbType.Varchar2,50).Value = eEntidad.TEMPORADA_S;               
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
 
         public void GuardarPlantilla(Plantilla ePlantilla)
         {
