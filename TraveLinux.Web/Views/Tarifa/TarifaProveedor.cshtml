@@ -9,6 +9,11 @@
     <script src="~/Scripts/app/MantenimientoTarifa.js"></script>
 }
 
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/formvalidation/css/formValidation.min.css">}
+
+
 <style>
 
     /*strong {
@@ -125,7 +130,7 @@
     @*<h1>Datos Generales</h1>*@
 
 </section>
-<form class="form-horizontal">    
+<form id="formulario_tarifa" method="post" class="form-horizontal" action="" novalidate="novalidate">
     <div class="row">
         <div class="col-md-12">
             <div class="box box-info">
@@ -134,20 +139,20 @@
                 </div>
 
                 <div class="box-body">
-                    <div class="form-group">                        
+                    <div class="form-group">
                         @*<div class="col-sm-4 col-md-3">
-                            <a class="btn btn-warning btn-block RegistrarTarifDetalle"><span class="glyphicon glyphicon-list-alt"></span> Details Services</a>
-                            <br />
-                        </div>
-                        <div class="col-sm-4 col-md-3">
-                            <a class="btn btn-warning btn-block" disabled><span class="glyphicon glyphicon-list-alt"></span> </a>
-                            <br />
-                        </div>
-                        <div class="col-sm-4 col-md-3">
-                          
-                            <button class="btn btn-warning btn-block RegistrarTarifa" title="Crear Tarifa"><span class="glyphicon glyphicon-list-alt"></span> New Tarif</button>
-                            <br />
-                        </div>*@
+                                <a class="btn btn-warning btn-block RegistrarTarifDetalle"><span class="glyphicon glyphicon-list-alt"></span> Details Services</a>
+                                <br />
+                            </div>
+                            <div class="col-sm-4 col-md-3">
+                                <a class="btn btn-warning btn-block" disabled><span class="glyphicon glyphicon-list-alt"></span> </a>
+                                <br />
+                            </div>
+                            <div class="col-sm-4 col-md-3">
+
+                                <button class="btn btn-warning btn-block RegistrarTarifa" title="Crear Tarifa"><span class="glyphicon glyphicon-list-alt"></span> New Tarif</button>
+                                <br />
+                            </div>*@
                     </div>
                     <div class="form-group">
                         <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Supplier:</label>
@@ -159,18 +164,18 @@
                     <div class="form-group">
                         <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service Type:</label>
                         <div class="col-xs-7 col-sm-5">
-                            <input class="form-control"  id="desc_servicio" value="@Model.DESCR_TIPO_SERVICIO" disabled>
+                            <input class="form-control" id="desc_servicio" value="@Model.DESCR_TIPO_SERVICIO" disabled>
                             <input type="hidden" class="form-control" id="tiposervicio" value="@Model.TIPO_SERVICIO" disabled>
                             <input type="hidden" class="form-control" id="servicio" value="@Model.SERVICIO" disabled>
-                            
-                        </div>                      
+
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Service description:</label>
                         <div class="col-xs-7 col-sm-5">
-                            <input class="form-control" id="nombre" value="@Model.NOMBRE" disabled>                            
-                        </div>                     
-                    </div>                   
+                            <input class="form-control" id="nombre" value="@Model.NOMBRE" disabled>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -183,24 +188,24 @@
                 <div class="box-header with-border">
                     @*<h3 class="box-title">Datos Generales</h3>*@
                 </div>
-                    <div class="box-body">
-                        <div class="form-group">
-                            <div class="col-sm-4 col-md-3">
-                                <button type="button" class="btn btn-warning RegistrarPeriodo">New Perido</button>
-                            </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-3">
+                            <button type="button" class="btn btn-warning RegistrarPeriodo">New Perido</button>
                         </div>
-                        <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
-                            <div class="col-xs-7 col-sm-5">
-                                <select id="periodo" class="selectpicker" data-size="5">
-                                    @*<option value="0">--- Seleccione ---</option>*@
-                                    @foreach (var fechas in Model.Fechas)
-                                    {
-                                        <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
-                                    }
-                                </select>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Rate period:</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <select id="periodo" class="selectpicker" data-size="5">
+                                @*<option value="0">--- Seleccione ---</option>*@
+                                @foreach (var fechas in Model.Fechas)
+                                {
+                                    <option value="@fechas.ID_TARIFA">@fechas.FECHA</option>
+                                }
+                            </select>
                         </div>
+                    </div>
 
                     @if (Model.DESCR_TIPO_SERVICIO == "TERRESTRE" || Model.DESCR_TIPO_SERVICIO == "AEREO")
                     {
@@ -208,9 +213,9 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="tipoacomodacion" class="selectpicker" data-size="5">                                    
+                                <select id="tipoacomodacion" class="selectpicker" data-size="5">
                                     <option value="PVT">Privado</option>
-                                    <option value="CMP">Compartido</option>                                    
+                                    <option value="CMP">Compartido</option>
                                 </select>
                             </div>
                         </div>
@@ -220,84 +225,85 @@
                                 <select id="tipopasajero" class="selectpicker" data-size="5">
                                     <option value="">--- Seleccione ---</option>
                                     <option value="ADULTO">ADULTO</option>
-                                    <option value="CHILD">NIÑO</option>                                    
+                                    <option value="CHILD">NIÑO</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Number of people  from:</label>
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right" number>Number of people  from:</label>
                             <div class="col-xs-7 col-sm-2">
-                                <input class="form-control" id="npersona" value="">                                
+                                <input class="form-control" id="npersona" value="">
                             </div>
                             <label for="alias" class="col-xs-12 col-sm-1 control-label no-pad-right">to:</label>
                             <div class="col-xs-7 col-sm-2">
-                                <input class="form-control" id="hasta" value="" >                                
+                                <input class="form-control" id="hasta" value="">
                             </div>
                         </div>
                     }
 
-                        @if (Model.DESCR_TIPO_SERVICIO == "HOTEL")
-                        {
-                            <div class="form-group">
-                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
-                                <div class="col-xs-7 col-sm-5">
-                                    <select id="tipoacomodacion" class="selectpicker" data-size="5">
-                                        <option value="">--- Seleccione ---</option>
-                                        <option value="MSS">MASTER SUITE</option>
-                                        <option value="EXR">EXECUTIVE ROOM</option>
-                                        <option value="SPR">SUPERIOR</option>
-                                        <option value="JNS">JUNIOR SUITE</option>                                        
-                                        <option value="PMS">PREMIER SUPERIOR</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                                <div class="form-group">
-                                    <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type of room:</label>
-                                    <div class="col-xs-7 col-sm-5">
-                                        <select id="tipopasajero" class="selectpicker" data-size="5">
-                                            <option value="">--- Seleccione ---</option>
-                                            <option value="SGL">SINGLE</option>
-                                            <option value="DWL">DOUBLE</option>
-                                            <option value="TPL">TRIPLE</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                @*<div class="form-group">
-                                    <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">nª room:</label>
-                                    <div class="col-xs-2 col-sm-2">
-                                        <input class="form-control" id="npersona" value="">
-                                    </div>
-                                </div>*@
-                        }
-
+                    @if (Model.DESCR_TIPO_SERVICIO == "HOTEL")
+                    {
                         <div class="form-group">
-                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Net rate x person:</label>
-                            <div class="col-xs-7 col-sm-2">
-                                <input class="form-control" id="neto" value="">                                
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipoacomodacion" class="selectpicker" data-size="5" required>
+                                    <option value="">--- Seleccione ---</option>
+                                    <option value="MSS">MASTER SUITE</option>
+                                    <option value="EXR">EXECUTIVE ROOM</option>
+                                    <option value="SPR">SUPERIOR</option>
+                                    <option value="JNS">JUNIOR SUITE</option>
+                                    <option value="PMS">PREMIER SUPERIOR</option>
+                                </select>
                             </div>
                         </div>
-                    
 
                         <div class="form-group">
-                            <div class="col-xs-3 col-sm-3 col-md-2">
-                                <button type="button" class="btn btn-warning RegistrarTarifa">Save rate</button>
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type of room:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipopasajero" class="selectpicker" data-size="5" required>
+                                    <option value="">--- Seleccione ---</option>
+                                    <option value="SGL">SINGLE</option>
+                                    <option value="DWL">DOUBLE</option>
+                                    <option value="TPL">TRIPLE</option>
+                                </select>
                             </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3">
-                                <button type="button" class="btn btn-warning btn-Regresar"> &nbsp;&nbsp; Back &nbsp;</button>
-                            </div>
+                        </div>
+                        @*<div class="form-group">
+                                <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">nª room:</label>
+                                <div class="col-xs-2 col-sm-2">
+                                    <input class="form-control" id="npersona" value="">
+                                </div>
+                            </div>*@
+                    }
 
-                            <div class="col-xs-3 col-sm-3 col-md-3">
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal_Precio">Update Price</button>
-                            </div>
-                        </div>                        
-                   </div>
+                    <div class="form-group">
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Net rate x person:</label>
+                        <div class="col-xs-7 col-sm-2">
+                            <input class="form-control" id="neto" value="">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3 col-md-2">
+                            <button type="button" class="btn btn-warning RegistrarTarifa" id="btn-guardar" disabled="disabled">Save rate</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <button type="button" class="btn btn-warning btn-Regresar"> &nbsp;&nbsp; Back &nbsp;</button>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal_Precio">Update Price</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </form>
+</form>
+
     <div class="row">
         <div class="col-md-12">
             <div class="box box-info">
@@ -363,10 +369,14 @@
                 </div>
                 <div class="modal-footer">
                 <div class="col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2">
-                    <button type="button" class="btn btn-warning btn-UpdatePrice"> Save</button>
+                    <button type="button" class="btn btn-warning btn-UpdatePrice" > Save</button>
                 </div>
             </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/vendor/formvalidation/js/formValidation.min.js"></script>
+<script src="/vendor/formvalidation/js/framework/bootstrap.min.js"></script>

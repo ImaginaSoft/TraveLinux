@@ -49,7 +49,7 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TELEFONO_3", OracleDbType.Varchar2, 50).Value = eCliente.TELEFONO_3;
                 command.Parameters.Add("P_NOTAS", OracleDbType.Varchar2, 50).Value = eCliente.NOTAS;
                 command.Parameters.Add("P_ESTADO", OracleDbType.Varchar2, 50).Value = eCliente.ESTADO;
-                command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = "Jorge";
+                command.Parameters.Add("P_USUARIO_REGISTRO", OracleDbType.Varchar2, 50).Value = "jlopez";
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1789,7 +1789,7 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2,50).Value = ePlantilla.DESCRIPCION;
-                command.Parameters.Add("P_EJECUTIVA", OracleDbType.Varchar2, 20).Value = "Bari";
+                command.Parameters.Add("P_EJECUTIVA", OracleDbType.Varchar2, 20).Value = "bgloria";
                 command.Parameters.Add("P_CANT_CHILD", OracleDbType.Int32).Value = ePlantilla.CANT_CHILD;
                 command.Parameters.Add("P_CANT_ADULT", OracleDbType.Int32).Value = ePlantilla.CANT_ADULT;
                 command.Parameters.Add("P_CANT_PAX", OracleDbType.Int32).Value = ePlantilla.CANT_ADULT + ePlantilla.CANT_CHILD;
@@ -2091,6 +2091,39 @@ namespace TraveLinux.Data
 
             return lstPlantillaDetalle;
         }
+
+        public void GuardarTarifaHTL(Tarifa eTarifa)
+        {
+
+            var ObjTarifa = new Tarifa();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_GUARDAR_TARIFARIO_HTL");
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eTarifa.TARIFA;
+                command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.SERVICIO;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR;
+                command.Parameters.Add("P_ID_TIPO_HAB", OracleDbType.Varchar2, 50).Value = "HTL";
+                command.Parameters.Add("P_COSTO", OracleDbType.Decimal).Value = eTarifa.PRECIO;
+                command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 50).Value = "ADULT";
+                command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_ACOMODACION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_PASAJERO; 
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+              
+            }
+          
+        }
+
+
+
+
 
       
     }

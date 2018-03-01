@@ -73,5 +73,6 @@ namespace TraveLinux.Business
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
         Proveedor ValidarRuc(Proveedor eProveedor);
         void EliminarCliente(string Cliente);
+        void GuardarTarifaHTL(Tarifa eTarifa);
     }
 }
