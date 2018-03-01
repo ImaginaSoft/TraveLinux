@@ -82,6 +82,21 @@ namespace TraveLinux.Business
             }
         }
 
+        public IEnumerable<Tarifa> ObtenerTariTerAer()
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var vTarifaTerAer = datos.ObtenerTariTerAer();
+                return vTarifaTerAer;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener", e);
+            }
+        }
+
+
         public IEnumerable<Proveedor> ObtenerListaProveedor(string Estado)
         {
             try
@@ -657,11 +672,22 @@ namespace TraveLinux.Business
                     }
                     catch (Exception e)
                     {
-                        throw new FachadaNegociosException("No se pudo guardar el detalle servicio", e);
+                        throw new FachadaNegociosException("No se pudo guardar el detalle hoteles", e);
                     }
         }
 
-
+        public void Guardar_Carga_TerAer_Temporal(List<Tarifa> usersList)
+        {
+                    try
+                    {
+                        var datos = new AccesoDatos(ConnectionString);
+                        datos.Guardar_Carga_TerAer_Temporal(usersList);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new FachadaNegociosException("No se pudo guardar el detalle", e);
+                    }
+        }
         public void Eliminar_TablaTemporal()
         {
             try

@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    var vTIPO_SERVICIO = $('#tservicio').val();
+
     debugger;
     //$('#btn-guardarCargaHot').prop("disabled", true);
 
@@ -18,10 +20,6 @@
     });
 
 
-
-
-
-
     $(":file").filestyle({ buttonName: "btn-warning" });
     $(":file").filestyle({ iconName: "glyphicon glyphicon-inbox" });
     $(":file").filestyle({ buttonBefore: true });
@@ -30,6 +28,10 @@
 
     $('#triggers').change(function () {
         $('#form_hoteles').submit();
+    });
+
+    $('#triggers_1').change(function () {
+        $('#form_teraer').submit();
     });
 
 
@@ -95,33 +97,32 @@
     }
 
 
-
-
-
-
-
-
-
-
     function onClickGuardarCargaTarifa() {
 
         var lstTarifas = new Array();
-        $("#tblCustomers TBODY TR").each(function () {
+        $("#resultados TBODY TR").each(function () {
             debugger;
             var row = $(this);
             var tarifa = {};
 
-            tarifa.PROVEEDOR = Proveedor;            
-            tarifa.DESCRIPCION = row.find("TD").eq(0).html();
-            tarifa.TIPO_SERVICIO = row.find("TD").eq(1).html();
-            tarifa.FECHA_INICIO = row.find("TD").eq(2).html();
-            tarifa.FECHA_FIN = row.find("TD").eq(3).html();
-            tarifa.TIPO_PERSONA = row.find("TD").eq(4).html();
-            tarifa.RANGO_PAX = row.find("TD").eq(5).html();
-            tarifa.PRECIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
-            tarifa.TIPO_SERVICIO_2 = row.find("TD").eq(7).html();
-            tarifa.PERIODO = row.find("TD").eq(8).html();            
-            lstTarifas.push(tarifa);
+
+            debugger;
+            if (tarifa.EXISTE = row.find("TD").eq(10).html() == 1) {
+                tarifa.PROVEEDOR = Proveedor;
+                tarifa.DESCRIPCION = row.find("TD").eq(0).html();
+                tarifa.TIPO_SERVICIO = row.find("TD").eq(1).html();
+                tarifa.FECHA_INICIO = row.find("TD").eq(2).html();
+                tarifa.FECHA_FIN = row.find("TD").eq(3).html();
+                tarifa.TIPO_PERSONA = row.find("TD").eq(4).html();
+                tarifa.RANGO_PAX = row.find("TD").eq(5).html();
+                tarifa.PRECIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
+                //tarifa.PRECIO = parseFloat(row.find("TD").eq(6).html());
+                tarifa.TIPO_SERVICIO_2 = row.find("TD").eq(7).html();
+                tarifa.PERIODO = row.find("TD").eq(8).html();
+                lstTarifas.push(tarifa);                
+            };
+
+            alert(lstTarifas.length);
         });
         
         
@@ -168,11 +169,9 @@
                 tarifa.DWL_ROOM = parseFloat(row.find("TD").eq(6).html());
                 tarifa.TPL_ROOM = parseFloat(row.find("TD").eq(7).html());
                 tarifa.CDL_ROOM = parseFloat(row.find("TD").eq(8).html());
-                tarifa.PERIODO = row.find("TD").eq(9).html();
+                tarifa.PERIODO = row.find("TD").eq(9).html();                
 
-                //parseFloat(yourString).toFixed(2)
-
-                alert(tarifa.SGL_ROOM + ' ' + tarifa.DWL_ROOM);
+                //alert(tarifa.SGL_ROOM + ' ' + tarifa.DWL_ROOM);
 
                 lstTarifas.push(tarifa);
             }
@@ -197,183 +196,362 @@
             enableAllComponents(true);
         });
     };
+    
+
+    debugger;
+
+    if (vTIPO_SERVICIO == "TERAER") {
+        var grid = $('#resultados').DataTable({
+            scrollX: true,
+            paging: true,
+            responsive: true,
+            processing: true,
+            ordering: false,
+            deferLoading: 0,
+            responsive: {
+                details: {
+                    type: 'column',
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    renderer: function (api, index, columns) {
+                        $('div#resultados_wrapper .dataTables_scrollHead').hide();
+
+                        var row = $(api.row(index).node());
+                        row.hide();
+
+                        var html = $('#responsive-template').html();
+                        var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
 
 
+                        var template = $(html);
+
+                        template.find('#nombre').html(columns[1].data);
+                        template.find('#alias').html(columns[2].data);
+
+                        template.find('#ruc').html(columns[9].data);
+                        template.find('#paginaweb').html(columns[8].data);
 
 
-
-    var grid = $('#resultados').DataTable({
-        scrollX: true,
-        paging: true,
-        responsive: true,
-        processing: true,
-        ordering: false,
-        deferLoading: 0,
-        responsive: {
-            details: {
-                type: 'column',
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                renderer: function (api, index, columns) {
-                    $('div#resultados_wrapper .dataTables_scrollHead').hide();
-
-                    var row = $(api.row(index).node());
-                    row.hide();
-
-                    var html = $('#responsive-template').html();
-                    var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
+                        template.find('#pais').html(columns[5].data);
+                        template.find('#ciudad').html(columns[6].data);
+                        template.find('#idioma').html(columns[10].data);
+                        setTextColor(template, '#estado', columns[11].data);
 
 
-                    var template = $(html);
-
-                    template.find('#nombre').html(columns[1].data);
-                    template.find('#alias').html(columns[2].data);
-
-                    template.find('#ruc').html(columns[9].data);
-                    template.find('#paginaweb').html(columns[8].data);
-
-
-                    template.find('#pais').html(columns[5].data);
-                    template.find('#ciudad').html(columns[6].data);
-                    template.find('#idioma').html(columns[10].data);
-                    setTextColor(template, '#estado', columns[11].data);
-
-
-                    return template;
+                        return template;
+                    }
                 }
-            }
+            },
+
+            ajax: {
+                method: 'GET',
+                url: '/TarifaDetalle/Carga_TerAer_Temporal',
+                dataType: 'json',
+                data: '{}',
+                dataSrc: '',
+                //success: function (data) {
+                //    for (var i = 0; i < data.length; i++) {
+                //        alert(response.DINAMICO[i]);
+                //    }
+                //},
+
+            },
+            columns: [
+        {
+            title: 'NOMBRE',
+            data: 'DESCRIPCION',
+            width: 70,
+            className: 'not-mobile',
+            visible: true,
         },
 
-        ajax: {
-            method: 'GET',
-            url: '/TarifaHoteles/Carga_TarifaHotel_Temporal',
-            dataType: 'json',
-            data: '{}',
-            dataSrc: '',
-            //success: function (data) {
-            //    for (var i = 0; i < data.length; i++) {
-            //        alert(response.DINAMICO[i]);
-            //    }
-            //},
-            
+        {
+            title: 'SERVICIO',
+            data: 'TIPO_SERVICIO',
+            width: 70,
+            className: 'not-mobile',
+            visible: true,
         },
-        columns: [
-    {
-        title: 'NOMBRE',
-        data: 'DESCRIPCION',
-        width: 70,
-        className: 'not-mobile',
-        visible: true,
-    },
-    {
-        title: 'INICIO',
-        data: 'FECHA_INICIO_S',
-        width: 30,
-        className: 'not-mobile',
-        visible: true,
-    },
 
-    {
-        title: 'FINAL',
-        data: 'FECHA_FINAL_S',
-        width: 30,
-        className: 'not-mobile',
-        visible: true,
-    },
+        {
+            title: 'INICIO',
+            data: 'FECHA_INICIO_S',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
 
-    {
-        title: 'PERSONA',
-        data: 'TIPO_PERSONA',
-        width: 30,
-        className: 'not-mobile',
-        visible: true,
-    },
+        {
+            title: 'FINAL',
+            data: 'FECHA_FINAL_S',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
 
-    {
-        title: 'SERVICIO',
-        data: 'TIPO_SERVICIO',
-        width: 30,
-        className: 'not-mobile',
-        visible: true,
-    },
-    {
-        title: 'SGL',
-        data: 'SGL_ROOM',
-        width: 10,
-        className: 'not-mobile',
-        visible: true,
-    },
+        {
+            title: 'PERSONA',
+            data: 'TIPO_PERSONA',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
 
-    {
-        title: 'DWL',
-        data: 'DWL_ROOM',
-        width: 10,
-        className: 'not-mobile',
-        visible: true,
-    },
+        {
+            title: 'RANGO',
+            data: 'RANGO',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
 
-    {
-        title: 'TPL',
-        data: 'TPL_ROOM',
-        width: 10,
-        className: 'not-mobile',
-        visible: true,
-    },
-
-    {
-        title: 'CDL',
-        data: 'CDL_ROOM',
-        width: 10,
-        className: 'not-mobile',
-        visible: true,
-    },
-    {
-        title: 'TEMPOR',
-        data: 'TEMPORADA',
-        width: 10,
-        className: 'not-mobile',
-        visible: true,
-    },
-
-    {
-        title: 'EXISTE SERVICIO',
-        data: 'DINAMICO',
-        width: 20,
-        className: 'not-mobile',
-        render: renderTextColor,
-        visible: true,
-    },
-
-    {
-        title: 'EXISTE',
-        data: 'DINAMICO',
-        width: 20,
-        className: 'not-mobile',        
-        visible: true,
-    },
-
-    //{
-    //    data: null,
-    //    width: 80,
-    //    className: 'dt-body-center not-mobile',
-    //    render: function (data, type, row, meta) {
-    //        var content = [];
+        {
+            title: 'PRECIO',
+            data: 'PRECIO',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
 
 
-    //        var SeleccionarOpcion = '<a class="btn btn-warning btn-SeleccionarOpcion data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>';
-    //        var CrearServicio = '<button class="btn btn-primary btn-VerServicio" title="view service"><i class="fa fa-eye-slash"></i></button>';
-    //        //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+        {
+            title: 'ACOMODACION',
+            data: 'TIPO_ACOMODACION',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'TEMPOR',
+            data: 'TEMPORADA',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'EXISTE SERVICIO',
+            data: 'DINAMICO',
+            width: 20,
+            className: 'not-mobile',
+            render: renderTextColor,
+            visible: true,
+        },
+
+        {
+            title: 'EXISTE',
+            data: 'DINAMICO',
+            width: 20,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        //{
+        //    data: null,
+        //    width: 80,
+        //    className: 'dt-body-center not-mobile',
+        //    render: function (data, type, row, meta) {
+        //        var content = [];
 
 
-    //        content.push(CrearServicio);
-    //        content.push(SeleccionarOpcion);
+        //        var SeleccionarOpcion = '<a class="btn btn-warning btn-SeleccionarOpcion data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>';
+        //        var CrearServicio = '<button class="btn btn-primary btn-VerServicio" title="view service"><i class="fa fa-eye-slash"></i></button>';
+        //        //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
 
-    //        return content.join('&nbsp;&nbsp;');
-    //    }
-    //},
 
-        ],
+        //        content.push(CrearServicio);
+        //        content.push(SeleccionarOpcion);
 
-    });
+        //        return content.join('&nbsp;&nbsp;');
+        //    }
+        //},
+
+            ],
+
+        });
+    }
+
+    if (vTIPO_SERVICIO == "HOTEL") {
+        var grid = $('#resultados').DataTable({
+            scrollX: true,
+            paging: true,
+            responsive: true,
+            processing: true,
+            ordering: false,
+            deferLoading: 0,
+            responsive: {
+                details: {
+                    type: 'column',
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    renderer: function (api, index, columns) {
+                        $('div#resultados_wrapper .dataTables_scrollHead').hide();
+
+                        var row = $(api.row(index).node());
+                        row.hide();
+
+                        var html = $('#responsive-template').html();
+                        var a = document.getElementById('yourlinkId'); //or grab it by tagname etc
+
+
+                        var template = $(html);
+
+                        template.find('#nombre').html(columns[1].data);
+                        template.find('#alias').html(columns[2].data);
+
+                        template.find('#ruc').html(columns[9].data);
+                        template.find('#paginaweb').html(columns[8].data);
+
+
+                        template.find('#pais').html(columns[5].data);
+                        template.find('#ciudad').html(columns[6].data);
+                        template.find('#idioma').html(columns[10].data);
+                        setTextColor(template, '#estado', columns[11].data);
+
+
+                        return template;
+                    }
+                }
+            },
+
+            ajax: {
+                method: 'GET',
+                url: '/TarifaHoteles/Carga_TarifaHotel_Temporal',
+                dataType: 'json',
+                data: '{}',
+                dataSrc: '',
+                //success: function (data) {
+                //    for (var i = 0; i < data.length; i++) {
+                //        alert(response.DINAMICO[i]);
+                //    }
+                //},
+
+            },
+            columns: [
+        {
+            title: 'NOMBRE',
+            data: 'DESCRIPCION',
+            width: 70,
+            className: 'not-mobile',
+            visible: true,
+        },
+        {
+            title: 'INICIO',
+            data: 'FECHA_INICIO_S',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'FINAL',
+            data: 'FECHA_FINAL_S',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'PERSONA',
+            data: 'TIPO_PERSONA',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'SERVICIO',
+            data: 'TIPO_SERVICIO',
+            width: 30,
+            className: 'not-mobile',
+            visible: true,
+        },
+        {
+            title: 'SGL',
+            data: 'SGL_ROOM',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'DWL',
+            data: 'DWL_ROOM',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'TPL',
+            data: 'TPL_ROOM',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'CDL',
+            data: 'CDL_ROOM',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
+        {
+            title: 'TEMPOR',
+            data: 'TEMPORADA',
+            width: 10,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        {
+            title: 'EXISTE SERVICIO',
+            data: 'DINAMICO',
+            width: 20,
+            className: 'not-mobile',
+            render: renderTextColor,
+            visible: true,
+        },
+
+        {
+            title: 'EXISTE',
+            data: 'DINAMICO',
+            width: 20,
+            className: 'not-mobile',
+            visible: true,
+        },
+
+        //{
+        //    data: null,
+        //    width: 80,
+        //    className: 'dt-body-center not-mobile',
+        //    render: function (data, type, row, meta) {
+        //        var content = [];
+
+
+        //        var SeleccionarOpcion = '<a class="btn btn-warning btn-SeleccionarOpcion data-toggle="modal" data-target="#myModal" title="tools"><i class="fa fa-cogs"></i></a>';
+        //        var CrearServicio = '<button class="btn btn-primary btn-VerServicio" title="view service"><i class="fa fa-eye-slash"></i></button>';
+        //        //var CrearTarifa = '<button class="btn btn-danger btn-VerTarifa" title="Ver Tarifa"><i class="fa fa-file-text-o"></i></button>';
+
+
+        //        content.push(CrearServicio);
+        //        content.push(SeleccionarOpcion);
+
+        //        return content.join('&nbsp;&nbsp;');
+        //    }
+        //},
+
+            ],
+
+        });
+    }
+
+
+
+
+
+
+   
 
 
 
