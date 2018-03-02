@@ -53,6 +53,9 @@ namespace TraveLinux.Data.Entidades
         public decimal DWL_ROOM { get; set; }
         public decimal TPL_ROOM { get; set; }
         public decimal CDL_ROOM { get; set; }
+
+        public string VALIDACION { get; set; }
+        
   
     }
 }

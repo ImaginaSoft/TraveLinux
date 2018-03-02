@@ -2092,7 +2092,7 @@ namespace TraveLinux.Data
             return lstPlantillaDetalle;
         }
 
-        public void GuardarTarifaHTL(Tarifa eTarifa)
+        public Tarifa GuardarTarifaHTL(Tarifa eTarifa)
         {
 
             var ObjTarifa = new Tarifa();
@@ -2104,6 +2104,7 @@ namespace TraveLinux.Data
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_GUARDAR_TARIFARIO_HTL");
                 command.CommandType = CommandType.StoredProcedure;
 
+            
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eTarifa.TARIFA;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.SERVICIO;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR;
@@ -2112,12 +2113,17 @@ namespace TraveLinux.Data
                  command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_PASAJERO;
                  command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_ACOMODACION;
                 command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = "HTL";
-               
+
+                command.Parameters.Add("P_VALIDAR", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
                 connection.Open();
                 command.ExecuteNonQuery();
 
+                ObjTarifa.VALIDACION = command.Parameters.GetStringOrDefault("P_VALIDAR");
               
             }
+
+            return ObjTarifa;
           
         }
 

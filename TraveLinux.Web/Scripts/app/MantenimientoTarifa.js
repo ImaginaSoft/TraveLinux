@@ -236,18 +236,24 @@
                 type: 'POST',
                 url: '/Tarifa/GuardarTarifaHTL',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(data)
+                data: JSON.stringify(data),
+                success: function (data) {
+                debugger;
+                if (data.VALIDACION != 0) {
+                    $('#myModalTarifa').modal('show');
+                    $("input#npersona").css("border-color", "rgb(47, 57, 86)");
+                    $("input#npersona").css("box-shadow", "0 0 5px rgb(47, 57, 86)");
+                } else {
+
+                    showSuccessMessage('Se ha guardado el tarifario');
+                    setTimeout(function () {
+                        window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
+                    }, 2000);
+                }
+            },
+
             })
-            .done(function (data) {
-                showSuccessMessage('Se ha guardado el tarifario');
-                setTimeout(function () {
-                    window.location = '/Tarifa/TarifaProveedor?Servicio=' + vServicio + '&Proveedor=' + vProveedor;
-                }, 2000);
-            })
-            .fail(function () {
-                showErrorMessage('No se pudo guardar el tarifario. Inténtelo de nuevo.');
-                enableAllComponents(true);
-            });
+          
 
 
         }

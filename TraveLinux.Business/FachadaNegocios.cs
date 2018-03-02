@@ -860,12 +860,13 @@ namespace TraveLinux.Business
         }
 
 
-        public void GuardarTarifaHTL(Tarifa eTarifa)
+        public Tarifa GuardarTarifaHTL(Tarifa eTarifa)
         {
             try
             {
                 var datos = new AccesoDatos(ConnectionString);
-                datos.GuardarTarifaHTL(eTarifa);                
+                var Tarifa =  datos.GuardarTarifaHTL(eTarifa);
+                return Tarifa;
 
             }
             catch (Exception e)

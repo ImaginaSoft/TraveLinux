@@ -57,7 +57,7 @@ namespace TraveLinux.Web.Controllers
 
             var modelo = new ProveedorViewModels();
             modelo.Temporada = Fachada.ObtenerTemporadas();
-
+            modelo.Paises = Fachada.ObtenerPaises();
             {
                 modelo.PROVEEDOR = proveedor.PROVEEDOR;
                 modelo.NOMBRE = proveedor.NOMBRE;
@@ -142,11 +142,13 @@ namespace TraveLinux.Web.Controllers
         }
 
         [HttpPost]
-        public void GuardarTarifaHTL(Tarifa eTarifa)
+        public ActionResult GuardarTarifaHTL(Tarifa eTarifa)
         {
             var cuenta = Session["CUENTA"] as Cuenta;
 
-            Fachada.GuardarTarifaHTL(eTarifa);
+            var vValida = Fachada.GuardarTarifaHTL(eTarifa);
+
+            return Json(vValida);
         }
 
         //public ActionResult ValidarRango(Int32 Rango)

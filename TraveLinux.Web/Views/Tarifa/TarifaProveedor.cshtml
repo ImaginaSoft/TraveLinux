@@ -248,7 +248,7 @@
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type accommodation:</label>
                             <div class="col-xs-7 col-sm-5">
                                 <select id="tipoacomodacion" class="selectpicker" data-size="5" required>
-                                    <option value="">--- Seleccione ---</option>
+                                    <option value="">--- Seleccione ---</option>           
                                     <option value="MSS">MASTER SUITE</option>
                                     <option value="EXR">EXECUTIVE ROOM</option>
                                     <option value="SPR">SUPERIOR</option>
@@ -344,6 +344,25 @@
             </div>
             <div class="modal-body">
                 <p>This range already exists</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModalTarifa" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @*<h4 class="modal-title">Modal Header</h4>*@
+                <h4><i class="glyphicon glyphicon-remove"></i> Information</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ya se encuentra registrado esos servicios</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
