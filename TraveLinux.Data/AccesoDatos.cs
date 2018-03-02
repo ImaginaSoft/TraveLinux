@@ -2107,12 +2107,12 @@ namespace TraveLinux.Data
                 command.Parameters.Add("P_TARIFA", OracleDbType.Varchar2, 20).Value = eTarifa.TARIFA;
                 command.Parameters.Add("P_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.SERVICIO;
                 command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eTarifa.PROVEEDOR;
-                command.Parameters.Add("P_ID_TIPO_HAB", OracleDbType.Varchar2, 50).Value = "HTL";
-                command.Parameters.Add("P_COSTO", OracleDbType.Decimal).Value = eTarifa.PRECIO;
+                command.Parameters.Add("P_ID_TIPO_HAB", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_PASAJERO;
+                 command.Parameters.Add("P_COSTO", OracleDbType.Decimal).Value = eTarifa.PRECIO;
                 command.Parameters.Add("P_TIPO_PASAJERO", OracleDbType.Varchar2, 50).Value = "ADULT";
-                command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_ACOMODACION;
-                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_PASAJERO; 
-
+                 command.Parameters.Add("P_TIPO_ACOMODACION", OracleDbType.Varchar2, 50).Value = eTarifa.TIPO_ACOMODACION;
+                command.Parameters.Add("P_TIPO_SERVICIO", OracleDbType.Varchar2, 50).Value = "HTL";
+               
                 connection.Open();
                 command.ExecuteNonQuery();
 
@@ -2120,9 +2120,6 @@ namespace TraveLinux.Data
             }
           
         }
-
-
-
 
 
       
