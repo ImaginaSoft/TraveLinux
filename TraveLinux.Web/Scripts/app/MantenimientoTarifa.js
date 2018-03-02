@@ -225,7 +225,8 @@
             SERVICIO : vServicio,
             Tipo_Acomodacion : $("#tipoacomodacion").val(),
             Tipo_Servicio : $("#tiposervicio").val(),
-            Tipo_Pasajero : $("#tipopasajero").val(),
+            Tipo_Pasajero: $("#tipopasajero").val(),
+            Tipo_Hab: $("#tipohab").val(),
             Precio : $("#neto").val()
    
              }
@@ -253,6 +254,7 @@
 
     }
 
+ 
     function onClickRegistrarPeriodo(e) {
         e.preventDefault();
 
@@ -786,6 +788,13 @@
     $('#periodo').change(function () {
         grid.ajax.reload();
     })
+
+    function soloNumeros(e) {
+        var key = window.Event ? e.which : e.keyCode
+        return (key >= 48 && key <= 57)
+    }
+
+
 
     debugger;
     /*VALIDAR CAMPOS FORMULARIOS*/

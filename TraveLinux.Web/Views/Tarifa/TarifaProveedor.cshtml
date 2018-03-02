@@ -261,7 +261,7 @@
                         <div class="form-group">
                             <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Type of room:</label>
                             <div class="col-xs-7 col-sm-5">
-                                <select id="tipopasajero" class="selectpicker" data-size="5" required>
+                                <select id="tipohab" class="selectpicker" data-size="5" required>
                                     <option value="">--- Seleccione ---</option>
                                     <option value="SGL">SINGLE</option>
                                     <option value="DWL">DOUBLE</option>
@@ -269,6 +269,19 @@
                                 </select>
                             </div>
                         </div>
+                        
+                        
+                          <div class="form-group">
+                            <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Passenger Type:</label>
+                            <div class="col-xs-7 col-sm-5">
+                                <select id="tipopasajero" class="selectpicker" data-size="5" required>
+                                    <option value="">--- Seleccione ---</option>
+                                    <option value="ADULT">ADULTO</option>
+                                    <option value="CHILD">NIÑO</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         @*<div class="form-group">
                                 <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">nª room:</label>
                                 <div class="col-xs-2 col-sm-2">
@@ -278,9 +291,9 @@
                     }
 
                     <div class="form-group">
-                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right">Net rate x person:</label>
+                        <label for="alias" class="col-xs-12 col-sm-2 control-label no-pad-right" >Net rate x person:</label>
                         <div class="col-xs-7 col-sm-2">
-                            <input class="form-control" id="neto" value="">
+                            <input class="form-control" id="neto" value=""  maxlength="9" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                         </div>
                     </div>
 
