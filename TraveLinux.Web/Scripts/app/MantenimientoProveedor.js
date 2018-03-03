@@ -121,14 +121,13 @@
         if ('clicked') {
             if (x < max_fields) {
                 x++;
-                $("#caja_dinamico_contact_3").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Phone ' + x + ':</p><input class="form-control" id="telefono_contacto' + x + '" placeholder="Enter Phone" name="telefono_contacto' + x + '"></div>');
+                $("#caja_dinamico_contact_3").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Phone ' + x + ':</p><input class="form-control" id="telefono_contacto' + x + '" placeholder="Enter Phone" name="telefono_contacto' + x + '"><br /></div>');
 
                 if (x == 2) {
                     $("#eliminar_telefono").show();
                 }
             }
         }
-
     });
 
 
@@ -136,7 +135,7 @@
         debugger;
         if (x != 0) {
             $('#eliminarcajas' + x).remove();
-            x = x - 1;
+            x = x - 1;            
         }
     });
 
@@ -147,12 +146,14 @@
         if ('clicked') {
             if (x < max_fields) {
                 x++;
-                $("#caja_dinamico").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><p>Email ' + x + ':</p><input class="form-control" id="email' + x + '" placeholder="Enter Email" name="email' + x + '"></div>');
+                $("#caja_dinamico").append('<div class="col-xs-12 col-sm-12 col-sm-3" id ="eliminarcajas' + x + '"><input class="form-control" id="email' + x + '" placeholder="Enter email ' + x + '" name="email' + x + '"><br /></div>');
 
-
-
-                if (x == 2) {
-                    $("#eliminar_email").show();
+                if (x == 2) {                    
+                    $("#eliminar_email").show();                    
+                }
+                if (x == 3) {
+                    $("#remove").removeClass("col-xs-12 col-sm-12 col-sm-2").addClass("col-xs-12 col-sm-12 col-sm-1")
+                    $('#mostrar_email').hide();
                 }
             }
         }
@@ -164,19 +165,29 @@
         if (x != 0) {
             $('#eliminarcajas' + x).remove();
             x = x - 1;
+            if (x == 1) {
+                $('#eliminar_email').hide();
+            }
+            if (x == 2) {
+                $("#remove").removeClass("col-xs-12 col-sm-12 col-sm-1").addClass("col-xs-12 col-sm-12 col-sm-2")
+                $('#mostrar_email').show();
+            }
         }
     });
-
 
     $("#mostrar_fono").click(function (e) {
         e.preventDefault();
         if ('clicked') {
             if (y < max_fields) {
                 y++;
-                $("#caja_dinamico_2").append('<div class="col-xs-12 col-sm-3 col-md-3" id ="eliminarcajas_2' + y + '"><p>Phone ' + y + ':</p><input class="form-control" id="telefono' + y + '" placeholder="Enter Fono" name="telefono' + x + '"></div>');
+                $("#caja_dinamico_2").append('<div class="col-xs-12 col-sm-3 col-md-3" id ="eliminarcajas_2' + y + '"><input class="form-control" id="telefono' + y + '" placeholder="Phone ' + y + ':" name="telefono' + x + '"><br /></div>');
 
                 if (y == 2) {
                     $("#eliminar_fono").show();
+                }
+                if (y == 3) {
+                    $("#remove_2").removeClass("col-xs-12 col-sm-12 col-sm-2").addClass("col-xs-12 col-sm-12 col-sm-1")
+                    $('#mostrar_fono').hide();
                 }
             }
         }
@@ -188,6 +199,14 @@
         if (y != 0) {
             $('#eliminarcajas_2' + y).remove();
             y = y - 1;
+
+            if (y == 1) {
+                $('#eliminar_fono').hide();
+            }
+            if (y == 2) {
+                $("#remove_2").removeClass("col-xs-12 col-sm-12 col-sm-1").addClass("col-xs-12 col-sm-12 col-sm-2")
+                $('#mostrar_fono').show();
+            }
         }
     });
 
