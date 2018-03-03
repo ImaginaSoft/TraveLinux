@@ -205,7 +205,7 @@
     if (vTIPO_SERVICIO == "TERAER") {
         var grid = $('#resultados').DataTable({
             scrollX: true,
-            paging: true,
+            paging: false,
             responsive: true,
             processing: true,
             ordering: false,
@@ -376,7 +376,7 @@
     if (vTIPO_SERVICIO == "HOTEL") {
         var grid = $('#resultados').DataTable({
             scrollX: true,
-            paging: true,
+            paging: false,
             responsive: true,
             processing: true,
             ordering: false,
