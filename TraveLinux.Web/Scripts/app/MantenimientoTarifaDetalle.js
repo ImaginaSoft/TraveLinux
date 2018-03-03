@@ -101,6 +101,9 @@
 
         var lstTarifas = new Array();
         $("#resultados TBODY TR").each(function () {
+
+        //$(dataTable.fnGetNodes())
+
             debugger;
             var row = $(this);
             var tarifa = {};
@@ -115,8 +118,7 @@
                 tarifa.FECHA_FIN = row.find("TD").eq(3).html();
                 tarifa.TIPO_PERSONA = row.find("TD").eq(4).html();
                 tarifa.RANGO_PAX = row.find("TD").eq(5).html();
-                tarifa.PRECIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/
-                //tarifa.PRECIO = parseFloat(row.find("TD").eq(6).html());
+                tarifa.PRECIO = row.find("TD").eq(6).html(); /*CODIGO GENERADO*/                
                 tarifa.TIPO_SERVICIO_2 = row.find("TD").eq(7).html();
                 tarifa.PERIODO = row.find("TD").eq(8).html();
                 lstTarifas.push(tarifa);                
