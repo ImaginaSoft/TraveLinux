@@ -130,15 +130,14 @@
                                 <!-- The user image in the navbar-->
                                 <img src="/Content/img/e1.png" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">@ViewBag.Nombre</span>
+                                <span class="hidden-xs"> @ViewBag.Usuario </span>                                
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
                                     <img src="/Content/img/e1.png" class="img-circle" alt="User Image">
-                                    <p>
-                                        @ViewBag.Nombre
-                                    </p>
+                                    <p>@ViewBag.Rol</p>
+                                    
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
@@ -264,11 +263,15 @@
         <footer class="main-footer">
             <!-- To the right -->
             <div class="pull-right hidden-xs">
-                Versión 1.0 | @DateTime.Now.ToString("yyyy-MM-dd")
+                @*Versión 1.0 | @DateTime.Now.ToString("yyyy-MM-dd")*@
+
+                Usuario: @ViewBag.Nombre
+                
             </div>
             <!-- Default to the left -->
-            <strong>&copy; @DateTime.Now.Year - TraveLinux</strong>
-        </footer>
+            @*<strong>&copy; @DateTime.Now.Year - TraveLinux</strong>*@
+            <strong>&copy; TraveLinux | @DateTime.Now.ToString("yyyy-MM-dd")</strong>
+</footer>
     </div><!-- ./wrapper -->
 
     <script src="~/Scripts/modernizr/modernizr-2.6.2.js"></script>

@@ -556,6 +556,41 @@ namespace TraveLinux.Data
         }
 
 
+
+        public Cuenta Login(string pUsuario)
+        {
+            Cuenta cuenta = null;
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+
+                command.Connection = connection;                
+                command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_VALIDAR_USUARIO");
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("P_USERNAME", OracleDbType.Varchar2).Value = pUsuario.ToUpper();
+                command.Parameters.Add("P_USUARIO", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_PASSWORD", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;                
+                command.Parameters.Add("P_EMAIL", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_ROL", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;                
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                cuenta = new Cuenta();
+                cuenta.Usuario = command.Parameters["P_USUARIO"].Value.ToString();
+                cuenta.Password = command.Parameters["P_PASSWORD"].Value.ToString();                
+                cuenta.Email = command.Parameters["P_EMAIL"].Value.ToString();
+                cuenta.Nombre = command.Parameters["P_NOMBRE"].Value.ToString();
+                cuenta.Rol = command.Parameters["P_ROL"].Value.ToString();
+                cuenta.Perfil = Perfil.Administrador;
+            }
+
+            return cuenta;
+        }
+
+
         public void Eliminar_TablaTemporal()
         {
             using (var connection = new OracleConnection(_connectionString))

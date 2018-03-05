@@ -44,9 +44,11 @@ namespace TraveLinux.Web.Filters
                     filterContext.HttpContext.Response.StatusDescription = description;
                     return;
                 }
-
+                
+                filterContext.Controller.ViewBag.Usuario = cuenta.Usuario;
                 filterContext.Controller.ViewBag.Nombre = cuenta.Nombre;
                 filterContext.Controller.ViewBag.Email = cuenta.Email;
+                filterContext.Controller.ViewBag.Rol = cuenta.Rol;
             }
         }
     }

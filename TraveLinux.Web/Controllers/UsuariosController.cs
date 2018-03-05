@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using TraveLinux.Web.Models;
+using TraveLinux.Web.Util;
 
 namespace TraveLinux.Web.Controllers
 {
@@ -50,7 +51,43 @@ namespace TraveLinux.Web.Controllers
             password = Encriptar(password);
 
 
-            if (username == "ADMIN")
+
+            if (username != "ADMIN")
+            {
+                var cuenta = Fachada.Login(username);
+
+
+                if (cuenta == null || (cuenta.Usuario != username || cuenta.Password != password))
+                {  
+
+                    TempData["Error"] = "El usuario o la contraseña indicados no son válidos";
+                    return View();
+                }
+
+                if (cuenta != null || (cuenta.Usuario == username || cuenta.Password == password))
+                {
+
+                    cuenta.Password = TripleDESUtil.DesencriptarContrasenia(cuenta.Password);
+
+                    Session["CUENTA"] = new Cuenta
+                    {
+                        Usuario = cuenta.Usuario,
+                        Nombre = cuenta.Nombre,
+                        Email = cuenta.Email,                                                                      
+                        Rol = cuenta.Rol,
+                        Perfil = Perfil.Administrador
+                    };
+
+                    return RedirectToAction("Index", "Inicio");
+
+                }
+
+
+
+            }
+
+
+                if (username == "ADMIN")
             {
                 /*var PasswordAdminEncriptado  = Encriptar(PasswordOriginal);*/
 

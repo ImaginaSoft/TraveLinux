@@ -69,6 +69,8 @@ namespace TraveLinux.Business
         void Guardar_Carga_TerAer_Temporal(List<Tarifa> usersList);
 
         void Eliminar_TablaTemporal();
+        Cuenta Login(string usuario);
+
         void Eliminar_Tabla_Temporal_Hotel();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
         Proveedor ValidarRuc(Proveedor eProveedor);

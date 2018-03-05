@@ -97,14 +97,19 @@
     }
 
 
-    function onClickGuardarCargaTarifa() {
+    function onClickGuardarCargaTarifa(e) {
+
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+
 
         var lstTarifas = new Array();
+
         $("#resultados TBODY TR").each(function () {
 
-        //$(dataTable.fnGetNodes())
-
-            debugger;
+            //debugger;
             var row = $(this);
             var tarifa = {};
 
@@ -205,7 +210,7 @@
     if (vTIPO_SERVICIO == "TERAER") {
         var grid = $('#resultados').DataTable({
             scrollX: true,
-            paging: true,
+            paging: false,
             responsive: true,
             processing: true,
             ordering: false,
@@ -376,7 +381,7 @@
     if (vTIPO_SERVICIO == "HOTEL") {
         var grid = $('#resultados').DataTable({
             scrollX: true,
-            paging: true,
+            paging: false,
             responsive: true,
             processing: true,
             ordering: false,

@@ -688,6 +688,21 @@ namespace TraveLinux.Business
                         throw new FachadaNegociosException("No se pudo guardar el detalle", e);
                     }
         }
+
+        public Cuenta Login(string usuario)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var cuenta = datos.Login(usuario);
+                return cuenta;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo iniciar sesión", e);
+            }
+        }
+
         public void Eliminar_TablaTemporal()
         {
             try

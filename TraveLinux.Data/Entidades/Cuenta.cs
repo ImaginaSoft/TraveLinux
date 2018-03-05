@@ -12,6 +12,8 @@ namespace TraveLinux.Data.Entidades
         public string Password { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
+        public string Rol { get; set; }
         public Perfil Perfil { get; set; }
+        public string Correo { get; set; }
     }
 }
