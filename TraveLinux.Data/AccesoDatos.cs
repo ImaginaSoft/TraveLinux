@@ -1816,6 +1816,8 @@ namespace TraveLinux.Data
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+
+                Cuenta eCuenta = new Cuenta();
                 var command = new OracleCommand();
                 command.Connection = connection;
                 command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_CREAR_PLANTILLA");
@@ -1824,7 +1826,7 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2,50).Value = ePlantilla.DESCRIPCION;
-                command.Parameters.Add("P_EJECUTIVA", OracleDbType.Varchar2, 20).Value = "bgloria";
+                command.Parameters.Add("P_EJECUTIVA", OracleDbType.Varchar2, 20).Value = eCuenta.Nombre;
                 command.Parameters.Add("P_CANT_CHILD", OracleDbType.Int32).Value = ePlantilla.CANT_CHILD;
                 command.Parameters.Add("P_CANT_ADULT", OracleDbType.Int32).Value = ePlantilla.CANT_ADULT;
                 command.Parameters.Add("P_CANT_PAX", OracleDbType.Int32).Value = ePlantilla.CANT_ADULT + ePlantilla.CANT_CHILD;
@@ -2106,7 +2108,7 @@ namespace TraveLinux.Data
                         detallePlantilla.ID_PLANTILLA = reader.GetStringOrDefault(0);
                         detallePlantilla.SERVICIO = reader.GetStringOrDefault(1);
                         detallePlantilla.NOMBRE_SERVICIO = reader.GetStringOrDefault(2);
-                        detallePlantilla.PROVEEDOR = reader.GetStringOrDefault(3);
+                        detallePlantilla.PROVEEDOR = reader.GetInt32(3);
                         detallePlantilla.NOMBRE_PROVEEDOR = reader.GetStringOrDefault(4);
                         detallePlantilla.TIPO_SERVICIO = reader.GetStringOrDefault(5);
                         detallePlantilla.TIPO_ACOMODACION = reader.GetStringOrDefault(6);

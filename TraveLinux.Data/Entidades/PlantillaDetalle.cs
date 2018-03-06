@@ -15,7 +15,7 @@ namespace TraveLinux.Data.Entidades
 
         public string NOMBRE_SERVICIO { get; set; }
 
-        public string PROVEEDOR { get; set; }
+        public Int32 PROVEEDOR { get; set; }
 
         public string NOMBRE_PROVEEDOR { get; set; }
 

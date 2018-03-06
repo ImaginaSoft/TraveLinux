@@ -284,7 +284,21 @@
               //render: renderTextColor
               visible: true,
        },
+        {
+            data: null,
+            width: 80,
+            className: 'dt-body-center not-mobile',
+            render: function (data, type, row, meta) {
+                var content = [];
 
+                var EliminarTarifa = '<button class="btn btn-danger btn-EliminarTarifa" title="Eliminar Tarifa"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
+
+                content.push(EliminarTarifa);
+                //content.push(eliminar);
+
+                return content.join('&nbsp;&nbsp;');
+            }
+        },
 
 
         ]
