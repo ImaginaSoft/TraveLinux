@@ -874,6 +874,19 @@ namespace TraveLinux.Business
             }
         }
 
+        public void EliminarServicioPlantilla(string Id_plantilla, Int32 Consecutivo)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                datos.EliminarServicioPlantilla(Id_plantilla, Consecutivo);
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo eliminar el servicio", e);
+            }
+        }
+
 
         public Tarifa GuardarTarifaHTL(Tarifa eTarifa)
         {

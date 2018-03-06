@@ -64,13 +64,11 @@ namespace TraveLinux.Business
         List<TipoServicio> ObtenerListAcomodacionPlantilla(string sTipoServicio);
         void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle);
         IEnumerable<PlantillaDetalle> ListadoDetallePlantilla(string Proveedor);
+        void EliminarServicioPlantilla(string Id_plantilla, Int32 Consecutivo);
         void Guardar_Carga_Hotel_Temporal(List<Tarifa> usersList);
-
         void Guardar_Carga_TerAer_Temporal(List<Tarifa> usersList);
-
         void Eliminar_TablaTemporal();
         Cuenta Login(string usuario);
-
         void Eliminar_Tabla_Temporal_Hotel();
         void EliminarTarifa(string Tarifa, Int32 Proveedor, string Rango, string Tipo_Pasajero);
         Proveedor ValidarRuc(Proveedor eProveedor);

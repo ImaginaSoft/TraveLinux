@@ -133,5 +133,13 @@ namespace TraveLinux.Web.Controllers
         }
 
 
+        [HttpPost]
+        public void EliminarServicioPlantilla(string Id_plantilla, Int32 Consecutivo)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            Fachada.EliminarServicioPlantilla(Id_plantilla, Consecutivo);
+        }
+
+
 	}
 }

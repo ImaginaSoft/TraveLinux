@@ -7,8 +7,7 @@
 
     };
 
-
-
+ 
     var Id_Plantilla = $('#id_plantilla').val();
 
     $('#proveedor').on('change', function () {
@@ -226,6 +225,13 @@
         className: 'not-mobile',
         visible: true
     },
+     {
+         title: 'CONSECUTIVO',
+         data: 'CONSECUTIVO',
+         width: 125,
+         className: 'not-mobile',
+         visible: false
+     },
     {
         title: 'SERVICIO',
         data: 'NOMBRE_SERVICIO',
@@ -284,12 +290,62 @@
               //render: renderTextColor
               visible: true,
        },
+        {
+            data: null,
+            width: 80,
+            className: 'dt-body-center not-mobile',
+            render: function (data, type, row, meta) {
+                var content = [];
 
+                var EliminarTarifa = '<button class="btn btn-danger btn-EliminarTarifa" title="Eliminar Tarifa"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>';
+
+                content.push(EliminarTarifa);
+                //content.push(eliminar);
+
+                return content.join('&nbsp;&nbsp;');
+            }
+        },
 
 
         ]
 
+
+
     });
+
+    //*Eliminar Servicio Plantilla*//
+    function onClickEliminarServicioPlantilla(e) {
+        e.preventDefault();
+        debugger;
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/Plantilla/EliminarServicioPlantilla',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Id_plantilla: item.ID_PLANTILLA, Consecutivo: item.CONSECUTIVO }),
+        })
+        .done(function (data) {
+            showSuccessMessage('Se ha eliminado el servicio');
+            setTimeout(function () {
+                window.location = '/Plantilla/CrearPlantillaDetalle?Plantilla=' + Id_Plantilla;
+            }, 2000);
+        })
+        .fail(function () {
+            showErrorMessage('No se pudo borrar el servicio. Inténtelo de nuevo.');
+            enableAllComponents(true);
+        });
+
+    }
+
+
+    $('#resultados tbody').on('click', 'button.btn-EliminarTarifa', onClickEliminarServicioPlantilla);
+    window.onClickEliminarServicioPlantilla = onClickEliminarServicioPlantilla;
+
+
 
 
 

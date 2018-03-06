@@ -64,6 +64,17 @@
     }
 
 
+    function onClickModificarPlantilla(e) {
+        e.preventDefault();
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+
+        window.location = '/Plantilla/ModificarPlantilla?Plantilla=' + item.ID_PLANTILLA;
+    }
+
+
     //*LISTA PLANTILLA*//
     var grid = $('#resultados').DataTable({
         scrollX: true,
