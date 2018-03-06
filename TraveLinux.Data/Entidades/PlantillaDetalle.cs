@@ -47,6 +47,8 @@ namespace TraveLinux.Data.Entidades
 
         public string NOMBRE_CIUDAD { get; set; }
 
+        public Int32 CONSECUTIVO { get; set; }
+
 
 
 

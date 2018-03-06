@@ -2119,6 +2119,7 @@ namespace TraveLinux.Data
                         detallePlantilla.CANT_CHD = reader.GetInt32(11);
                         detallePlantilla.CIUDAD = reader.GetStringOrDefault(12);
                         detallePlantilla.NOMBRE_CIUDAD = reader.GetStringOrDefault(13);
+                        detallePlantilla.CONSECUTIVO = reader.GetInt32(14);
                         detallePlantilla.CANT_PAX = (reader.GetInt32(10).ToString()) == "0" ? (reader.GetInt32(11).ToString())+ " CHD" : (reader.GetInt32(10).ToString() + " ADT"); 
 
                         lstPlantillaDetalle.Add(detallePlantilla);
@@ -2162,6 +2163,29 @@ namespace TraveLinux.Data
 
             return ObjTarifa;
           
+        }
+
+
+        public void EliminarServicioPlantilla(string Id_plantilla, Int32 Consecutivo)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+                //command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_ELIMINAR_SERVICIO_PLANTILLA");
+                command.CommandText = "SP_ELIMINAR_SERVICIO_PLANTILLA";
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("P_ID_PLANTILLA", OracleDbType.Varchar2).Value = Id_plantilla;
+                command.Parameters.Add("P_CONSECUTIVO", OracleDbType.Int32).Value = Consecutivo;
+            
+
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
         }
 
 
