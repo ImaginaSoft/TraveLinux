@@ -12,7 +12,7 @@
 
 
 <style>
-    b, strong {
+    .header strong {
         font-weight: 700;
         color: #f39c12;
     }
@@ -111,16 +111,13 @@
     }
 </style>
 <script id="responsive-template" type="text/x-handlebars-template">
-    <div class="row">
-        <div class="col-xs-12 header">
-            <p id="descripcion"></p>
-            <span>
-                <strong>Moneda</strong>
-                <span id="moneda"></span>
-                <strong>VALOR:</strong>
-                <span id="valor"></span>
-                <strong>ESTADO:</strong>
-                <span id="estado"></span>
+    <div class="row" id="row_movil_cliente">
+        <div class="col-xs-12 header">            
+            <span>                 
+                <strong>Nombre:</strong>
+                <span id="nombre"></span> <br />                             
+                <strong>Documento:</strong>
+                <span id="documento"></span>
             </span>
 
         </div>
@@ -128,105 +125,25 @@
             <table class="table table-borderless full-width">
                 <tbody>
                     <tr>
-                        <th>CLIENTE</th>
-                        <td id="cliente"></td>
-                    </tr>
-                    <tr>
-                        <th>NOMBRE</th>
-                        <td id="nombre"></td>
-                    </tr>
-                    <tr>
-                        <th>PATERNO</th>
-                        <td id="paterno"></td>
-                    </tr>
-                    <tr>
-                        <th>MATERNO</th>
-                        <td id="materno"></td>
-                    </tr>
-                    <tr>
-                        <th>DOCUMENTO</th>
-                        <td id="documento"></td>
-                    </tr>
-                    <tr>
-                        <th>NUMERO</th>
-                        <td id="numero"></td>
-                    </tr>
-                    <tr>
-                        <th>FECHA NACIMIENTO</th>
-                        <td id="fec_nacimiento"></td>
-                    </tr>
-                    <tr>
-                        <th>ESTADO CIVIL</th>
-                        <td id="estado_civil"></td>
-                    </tr>
-                    <tr>
-                        <th>GENERO</th>
-                        <td id="genero"></td>
-                    </tr>
-                    <tr>
-                        <th>PAÍS</th>
+                        <th>Pais</th>
                         <td id="pais"></td>
                     </tr>
                     <tr>
-                        <th>`DEPARTAMENTO</th>
+                        <th>Departamento</th>
                         <td id="departamento"></td>
                     </tr>
                     <tr>
-                        <th>DISTRITO</th>
-                        <td id="distrito"></td>
-                    </tr>
-                    <tr>
-                        <th>DIRECCION</th>
-                        <td id="direccion"></td>
-                    </tr>
-                    <tr>
-                        <th>IDIOMA</th>
-                        <td id="IDIOMA"></td>
-                    </tr>
-                    <tr>
-                        <th>EMAIL</th>
-                        <td id="email"></td>
-                    </tr>
-                    <tr>
-                        <th>EMAIL 2</th>
-                        <td id="email_2"></td>
-                    </tr>
-                    <tr>
-                        <th>EMAIL 3</th>
-                        <td id="email_3"></td>
-                    </tr>
-                    <tr>
-                        <th>TELEFONO</th>
+                        <th>Telefono</th>
                         <td id="telefono"></td>
                     </tr>
                     <tr>
-                        <th>TELEFONO 2</th>
-                        <td id="telefono_2"></td>
+                        <th>Email</th>
+                        <td id="email"></td>
                     </tr>
                     <tr>
-                        <th>TELEFONO 3</th>
-                        <td id="telefono_3"></td>
-                    </tr>
-                    <tr>
-                        <th>ESTADO</th>
-                        <td id="estado"></td>
-                    </tr>
-                    <tr>
-                        <th>FECHA REGISTRO</th>
-                        <td id="fec_registro"></td>
-                    </tr>
-                    <tr>
-                        <th>USUARIO REGISTRO</th>
-                        <td id="usuario_registro"></td>
-                    </tr>
-                    <tr>
-                        <th>FECHA ULT MODIFICACION</th>
-                        <td id="fec_ult_modif"></td>
-                    </tr>
-                    <tr>
-                        <th>USUARIO ULT MODIFICACION</th>
-                        <td id="usuario_ult_modif"></td>
-                    </tr>
+                        <th>Idioma</th>
+                        <td id="idioma"></td>
+                    </tr>                   
                 </tbody>
             </table>
         </div>

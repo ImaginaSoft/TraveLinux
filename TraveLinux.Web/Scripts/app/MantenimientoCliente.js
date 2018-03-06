@@ -305,10 +305,13 @@ var grid = $('#resultados').DataTable({
 
 
                 var template = $(html);
-                template.find('#moneda').html(columns[0].data);
-                template.find('#descripcion').html(columns[1].data);
-                template.find('#valor').html(columns[2].data);
-                template.find('#estado').html(columns[3].data);
+                template.find('#documento').html(columns[5].data);
+                template.find('#nombre').html(columns[1].data + ' ' + columns[2].data + ' ' + columns[3].data);
+                template.find('#pais').html(columns[10].data);
+                template.find('#departamento').html(columns[11].data);
+                template.find('#telefono').html(columns[17].data);
+                template.find('#email').html(columns[14].data);
+                template.find('#idioma').html(columns[13].data);
 
                 //setTextColor(template, '#descripcion', columns[1].data);
 
@@ -603,9 +606,9 @@ var grid = $('#resultados').DataTable({
 
 $('#btn-guardar').on('click', onClickRegistrarCliente);
 $('#btn-actualizar').on('click', onClickActualizarCliente);
-debugger;
+
 $('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerServicio);
-debugger;
+
 $('#resultados tbody').on('click', 'a.btn-SeleccionarOpcion', onClickSeleccionarOpcion);
 
 $('.modal').on('click', 'button.btn-editar', onClickEditarCliente);
