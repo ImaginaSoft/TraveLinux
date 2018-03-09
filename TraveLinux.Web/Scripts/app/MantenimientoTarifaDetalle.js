@@ -129,7 +129,7 @@
                 lstTarifas.push(tarifa);                
             };
 
-            alert(lstTarifas.length);
+            //alert(lstTarifas.length);
         });
         
         

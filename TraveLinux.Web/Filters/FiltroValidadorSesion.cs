@@ -24,8 +24,8 @@ namespace TraveLinux.Web.Filters
                     if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
                         filterContext.Result = new JsonResult
-                        {
-                            ContentType = "application/json",
+                    {
+                        ContentType = "application/json",
                             ContentEncoding = Encoding.UTF8,
                             Data = new { Error = true, Descripcion = description },
                             JsonRequestBehavior = JsonRequestBehavior.AllowGet,

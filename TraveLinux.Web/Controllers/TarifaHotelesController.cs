@@ -42,6 +42,7 @@ namespace TraveLinux.Web.Controllers
 
             ViewBag.Proveedor = TarifDetalle.PROVEEDOR;
             ViewBag.Proveedor_Nombre = TarifDetalle.NOMBRE;
+            ViewBag.Tipo_Servicio = "HOTEL";
 
             return View();
         }
@@ -85,6 +86,7 @@ namespace TraveLinux.Web.Controllers
                             for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
                                 var user = new Tarifa();
+                                user.PROVEEDOR = Proveedor;
                                 user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value == null ? string.Empty : workSheet.Cells[rowIterator, 1].Value.ToString();
                                 user.FECHA_INICIO_S = workSheet.Cells[rowIterator, 2].Value == null ? string.Empty : workSheet.Cells[rowIterator, 2].Value.ToString();
                                 user.FECHA_FINAL_S = workSheet.Cells[rowIterator, 3].Value == null ? string.Empty : workSheet.Cells[rowIterator, 3].Value.ToString();

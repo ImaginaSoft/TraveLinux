@@ -61,6 +61,7 @@ namespace TraveLinux.Web.Controllers
                             {
                                 var user = new Tarifa();
 
+                                user.PROVEEDOR = Proveedor;
                                 user.DESCRIPCION = workSheet.Cells[rowIterator, 1].Value == null ? string.Empty : workSheet.Cells[rowIterator, 1].Value.ToString();
                                 user.TIPO_SERVICIO = workSheet.Cells[rowIterator, 2].Value == null ? string.Empty : workSheet.Cells[rowIterator, 2].Value.ToString();
                                 user.FECHA_INICIO_S = workSheet.Cells[rowIterator, 3].Value == null ? string.Empty : workSheet.Cells[rowIterator, 3].Value.ToString();

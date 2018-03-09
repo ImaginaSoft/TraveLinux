@@ -3,6 +3,7 @@
     var vServicio = $('#servicio').val();
     var vdesc_servicio = $('#desc_servicio').val();
     
+    
     //alert(vdesc_servicio.trim());
 
     $('#dtp_start').datetimepicker({
@@ -343,7 +344,7 @@
     
 
 
-    if (vdesc_servicio.trim() == "TERRESTRE") {        
+    if (vdesc_servicio.trim() == "AEREO" || vdesc_servicio.trim() == "TERRESTRE") {
 
         //*LISTA TARIFA*//
         var grid = $('#resultados').DataTable({
