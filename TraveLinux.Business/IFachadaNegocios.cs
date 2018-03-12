@@ -65,6 +65,8 @@ namespace TraveLinux.Business
         void GuardarPlantillaDetalle(PlantillaDetalle ePlantillaDetalle);
         IEnumerable<PlantillaDetalle> ListadoDetallePlantilla(string Proveedor);
         void EliminarServicioPlantilla(string Id_plantilla, Int32 Consecutivo);
+        Plantilla ObtenerEditarPlantilla(string Plantilla);
+
         void Guardar_Carga_Hotel_Temporal(List<Tarifa> usersList);
         void Guardar_Carga_TerAer_Temporal(List<Tarifa> usersList);
         void Eliminar_TablaTemporal();

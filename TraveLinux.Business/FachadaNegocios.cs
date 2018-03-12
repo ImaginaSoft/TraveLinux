@@ -888,6 +888,22 @@ namespace TraveLinux.Business
         }
 
 
+        public Plantilla ObtenerEditarPlantilla(string Id_Plantilla)
+        {
+            try
+            {
+                var datos = new AccesoDatos(ConnectionString);
+                var plantilla = datos.ObtenerEditarPlantilla(Id_Plantilla);
+                return plantilla;
+            }
+            catch (Exception e)
+            {
+                throw new FachadaNegociosException("No se pudo obtener la plantilla", e);
+            }
+        }
+
+
+
         public Tarifa GuardarTarifaHTL(Tarifa eTarifa)
         {
             try
