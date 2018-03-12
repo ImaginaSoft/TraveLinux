@@ -352,6 +352,7 @@
     <Content Include="Views\Plantilla\CrearPlantillaDetalle.cshtml" />
     <Content Include="Views\Plantilla\Index.cshtml" />
     <Content Include="Views\TarifaHoteles\CargaTarifaHotel.cshtml" />
+    <Content Include="Views\Plantilla\ModificarPlantilla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

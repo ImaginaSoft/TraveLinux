@@ -2190,6 +2190,45 @@ namespace TraveLinux.Data
         }
 
 
+        public Plantilla ObtenerEditarPlantilla(string sId_Plantilla)
+        {
+            var ObjPlantilla = new Plantilla();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                var command = new OracleCommand();
+                command.Connection = connection;
+               // command.CommandText = string.Concat(Globales_DAL.gs_PACKAGENAME, "SP_OBTENER_PLANTILLA");
+                command.CommandText = "SP_OBTENER_LISTA_PLANTILLA";
+
+                command.CommandType = CommandType.StoredProcedure;
+               // command.Parameters.Add("P_ID_PLANTILLA", OracleDbType.Varchar2, 50).Value = sId_Plantilla;
+
+                command.Parameters.Add("P_ID_PLANTILLA", OracleDbType.Varchar2, sId_Plantilla, ParameterDirection.Input);
+                command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CANT_ADULT", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CANT_CHILD", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_CANT_PAX", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                command.Parameters.Add("P_MARKUP", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                //command.Parameters.Add("P_FECHA_INI", OracleDbType.Date).Direction = ParameterDirection.Output;
+              
+                connection.Open();
+                command.ExecuteNonQuery();
+
+ 
+                ObjPlantilla.DESCRIPCION = command.Parameters.GetStringOrDefault("P_DESCRIPCION");
+                ObjPlantilla.CANT_ADULT = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_CANT_ADULT"));
+                ObjPlantilla.CANT_CHILD = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_CANT_CHILD"));
+                ObjPlantilla.CANT_PAX = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_CANT_PAX"));
+                ObjPlantilla.MARKUP = Convert.ToInt32(command.Parameters.GetStringOrDefault("P_MARKUP"));
+               // ObjPlantilla.FECHA_INI = command.Parameters.GetDateTimeOrDefault("P_FECHA_INI");
+  
+            }
+
+            return ObjPlantilla;
+        }
+
+
       
     }
 

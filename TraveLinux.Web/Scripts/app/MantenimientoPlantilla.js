@@ -53,6 +53,9 @@
     $('#btn-guardar').on('click', onClickGuardarPlantilla);
 
 
+
+
+
     function onClickVerDetallePlantilla(e) {
         e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
@@ -65,14 +68,35 @@
 
 
     function onClickModificarPlantilla(e) {
+        //debugger;
         e.preventDefault();
         var item = grid.row($(this).parents('tr')).data();
         if (!item) {
             item = grid.row($(e.target).parents('tr').prev()).data();
         }
 
-        window.location = '/Plantilla/ModificarPlantilla?Plantilla=' + item.ID_PLANTILLA;
+        var Plantilla = $('#CodigoPlantilla').val();
+
+
+        window.location = '/Plantilla/ModificarPlantilla?Plantilla=' + Plantilla;
     }
+
+    function onClickSeleccionarOpcion(e) {
+        //debugger;
+
+        e.preventDefault();
+        var item = grid.row($(this).parents('tr')).data();
+        if (!item) {
+            item = grid.row($(e.target).parents('tr').prev()).data();
+        }
+
+        var Plantilla = item.ID_PLANTILLA;
+
+        $('#CodigoPlantilla').val(Plantilla);
+        $('#myModal').modal('show');
+    }
+
+
 
 
     //*LISTA PLANTILLA*//
@@ -229,7 +253,12 @@
     $('#resultados tbody').on('click', 'button.btn-VerServicio', onClickVerDetallePlantilla);
     $('#resultados tbody').on('click', 'a.btn-SeleccionarOpcion', onClickSeleccionarOpcion);
 
+    $('.modal').on('click', 'button.btn-editar', onClickModificarPlantilla);
+    //$('.modal').on('click', 'button.btn-eliminar', onClickEliminarPlantilla);
+
+
     window.onClickVerDetallePlantilla = onClickVerDetallePlantilla;
+    window.onClickSeleccionarOpcion = onClickSeleccionarOpcion;
 
 
 });

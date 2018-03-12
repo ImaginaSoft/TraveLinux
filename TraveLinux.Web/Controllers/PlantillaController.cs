@@ -66,6 +66,34 @@ namespace TraveLinux.Web.Controllers
 
         }
 
+
+        public ActionResult ModificarPlantilla(string Plantilla)
+        {
+            var cuenta = Session["CUENTA"] as Cuenta;
+            var ObtenerPlantilla = Fachada.ObtenerEditarPlantilla(Plantilla);
+            var modelo = new PlantillaViewModels();
+           // modelo.Paises = Fachada.ObtenerPaises();
+            {
+
+
+                modelo.ID_PLANTILLA = ObtenerPlantilla.ID_PLANTILLA;
+                modelo.DESCRIPCION = ObtenerPlantilla.DESCRIPCION;
+                modelo.EJECUTIVA = ObtenerPlantilla.EJECUTIVA;
+                modelo.CANT_CHILD = ObtenerPlantilla.CANT_CHILD;
+                modelo.CANT_ADULT = ObtenerPlantilla.CANT_ADULT;
+                modelo.CANT_PAX = ObtenerPlantilla.CANT_PAX;
+                modelo.ESTADO = ObtenerPlantilla.ESTADO;
+                modelo.FECHA_INI = ObtenerPlantilla.FECHA_INI;
+                modelo.MARKUP = ObtenerPlantilla.MARKUP;
+
+            }
+
+
+            return View(modelo);
+        }
+
+
+
         [Autorizar(Perfil.Administrador)]
         public ActionResult ListadoPlantilla(PlantillaViewModels Filtro)
         {
