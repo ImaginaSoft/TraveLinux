@@ -4,6 +4,10 @@
     var Proveedor = $("#proveedor").val();
 
 
+    $('#triggers').change(function () {
+        $('#form_servicios').submit();
+    });
+
 
     function renderTextColor(data, type, row, meta) {
         var text = data.toLowerCase();

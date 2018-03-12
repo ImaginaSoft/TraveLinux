@@ -105,20 +105,31 @@ tr th:last-child {
                                     <input input="text" class="form-control hidden" id="proveedor"  value="@ViewBag.PROVEEDOR">
                                     <br />
                                 </div>
+                                <div class="col-md-9 col-md-9">
+
+                                    @using (Html.BeginForm("CargaServicio", "Servicios", new
+                                    {
+                                        Proveedor = @ViewBag.Proveedor
+
+                                    }, FormMethod.Post, new { enctype = "multipart/form-data", id = "form_servicios" }))
+                                    {
+
+                                        @*<input type="file" name="UploadedFile" />
+                <input type="submit" name="Submit" value="Submit" />*@
+                                        <input type="file" id="triggers" class="filestyle" data-buttonName="btn-warning" name="UploadedFile" data-buttonBefore="true" data-buttonText="Import Excel" data-size="sm" />
+
+                                    }
+
+                                </div>
                             </fieldset>
                         </div>
                     </div>
-                    @using (Html.BeginForm("CargaServicio", "Servicios", new
-                    {
-                        Proveedor = @ViewBag.Proveedor
-                        
-                    }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
 
-                        <input type="file" name="UploadedFile" />
-                            <input type="submit" name="Submit" value="Submit" />
 
-                    }
+                    <button class="btn btn-warning" id="btn-guardarCarga">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+
                     @if (Model != null)
                     {
 
@@ -168,10 +179,7 @@ tr th:last-child {
                             </tbody>
                         </table>
                     }
-
-                    <button class="btn btn-warning" id="btn-guardarCarga">
-                        <span class="glyphicon glyphicon-save"></span> Save
-                    </button>
+                   
                 </div>
             </div>
         </div>
