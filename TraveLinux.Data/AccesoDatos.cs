@@ -1774,6 +1774,7 @@ namespace TraveLinux.Data
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2, 50).Value = eEntidad.DESCRIPCION;
+                command.Parameters.Add("P_PROVEEDOR", OracleDbType.Varchar2, 50).Value = eEntidad.PROVEEDOR;
                 command.Parameters.Add("P_FECHA_INI", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_INICIO_S);
                 command.Parameters.Add("P_FECHA_FIN", OracleDbType.Date).Value = Convert.ToDateTime(eEntidad.FECHA_FINAL_S);
                 command.Parameters.Add("P_TIPO_PERSONA", OracleDbType.Varchar2, 50).Value = eEntidad.TIPO_PERSONA;
